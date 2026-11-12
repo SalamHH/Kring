@@ -614,7 +614,7 @@ Where this section and `presisjonstest.py` disagree (for example the type and un
 - When several objects share the name, prefer by type: administrativ bydel / bydel → tettbebyggelse / tettsteddel → boligfelt → grend → tettsted → industriområde → senter → torg → park → gard → stations → **holdeplass (last)**. «Furuset» in the police log means the area, not the bus stop.
 - If the chosen type is «adressenavn», geocode as a street instead.
 - Split the area field on «,», «/», «;», « - », « V/ », « ved »; strip road prefixes (E6, Rv. 4, Fv, Ring 3).
-- Aliases (police terms that are not official names): «Sentrum», «Oslo sentrum» → 59.9133, 10.7389, 1 200 m; «Oslo S» → 59.9110, 10.7522, 300 m. Add «Majorstua» → «Majorstuen» etc. as found.
+- Aliases (police terms that are not official names): «Sentrum», «Oslo sentrum» → 59.9133, 10.7389, 1 200 m; «Oslo S» → 59.9110, 10.7522, 300 m; «Rosenhoff» → 59.93098, 10.77447 (the point of «Rosenhoff skole» in the place-name register, which has no area called Rosenhoff), 800 m (decided 2026-11-12). Add «Majorstua» → «Majorstuen» etc. as found.
 
 | Object type | Assumed uncertainty | Object type | Assumed uncertainty |
 |---|---|---|---|

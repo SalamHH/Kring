@@ -18,6 +18,7 @@ import argparse
 import os
 import tempfile
 
+from app.geocode.places import STED_ALIAS
 from tests import kartverket_replay as replay
 from tests.appendix_c import FIXTURES, KNR, KOMMUNE
 from tests.test_text_parity import ref
@@ -49,6 +50,7 @@ def main() -> None:
         return resp
 
     ref.HTTP.get = recording_get
+    ref.STED_ALIAS = STED_ALIAS  # our aliases (script's + decided ones), so requests match the port
     # The script keeps a JSON cache relative to the working directory; run in an empty
     # temp dir so every request really goes to the API.
     cwd = os.getcwd()

@@ -53,6 +53,20 @@ STEDSTYPE_PRIORITET: dict[str, int] = {
 }  # fmt: skip
 UKJENT_PRIORITET = 50
 
+# Police terms that are not official place names: (kommunenummer, normalised name) → placement.
+# Sentrum / Oslo sentrum / Oslo S are from the script; Rosenhoff is decided 2026-11-12 (spec §9.2):
+# the register has no area «Rosenhoff», so the point of «Rosenhoff skole» is used, with 800 m.
+_OSLO_SENTRUM = {"lat": 59.9133, "lon": 10.7389, "usikkerhet_m": 1200.0,
+                 "kilde": "stedsnavn", "detalj": "alias: Oslo sentrum"}  # fmt: skip
+STED_ALIAS: dict[tuple[str, str], dict[str, Any]] = {
+    ("0301", "sentrum"): _OSLO_SENTRUM,
+    ("0301", "oslo sentrum"): _OSLO_SENTRUM,
+    ("0301", "oslo s"): {"lat": 59.9110, "lon": 10.7522, "usikkerhet_m": 300.0,
+                         "kilde": "stedsnavn", "detalj": "alias: Oslo S"},
+    ("0301", "rosenhoff"): {"lat": 59.93098, "lon": 10.77447, "usikkerhet_m": 800.0,
+                            "kilde": "stedsnavn", "detalj": "alias: Rosenhoff"},
+}  # fmt: skip
+
 
 def velg_stedsnavn(data: dict[str, Any], navn: str) -> dict[str, Any] | None:
     """Pick one place from a stedsnavn /navn response: exact spelling match on any
