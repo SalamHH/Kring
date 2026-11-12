@@ -400,7 +400,7 @@ Images below are full-length (scrolled content included). Versions cropped to on
 |---|---|---|
 | Mobile | Expo (React Native, TypeScript), expo-router, react-native-maps, expo-notifications | One codebase for iOS + Android; Expo Push is free |
 | API | FastAPI (Python 3.12), Pydantic v2, SQLAlchemy 2 / asyncpg | Matches founder's stack; geocoder is already Python |
-| Database | PostgreSQL 16 + PostGIS | Geography types, ST_DWithin, GiST indexes |
+| Database | PostgreSQL 17 + PostGIS (decided 2026-11-12: 17 instead of 16, because Homebrew's PostGIS is not built for 16) | Geography types, ST_DWithin, GiST indexes |
 | Worker | Separate process (same codebase) with an asyncio loop / APScheduler | Polling, geocoding, matching, push, digest |
 | Hosting | Render (web service + background worker + managed Postgres) | Founder already uses it; low ops |
 | Push | Expo Push API (+ receipts) | Handles APNs/FCM |

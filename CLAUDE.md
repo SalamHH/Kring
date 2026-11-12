@@ -19,4 +19,4 @@ The repo root is the `stedsafe/` level in spec §8.9.
 
 ## Local environment
 
-Homebrew `postgresql@16` + `postgis`, and `uv` pinning Python 3.12. There is no Docker. The commands for setup, tests and the worker come in M0 step 1.
+Homebrew `postgresql@17` + `postgis`, and `uv` pinning Python 3.12. There is no Docker. Setup and test commands: `backend/README.md`.
