@@ -52,6 +52,16 @@ uv run ruff check .
 uv run ruff format .
 ```
 
+## Running the worker
+
+The ingestion worker polls Politiloggen every 60 s, geocodes new and changed threads, and writes to the dev database. Stop it with Ctrl-C; a cycle in progress is rolled back. Only one worker can run per database (Postgres advisory lock).
+
+```bash
+uv run python -m app.worker
+```
+
+On an empty database the first cycle reads the last quarter (about 100 pages) and geocodes every Oslo and Akershus thread, which takes a few minutes. Later cycles read `LastDay` and take a second or two.
+
 ## Settings
 
 Read from environment variables prefixed `STEDSAFE_` or from `backend/.env` (git-ignored). See `app/settings.py`. For example:

@@ -443,8 +443,10 @@ Accept: application/json
   - (decided 2026-11-12) If a Kartverket lookup fails while placing an event, the event is stored without a point and with `geocode_method` NULL. Every cycle re-geocodes NULL-method events in the fetched window, whether or not they changed.
 - An event's first message time (`first_message_at`) is the earliest message timestamp in the thread; fall back to the thread-level created field only if messages have no timestamps (decided 2026-11-12).
 - Handle 429/5xx with exponential backoff (1, 2, 4, 8, 16 s). Alert (log at ERROR) if no successful poll for 10 min.
+- Worker loop (decided 2026-11-12): `python -m app.worker` runs one cycle per transaction, starting a cycle every 60 s from the previous start. A cycle that runs over is followed at once by the next, with no catch-up. SIGINT or SIGTERM aborts the cycle in progress and rolls it back. A session-level Postgres advisory lock allows only one worker per database; a second one exits with status 1.
 - Map the event's municipality name to a kommunenummer (kommuneinfo API, cached) and geocode within that municipality.
-  - (decided 2026-11-12) Both the Norwegian and the Sámi names are matched, ignoring case. Names that don't resolve are skipped with one WARN per name: police districts in the municipality field («Oslo politidistrikt»), qualified names («Våler (Øst)», «Herøy (Nordland)») and «Kvam Herad». None of them are in Oslo or Akershus. Only threads in the allowed fylker are stored.
+  - (decided 2026-11-12) Both the Norwegian and the Sámi names are matched, ignoring case. Names that don't resolve are skipped with one WARN per name: police districts in the municipality field («Oslo politidistrikt»), qualified names («Våler (Øst)», «Herøy (Nordland)») and «Kvam Herad». Only threads in the allowed fylker are stored.
+  - (decided 2026-11-12, corrected after the M0 live run) A police district in the municipality field marks a district-wide notice with no area: missing persons, weather warnings, airspace restrictions and the like. «Oslo politidistrikt» and «Øst politidistrikt» (which covers part of Akershus) had 4 and 3 such threads in a month. They are skipped in M0; how to show them is open question 8 in §15.
 - Attribution: «Kilde: Politiloggen (NLOD 2.0)» on every screen showing police text.
 
 ## 8.4 Database schema
@@ -711,6 +713,7 @@ Where this section and `presisjonstest.py` disagree (for example the type and un
 5. Legal review of storing place locations (consent wording, DPIA-light).
 6. Name: is «stedSafe» available (trademark, App Store, domain)?
 7. Parent interviews: do users understand Gatenivå / Nabolag / Bydel without explanation?
+8. District-wide notices («Oslo politidistrikt» and similar in the municipality field, no area): should they reach everyone with a place in that district, go only in the digest, or be left out? Found in the M0 live run (§8.3).
 
 # Appendix A · Precision test details
 
