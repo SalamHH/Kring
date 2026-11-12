@@ -79,7 +79,7 @@ uv run python -m scripts.record_kartverket --refresh
 
 This calls the public Kartverket APIs. Transient errors (429/5xx) are never saved.
 
-To record responses for the recorded Oslo Politiloggen threads (step 6 parity, step 9 replay), stored together in `tests/fixtures/kartverket/threads.jsonl.gz`:
+To record responses for the recorded Oslo and Akershus Politiloggen threads (step 6 parity, step 9 replay), each geocoded in its own municipality. Responses that are already recorded are replayed, not requested again. All of them are stored together in `tests/fixtures/kartverket/threads.jsonl.gz`:
 
 ```bash
 uv run python -m scripts.record_kartverket --threads

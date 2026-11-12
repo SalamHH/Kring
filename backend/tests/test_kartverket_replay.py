@@ -38,6 +38,6 @@ async def test_recording_replays_like_the_script(monkeypatch: pytest.MonkeyPatch
         router.route().mock(side_effect=replay_handler(RECORDS))
         result = await getattr(make_client(http, FakeTime()), method)(*args)
 
-    assert rec["status"] == 200, "only 200 responses are expected in the Appendix C set"
+    assert rec["status"] == 200, "only 200 responses are expected in the recordings"
     oracle_with_response(monkeypatch, rec["body"])
     assert result == oracle(ref.Geokoder(knr))

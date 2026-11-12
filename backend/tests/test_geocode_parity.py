@@ -1,9 +1,10 @@
 """Pipeline parity: the port's placement equals the reference script's `plasser()` result,
 given the same aliases and the same recorded Kartverket answers.
 
-Inputs: the Appendix C fixtures (one test each), and every recorded Oslo Politiloggen thread
-(tests/fixtures/politiloggen/quarter.json; the script reads it with its own `trad_til_rad`,
-the port through app.ingest). The plan's bar for threads is ≥ 99 % identical.
+Inputs: the Appendix C fixtures (one test each), and every recorded Oslo and Akershus
+Politiloggen thread (tests/fixtures/politiloggen/quarter.json; the script reads it with its
+own `trad_til_rad`, the port through app.ingest), each geocoded in its own municipality.
+The plan's bar for threads is ≥ 99 % identical, checked for Oslo and Akershus separately.
 """
 
 from __future__ import annotations
@@ -23,7 +24,7 @@ from app.ingest.politiloggen import parse_thread
 from tests.appendix_c import FIXTURES, KNR, KOMMUNE, Fixture
 from tests.kartverket_replay import load_all, replay_handler, request_key
 from tests.kartverket_samples import FakeTime, make_client
-from tests.politiloggen_fixtures import raw_threads_in, register
+from tests.politiloggen_fixtures import scoped_raw_threads
 from tests.test_text_parity import ref
 
 RECORDS = load_all()
@@ -85,18 +86,20 @@ async def test_pipeline_matches_script(
     assert as_tuple(got) == script_tuple(expected)
 
 
-OSLO_THREADS = raw_threads_in(KNR)
+SCOPED_THREADS = scoped_raw_threads()
+MIN_THREADS = {"03": 300, "32": 500}  # Oslo, Akershus; below this the recording is too thin
 
 
-async def test_pipeline_matches_script_on_recorded_oslo_threads(
-    monkeypatch: pytest.MonkeyPatch, tmp_path: os.PathLike, db: AsyncConnection
+@pytest.mark.parametrize("fylke", ["03", "32"], ids=["oslo", "akershus"])
+async def test_pipeline_matches_script_on_recorded_threads(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: os.PathLike, db: AsyncConnection, fylke: str
 ) -> None:
-    assert len(OSLO_THREADS) >= 300, "re-record: uv run python -m scripts.record_politiloggen"
-    kommune = register().resolve("Oslo")
-    assert kommune is not None and (kommune.nummer, kommune.navn) == (KNR, KOMMUNE)
+    """Each thread is geocoded in its own municipality, by the script and by the port."""
+    threads = [(raw, k) for raw, k in SCOPED_THREADS if k.nummer[:2] == fylke]
+    assert len(threads) >= MIN_THREADS[fylke], "re-record: uv run python -m scripts.record_politiloggen"
 
     patch_script(monkeypatch, tmp_path)
-    script_geo = ref.Geokoder(KNR)
+    script_geos: dict[str, Any] = {}
 
     diffs: list[str] = []
     async with (
@@ -104,19 +107,18 @@ async def test_pipeline_matches_script_on_recorded_oslo_threads(
         httpx.AsyncClient() as http,
     ):
         router.route().mock(side_effect=replay_handler(RECORDS))
-        geocoder = Geocoder(
-            CachedKartverket(make_client(http, FakeTime()), GeocodeCache(db)), kommune.nummer, kommune.navn
-        )
-        for raw in OSLO_THREADS:
-            expected = script_tuple(ref.plasser(ref.trad_til_rad(raw), script_geo, KOMMUNE))
+        cached = CachedKartverket(make_client(http, FakeTime()), GeocodeCache(db))
+        for raw, k in threads:
+            script_geo = script_geos.setdefault(k.nummer, ref.Geokoder(k.nummer))
+            expected = script_tuple(ref.plasser(ref.trad_til_rad(raw), script_geo, k.navn))
             t = parse_thread(raw)
             assert t is not None
-            got = as_tuple(await geocoder.place(t.area, t.text))
+            got = as_tuple(await Geocoder(cached, k.nummer, k.navn).place(t.area, t.text))
             if got != expected:
-                diffs.append(f"{t.id} area={t.area!r}\n  port:   {got}\n  script: {expected}")
+                diffs.append(f"{t.id} {k.navn} area={t.area!r}\n  port:   {got}\n  script: {expected}")
 
-    rate = 1 - len(diffs) / len(OSLO_THREADS)
-    print(f"\nparity on {len(OSLO_THREADS)} Oslo threads: {rate:.2%} identical")
+    rate = 1 - len(diffs) / len(threads)
+    print(f"\nparity on {len(threads)} threads in {len(script_geos)} municipalities: {rate:.2%} identical")
     for d in diffs:
         print(d)
     assert rate >= 0.99, "\n".join(diffs)
