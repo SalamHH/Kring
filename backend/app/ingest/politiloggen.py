@@ -68,6 +68,9 @@ class Thread:
     is_active: bool | None
     messages: tuple[Message, ...]
     raw: dict[str, Any] = field(repr=False, compare=False)
+    # Messages that could not be parsed (not counting Draft/Removed, which are dropped on
+    # purpose). While this is > 0 the ingestor deletes no stored messages for the thread.
+    unparsed_messages: int = 0
 
     @property
     def text(self) -> str:
@@ -114,9 +117,16 @@ def _bool(value: Any) -> bool | None:
     return None
 
 
+def _is_hidden(raw: Any) -> bool:
+    mtype = _str(pick(raw, F_MSG_TYPE)) if isinstance(raw, dict) else None
+    return bool(mtype) and mtype.lower() in HIDDEN_MESSAGE_TYPES
+
+
 def parse_message(raw: Any, thread_id: str) -> Message | None:
     if not isinstance(raw, dict):
         log.warning("Politiloggen thread %s: message is not an object, skipped", thread_id)
+        return None
+    if _is_hidden(raw):
         return None
     mid = _str(pick(raw, F_MSG_ID))
     m = re.fullmatch(re.escape(thread_id) + r"-(\d+)", mid or "")
@@ -124,8 +134,6 @@ def parse_message(raw: Any, thread_id: str) -> Message | None:
         log.warning("Politiloggen thread %s: message id %r is not <thread>-<n>, skipped", thread_id, mid)
         return None
     mtype = _str(pick(raw, F_MSG_TYPE))
-    if mtype and mtype.lower() in HIDDEN_MESSAGE_TYPES:
-        return None
     text = pick(raw, F_MSG_TEXT)
     return Message(
         seq=int(m.group(1)),
@@ -151,9 +159,13 @@ def parse_thread(raw: Any) -> Thread | None:
     if not isinstance(raw_msgs, list):
         raw_msgs = []
     by_seq: dict[int, Message] = {}
+    unparsed = 0
     for rm in raw_msgs:
         msg = parse_message(rm, tid)
-        if msg is not None:
+        if msg is None:
+            if not _is_hidden(rm):
+                unparsed += 1
+        else:
             if msg.seq in by_seq:
                 log.warning("Politiloggen thread %s: duplicate message seq %d, kept the first", tid, msg.seq)
                 continue
@@ -185,6 +197,7 @@ def parse_thread(raw: Any) -> Thread | None:
         is_active=_bool(pick(raw, F_ACTIVE)),
         messages=messages,
         raw=raw,
+        unparsed_messages=unparsed,
     )
 
 
