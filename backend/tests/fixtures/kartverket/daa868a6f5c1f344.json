@@ -1,0 +1,48 @@
+{
+ "body": {
+  "metadata": {
+   "side": 1,
+   "sokeStreng": "sok=T%C3%A5sentunnelen&knr=0301&utkoordsys=4258&treffPerSide=25&fuzzy=false",
+   "totaltAntallTreff": 1,
+   "treffPerSide": 25,
+   "viserFra": 1,
+   "viserTil": 25
+  },
+  "navn": [
+   {
+    "fylker": [
+     {
+      "fylkesnavn": "Oslo",
+      "fylkesnummer": "03"
+     }
+    ],
+    "kommuner": [
+     {
+      "kommunenavn": "Oslo",
+      "kommunenummer": "0301"
+     }
+    ],
+    "navneobjekttype": "Tunnel",
+    "navnestatus": "hovednavn",
+    "representasjonspunkt": {
+     "nord": 59.95113,
+     "øst": 10.73936
+    },
+    "skrivemåte": "Tåsentunnelen",
+    "skrivemåtestatus": "godkjent og prioritert",
+    "språk": "Norsk",
+    "stedsnummer": 833691,
+    "stedstatus": "aktiv"
+   }
+  ]
+ },
+ "params": {
+  "fuzzy": "false",
+  "knr": "0301",
+  "sok": "Tåsentunnelen",
+  "treffPerSide": "25",
+  "utkoordsys": "4258"
+ },
+ "status": 200,
+ "url": "https://ws.geonorge.no/stedsnavn/v1/navn"
+}

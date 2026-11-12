@@ -64,3 +64,17 @@ STEDSAFE_ALLOWED_FYLKER='["03","32"]'
 ## Layout
 
 All the §8.9 modules live under the `app` package: `app/api`, `app/ingest`, `app/geocode`, `app/classify`, `app/match`, `app/notify`, `app/digest`, `app/db`, plus `app/settings.py`. Tests and recorded fixtures are in `tests/` (`tests/fixtures/politiloggen`, `tests/fixtures/kartverket`).
+
+## Recorded Kartverket responses
+
+Geocoder tests run offline against responses in `tests/fixtures/kartverket/`, recorded by running the reference script (`research/presisjonstest.py`) over the Appendix C inputs in `tests/appendix_c.py`. To fill in missing recordings, or to re-record everything:
+
+```bash
+uv run python -m scripts.record_kartverket
+```
+
+```bash
+uv run python -m scripts.record_kartverket --refresh
+```
+
+This calls the public Kartverket APIs. Transient errors (429/5xx) are never saved.

@@ -1,0 +1,22 @@
+{
+ "body": {
+  "metadata": {
+   "side": 1,
+   "sokeStreng": "sok=Rosenhoff&knr=0301&utkoordsys=4258&treffPerSide=25&fuzzy=false",
+   "totaltAntallTreff": 0,
+   "treffPerSide": 25,
+   "viserFra": 1,
+   "viserTil": 25
+  },
+  "navn": []
+ },
+ "params": {
+  "fuzzy": "false",
+  "knr": "0301",
+  "sok": "Rosenhoff",
+  "treffPerSide": "25",
+  "utkoordsys": "4258"
+ },
+ "status": 200,
+ "url": "https://ws.geonorge.no/stedsnavn/v1/navn"
+}

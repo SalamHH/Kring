@@ -1,0 +1,1520 @@
+{
+ "body": {
+  "adresser": [
+   {
+    "adresseid": "285709055",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 10A",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 10A",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "A",
+    "bruksenhetsnummer": [
+     "H0102",
+     "H0103",
+     "H0104",
+     "H0201",
+     "H0202",
+     "H0301",
+     "H0302",
+     "H0403"
+    ],
+    "bruksnummer": 165,
+    "festenummer": 0,
+    "gardsnummer": 213,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 10,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2026-08-13T12:11:11",
+    "postnummer": "0259",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92171171691692,
+     "lon": 10.719076732311764
+    },
+    "stedfestingverifisert": true,
+    "undernummer": null
+   },
+   {
+    "adresseid": "6513334289",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 10B",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 10B",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "B",
+    "bruksenhetsnummer": [
+     "H0101",
+     "H0201",
+     "H0301",
+     "H0401",
+     "H0402"
+    ],
+    "bruksnummer": 165,
+    "festenummer": 0,
+    "gardsnummer": 213,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 10,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2026-08-13T12:13:19",
+    "postnummer": "0259",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92174933158954,
+     "lon": 10.719016062845165
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285826276",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 12A",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 12A",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "A",
+    "bruksenhetsnummer": [
+     "H0101",
+     "H0201",
+     "H0301"
+    ],
+    "bruksnummer": 166,
+    "festenummer": 0,
+    "gardsnummer": 213,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 12,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2020-06-15T18:06:53",
+    "postnummer": "0259",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92177808781085,
+     "lon": 10.719359251654836
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285826275",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 12B",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 12B",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "B",
+    "bruksenhetsnummer": [
+     "H0101",
+     "H0102",
+     "H0103",
+     "H0201",
+     "H0202",
+     "H0203"
+    ],
+    "bruksnummer": 166,
+    "festenummer": 0,
+    "gardsnummer": 213,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 12,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2020-06-15T18:06:53",
+    "postnummer": "0259",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92183333854717,
+     "lon": 10.719254769487401
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285709056",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 14A",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 14A",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "A",
+    "bruksenhetsnummer": [
+     "H0101",
+     "H0201"
+    ],
+    "bruksnummer": 167,
+    "festenummer": 0,
+    "gardsnummer": 213,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 14,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2020-06-15T18:04:06",
+    "postnummer": "0259",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92207251216077,
+     "lon": 10.719853944982844
+    },
+    "stedfestingverifisert": true,
+    "undernummer": null
+   },
+   {
+    "adresseid": "575422393",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 14B",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 14B",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "B",
+    "bruksenhetsnummer": [
+     "H0101",
+     "H0201"
+    ],
+    "bruksnummer": 167,
+    "festenummer": 0,
+    "gardsnummer": 213,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 14,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2020-06-15T18:30:36",
+    "postnummer": "0259",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92212447630472,
+     "lon": 10.719726035217468
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285709057",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 15",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 15",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [],
+    "bruksnummer": 168,
+    "festenummer": 0,
+    "gardsnummer": 213,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 15,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2023-03-01T18:43:14",
+    "postnummer": "0259",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92124434681836,
+     "lon": 10.719653652998428
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285709058",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 16A",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 16A",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "A",
+    "bruksenhetsnummer": [
+     "H0101",
+     "H0201",
+     "H0301",
+     "H0302"
+    ],
+    "bruksnummer": 169,
+    "festenummer": 0,
+    "gardsnummer": 213,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 16,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2020-06-15T18:04:06",
+    "postnummer": "0259",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92225256472104,
+     "lon": 10.720165611246863
+    },
+    "stedfestingverifisert": true,
+    "undernummer": null
+   },
+   {
+    "adresseid": "368163508",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 16B",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 16B",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "B",
+    "bruksenhetsnummer": [
+     "H0301",
+     "U0101",
+     "U0102",
+     "U0103"
+    ],
+    "bruksnummer": 169,
+    "festenummer": 0,
+    "gardsnummer": 213,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 16,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2020-06-15T18:13:24",
+    "postnummer": "0259",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92230623093858,
+     "lon": 10.720044945535728
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285709059",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 18",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 18",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [
+     "H0101",
+     "H0102",
+     "H0201",
+     "H0202",
+     "H0301",
+     "H0302"
+    ],
+    "bruksnummer": 170,
+    "festenummer": 0,
+    "gardsnummer": 213,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 18,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2020-06-15T18:04:06",
+    "postnummer": "0259",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92238292566154,
+     "lon": 10.720499754743942
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285709051",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 2",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 2",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [
+     "H0101",
+     "H0102",
+     "H0201",
+     "H0202",
+     "H0301",
+     "H0302"
+    ],
+    "bruksnummer": 160,
+    "festenummer": 0,
+    "gardsnummer": 213,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 2,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2023-03-01T18:43:14",
+    "postnummer": "0259",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92086306354264,
+     "lon": 10.71789862904662
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285709060",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 20",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 20",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [
+     "H0201",
+     "H0202",
+     "H0301"
+    ],
+    "bruksnummer": 171,
+    "festenummer": 0,
+    "gardsnummer": 213,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 20,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2020-06-15T18:04:06",
+    "postnummer": "0259",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92246160378361,
+     "lon": 10.720664842845029
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285822632",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 22A",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 22A",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "A",
+    "bruksenhetsnummer": [
+     "H0101",
+     "H0201",
+     "H0301"
+    ],
+    "bruksnummer": 117,
+    "festenummer": 0,
+    "gardsnummer": 214,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 22,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2020-06-15T18:07:30",
+    "postnummer": "0355",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.923139633362865,
+     "lon": 10.721701841189686
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285822631",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 22B",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 22B",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "B",
+    "bruksenhetsnummer": [
+     "H0201",
+     "H0301"
+    ],
+    "bruksnummer": 117,
+    "festenummer": 0,
+    "gardsnummer": 214,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 22,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2020-06-15T18:07:30",
+    "postnummer": "0355",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92311667586435,
+     "lon": 10.721396507234386
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285709061",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 23",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 23",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [
+     "H0101",
+     "H0102",
+     "H0201",
+     "H0202",
+     "H0301",
+     "H0302",
+     "H0401",
+     "H0402"
+    ],
+    "bruksnummer": 118,
+    "festenummer": 0,
+    "gardsnummer": 214,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 23,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2020-06-15T18:04:06",
+    "postnummer": "0355",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92278796192758,
+     "lon": 10.721808854588758
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285709062",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 24",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 24",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [
+     "H0101",
+     "H0102",
+     "H0103",
+     "H0201",
+     "H0202",
+     "H0203"
+    ],
+    "bruksnummer": 119,
+    "festenummer": 0,
+    "gardsnummer": 214,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 24,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2020-06-15T18:04:06",
+    "postnummer": "0355",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92333148648578,
+     "lon": 10.722141165149376
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285709063",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 25",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 25",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [],
+    "bruksnummer": 120,
+    "festenummer": 0,
+    "gardsnummer": 214,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 25,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2020-06-15T18:04:06",
+    "postnummer": "0355",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92304217482045,
+     "lon": 10.722287188244538
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285709064",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 26",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 26",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [],
+    "bruksnummer": 121,
+    "festenummer": 0,
+    "gardsnummer": 214,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 26,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2020-06-15T18:04:06",
+    "postnummer": "0355",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92355994007305,
+     "lon": 10.722528718395722
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285709065",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 27",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 27",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [
+     "H0101",
+     "H0201",
+     "H0301",
+     "H0302",
+     "K0101",
+     "K0102",
+     "K0103"
+    ],
+    "bruksnummer": 122,
+    "festenummer": 0,
+    "gardsnummer": 214,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 27,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2020-06-15T18:04:06",
+    "postnummer": "0355",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.9232529109727,
+     "lon": 10.722655929635925
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285709066",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 28",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 28",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [],
+    "bruksnummer": 123,
+    "festenummer": 0,
+    "gardsnummer": 214,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 28,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2020-06-15T18:04:06",
+    "postnummer": "0355",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92365656620844,
+     "lon": 10.722694747802638
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285709067",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 29",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 29",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [
+     "H0201",
+     "H0202",
+     "H0203",
+     "H0204",
+     "H0301",
+     "H0302",
+     "H0303",
+     "H0304",
+     "H0401"
+    ],
+    "bruksnummer": 124,
+    "festenummer": 0,
+    "gardsnummer": 214,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 29,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2020-06-15T18:04:06",
+    "postnummer": "0355",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92337060261854,
+     "lon": 10.723134353348618
+    },
+    "stedfestingverifisert": true,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285709052",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 2B",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 2B",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "B",
+    "bruksenhetsnummer": [
+     "H0201",
+     "H0202",
+     "H0301",
+     "H0302",
+     "H0401",
+     "H0402",
+     "H0501",
+     "H0502"
+    ],
+    "bruksnummer": 161,
+    "festenummer": 0,
+    "gardsnummer": 213,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 2,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2023-03-01T18:43:14",
+    "postnummer": "0259",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92027289412217,
+     "lon": 10.717009434640834
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285709068",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 30",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 30",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [
+     "H0101",
+     "H0201",
+     "H0202",
+     "H0301",
+     "H0302",
+     "H0401",
+     "H0402",
+     "H0501"
+    ],
+    "bruksnummer": 125,
+    "festenummer": 0,
+    "gardsnummer": 214,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 30,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2020-06-15T18:04:06",
+    "postnummer": "0355",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.924086075557575,
+     "lon": 10.723504236734886
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285709069",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 32",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 32",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [
+     "H0101",
+     "H0201",
+     "H0202",
+     "H0301",
+     "H0302",
+     "H0401",
+     "H0402",
+     "H0501",
+     "H0502"
+    ],
+    "bruksnummer": 126,
+    "festenummer": 0,
+    "gardsnummer": 214,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 32,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2020-06-15T18:04:06",
+    "postnummer": "0355",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92424576127096,
+     "lon": 10.72365565146866
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "6486966454",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 33",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 33",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [],
+    "bruksnummer": 291,
+    "festenummer": 0,
+    "gardsnummer": 214,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 33,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2025-02-27T11:56:20",
+    "postnummer": "0355",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.923690385911534,
+     "lon": 10.7233370048926
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285822633",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 35",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 35",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [
+     "H0201",
+     "H0202",
+     "H0301",
+     "H0302",
+     "H0401",
+     "H0402"
+    ],
+    "bruksnummer": 291,
+    "festenummer": 0,
+    "gardsnummer": 214,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 35,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2025-02-27T11:53:25",
+    "postnummer": "0355",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92374594884007,
+     "lon": 10.723415029666349
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "6486966453",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 37",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 37",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [],
+    "bruksnummer": 291,
+    "festenummer": 0,
+    "gardsnummer": 214,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 37,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2025-02-27T11:55:39",
+    "postnummer": "0355",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.923804657802386,
+     "lon": 10.723527211221853
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "6404138920",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 39",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 39",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [],
+    "bruksnummer": 288,
+    "festenummer": 0,
+    "gardsnummer": 214,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 39,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2021-09-08T07:49:10",
+    "postnummer": "0355",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.923969808148314,
+     "lon": 10.72374152785536
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285709053",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 4",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 4",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [
+     "H0101",
+     "H0102",
+     "H0201",
+     "H0202",
+     "H0301"
+    ],
+    "bruksnummer": 162,
+    "festenummer": 0,
+    "gardsnummer": 213,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 4,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2023-03-01T18:43:14",
+    "postnummer": "0259",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92103837690681,
+     "lon": 10.718229706743431
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "6404138921",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 41",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 41",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [],
+    "bruksnummer": 288,
+    "festenummer": 0,
+    "gardsnummer": 214,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 41,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2021-09-08T07:49:43",
+    "postnummer": "0355",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92401525495139,
+     "lon": 10.723768933395114
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "6404138922",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 43",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 43",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [],
+    "bruksnummer": 288,
+    "festenummer": 0,
+    "gardsnummer": 214,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 43,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2021-09-08T07:49:59",
+    "postnummer": "0355",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.924190240148164,
+     "lon": 10.724055328657046
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "536414964",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 45",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 45",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [
+     "H0101",
+     "H0201",
+     "H0202",
+     "H0301"
+    ],
+    "bruksnummer": 288,
+    "festenummer": 0,
+    "gardsnummer": 214,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 45,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2021-10-15T11:19:30",
+    "postnummer": "0355",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92415245952366,
+     "lon": 10.724128512288862
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "536421238",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 47",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 47",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [
+     "H0101",
+     "H0201",
+     "H0301"
+    ],
+    "bruksnummer": 288,
+    "festenummer": 0,
+    "gardsnummer": 214,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 47,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2021-10-15T11:20:51",
+    "postnummer": "0355",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92404044105282,
+     "lon": 10.724178162964778
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "6477646335",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 5A",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 5A",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "A",
+    "bruksenhetsnummer": [
+     "H0101",
+     "H0201",
+     "H0301",
+     "H0401"
+    ],
+    "bruksnummer": 21,
+    "festenummer": 0,
+    "gardsnummer": 213,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 5,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2024-08-02T13:58:45",
+    "postnummer": "0259",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92006336247519,
+     "lon": 10.717098788317811
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "6477646336",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 5B",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 5B",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "B",
+    "bruksenhetsnummer": [
+     "H0101",
+     "H0201",
+     "H0301",
+     "H0401"
+    ],
+    "bruksnummer": 21,
+    "festenummer": 0,
+    "gardsnummer": 213,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 5,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2024-08-02T13:59:08",
+    "postnummer": "0259",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92010410298612,
+     "lon": 10.717211806425471
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285709054",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 6",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 6",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [
+     "H0101",
+     "H0201"
+    ],
+    "bruksnummer": 163,
+    "festenummer": 0,
+    "gardsnummer": 213,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 6,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2023-03-01T18:43:14",
+    "postnummer": "0259",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92126730836803,
+     "lon": 10.718581450709715
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "6477646337",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 7",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 7",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [
+     "H0201",
+     "H0301"
+    ],
+    "bruksnummer": 20,
+    "festenummer": 0,
+    "gardsnummer": 213,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 7,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2024-08-02T13:59:35",
+    "postnummer": "0259",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.9201778086437,
+     "lon": 10.717414185636073
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285823355",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 8A",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 8A",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "A",
+    "bruksenhetsnummer": [],
+    "bruksnummer": 164,
+    "festenummer": 0,
+    "gardsnummer": 213,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 8,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2023-03-01T18:43:14",
+    "postnummer": "0259",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92137431321429,
+     "lon": 10.71864065430887
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   },
+   {
+    "adresseid": "285831060",
+    "adressekode": 13110,
+    "adressenavn": "Holtegata",
+    "adressetekst": "Holtegata 8B",
+    "adressetekstutenadressetilleggsnavn": "Holtegata 8B",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "B",
+    "bruksenhetsnummer": [
+     "H0101",
+     "H0201",
+     "H0301"
+    ],
+    "bruksnummer": 164,
+    "festenummer": 0,
+    "gardsnummer": 213,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 8,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2023-03-01T18:43:14",
+    "postnummer": "0259",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.92149169160187,
+     "lon": 10.718593055055404
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   }
+  ],
+  "metadata": {
+   "asciiKompatibel": true,
+   "side": 0,
+   "sokeStreng": "adressenavn=Holtegata&kommunenummer=0301&treffPerSide=1000&utkoordsys=4258",
+   "totaltAntallTreff": 39,
+   "treffPerSide": 1000,
+   "viserFra": 0,
+   "viserTil": 1000
+  }
+ },
+ "params": {
+  "adressenavn": "Holtegata",
+  "kommunenummer": "0301",
+  "treffPerSide": "1000",
+  "utkoordsys": "4258"
+ },
+ "status": 200,
+ "url": "https://ws.geonorge.no/adresser/v1/sok"
+}

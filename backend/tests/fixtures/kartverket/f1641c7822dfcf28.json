@@ -1,0 +1,73 @@
+{
+ "body": {
+  "metadata": {
+   "side": 1,
+   "sokeStreng": "sok=Furuset&knr=0301&utkoordsys=4258&treffPerSide=25&fuzzy=false",
+   "totaltAntallTreff": 2,
+   "treffPerSide": 25,
+   "viserFra": 1,
+   "viserTil": 25
+  },
+  "navn": [
+   {
+    "fylker": [
+     {
+      "fylkesnavn": "Oslo",
+      "fylkesnummer": "03"
+     }
+    ],
+    "kommuner": [
+     {
+      "kommunenavn": "Oslo",
+      "kommunenummer": "0301"
+     }
+    ],
+    "navneobjekttype": "Tettbebyggelse",
+    "navnestatus": "hovednavn",
+    "representasjonspunkt": {
+     "nord": 59.93954,
+     "øst": 10.8876
+    },
+    "skrivemåte": "Furuset",
+    "skrivemåtestatus": "godkjent og prioritert",
+    "språk": "Norsk",
+    "stedsnummer": 368045,
+    "stedstatus": "aktiv"
+   },
+   {
+    "fylker": [
+     {
+      "fylkesnavn": "Oslo",
+      "fylkesnummer": "03"
+     }
+    ],
+    "kommuner": [
+     {
+      "kommunenavn": "Oslo",
+      "kommunenummer": "0301"
+     }
+    ],
+    "navneobjekttype": "Holdeplass",
+    "navnestatus": "hovednavn",
+    "representasjonspunkt": {
+     "nord": 59.94137,
+     "øst": 10.89713
+    },
+    "skrivemåte": "Furuset",
+    "skrivemåtestatus": "godkjent og prioritert",
+    "språk": "Norsk",
+    "stedsnummer": 84758,
+    "stedstatus": "aktiv"
+   }
+  ]
+ },
+ "params": {
+  "fuzzy": "false",
+  "knr": "0301",
+  "sok": "Furuset",
+  "treffPerSide": "25",
+  "utkoordsys": "4258"
+ },
+ "status": 200,
+ "url": "https://ws.geonorge.no/stedsnavn/v1/navn"
+}

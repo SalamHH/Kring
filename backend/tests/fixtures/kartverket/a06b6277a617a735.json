@@ -1,0 +1,48 @@
+{
+ "body": {
+  "metadata": {
+   "side": 1,
+   "sokeStreng": "sok=Nedre+Kalbakkvei&knr=0301&utkoordsys=4258&treffPerSide=25&fuzzy=false",
+   "totaltAntallTreff": 1,
+   "treffPerSide": 25,
+   "viserFra": 1,
+   "viserTil": 25
+  },
+  "navn": [
+   {
+    "fylker": [
+     {
+      "fylkesnavn": "Oslo",
+      "fylkesnummer": "03"
+     }
+    ],
+    "kommuner": [
+     {
+      "kommunenavn": "Oslo",
+      "kommunenummer": "0301"
+     }
+    ],
+    "navneobjekttype": "Adressenavn",
+    "navnestatus": "hovednavn",
+    "representasjonspunkt": {
+     "nord": 59.93022,
+     "øst": 10.86385
+    },
+    "skrivemåte": "Nedre Kalbakkvei",
+    "skrivemåtestatus": "vedtatt",
+    "språk": "Norsk",
+    "stedsnummer": 996646,
+    "stedstatus": "aktiv"
+   }
+  ]
+ },
+ "params": {
+  "fuzzy": "false",
+  "knr": "0301",
+  "sok": "Nedre Kalbakkvei",
+  "treffPerSide": "25",
+  "utkoordsys": "4258"
+ },
+ "status": 200,
+ "url": "https://ws.geonorge.no/stedsnavn/v1/navn"
+}

@@ -1,0 +1,58 @@
+{
+ "body": {
+  "adresser": [
+   {
+    "adresseid": "285791928",
+    "adressekode": 18581,
+    "adressenavn": "Økern torgvei",
+    "adressetekst": "Økern torgvei 1",
+    "adressetekstutenadressetilleggsnavn": "Økern torgvei 1",
+    "adressetilleggsnavn": null,
+    "atkomstpunkt": {
+     "generell": null,
+     "nodetat": null,
+     "oy": null,
+     "sommer": null,
+     "vinter": null
+    },
+    "bokstav": "",
+    "bruksenhetsnummer": [],
+    "bruksnummer": 527,
+    "festenummer": 0,
+    "gardsnummer": 123,
+    "kommunenavn": "OSLO",
+    "kommunenummer": "0301",
+    "nummer": 1,
+    "objtype": "Vegadresse",
+    "oppdateringsdato": "2020-06-15T18:05:29",
+    "postnummer": "0580",
+    "poststed": "OSLO",
+    "representasjonspunkt": {
+     "epsg": "EPSG:4258",
+     "lat": 59.93025417345843,
+     "lon": 10.805550248985995
+    },
+    "stedfestingverifisert": false,
+    "undernummer": null
+   }
+  ],
+  "metadata": {
+   "asciiKompatibel": true,
+   "side": 0,
+   "sokeStreng": "adressenavn=%C3%98kern+Torgvei&nummer=1&kommunenummer=0301&treffPerSide=10&utkoordsys=4258",
+   "totaltAntallTreff": 1,
+   "treffPerSide": 10,
+   "viserFra": 0,
+   "viserTil": 10
+  }
+ },
+ "params": {
+  "adressenavn": "Økern Torgvei",
+  "kommunenummer": "0301",
+  "nummer": "1",
+  "treffPerSide": "10",
+  "utkoordsys": "4258"
+ },
+ "status": 200,
+ "url": "https://ws.geonorge.no/adresser/v1/sok"
+}

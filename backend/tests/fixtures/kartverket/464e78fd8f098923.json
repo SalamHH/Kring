@@ -1,0 +1,22 @@
+{
+ "body": {
+  "adresser": [],
+  "metadata": {
+   "asciiKompatibel": true,
+   "side": 0,
+   "sokeStreng": "adressenavn=T%C3%A5sentunnelen&kommunenummer=0301&treffPerSide=1000&utkoordsys=4258",
+   "totaltAntallTreff": 0,
+   "treffPerSide": 1000,
+   "viserFra": 0,
+   "viserTil": 1000
+  }
+ },
+ "params": {
+  "adressenavn": "Tåsentunnelen",
+  "kommunenummer": "0301",
+  "treffPerSide": "1000",
+  "utkoordsys": "4258"
+ },
+ "status": 200,
+ "url": "https://ws.geonorge.no/adresser/v1/sok"
+}

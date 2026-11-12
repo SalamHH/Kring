@@ -1,0 +1,73 @@
+{
+ "body": {
+  "metadata": {
+   "side": 1,
+   "sokeStreng": "sok=Bj%C3%B8rndal&knr=0301&utkoordsys=4258&treffPerSide=25&fuzzy=false",
+   "totaltAntallTreff": 2,
+   "treffPerSide": 25,
+   "viserFra": 1,
+   "viserTil": 25
+  },
+  "navn": [
+   {
+    "fylker": [
+     {
+      "fylkesnavn": "Oslo",
+      "fylkesnummer": "03"
+     }
+    ],
+    "kommuner": [
+     {
+      "kommunenavn": "Oslo",
+      "kommunenummer": "0301"
+     }
+    ],
+    "navneobjekttype": "Bru",
+    "navnestatus": "hovednavn",
+    "representasjonspunkt": {
+     "nord": 59.84649,
+     "øst": 10.81276
+    },
+    "skrivemåte": "Bjørndal",
+    "skrivemåtestatus": "godkjent og prioritert",
+    "språk": "Norsk",
+    "stedsnummer": 835885,
+    "stedstatus": "aktiv"
+   },
+   {
+    "fylker": [
+     {
+      "fylkesnavn": "Oslo",
+      "fylkesnummer": "03"
+     }
+    ],
+    "kommuner": [
+     {
+      "kommunenavn": "Oslo",
+      "kommunenummer": "0301"
+     }
+    ],
+    "navneobjekttype": "Gard",
+    "navnestatus": "hovednavn",
+    "representasjonspunkt": {
+     "nord": 59.8377,
+     "øst": 10.82978
+    },
+    "skrivemåte": "Bjørndal",
+    "skrivemåtestatus": "godkjent og prioritert",
+    "språk": "Norsk",
+    "stedsnummer": 732219,
+    "stedstatus": "aktiv"
+   }
+  ]
+ },
+ "params": {
+  "fuzzy": "false",
+  "knr": "0301",
+  "sok": "Bjørndal",
+  "treffPerSide": "25",
+  "utkoordsys": "4258"
+ },
+ "status": 200,
+ "url": "https://ws.geonorge.no/stedsnavn/v1/navn"
+}

@@ -1,0 +1,48 @@
+{
+ "body": {
+  "metadata": {
+   "side": 1,
+   "sokeStreng": "sok=Ulv%C3%B8ya&knr=0301&utkoordsys=4258&treffPerSide=25&fuzzy=false",
+   "totaltAntallTreff": 1,
+   "treffPerSide": 25,
+   "viserFra": 1,
+   "viserTil": 25
+  },
+  "navn": [
+   {
+    "fylker": [
+     {
+      "fylkesnavn": "Oslo",
+      "fylkesnummer": "03"
+     }
+    ],
+    "kommuner": [
+     {
+      "kommunenavn": "Oslo",
+      "kommunenummer": "0301"
+     }
+    ],
+    "navneobjekttype": "Øy i sjø",
+    "navnestatus": "hovednavn",
+    "representasjonspunkt": {
+     "nord": 59.87025,
+     "øst": 10.77311
+    },
+    "skrivemåte": "Ulvøya",
+    "skrivemåtestatus": "godkjent og prioritert",
+    "språk": "Norsk",
+    "stedsnummer": 186123,
+    "stedstatus": "aktiv"
+   }
+  ]
+ },
+ "params": {
+  "fuzzy": "false",
+  "knr": "0301",
+  "sok": "Ulvøya",
+  "treffPerSide": "25",
+  "utkoordsys": "4258"
+ },
+ "status": 200,
+ "url": "https://ws.geonorge.no/stedsnavn/v1/navn"
+}
