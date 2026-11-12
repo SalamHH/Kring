@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="no"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>M0 street sample</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+:root{--bg:#fbfaf7;--fg:#1f2328;--muted:#656d76;--card:#fff;--line:#e3e1db;--ok:#1a7f37;--bad:#cf222e}
+@media (prefers-color-scheme: dark){:root{--bg:#16181c;--fg:#e6e6e6;--muted:#9aa3ad;--card:#1f2228;--line:#30343b;--ok:#3fb950;--bad:#f85149}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.45 system-ui,sans-serif}
+header{padding:20px 16px 8px;max-width:1100px;margin:auto}
+h1{font-size:22px;margin:0 0 6px} p{margin:4px 0;color:var(--muted)}
+#score{position:sticky;top:0;z-index:1000;background:var(--bg);padding:8px 16px;border-bottom:1px solid var(--line);font-weight:600;text-align:center}
+main{max-width:1100px;margin:auto;padding:8px 16px 40px;display:grid;gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;display:grid;grid-template-columns:1fr 340px;overflow:hidden}
+.txt{padding:12px 14px} .map{height:260px} .meta{font-size:13px;color:var(--muted);margin-bottom:6px}
+.match{font-weight:600} .police{white-space:pre-wrap;margin:8px 0;font-size:14px}
+.btns button{font:inherit;padding:5px 12px;border-radius:6px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer;margin-right:6px}
+.card.ok{border-color:var(--ok)} .card.bad{border-color:var(--bad)}
+.card.ok .b-ok{background:var(--ok);color:#fff} .card.bad .b-bad{background:var(--bad);color:#fff}
+@media (max-width:760px){.card{grid-template-columns:1fr}.map{height:220px}}
+</style></head><body>
+<header><h1>M0 street sample</h1>
+<p>__N__ Oslo incidents placed from a street (exact address, crossing, or street), a fixed sample from
+the quarter recorded __REC__. For each: is the matched street the one the incident happened on?
+Spec §9.5 asks for ≥ 90 %. The circle is the stated uncertainty.</p></header>
+<div id="score"></div><main id="list"></main>
+<script>
+const ROWS = __DATA__;
+const verdict = {};
+try { Object.assign(verdict, JSON.parse(localStorage.getItem("m0-street-verdicts") || "{}")); } catch (e) {}
+function save(){ try { localStorage.setItem("m0-street-verdicts", JSON.stringify(verdict)); } catch (e) {} }
+function score(){
+  const v = Object.values(verdict), ok = v.filter(x => x === "ok").length;
+  document.getElementById("score").textContent =
+    `Reviewed ${v.length} of ${ROWS.length} · street right: ${ok}` + (v.length ? ` (${Math.round(100*ok/v.length)} %)` : "");
+}
+const esc = s => s.replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const list = document.getElementById("list");
+ROWS.forEach((r, i) => {
+  const el = document.createElement("section");
+  el.className = "card " + (verdict[r.id] || "");
+  el.innerHTML = `<div class="txt"><div class="meta">#${i+1} · ${esc(r.id)} · ${esc(r.category)} · area: ${esc(r.area || "—")}</div>
+    <div class="match">${esc(r.match)} <span class="meta">(${esc(r.method)}, ±${r.unc} m)</span></div>
+    <div class="police">${esc(r.text)}</div>
+    <div class="btns"><button class="b-ok">Street right</button><button class="b-bad">Wrong street</button></div></div>
+    <div class="map" id="m${i}"></div>`;
+  list.appendChild(el);
+  for (const [cls, val] of [["b-ok","ok"],["b-bad","bad"]]) el.querySelector("."+cls).onclick = () => {
+    verdict[r.id] = val; el.className = "card " + val; save(); score();
+  };
+  const m = L.map("m"+i, {scrollWheelZoom:false}).setView([r.lat, r.lon], 15);
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom:19, attribution:"© OpenStreetMap"}).addTo(m);
+  L.circle([r.lat, r.lon], {radius: r.unc, weight: 1}).addTo(m);
+  L.circleMarker([r.lat, r.lon], {radius: 4}).addTo(m);
+  m.fitBounds(L.circle([r.lat, r.lon], {radius: Math.max(r.unc, 150)}).addTo(m).getBounds());
+});
+score();
+</script></body></html>

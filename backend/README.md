@@ -62,6 +62,14 @@ uv run python -m app.worker
 
 On an empty database the first cycle reads the last quarter (about 100 pages) and geocodes every Oslo and Akershus thread, which takes a few minutes. Later cycles read `LastDay` and take a second or two.
 
+## M0 report data
+
+Replays the recorded quarter offline and writes `docs/m0/replay-tables.md` and the 25-street review page `docs/m0/street-sample.html`:
+
+```bash
+uv run python -m scripts.m0_report
+```
+
 ## Settings
 
 Read from environment variables prefixed `STEDSAFE_` or from `backend/.env` (git-ignored). See `app/settings.py`. For example:
