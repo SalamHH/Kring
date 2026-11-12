@@ -309,7 +309,7 @@ Platforms: iOS and Android via Expo. UI language: Norwegian Bokmål. Launch mark
 
 **Push** when the incident matches AND is **severe** AND the first police message is ≤ 30 min old at detection AND the first message time is inside the place's time window AND the place has fewer than 3 pushes today. Otherwise it goes to the digest. Updates to a thread never re-push.
 
-**Severe** (v1 heuristic, tune in beta): category in {Brann, Voldshendelse, Savnet, Redning, Ulykke} OR text contains any of: `kniv, skudd, skyt, våpen, eksplosjon, evakuer, ran, trusselsituasjon, gissel`. Category Trafikk is severe only if the text contains `alvorlig skadd, omkommet, påkjørt barn`. Both keyword lists match as case-insensitive substrings (decided 2026-11-12).
+**Severe** (v1 heuristic, tune in beta): category in {Brann, Voldshendelse, Savnet, Redning, Ulykke} OR text contains any of: `kniv, skudd, skyt, våpen, eksplosjon, evakuer, ran, trusselsituasjon, gissel`. Category Trafikk is severe only if the text contains `alvorlig skadd, omkommet, påkjørt barn`. Both keyword lists match case-insensitively at the start of a word, so stems work («skyt» → skyting) but «ran» does not match inside «brannvesenet» (decided 2026-11-12).
 
 # 7. UX & design specification (direction A)
 

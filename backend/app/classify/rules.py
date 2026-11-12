@@ -17,7 +17,8 @@ KONTROLL = re.compile(
     re.I,
 )
 
-# Severity heuristic v1 (§6.2). All keywords match as case-insensitive substrings
+# Severity heuristic v1 (§6.2). Keywords match case-insensitively at the start of a word,
+# so stems work («skyt» → skyting, «ran» → ranet) but «ran» does not hit «brannvesenet»
 # (decided 2026-11-12).
 SEVERE_CATEGORIES = frozenset({"Brann", "Voldshendelse", "Savnet", "Redning", "Ulykke"})
 SEVERE_KEYWORDS = (
@@ -34,9 +35,12 @@ def is_control(category: str | None, text: str | None) -> bool:
     return str(category) == "Trafikk" and bool(KONTROLL.search(text or ""))
 
 
-def _contains_any(text: str, keywords: tuple[str, ...]) -> bool:
-    t = text.lower()
-    return any(k in t for k in keywords)
+def _word_start_pattern(keywords: tuple[str, ...]) -> re.Pattern[str]:
+    return re.compile(r"(?<!\w)(?:" + "|".join(re.escape(k) for k in keywords) + ")", re.I)
+
+
+_SEVERE_RE = _word_start_pattern(SEVERE_KEYWORDS)
+_SEVERE_TRAFFIC_RE = _word_start_pattern(SEVERE_TRAFFIC_KEYWORDS)
 
 
 def severity(category: str | None, text: str | None) -> Severity:
@@ -44,8 +48,8 @@ def severity(category: str | None, text: str | None) -> Severity:
     text contains one of the traffic keywords; the general keyword list does not apply to it."""
     text = text or ""
     if category == "Trafikk":
-        return "severe" if _contains_any(text, SEVERE_TRAFFIC_KEYWORDS) else "normal"
-    if category in SEVERE_CATEGORIES or _contains_any(text, SEVERE_KEYWORDS):
+        return "severe" if _SEVERE_TRAFFIC_RE.search(text) else "normal"
+    if category in SEVERE_CATEGORIES or _SEVERE_RE.search(text):
         return "severe"
     return "normal"
 

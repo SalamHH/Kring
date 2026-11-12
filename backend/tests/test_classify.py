@@ -74,7 +74,45 @@ def test_traffic_severity(text: str, expected: str) -> None:
     assert severity("Trafikk", text) == expected
 
 
-def test_substring_match_is_decided_behaviour() -> None:
-    """Case-insensitive substring matching (decided 2026-11-12) means «ran» also matches
-    inside other words, e.g. «stranden». Recorded here so a change is deliberate."""
-    assert severity("Ro og orden", "Bråk på stranden") == "severe"
+@pytest.mark.parametrize(
+    "text",
+    [
+        "Mann ranet på åpen gate",
+        "Ransforsøk mot butikk",
+        "Melding om skyting",
+        "Skuddveksling i området",
+        "Knivstikking utenfor utested",
+        "Huset er evakuert",
+        "RAN av mobiltelefon",
+        "Trusselsituasjon i leilighet",
+    ],
+)
+def test_keyword_matches_at_word_start(text: str) -> None:
+    assert severity("Ro og orden", text) == "severe"
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "Bråk på stranden",
+        "Brannvesenet er varslet",
+        "Transport av beruset person",
+        "Personen var orangekledd",
+    ],
+)
+def test_keyword_inside_word_does_not_match(text: str) -> None:
+    """Word-start matching (decided 2026-11-12): «ran» inside «brannvesenet» etc. is not severe."""
+    assert severity("Ro og orden", text) == "normal"
+
+
+@pytest.mark.parametrize("text", ["Bankran i sentrum", "Melding om pistolskudd", "Gasseksplosjon i bolig"])
+def test_known_limitation_keyword_at_end_of_compound(text: str) -> None:
+    """Consequence of word-start matching: Norwegian compounds that end in a keyword
+    («bankran», «pistolskudd», «gasseksplosjon») are not matched. Recorded so a change
+    (e.g. a list of compounds) is deliberate; §6.2 says to tune severity in beta."""
+    assert severity("Ro og orden", text) == "normal"
+
+
+def test_traffic_phrase_at_word_start() -> None:
+    assert severity("Trafikk", "Fotgjenger påkjørt barn?") == "severe"
+    assert severity("Trafikk", "Ingen omkommet") == "severe"  # heuristic: no negation handling
