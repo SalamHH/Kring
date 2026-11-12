@@ -22,6 +22,7 @@ dev = [
     "respx",
     "ruff",
     "mypy",
+    "requests>=2.34.2",
 ]
 
 [build-system]
