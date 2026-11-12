@@ -1,8 +1,8 @@
 """Parity: the ported text functions must return exactly what the reference script returns.
 
 The oracle is research/presisjonstest.py, imported as a module (it needs `requests`, a dev
-dependency). The corpus is hand-written police-log style text for now; recorded live thread
-texts are added in M0 step 6 (tests/fixtures/politiloggen/).
+dependency). The corpus is hand-written police-log style text, plus every recorded live
+Oslo/Akershus thread (tests/fixtures/politiloggen/quarter.json, M0 step 6).
 """
 
 from __future__ import annotations
@@ -18,6 +18,8 @@ from app.classify.rules import is_control
 from app.geocode import text as port
 from app.geocode.geometry import haversine_m
 from app.ingest.fields import pick
+from app.ingest.politiloggen import parse_thread
+from tests.politiloggen_fixtures import quarter
 
 SCRIPT = Path(__file__).resolve().parents[2] / "research" / "presisjonstest.py"
 
@@ -173,3 +175,30 @@ def test_constants_match_script() -> None:
     assert port.RETNINGSKONTEKST.pattern == ref.RETNINGSKONTEKST.pattern
     assert port.KRYSS_SEP.pattern == ref.KRYSS_SEP.pattern
     assert port.STOPPORD == ref.STOPPORD
+
+
+def test_recorded_threads() -> None:
+    """Every text function agrees with the script on real thread texts and areas."""
+    diffs: list[str] = []
+    for raw in quarter()["threads"]:
+        t = parse_thread(raw)
+        assert t is not None
+        kommune = t.municipality or ""
+        checks = {
+            "finn_gatenavn": (port.finn_gatenavn(t.text, True), ref.finn_gatenavn(t.text, True)),
+            "finn_kryss": (
+                port.finn_kryss(f"{t.area or ''} . {t.text}"),
+                ref.finn_kryss(f"{t.area or ''} . {t.text}"),
+            ),
+            "omradedeler": (port.omradedeler(t.area, kommune), ref.omradedeler(t.area, kommune)),
+            "is_control": (
+                is_control(t.category, t.text),
+                ref.er_kontroll({"kategori": t.category, "tekst": t.text}),
+            ),
+            "finn_husnummer": (
+                [port.finn_husnummer(t.text, g) for g in ref.finn_gatenavn(t.text)],
+                [ref.finn_husnummer(t.text, g) for g in ref.finn_gatenavn(t.text)],
+            ),
+        }
+        diffs += [f"{t.id} {name}: {a!r} != {b!r}" for name, (a, b) in checks.items() if a != b]
+    assert diffs == []

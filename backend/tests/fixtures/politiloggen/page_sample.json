@@ -1,0 +1,3133 @@
+{
+ "messageThreads": [
+  {
+   "id": "26lh0x",
+   "district": "Møre og Romsdal Politidistrikt",
+   "districtId": 208,
+   "category": "Trafikk",
+   "municipality": "Hustadvika",
+   "area": "Malmefjorden",
+   "createdOn": "2026-11-12T15:41:24.7400908+00:00",
+   "updatedOn": "2026-11-12T16:06:10.9237889+00:00",
+   "lastMessageOn": "2026-11-12T16:06:10.9237889+00:00",
+   "isActive": true,
+   "messages": [
+    {
+     "id": "26lh0x-0",
+     "text": "Politi og ambulanse har rykket ut på et trafikkuhell med 1 involvert kjøretøy i Malmefjorden.",
+     "createdOn": "2026-11-12T15:41:24.7399041+00:00",
+     "updatedOn": "2026-11-12T15:41:24.7863523+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26lh0x-1",
+     "text": "Politiet har vært på stedet. Det er ingen personskade, men mindre materielle skader. Kjøretøyet hadde vinterdekk. Politiet oppretter sak på bakgrunn av ulykken. Trafikken flyter greit forbi.",
+     "createdOn": "2026-11-12T16:06:10.9237889+00:00",
+     "updatedOn": "2026-11-12T16:06:10.9237889+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26w81q",
+   "district": "Finnmark Politidistrikt",
+   "districtId": 212,
+   "category": "Trafikk",
+   "municipality": "Hammerfest",
+   "area": "Rv94 Hammarnesveien",
+   "createdOn": "2026-11-12T15:36:15.119621+00:00",
+   "updatedOn": "2026-11-12T15:59:55.7417802+00:00",
+   "lastMessageOn": "2026-11-12T15:59:55.7417802+00:00",
+   "isActive": true,
+   "messages": [
+    {
+     "id": "26w81q-0",
+     "text": "Politiet har fått melding om trafikkuhell ved Hanselva på rv 94. Det er Ikke meldt om personskader. Svært glatt vegbane, kjør forsiktig. Oppdateres.",
+     "createdOn": "2026-11-12T15:36:15.1193973+00:00",
+     "updatedOn": "2026-11-12T15:36:15.1681038+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26w81q-2",
+     "text": "Veien blir midlertidig stengt inntil bilberging er gjennomført.  Oppdateres.",
+     "createdOn": "2026-11-12T15:39:36.8324915+00:00",
+     "updatedOn": "2026-11-12T15:39:36.8324915+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26w81q-3",
+     "text": "Trafikken dirigeres nå forbi skadestedet. Berging pågår.",
+     "createdOn": "2026-11-12T15:59:55.7417802+00:00",
+     "updatedOn": "2026-11-12T15:59:55.7417802+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26s2x1",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Trafikk",
+   "municipality": "Lier",
+   "area": "Sjåstadveien",
+   "createdOn": "2026-11-12T15:18:21.7474845+00:00",
+   "updatedOn": "2026-11-12T15:35:41.2829318+00:00",
+   "lastMessageOn": "2026-11-12T15:35:41.2829318+00:00",
+   "isActive": true,
+   "messages": [
+    {
+     "id": "26s2x1-0",
+     "text": "16:13 Melding om trafikkulykke. En bil har kjørt ut. Fremstår ikke som alvorlig.",
+     "createdOn": "2026-11-12T15:18:21.7472984+00:00",
+     "updatedOn": "2026-11-12T15:18:21.798687+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26s2x1-2",
+     "text": "Politiet på stedet. Bilen ligger på taket. Det var 2 personer i bilen. Begge fremstår som uskadd.",
+     "createdOn": "2026-11-12T15:35:41.2829318+00:00",
+     "updatedOn": "2026-11-12T15:35:41.2829318+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26411j",
+   "district": "Møre og Romsdal Politidistrikt",
+   "districtId": 208,
+   "category": "Brann",
+   "municipality": "Ålesund",
+   "area": "",
+   "createdOn": "2026-11-12T15:24:01.2840161+00:00",
+   "updatedOn": "2026-11-12T15:29:31.8411222+00:00",
+   "lastMessageOn": "2026-11-12T15:29:31.8411222+00:00",
+   "isActive": true,
+   "messages": [
+    {
+     "id": "26411j-0",
+     "text": "Nødetatene rykker ut til melding om røykutvikling eller brann i Borgundvegen.",
+     "createdOn": "2026-11-12T15:24:01.2837812+00:00",
+     "updatedOn": "2026-11-12T15:24:01.3366811+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26411j-1",
+     "text": "Nødetatene er fremme på stedet. Der har vært et mindre branntilløp som er slukket. Ingen er kommet til skade.",
+     "createdOn": "2026-11-12T15:29:31.8411222+00:00",
+     "updatedOn": "2026-11-12T15:29:31.8411222+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26p67q",
+   "district": "Møre og Romsdal Politidistrikt",
+   "districtId": 208,
+   "category": "Ulykke",
+   "municipality": "Aure",
+   "area": "Brattberget",
+   "createdOn": "2026-11-12T13:20:19.3728151+00:00",
+   "updatedOn": "2026-11-12T15:27:44.3848078+00:00",
+   "lastMessageOn": "2026-11-12T15:27:44.3848078+00:00",
+   "isActive": true,
+   "messages": [
+    {
+     "id": "26p67q-0",
+     "text": "Politiet og de andre nødetatene har rykket ut til et ras over vei. En person som jobbet med rassikring på stedet har falt fra en lift i forbindelse med raset. Fv. 6186 er stengt på grunn av raset.",
+     "createdOn": "2026-11-12T13:20:19.3726097+00:00",
+     "updatedOn": "2026-11-12T13:20:19.4198169+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26p67q-1",
+     "text": "Mann i 40-årene er hentet av Redningshelikopter og blir fraktet til sykehus. Pasienter var våken.",
+     "createdOn": "2026-11-12T13:47:56.6189729+00:00",
+     "updatedOn": "2026-11-12T13:47:56.6189729+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26p67q-2",
+     "text": "Raset skal vurderes av geolog i dagslys. Vegen vil foreløpig bli stengt frem til det er gjort og vurdert trygt å ferdes.",
+     "createdOn": "2026-11-12T15:27:44.3848078+00:00",
+     "updatedOn": "2026-11-12T15:27:44.3848078+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26vv59",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Trafikk",
+   "municipality": "Vestre Toten",
+   "area": "Rv 246, Ved Avkjøring Presteseter.",
+   "createdOn": "2026-11-12T14:32:08.6950985+00:00",
+   "updatedOn": "2026-11-12T15:21:19.7010073+00:00",
+   "lastMessageOn": "2026-11-12T15:21:19.7010073+00:00",
+   "isActive": true,
+   "messages": [
+    {
+     "id": "26vv59-0",
+     "text": "15.19.\n\nMelding om trafikkulykke mellom lastebil og personbil. Lastebil skal ha kjørt på personbil bakfra. Lastebil skal stå i grøfta. Det er foreløpig ikke meldt om alvorlige personskader.\nDet meldes at det skal være svært glatt på stedet.\nOppdateres når vi har mer informasjon.",
+     "createdOn": "2026-11-12T14:32:08.6948933+00:00",
+     "updatedOn": "2026-11-12T14:32:08.7424146+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26vv59-1",
+     "text": "Vegtrafikksentralen er varslet for strøing av vegstrekningen.",
+     "createdOn": "2026-11-12T14:55:50.5529598+00:00",
+     "updatedOn": "2026-11-12T14:55:50.5529598+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26vv59-2",
+     "text": "Det er manuell dirigering på stedet. Litt trafikale problemer, da det er lastebiler som sliter med å komme i gang igjen på glatt føre.",
+     "createdOn": "2026-11-12T14:58:18.0776797+00:00",
+     "updatedOn": "2026-11-12T14:58:18.0776797+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26vv59-4",
+     "text": "På ulykkesstedet meldes det nå at en tilhenger til lastebil har sklidd ut i grøfta og står på skeive. Berger bestilt.",
+     "createdOn": "2026-11-12T15:03:03.8680948+00:00",
+     "updatedOn": "2026-11-12T15:03:03.8680948+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26vv59-5",
+     "text": "Det var to personer i personbilen. Begge kjørt av ambulanse til legevakt for videre undersøkelser.\n1 person i lastebil. Ikke skadd.",
+     "createdOn": "2026-11-12T15:19:54.4600193+00:00",
+     "updatedOn": "2026-11-12T15:19:54.4600193+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26vv59-6",
+     "text": "Tungberger er på stedet for berging av henger. Fv 246 blir steng i min 20 minutter.",
+     "createdOn": "2026-11-12T15:21:19.7010073+00:00",
+     "updatedOn": "2026-11-12T15:21:19.7010073+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "261s2q",
+   "district": "Sør-Vest Politidistrikt",
+   "districtId": 206,
+   "category": "Andre hendelser",
+   "municipality": "Sveio",
+   "area": "",
+   "createdOn": "2026-11-12T15:07:33.7285505+00:00",
+   "updatedOn": "2026-11-12T15:07:33.7285505+00:00",
+   "lastMessageOn": "2026-11-12T15:07:33.7283528+00:00",
+   "isActive": true,
+   "messages": [
+    {
+     "id": "261s2q-0",
+     "text": "Politiet har iverksatt en leteaksjon etter en mann i 70-årene i området rundt Krossleite. Siste sikre observasjon er fra fredag 6. november, da mannen gikk av en buss på bussholdeplassen Krossleite sør cirka klokken 17. Savnede var iført mørke klær og en blå hatt med mørkt bånd rundt. Han er om lag 176 centimeter høy, har normal kroppsbygning, briller og litt hvitt skjegg. Mannen kan fremstå noe forvirret. Han ble meldt savnet av familie i går.",
+     "createdOn": "2026-11-12T15:07:33.7283528+00:00",
+     "updatedOn": "2026-11-12T15:07:33.7783214+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26tnvc",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Trafikk",
+   "municipality": "Ringsaker",
+   "area": "Ellevsætervegen V Nr 40",
+   "createdOn": "2026-11-12T15:07:33.5383303+00:00",
+   "updatedOn": "2026-11-12T15:07:33.5383303+00:00",
+   "lastMessageOn": "2026-11-12T15:07:33.5378359+00:00",
+   "isActive": true,
+   "messages": [
+    {
+     "id": "26tnvc-0",
+     "text": "15.56.\nMelding om trafikkulykke. To biler kjørt i hverandre. \nForeløpig ikke meldt om alvorlige personskader.\nNødetater er på veg.\n\nOppdateres.",
+     "createdOn": "2026-11-12T15:07:33.5378359+00:00",
+     "updatedOn": "2026-11-12T15:07:33.5912956+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26l1fv",
+   "district": "Finnmark Politidistrikt",
+   "districtId": 212,
+   "category": "Andre hendelser",
+   "municipality": "Tana",
+   "area": "",
+   "createdOn": "2026-11-11T13:54:44.5834002+00:00",
+   "updatedOn": "2026-11-12T09:16:22.3805229+00:00",
+   "lastMessageOn": "2026-11-12T09:16:22.3805229+00:00",
+   "isActive": true,
+   "messages": [
+    {
+     "id": "26l1fv-0",
+     "text": "Politiet har besluttet et midlertidig ferdselsforbud ved rasstedet i Austertana.  Av sikkerhetshensyn ønsker vi ikke at folk går inn i rasområdet og politiet satt opp sperrebånd. I løpet av ettermiddagen vil geoteknikere  fra NVE befare og gjennomføre undersøkelser i rasområdet.",
+     "createdOn": "2026-11-11T13:54:44.5710067+00:00",
+     "updatedOn": "2026-11-11T13:54:44.6306813+00:00",
+     "hasImage": true,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26l1fv-2",
+     "text": "Oppdatering: Ferdselsforbudet gjelder fortsatt, og gjennomslipp av trafikk er fortsatt mellom kl. 08-09 og 14-15. Det avventes resultater fra prøveboring før videre anbefalinger kan gis. Tidligst tidspunkt for videre anbefalinger er ca. kl. 15:00 i dag.",
+     "createdOn": "2026-11-12T09:16:22.3805229+00:00",
+     "updatedOn": "2026-11-12T09:16:22.3805229+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26j513",
+   "district": "Troms Politidistrikt",
+   "districtId": 211,
+   "category": "Savnet",
+   "municipality": "Tromsø",
+   "area": "",
+   "createdOn": "2026-11-12T15:33:52.5119874+00:00",
+   "updatedOn": "2026-11-12T16:10:02.2183678+00:00",
+   "lastMessageOn": "2026-11-12T16:09:24.5989771+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26j513-0",
+     "text": "Vi har fått melding om at en eldre mann er savnet fra sin bopel i sentrum. Mannen er i midten av 80-årene, er 183 cm høy og har slank kroppsbygning. Savnede var iført hvit/ rød lue, blå fleecejakke, mørk grå bukse i det han forlot sin bopel i 12-tiden. Mannen beskrives som dårlig til beins, har dårlig balanse og går med stokk. Ved observasjon av savnede ønsker vi å bli varslet på tlf 02800.",
+     "createdOn": "2026-11-12T15:33:52.5117735+00:00",
+     "updatedOn": "2026-11-12T15:33:52.571827+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26j513-1",
+     "text": "Savnede har nå kommet til rette. Kom hjem på egenhånd. Har ikke behov for tilsyn fra helse.",
+     "createdOn": "2026-11-12T16:09:24.5989771+00:00",
+     "updatedOn": "2026-11-12T16:09:24.5989771+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "267c19",
+   "district": "Trøndelag Politidistrikt",
+   "districtId": 209,
+   "category": "Trafikk",
+   "municipality": "Trondheim",
+   "area": "E6 Moholtlia",
+   "createdOn": "2026-11-12T15:37:25.6356433+00:00",
+   "updatedOn": "2026-11-12T16:03:10.9857371+00:00",
+   "lastMessageOn": "2026-11-12T15:51:25.6912065+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "267c19-0",
+     "text": "E6 Moholtlia, nordgående retning.\nMeldt om kjøretøy med stans i kjørebanen, og kødannelse.\nPatrulje er på vei til stedet for å undersøke omstendighetene.",
+     "createdOn": "2026-11-12T15:37:25.6354515+00:00",
+     "updatedOn": "2026-11-12T15:37:25.6974678+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "267c19-1",
+     "text": "Bilen har kommet seg videre, og det trafikale problemet har opphørt.",
+     "createdOn": "2026-11-12T15:51:25.6912065+00:00",
+     "updatedOn": "2026-11-12T15:51:25.6912065+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26bk3j",
+   "district": "Vest Politidistrikt",
+   "districtId": 207,
+   "category": "Ro og orden",
+   "municipality": "Bergen",
+   "area": "Kaigaten",
+   "createdOn": "2026-11-12T15:06:00.023517+00:00",
+   "updatedOn": "2026-11-12T15:45:47.3382753+00:00",
+   "lastMessageOn": "2026-11-12T15:44:54.6285341+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26bk3j-0",
+     "text": "Politi og ambulanse på veg til staden etter melding om slagsmål.",
+     "createdOn": "2026-11-12T15:06:00.023328+00:00",
+     "updatedOn": "2026-11-12T15:06:00.0947453+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26bk3j-1",
+     "text": "Politiet er i kontakt med en fornærmet, og har kontroll på stedet.",
+     "createdOn": "2026-11-12T15:44:54.6285341+00:00",
+     "updatedOn": "2026-11-12T15:44:54.6285341+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26mb49",
+   "district": "Vest Politidistrikt",
+   "districtId": 207,
+   "category": "Trafikk",
+   "municipality": "Bergen",
+   "area": "Godviksvingene",
+   "createdOn": "2026-11-12T14:47:42.9390403+00:00",
+   "updatedOn": "2026-11-12T15:17:40.8740182+00:00",
+   "lastMessageOn": "2026-11-12T15:17:29.1548983+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26mb49-0",
+     "text": "Politiet på staden etter melding om trafikkuhell. Fører til redusert fremkommelighet.",
+     "createdOn": "2026-11-12T14:47:42.9388435+00:00",
+     "updatedOn": "2026-11-12T14:47:42.9893302+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26mb49-2",
+     "text": "Politiet avslutter på staden. Vegen er åpnet for fri ferdsel.",
+     "createdOn": "2026-11-12T15:17:29.1548983+00:00",
+     "updatedOn": "2026-11-12T15:17:29.1548983+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26df6x",
+   "district": "Møre og Romsdal Politidistrikt",
+   "districtId": 208,
+   "category": "Trafikk",
+   "municipality": "Kristiansund",
+   "area": "Wilhelm Dalls Vei",
+   "createdOn": "2026-11-12T13:52:34.4843651+00:00",
+   "updatedOn": "2026-11-12T15:15:36.7344189+00:00",
+   "lastMessageOn": "2026-11-12T15:15:33.581528+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26df6x-0",
+     "text": "Trafikkulykke. MC har kjørt i baken på en bil. Virker til at det går bra med de involverte. Kjøretøyene er flyttet og det er ingen trafikale utfordringer på stedet.",
+     "createdOn": "2026-11-12T13:52:34.4841744+00:00",
+     "updatedOn": "2026-11-12T13:52:34.5318916+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26df6x-1",
+     "text": "Ingen personskade og minimale materielle skader. Politiet har avsluttet på stedet og det opprettes ikke straffesak.",
+     "createdOn": "2026-11-12T15:15:33.581528+00:00",
+     "updatedOn": "2026-11-12T15:15:33.581528+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26x443",
+   "district": "Vest Politidistrikt",
+   "districtId": 207,
+   "category": "Trafikk",
+   "municipality": "Bergen",
+   "area": "Fritz C. Riebers Vei",
+   "createdOn": "2026-11-12T14:46:47.2989101+00:00",
+   "updatedOn": "2026-11-12T15:09:31.0165341+00:00",
+   "lastMessageOn": "2026-11-12T15:08:43.4955293+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26x443-0",
+     "text": "Politiet på staden etter melding om bil med punktering. Fører til noe redusert fremkommelighet. Bilberger bestilt.",
+     "createdOn": "2026-11-12T14:46:47.2987205+00:00",
+     "updatedOn": "2026-11-12T14:46:47.3508425+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26x443-1",
+     "text": "Politiet har avsluttet på stedet og vegen er nå åpnet for fri ferdsel.",
+     "createdOn": "2026-11-12T15:08:43.4955293+00:00",
+     "updatedOn": "2026-11-12T15:08:43.4955293+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26g3xh",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Trafikk",
+   "municipality": "Kristiansand",
+   "area": "Søm",
+   "createdOn": "2026-11-12T15:05:13.0349619+00:00",
+   "updatedOn": "2026-11-12T15:29:10.7618551+00:00",
+   "lastMessageOn": "2026-11-12T15:05:13.0347644+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26g3xh-0",
+     "text": "UP har hatt trafikkontroll på Sømsveien. En kvinne blåste over lovlig verdi og har fått førerkortet beslaglagt. Det ble gitt ett forelegg for hastighet, 68 km/t i 50 sone.",
+     "createdOn": "2026-11-12T15:05:13.0347644+00:00",
+     "updatedOn": "2026-11-12T15:05:13.1027869+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "260b79",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Trafikk",
+   "municipality": "Gran",
+   "area": "",
+   "createdOn": "2026-11-12T13:36:05.0177682+00:00",
+   "updatedOn": "2026-11-12T14:59:19.1000811+00:00",
+   "lastMessageOn": "2026-11-12T14:59:17.0750135+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "260b79-0",
+     "text": "Kl 1431, Oslolinna, buss har veltet, alle passasjerer skal være ute av bussen, fremstår som uskadet, nødetater er på veg til stedet.",
+     "createdOn": "2026-11-12T13:36:05.0175691+00:00",
+     "updatedOn": "2026-11-12T13:36:05.0693403+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "260b79-1",
+     "text": "Busse skal ikke ha veltet. Det er formentlig en utforkjøring. Ingen skadde. Det opprettes ikke sak fra politiet.",
+     "createdOn": "2026-11-12T14:59:17.0750135+00:00",
+     "updatedOn": "2026-11-12T14:59:17.0750135+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26874q",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Andre hendelser",
+   "municipality": "Agder politidistrikt",
+   "area": "",
+   "createdOn": "2026-11-12T14:47:21.194567+00:00",
+   "updatedOn": "2026-11-12T15:29:13.5334649+00:00",
+   "lastMessageOn": "2026-11-12T14:47:21.1943523+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26874q-0",
+     "text": "Vi advarer mot pågående telefonsvindel\n\nPolitiet har denne uken mottatt flere henvendelser fra personer som er blitt kontaktet av personer som utgir seg for å være ansatt i politiet i Agder. Det opplyses blant annet om at lån er tatt opp i fornærmedes navn før de blir satt over til en person som utgir seg for å være fra banken. Dette er svindel . Vi minner om å være kritiske til slike henvendelser og aldri oppgi personopplysninger, BankID-koder eller gjennomføre pengeoverføringer etter oppfordring fra ukjente.",
+     "createdOn": "2026-11-12T14:47:21.1943523+00:00",
+     "updatedOn": "2026-11-12T14:47:21.2962331+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26f9b9",
+   "district": "Troms Politidistrikt",
+   "districtId": 211,
+   "category": "Brann",
+   "municipality": "Lyngen",
+   "area": "Furuflaten",
+   "createdOn": "2026-11-12T11:57:38.1298982+00:00",
+   "updatedOn": "2026-11-12T14:43:48.6678532+00:00",
+   "lastMessageOn": "2026-11-12T14:43:46.5881363+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26f9b9-0",
+     "text": "Nødetatene rykker ut på melding om brann i enebolig. Det var to personer i boligen da det begynte å brenne. Begge har kommet seg ut og sier seg uskadd. Oppdateres.",
+     "createdOn": "2026-11-12T11:57:38.1297029+00:00",
+     "updatedOn": "2026-11-12T11:57:38.1789892+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26f9b9-2",
+     "text": "Brannmannskaper er fremme på stedet. De melder om full overtenning i boligen. De starter innsats for å hindre spredning til nabohus.",
+     "createdOn": "2026-11-12T11:59:11.3623426+00:00",
+     "updatedOn": "2026-11-12T11:59:11.3623426+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26f9b9-3",
+     "text": "Brannmannskaper melder at det fortsatt er full overtenning i boligen, de har kontroll og anser ikke at det er spredningsfare til andre boliger slik situasjonen er nå.",
+     "createdOn": "2026-11-12T12:34:55.0251901+00:00",
+     "updatedOn": "2026-11-12T12:34:55.0251901+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26f9b9-4",
+     "text": "Vi er ferdig på stedet. Mannskaper fra brannvesenet er fortsatt på stedet og jobber med etterslukning. Huset er totalskadd. Sak opprettes og vil bli etterforsket med tanke på å finne årsaken.",
+     "createdOn": "2026-11-12T14:43:46.5881363+00:00",
+     "updatedOn": "2026-11-12T14:43:46.5881363+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26k14h",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Trafikk",
+   "municipality": "Gol",
+   "area": "Valdresvegen",
+   "createdOn": "2026-11-12T14:38:02.828414+00:00",
+   "updatedOn": "2026-11-12T15:38:42.5826296+00:00",
+   "lastMessageOn": "2026-11-12T14:38:02.8281836+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26k14h-0",
+     "text": "15:15 Politiet er på stedet. En tankbil står fast. Tungberger er på vei. Det er trafikale problemer på stedet.",
+     "createdOn": "2026-11-12T14:38:02.8281836+00:00",
+     "updatedOn": "2026-11-12T14:38:02.9104912+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "265z5x",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Trafikk",
+   "municipality": "Kristiansand",
+   "area": "Topdalsveien Ved Knarten",
+   "createdOn": "2026-11-12T14:35:52.9037235+00:00",
+   "updatedOn": "2026-11-12T14:35:56.2641077+00:00",
+   "lastMessageOn": "2026-11-12T14:35:52.9034806+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "265z5x-0",
+     "text": "UP har gjennomført trafikkontroll på stedet. Resulterte i 9 forenklede forelegg for fart. Høyeste hastighet var 73 km/t i 50 sonen. I forbindelse med kontrollen ble også 106 bilførere kontrollert opp mot rus, ingen reaksjoner opp mot dette.",
+     "createdOn": "2026-11-12T14:35:52.9034806+00:00",
+     "updatedOn": "2026-11-12T14:35:52.9606039+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26gr5q",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Trafikk",
+   "municipality": "Siljan",
+   "area": "Lardalsveien",
+   "createdOn": "2026-11-12T14:25:19.9855902+00:00",
+   "updatedOn": "2026-11-12T14:25:32.4591739+00:00",
+   "lastMessageOn": "2026-11-12T14:25:19.9853847+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26gr5q-0",
+     "text": "13:01 UP har hatt fartskontroll. 9 forelegg. Høyeste 97 km/t i 70 sona.",
+     "createdOn": "2026-11-12T14:25:19.9853847+00:00",
+     "updatedOn": "2026-11-12T14:25:20.0456474+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26rj6h",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Brann",
+   "municipality": "Sandefjord",
+   "area": "Kodal",
+   "createdOn": "2026-11-12T14:07:38.8334382+00:00",
+   "updatedOn": "2026-11-12T14:18:49.2644382+00:00",
+   "lastMessageOn": "2026-11-12T14:18:09.7118866+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26rj6h-0",
+     "text": "14:40 melding om brann i bygning. Alle skal være ute. Brann er på stedet.",
+     "createdOn": "2026-11-12T14:07:38.8332463+00:00",
+     "updatedOn": "2026-11-12T14:07:38.8882789+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26rj6h-2",
+     "text": "Det har kun vært røykutvikling. Ingen brann etter det vi får opplyst. Brannvesenet er ferdige. Vi avslutter.",
+     "createdOn": "2026-11-12T14:18:09.7118866+00:00",
+     "updatedOn": "2026-11-12T14:18:09.7118866+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "263m63",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Trafikk",
+   "municipality": "Gol",
+   "area": "Tuppeskogvegen",
+   "createdOn": "2026-11-12T14:16:57.7247201+00:00",
+   "updatedOn": "2026-11-12T14:17:20.6497982+00:00",
+   "lastMessageOn": "2026-11-12T14:16:57.7245233+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "263m63-0",
+     "text": "14:22 Politiet har vært på stedet i forbindelse med et mindre trafikkuhell. Bilen kjørt Hemsedal i retning Gol. Mistet kontroll over bilen og kjørt ut av veibanen. Svært glatt på stedet.Bilberger tar hånd om bil og fører. Ingen personskade.",
+     "createdOn": "2026-11-12T14:16:57.7245233+00:00",
+     "updatedOn": "2026-11-12T14:16:57.7741586+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26lx8x",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Ulykke",
+   "municipality": "Grimstad",
+   "area": "Reddal",
+   "createdOn": "2026-11-12T12:56:33.4050401+00:00",
+   "updatedOn": "2026-11-12T15:29:16.3303259+00:00",
+   "lastMessageOn": "2026-11-12T14:13:28.2865516+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26lx8x-1",
+     "text": "Kl 1234 ble nødetatene varslet om funn av person utendørs. En mann i 50 åra ble dessverre bekreftet omkommet på stedet. Det fremstår som det har skjedd en ulykke i forbindelse med felling av trær. De pårørende er varslet. Politiet har gjort undersøkelser på stedet og oppretter sak.",
+     "createdOn": "2026-11-12T14:13:28.2865516+00:00",
+     "updatedOn": "2026-11-12T14:13:28.2865516+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "269373",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Trafikk",
+   "municipality": "Nannestad",
+   "area": "Nannestadvegen",
+   "createdOn": "2026-11-12T13:10:20.8755063+00:00",
+   "updatedOn": "2026-11-12T13:22:50.0053773+00:00",
+   "lastMessageOn": "2026-11-12T13:22:12.8753623+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "269373-0",
+     "text": "Klokken 13:26 fikk nødetatene melding om trafikkulykke på Nannestadvegen, et stykke nord for Eltonåsen. En bil kommet over i motgående kjørefelt som førte til sammenstøt. Det er ikke meldt om alvorlig personskade. De involverte undersøkes av ambulanse på stedet.",
+     "createdOn": "2026-11-12T13:10:20.875298+00:00",
+     "updatedOn": "2026-11-12T13:10:20.9241491+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "269373-2",
+     "text": "Nødetatene dirigerer trafikk i påvente av bilberging.",
+     "createdOn": "2026-11-12T13:13:11.0459944+00:00",
+     "updatedOn": "2026-11-12T13:13:11.0459944+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "269373-3",
+     "text": "Bilberging på stedet og veien åpnes fortløpende. Politiet oppretter sak.",
+     "createdOn": "2026-11-12T13:22:12.8753623+00:00",
+     "updatedOn": "2026-11-12T13:22:12.8753623+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "264h9h",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Trafikk",
+   "municipality": "Gran",
+   "area": "",
+   "createdOn": "2026-11-12T12:23:56.7058411+00:00",
+   "updatedOn": "2026-11-12T13:08:42.9704218+00:00",
+   "lastMessageOn": "2026-11-12T13:08:39.6663748+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "264h9h-0",
+     "text": "Kl 1303, Grinilinna, lastebil har kjørt ut av vegen, fører fremstår som  uskadet, vegen er midlertidig stengt.",
+     "createdOn": "2026-11-12T12:23:56.7055621+00:00",
+     "updatedOn": "2026-11-12T12:23:56.7567568+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "264h9h-1",
+     "text": "Vegen er åpen igjen. Involvert fører uskadd og forholdet løses med skademelding.",
+     "createdOn": "2026-11-12T13:08:39.6663748+00:00",
+     "updatedOn": "2026-11-12T13:08:39.6663748+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "2608h9",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Trafikk",
+   "municipality": "Stor-Elvdal",
+   "area": "Rv. 3 Atna",
+   "createdOn": "2026-11-12T13:07:25.1479408+00:00",
+   "updatedOn": "2026-11-12T13:07:38.0790249+00:00",
+   "lastMessageOn": "2026-11-12T13:07:25.1477447+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "2608h9-0",
+     "text": "UP har gjennomført en fartskontroll i skiltet 80-sone. Utferdiget 6 forenklede forelegg. Høyeste målte hastighet 110km/t.",
+     "createdOn": "2026-11-12T13:07:25.1477447+00:00",
+     "updatedOn": "2026-11-12T13:07:25.196318+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26zfhh",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Trafikk",
+   "municipality": "Lørenskog",
+   "area": "Djupedalstoppen",
+   "createdOn": "2026-11-12T09:13:57.4102494+00:00",
+   "updatedOn": "2026-11-12T12:55:34.836137+00:00",
+   "lastMessageOn": "2026-11-12T12:55:34.836137+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26zfhh-0",
+     "text": "E6 Djupedalstoppen - melding om flere trailere som har kjørt seg fast på glatt føre. Det er bestilt tungberger.\nNoe redusert fremkommelighet og kø - spesielt i nordgående løp.",
+     "createdOn": "2026-11-12T09:13:57.4100354+00:00",
+     "updatedOn": "2026-11-12T09:13:57.4582659+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26zfhh-1",
+     "text": "I det nordgående løpet går trafikken nå som normalt. \nSydgående løpe er det flere trailere som har kjørt seg fast på glatt føre.  Tungberger jobber med å trekke dem løs.",
+     "createdOn": "2026-11-12T11:38:03.3967453+00:00",
+     "updatedOn": "2026-11-12T11:38:03.3967453+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26zfhh-2",
+     "text": "Trailere er berget og trafikken går nå som normalt i begge retninger.",
+     "createdOn": "2026-11-12T12:55:34.836137+00:00",
+     "updatedOn": "2026-11-12T12:55:34.836137+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "266t89",
+   "district": "Sør-Vest Politidistrikt",
+   "districtId": 206,
+   "category": "Sjø",
+   "municipality": "Stavanger",
+   "area": "Kvernevik Ring",
+   "createdOn": "2026-11-12T12:49:33.2741725+00:00",
+   "updatedOn": "2026-11-12T13:07:15.3375974+00:00",
+   "lastMessageOn": "2026-11-12T12:49:33.2585044+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "266t89-0",
+     "text": "En foreløpig eierløs båt er fortøyd ved kaianlegget i Kvernevik Ring ved nr. 177. Båten kan værer stjålet. Vi ber eier kontakte politiet på tlf. 02800 for informasjon.",
+     "createdOn": "2026-11-12T12:49:33.2585044+00:00",
+     "updatedOn": "2026-11-12T12:49:33.3252113+00:00",
+     "hasImage": true,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26wq8q",
+   "district": "Troms Politidistrikt",
+   "districtId": 211,
+   "category": "Brann",
+   "municipality": "Senja",
+   "area": "Stonglandseidet",
+   "createdOn": "2026-11-12T12:44:46.9669511+00:00",
+   "updatedOn": "2026-11-12T12:44:48.8867392+00:00",
+   "lastMessageOn": "2026-11-12T12:44:46.9667238+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26wq8q-0",
+     "text": "En garasje og et søppelskur har brent ned. Det var en nabo til eiendommen som oppdaget og meldte til politiet. Det har ikke vært noen vitner til brannen og vi har derfor ingen opplysninger om når den oppstod. Årsaken til brannen må forsøkes avdekket gjennom teknisk og taktisk etterforskning. Brannmannskaper er på stedet for å slukke restene etter brannen.",
+     "createdOn": "2026-11-12T12:44:46.9667238+00:00",
+     "updatedOn": "2026-11-12T12:44:47.047868+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26q2b2",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Trafikk",
+   "municipality": "Ringerike",
+   "area": "Askveien",
+   "createdOn": "2026-11-12T11:37:27.1564273+00:00",
+   "updatedOn": "2026-11-12T12:44:30.890955+00:00",
+   "lastMessageOn": "2026-11-12T12:44:21.7803702+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26q2b2-0",
+     "text": "Nødetatene rykker ut til melding om trafikkulykke. En bil kjørt av veien. Ingen andre biler involvert. Fører alene i bilen og ligger i vegbanen, Tatt ut av bilen av forbipasserende. Fremstår med skader i rygg. Fører tatt inn i et hus i nærheten for å holde varmen i påvente av nødetatene.",
+     "createdOn": "2026-11-12T11:37:27.1562124+00:00",
+     "updatedOn": "2026-11-12T11:37:27.2103147+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26q2b2-1",
+     "text": "Mannlig fører i 20 årene kjørt sykehus for kontroll. Er lettere skadd. Glatte kjøreforhold på stedet. Sak opprettes.",
+     "createdOn": "2026-11-12T12:44:21.7803702+00:00",
+     "updatedOn": "2026-11-12T12:44:21.7803702+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26hl92",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Trafikk",
+   "municipality": "Sarpsborg",
+   "area": "Nordkappsgate",
+   "createdOn": "2026-11-12T12:42:57.0358031+00:00",
+   "updatedOn": "2026-11-12T13:37:25.3865722+00:00",
+   "lastMessageOn": "2026-11-12T12:42:57.0356058+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26hl92-0",
+     "text": "Politiet har rykket ut til melding om trafikkulykke. En person påkjørt i et fotgjengerfelt, fremstår lettere skadd. Ivaretas av helse.",
+     "createdOn": "2026-11-12T12:42:57.0356058+00:00",
+     "updatedOn": "2026-11-12T12:42:57.0941489+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "2615bq",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Trafikk",
+   "municipality": "Kongsvinger",
+   "area": "Oslovegen",
+   "createdOn": "2026-11-12T11:51:28.8447914+00:00",
+   "updatedOn": "2026-11-12T12:21:00.3764013+00:00",
+   "lastMessageOn": "2026-11-12T12:20:57.2240235+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "2615bq-0",
+     "text": "Kl. 12:46; politiet varslet om et trafikkuhell ved Møller Bil i Oslovegen. En bil har kjørt av vegen og ligger på taket. Politiet er straks på stedet. Oppdateres.",
+     "createdOn": "2026-11-12T11:51:28.8445964+00:00",
+     "updatedOn": "2026-11-12T11:51:28.8950303+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "2615bq-1",
+     "text": "Fører er uskadet, vegen er åpen.",
+     "createdOn": "2026-11-12T12:20:57.2240235+00:00",
+     "updatedOn": "2026-11-12T12:20:57.2240235+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26sd9x",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Trafikk",
+   "municipality": "Farsund",
+   "area": "Vanse",
+   "createdOn": "2026-11-12T12:17:20.1837025+00:00",
+   "updatedOn": "2026-11-12T12:17:39.7211671+00:00",
+   "lastMessageOn": "2026-11-12T12:17:20.1834618+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26sd9x-0",
+     "text": "kl 1218, Politiet har stanset en bil hvor fører, en mann i 40 årene,  mistenkes for kjøring i påvirket tilstand. Vedkommende har ikke gyldig førerkort. Nødvendige prøver er sikret, og politiet oppretter sak.",
+     "createdOn": "2026-11-12T12:17:20.1834618+00:00",
+     "updatedOn": "2026-11-12T12:17:38.0931594+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Edited"
+    }
+   ]
+  },
+  {
+   "id": "26n2qp",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Ulykke",
+   "municipality": "Nordre Follo",
+   "area": "Rv154 Gjetsjøvannet",
+   "createdOn": "2026-11-12T06:19:19.5499174+00:00",
+   "updatedOn": "2026-11-12T11:57:33.4067705+00:00",
+   "lastMessageOn": "2026-11-12T11:57:26.7346886+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26n2qp-0",
+     "text": "To biler involvert i trafikkulykke på RV154 mellom Gjetsjøvannet og Langen. Begge biler kjørt ut av veien og det ligger et tre over den ene bilen. Uvisst om det er personskade.",
+     "createdOn": "2026-11-12T06:19:19.5497063+00:00",
+     "updatedOn": "2026-11-12T06:19:19.5985998+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26n2qp-1",
+     "text": "Det var en bil som hadde kjørt ut av veien. Kom bil bak som bremset og i rolig fart skled ut av veien. Vider en buss som har sklidd ut på veiskulderen, da den skulle kjøre forbi de 2 nevnte bilene. Fører av fremste bil kjørt til legevakt for sjekk, ellers ingen skadde. Nødetatene er på stedet.",
+     "createdOn": "2026-11-12T07:25:02.8068622+00:00",
+     "updatedOn": "2026-11-12T07:25:02.8068622+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26n2qp-2",
+     "text": "Det er bestilt bilberging til personbil og til buss. Forventet til stedet ca kl. 0900. Vil bli trafikale problemer.",
+     "createdOn": "2026-11-12T07:26:17.0015353+00:00",
+     "updatedOn": "2026-11-12T07:26:17.0015353+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26n2qp-3",
+     "text": "Det er opphopning av biler på ulykkesstedet. VTS vil skilte omkjøring i kryssene på Jørgenrud og på Vik.",
+     "createdOn": "2026-11-12T08:01:43.0320166+00:00",
+     "updatedOn": "2026-11-12T08:01:43.0320166+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26n2qp-4",
+     "text": "Veien er ryddet og åpnet for normal trafikk.",
+     "createdOn": "2026-11-12T11:57:26.7346886+00:00",
+     "updatedOn": "2026-11-12T11:57:26.7346886+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26kgdh",
+   "district": "Vest Politidistrikt",
+   "districtId": 207,
+   "category": "Trafikk",
+   "municipality": "Kinn",
+   "area": "Florøvegen",
+   "createdOn": "2026-11-12T10:17:52.902783+00:00",
+   "updatedOn": "2026-11-12T11:46:07.4846591+00:00",
+   "lastMessageOn": "2026-11-12T11:44:40.6104447+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26kgdh-0",
+     "text": "Kl 1048 stanset UP bil på RV5 Florøvegen ved Storøysundet. Fører mistenkt for ruskjøring, blir tatt med for å sikre nødvendige prøver.",
+     "createdOn": "2026-11-12T10:17:52.9025775+00:00",
+     "updatedOn": "2026-11-12T10:17:52.9560488+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26kgdh-1",
+     "text": "Prøver sikret, sak opprettes.",
+     "createdOn": "2026-11-12T11:44:40.6104447+00:00",
+     "updatedOn": "2026-11-12T11:44:40.6104447+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26xld2",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Ulykke",
+   "municipality": "Nordre Follo",
+   "area": "Taralrud",
+   "createdOn": "2026-11-12T10:18:51.2507206+00:00",
+   "updatedOn": "2026-11-12T11:33:38.739549+00:00",
+   "lastMessageOn": "2026-11-12T11:33:37.1229068+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26xld2-0",
+     "text": "E6 nordgående like nord for avkjøring  - kryss 25 Taralrud, meldt om personbil som har kjørt i en trailer. Ikke meldt om personskade.  \nRedusert fremkommelighet det høyre feltet er stengt, men trafikken kan passere i det venstre feltet. Politiet er på stedet. Bilberging er bestilt.",
+     "createdOn": "2026-11-12T10:18:51.2505201+00:00",
+     "updatedOn": "2026-11-12T10:18:51.2990608+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26xld2-1",
+     "text": "Nødetatene er ferdige på stedet. Bilen er tauet ut på veiskulderen og vil bli berget ved kapasitet.\nVeien er åpen for normal trafikk.",
+     "createdOn": "2026-11-12T11:33:37.1229068+00:00",
+     "updatedOn": "2026-11-12T11:33:37.1229068+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26bchz",
+   "district": "Sør-Vest Politidistrikt",
+   "districtId": 206,
+   "category": "Brann",
+   "municipality": "Sandnes",
+   "area": "Veralandveien",
+   "createdOn": "2026-11-12T11:15:19.0042157+00:00",
+   "updatedOn": "2026-11-12T11:29:22.9707679+00:00",
+   "lastMessageOn": "2026-11-12T11:27:43.799939+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26bchz-0",
+     "text": "Nødetatene er på vei til Veralandveien etter melding om brann i en traktor. Den står relativt nærme en løe, og det kan være spredningsfare. Det er ikke meldt om personskade.",
+     "createdOn": "2026-11-12T11:15:19.0040271+00:00",
+     "updatedOn": "2026-11-12T11:15:19.0525736+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26bchz-1",
+     "text": "Brannvesenet på stedet, melder at brannen er slukket. Politiet kjører frem for avhør og sporsikring.",
+     "createdOn": "2026-11-12T11:27:43.799939+00:00",
+     "updatedOn": "2026-11-12T11:27:43.799939+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26wcxt",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Trafikk",
+   "municipality": "Lesja",
+   "area": "Bjorli",
+   "createdOn": "2026-11-12T11:07:42.2004236+00:00",
+   "updatedOn": "2026-11-12T11:36:14.588932+00:00",
+   "lastMessageOn": "2026-11-12T11:07:42.2002001+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26wcxt-0",
+     "text": "Politiet har gjennomført er ruskontroll i Bjorli. 40 kontrollerte - ingen reaksjoner.",
+     "createdOn": "2026-11-12T11:07:42.2002001+00:00",
+     "updatedOn": "2026-11-12T11:07:42.2494271+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26pngp",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Brann",
+   "municipality": "Drammen",
+   "area": "Ole Frisesvei",
+   "createdOn": "2026-11-12T09:21:06.171898+00:00",
+   "updatedOn": "2026-11-12T10:55:18.4349035+00:00",
+   "lastMessageOn": "2026-11-12T10:55:13.7638311+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26pngp-0",
+     "text": "Nødetatene har rykket ut til en enebolig etter melding om brann og åpne flammer.  En person i huset som har kommet seg ut. Fått i seg røyk og kjøres sykehuset med ambulanse. Brannstedet er så nær jernbanelinjen at strømmen til til jernbanelinjen måtte tas. Jernbanen er stengt i påvente at brannvesenet får slukket brannen helt.",
+     "createdOn": "2026-11-12T09:21:06.1716929+00:00",
+     "updatedOn": "2026-11-12T09:21:06.2212817+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26pngp-1",
+     "text": "Politiet forlater stedet. Brannvesenet beslutter sammen med togledelsen når jernbanen kan åpnes igjen.",
+     "createdOn": "2026-11-12T10:54:46.3689997+00:00",
+     "updatedOn": "2026-11-12T10:54:46.3689997+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26pngp-2",
+     "text": "Patruljen oppretter sak.",
+     "createdOn": "2026-11-12T10:55:13.7638311+00:00",
+     "updatedOn": "2026-11-12T10:55:13.7638311+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26v8f9",
+   "district": "Vest Politidistrikt",
+   "districtId": 207,
+   "category": "Trafikk",
+   "municipality": "Ullensvang",
+   "area": "E 134 Røldal",
+   "createdOn": "2026-11-12T10:12:44.7236531+00:00",
+   "updatedOn": "2026-11-12T11:14:07.5194375+00:00",
+   "lastMessageOn": "2026-11-12T10:30:20.751776+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26v8f9-0",
+     "text": "Kl 1100: Politiet er på E134 ved Hagabekk sammen med bilberger. Det er et vogntog som står fast, har stått der i mange timer.",
+     "createdOn": "2026-11-12T10:12:44.7234599+00:00",
+     "updatedOn": "2026-11-12T10:12:44.7793431+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26v8f9-2",
+     "text": "Vogntoget er fjernet og veien åpen.",
+     "createdOn": "2026-11-12T10:30:20.751776+00:00",
+     "updatedOn": "2026-11-12T10:30:20.751776+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26rghv",
+   "district": "Troms Politidistrikt",
+   "districtId": 211,
+   "category": "Trafikk",
+   "municipality": "Balsfjord",
+   "area": "E8 Skaidi",
+   "createdOn": "2026-11-12T10:00:34.5849813+00:00",
+   "updatedOn": "2026-11-12T11:45:10.6458503+00:00",
+   "lastMessageOn": "2026-11-12T10:28:04.3234627+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26rghv-0",
+     "text": "Nødetatene rykker ut etter melding om trafikkulykke i utgangen av Lavangsdalen (retning Nordkjosbotn). En personbil med to personer har kjørt ut av vegen. Fører gir uttrykk for å ha litt smerter/ubehag i magen, men sier seg ellers uskadd. Det er 70 sone på stedet. Bilen ligger helt utenfor vegen. Oppdateres da vi har ressurser fremme på stedet.",
+     "createdOn": "2026-11-12T10:00:34.5847852+00:00",
+     "updatedOn": "2026-11-12T10:00:34.6325306+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26rghv-1",
+     "text": "Politi og ambulanse er på stedet. Bilen har kommet i retning mot Tromsø. Har kjørt ut på høyre side av vegen og står på utsiden av autovernet. Det er ikke mistanke om ruspåvirkning. Fører og passasjer sjekkes av ambulansepersonell.",
+     "createdOn": "2026-11-12T10:17:11.6972451+00:00",
+     "updatedOn": "2026-11-12T10:17:11.6972451+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26rghv-2",
+     "text": "Patruljen gjør undersøkelser på stedet, snakker med fører og vitner. Basert på dette tas det beslag i førerkortet til fører som er en mann i 60 årene. Vegen er nå åpen for trafikk igjen.",
+     "createdOn": "2026-11-12T10:28:04.3234627+00:00",
+     "updatedOn": "2026-11-12T10:28:04.3234627+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26lgxt",
+   "district": "Nordland Politidistrikt",
+   "districtId": 210,
+   "category": "Ulykke",
+   "municipality": "Fauske",
+   "area": "Rv 80  V Menighetshuset",
+   "createdOn": "2026-11-12T10:19:10.4297302+00:00",
+   "updatedOn": "2026-11-12T14:20:59.3910472+00:00",
+   "lastMessageOn": "2026-11-12T10:25:40.7245953+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26lgxt-0",
+     "text": "Kollisjon mellom personbil og lastebil. Ingen personskader og begge sjåfører er opp å går. Personbilen står i grøfta. Det vil bli redusert fremkommelighet en tid fremover.",
+     "createdOn": "2026-11-12T10:19:10.4295393+00:00",
+     "updatedOn": "2026-11-12T10:19:10.4834775+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26lgxt-1",
+     "text": "Politiet mistenker vikepliktsbrudd og oppretter sak. Bilberger er bestilt.",
+     "createdOn": "2026-11-12T10:25:40.7245953+00:00",
+     "updatedOn": "2026-11-12T10:25:40.7245953+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26g4fp",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Trafikk",
+   "municipality": "Kristiansand",
+   "area": "Fv456 Langenesveien",
+   "createdOn": "2026-11-12T10:09:19.0375433+00:00",
+   "updatedOn": "2026-11-12T10:09:20.600494+00:00",
+   "lastMessageOn": "2026-11-12T10:09:19.0373414+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26g4fp-0",
+     "text": "Utrykningspolitiet har hatt laserkontroll ved Langenes skole. Tre førere har fått forenklet forelegg for fart, hvor høyeste hastighet ble målt til 60 km/t i 50 sone.",
+     "createdOn": "2026-11-12T10:09:19.0373414+00:00",
+     "updatedOn": "2026-11-12T10:09:19.0884971+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "2631f2",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Trafikk",
+   "municipality": "Lillestrøm",
+   "area": "Gjelleråsen",
+   "createdOn": "2026-11-12T10:07:46.4877548+00:00",
+   "updatedOn": "2026-11-12T13:43:48.5845122+00:00",
+   "lastMessageOn": "2026-11-12T10:07:46.487522+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "2631f2-0",
+     "text": "Meldt om flere trailere som har kjørt seg fast i Trondheimsveien i bakken fra Hellerudsletten mot Gjelleråsen. Tungberger er bestilt. Politiet dirigerer trafikken forbi stedet.",
+     "createdOn": "2026-11-12T10:07:46.487522+00:00",
+     "updatedOn": "2026-11-12T10:07:46.537118+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "2631f2-1",
+     "text": "Vogntogene er berget, og veien åpnet for normal trafikk. \nPolitiet har avsluttet på stedet.",
+     "createdOn": "2026-11-12T13:43:50.1697939+00:00",
+     "updatedOn": "2026-11-12T13:43:50.1697939+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26dvgx",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Trafikk",
+   "municipality": "Arendal",
+   "area": "Barbu",
+   "createdOn": "2026-11-12T09:40:23.4173164+00:00",
+   "updatedOn": "2026-11-12T09:40:25.1659884+00:00",
+   "lastMessageOn": "2026-11-12T09:40:23.417107+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26dvgx-0",
+     "text": "Utrykningspolitiet har stanset en bil der fører, en kvinne i 30 årene, mistenkes for kjøring i påvirket tilstand. Nødvendige prøver er sikret, og politiet oppretter sak.",
+     "createdOn": "2026-11-12T09:40:23.417107+00:00",
+     "updatedOn": "2026-11-12T09:40:23.4659218+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "260rg9",
+   "district": "Troms Politidistrikt",
+   "districtId": 211,
+   "category": "Trafikk",
+   "municipality": "Tromsø",
+   "area": "Tromsø Sentrum",
+   "createdOn": "2026-11-12T09:32:39.0982994+00:00",
+   "updatedOn": "2026-11-12T09:32:42.0914137+00:00",
+   "lastMessageOn": "2026-11-12T09:32:39.0980842+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "260rg9-0",
+     "text": "En politipatrulje ble oppmerksom på et lite trafikkuhell i krysset Skippergata-Elvegata. En personbil og en buss hadde kollidert. Fører av personbilen ble ilagt forenklet forelegg da han ikke overholdt vikeplikten overfor bussen.",
+     "createdOn": "2026-11-12T09:32:39.0980842+00:00",
+     "updatedOn": "2026-11-12T09:32:39.1555171+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26lbhx",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Trafikk",
+   "municipality": "Vestre Slidre",
+   "area": "Røn",
+   "createdOn": "2026-11-12T09:04:11.8562712+00:00",
+   "updatedOn": "2026-11-12T09:23:59.9590867+00:00",
+   "lastMessageOn": "2026-11-12T09:23:57.285893+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26lbhx-0",
+     "text": "Kl. 09:39; trafikkuhell, personbil kjørt av Rønsvegen og inn i en lyktestolpe. Nødetatene er på stedet og fører tilsees av helse. Oppdateres.",
+     "createdOn": "2026-11-12T09:04:11.8560532+00:00",
+     "updatedOn": "2026-11-12T09:04:11.9051338+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26lbhx-1",
+     "text": "Politiet er ferdig på stedet. Fører sjekkes på lokal legevakt for mindre skader. Politiet oppretter en sak.",
+     "createdOn": "2026-11-12T09:23:57.285893+00:00",
+     "updatedOn": "2026-11-12T09:23:57.285893+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26kxnh",
+   "district": "Vest Politidistrikt",
+   "districtId": 207,
+   "category": "Trafikk",
+   "municipality": "Bergen",
+   "area": "Bønes",
+   "createdOn": "2026-11-12T07:19:13.2480131+00:00",
+   "updatedOn": "2026-11-12T09:20:13.6238149+00:00",
+   "lastMessageOn": "2026-11-12T09:19:53.5981785+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26kxnh-0",
+     "text": "Kl 0755 meldt om trafikkuhell på Bønes, påkjørsel bakfra. To biler involvert, ikke personskade. Skjedd i Bønesskogen, på vei ned til FV556 Straumeveien. Behov for bilberger til begge bilene. Trafikken glir forbi.",
+     "createdOn": "2026-11-12T07:19:13.2478101+00:00",
+     "updatedOn": "2026-11-12T07:19:13.2980373+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26kxnh-1",
+     "text": "Politiet er ferdig på stedet, oppretter sak. Ikke mistanke om rus.",
+     "createdOn": "2026-11-12T09:19:53.5981785+00:00",
+     "updatedOn": "2026-11-12T09:19:53.5981785+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "263hp2",
+   "district": "Oslo Politidistrikt",
+   "districtId": 201,
+   "category": "Trafikk",
+   "municipality": "Bærum",
+   "area": "",
+   "createdOn": "2026-11-12T07:02:10.6535906+00:00",
+   "updatedOn": "2026-11-12T09:16:01.6200994+00:00",
+   "lastMessageOn": "2026-11-12T09:15:56.9634161+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "263hp2-0",
+     "text": "Nødetatene er på vei til Skui ved Økriveien etter melding om ett trafikkuhell mellom 2 biler. Uvisst skadeomfang. Dette påvirker trafikken i området.",
+     "createdOn": "2026-11-12T07:02:10.6533752+00:00",
+     "updatedOn": "2026-11-12T07:02:10.7104688+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "263hp2-1",
+     "text": "Det meldes om at det er en front mot front ulykke og at det er kontroll på de involverte. Det er 2 personer involvert og den ene skal ha smerter i bryst.",
+     "createdOn": "2026-11-12T07:12:03.7666257+00:00",
+     "updatedOn": "2026-11-12T07:12:03.7666257+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "263hp2-2",
+     "text": "Hendelsen har skjedd over innløpet til Skuitunnelen.",
+     "createdOn": "2026-11-12T07:25:00.4328675+00:00",
+     "updatedOn": "2026-11-12T07:25:00.4328675+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "263hp2-3",
+     "text": "Det meldes at en bil har kommet over i motgående felt grunnet glatt føre. En person er kjørt Bærum sykehus med uavklart skadeomfang, men det skal ikke være alvorlig eller kritisk.",
+     "createdOn": "2026-11-12T08:20:03.6259871+00:00",
+     "updatedOn": "2026-11-12T08:20:03.6259871+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "263hp2-4",
+     "text": "Det opprettes en anmeldelse på forholdet. Det blir ikke tatt beslag i førerkort.",
+     "createdOn": "2026-11-12T09:15:56.9634161+00:00",
+     "updatedOn": "2026-11-12T09:15:56.9634161+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "2667j9",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Andre hendelser",
+   "municipality": "Kristiansand",
+   "area": "",
+   "createdOn": "2026-11-12T08:47:36.4605415+00:00",
+   "updatedOn": "2026-11-12T08:47:38.8901849+00:00",
+   "lastMessageOn": "2026-11-12T08:47:36.4603471+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "2667j9-0",
+     "text": "I dag i tidsrommet kl. 09:00–15:00 gjennomfører nødetatene en øvelse ved Tine Terminal Kristiansand. Det vil derfor være synlig personell fra nødetatene i området. Scenarioet for øvelsen er en PLIVO-hendelse (pågående livstruende vold).",
+     "createdOn": "2026-11-12T08:47:36.4603471+00:00",
+     "updatedOn": "2026-11-12T08:47:36.5093603+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26d8px",
+   "district": "Trøndelag Politidistrikt",
+   "districtId": 209,
+   "category": "Trafikk",
+   "municipality": "Namsos",
+   "area": "Serneskrysset",
+   "createdOn": "2026-11-12T06:51:36.2137033+00:00",
+   "updatedOn": "2026-11-12T08:45:51.7552461+00:00",
+   "lastMessageOn": "2026-11-12T08:45:50.1207937+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26d8px-0",
+     "text": "Nødetatene rykker ut til Serneskrysset på FV17 i Namsos etter melding om trafikkuhell. Det har vært et sammenstøt mellom en mopedbil og en personbil på stedet. Foreløpig ikke meldt om personskade.",
+     "createdOn": "2026-11-12T06:51:36.2135163+00:00",
+     "updatedOn": "2026-11-12T06:51:36.2636341+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26d8px-2",
+     "text": "Begge kjøretøy er ute av vegbanen, trafikken går som normalt på stedet.",
+     "createdOn": "2026-11-12T07:03:10.3076199+00:00",
+     "updatedOn": "2026-11-12T07:03:10.3076199+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26d8px-3",
+     "text": "Kl.08.44: Begge biler er tatt med av bilberger. Vi oppretter sak på forholdet.",
+     "createdOn": "2026-11-12T08:45:50.1207937+00:00",
+     "updatedOn": "2026-11-12T08:45:50.1207937+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26m6m8",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Trafikk",
+   "municipality": "Larvik",
+   "area": "Svarstad",
+   "createdOn": "2026-11-12T07:56:52.5283972+00:00",
+   "updatedOn": "2026-11-12T09:21:10.7362248+00:00",
+   "lastMessageOn": "2026-11-12T08:44:32.9414261+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26m6m8-0",
+     "text": "Nødetatene rykker ut etter melding om en skolebuss som har kjørt av veien. Bussen har sklidd av veien og ut i grøfta med alle 4 hjul. I bussen er det 24 barn som fremstår uskadd. Bussjåfør sier seg også uskadd.  Barna er nå på vei ut av bussen og inn et varmt bygg. Oppdateres.",
+     "createdOn": "2026-11-12T07:56:52.52811+00:00",
+     "updatedOn": "2026-11-12T07:56:52.60485+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26m6m8-1",
+     "text": "Patruljen har kommet til stedet. Skolen har fått beskjed om hendelsen og flere foreldre har hentet barna sine. Ny buss står klar til å transportere resten av barna til skolen. Ingen er fysisk skadet.  Det blir ikke opprettet sak.",
+     "createdOn": "2026-11-12T08:44:32.9414261+00:00",
+     "updatedOn": "2026-11-12T08:44:32.9414261+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26w3jp",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Ulykke",
+   "municipality": "Lørenskog",
+   "area": "Strømsveien",
+   "createdOn": "2026-11-12T08:43:14.1256348+00:00",
+   "updatedOn": "2026-11-12T10:36:04.4925231+00:00",
+   "lastMessageOn": "2026-11-12T08:43:14.1253892+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26w3jp-0",
+     "text": "Strømsveien retning Lillestrøm like før avkjøringen til AHUS. Kl. 0903 meldt om trafikkulykke mellom 2 personbiler - en  som har snurret og bilen bak har kjørt inn i førstnevnte. Nødetatene er på stedet. \nDet er 2 personer involvert, en uskadd og en som kjøres legevakt for kontroll. \nTrafikken kan passere i venstre felt med redusert hastighet.   \nBilberging er bestilt - brannvesenet varsler på stedet inntil at bilene blir berget. \nPolitiet ferdige på stedet - løses ved skademelding mellom partene.",
+     "createdOn": "2026-11-12T08:43:14.1253892+00:00",
+     "updatedOn": "2026-11-12T08:43:14.1772026+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26h0j2",
+   "district": "Sør-Vest Politidistrikt",
+   "districtId": 206,
+   "category": "Brann",
+   "municipality": "Strand",
+   "area": "Skolebygg, COMROD",
+   "createdOn": "2026-11-12T08:31:59.3569301+00:00",
+   "updatedOn": "2026-11-12T09:03:12.246083+00:00",
+   "lastMessageOn": "2026-11-12T08:31:59.3567351+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26h0j2-0",
+     "text": "Nødetatene er på skolen ifm. brannalarm og røykutvikling. Elever og ansatte var evakuert før nødetatene ankom. Det er ikke meldt om at noen har pustet inn røyk. Det har trolig vært røykutvikling fra en printer. Politiet gjennomfører avhør og sporsikring på stedet. Meldingen kom inn kl. 0851.",
+     "createdOn": "2026-11-12T08:31:59.3567351+00:00",
+     "updatedOn": "2026-11-12T08:31:59.407437+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "265tnx",
+   "district": "Oslo Politidistrikt",
+   "districtId": 201,
+   "category": "Trafikk",
+   "municipality": "Oslo",
+   "area": "",
+   "createdOn": "2026-11-12T07:18:42.1148525+00:00",
+   "updatedOn": "2026-11-12T09:16:04.3470532+00:00",
+   "lastMessageOn": "2026-11-12T08:31:49.3585175+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "265tnx-0",
+     "text": "Det meldes om 2 lastebiler med stans på E6 ved Skulleruddumpa. Den ene står i retning ut av Oslo og den andre står i retning inn i Oslo. Dette medfører noe trafikale problemer på stedet.",
+     "createdOn": "2026-11-12T07:18:42.1146513+00:00",
+     "updatedOn": "2026-11-12T07:18:42.1642599+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "265tnx-1",
+     "text": "Lastebilen som sto i retning Oslo er fjernet. I retning ut av Oslo er det står trafikken stille.",
+     "createdOn": "2026-11-12T08:31:49.3585175+00:00",
+     "updatedOn": "2026-11-12T08:31:49.3585175+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "264zkh",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Trafikk",
+   "municipality": "Indre Østfold",
+   "area": "Mysen",
+   "createdOn": "2026-11-12T08:29:28.8372179+00:00",
+   "updatedOn": "2026-11-12T08:29:59.2614409+00:00",
+   "lastMessageOn": "2026-11-12T08:29:28.8370259+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "264zkh-0",
+     "text": "Politiet har rykket ut til melding om trafikkulykke. To biler involvert, ingen personskade. Bilberger på vei til stedet.",
+     "createdOn": "2026-11-12T08:29:28.8370259+00:00",
+     "updatedOn": "2026-11-12T08:29:28.8843399+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26svkx",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Tyveri",
+   "municipality": "Kristiansand",
+   "area": "",
+   "createdOn": "2026-11-12T08:28:34.7720678+00:00",
+   "updatedOn": "2026-11-12T08:28:36.55193+00:00",
+   "lastMessageOn": "2026-11-12T08:28:34.7718724+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26svkx-0",
+     "text": "Kl 0754, melding om tyveri fra Aquarama. Politiet har vært på stedet og tatt kontroll på mistenkte. Vedkommende er bortvist fra stedet i 48 timer. Aquarama anmelder forholdet.",
+     "createdOn": "2026-11-12T08:28:34.7718724+00:00",
+     "updatedOn": "2026-11-12T08:28:34.8225619+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26fqk8",
+   "district": "Troms Politidistrikt",
+   "districtId": 211,
+   "category": "Trafikk",
+   "municipality": "Tromsø",
+   "area": "Tromsø Kommune",
+   "createdOn": "2026-11-12T08:26:22.8205541+00:00",
+   "updatedOn": "2026-11-12T08:26:24.969209+00:00",
+   "lastMessageOn": "2026-11-12T08:26:22.8203362+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26fqk8-0",
+     "text": "Politiet har gjennomført flere kontroller nå på morgenkvisten.\n\nVed UiT kontrollerte utrykningspolitiet 143 kjøretøy. En fører fikk forenklet forelegg på grunn av manglende utsyn. En fører fikk forenklet forelegg på grunn av manglende sikring av barn under 15 år.\n\nVed Ersfjordbotn skole ble 11 kjøretøy kontrollert uten noen form for reaksjoner.\n\nVed Mortensnes skole ble 19 kjøretøy kontrollert uten noen form for reaksjoner.\n\nVed Krokelvdalen skole ble 12 kjøretøy kontrollert. To førere fikk forenklet forelegg på grunn av manglende sikring av barn under 15 år.",
+     "createdOn": "2026-11-12T08:26:22.8203362+00:00",
+     "updatedOn": "2026-11-12T08:26:22.9046843+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "261mkp",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Ulykke",
+   "municipality": "Kvinesdal",
+   "area": "Rv416",
+   "createdOn": "2026-11-12T08:19:11.718913+00:00",
+   "updatedOn": "2026-11-12T08:44:04.484924+00:00",
+   "lastMessageOn": "2026-11-12T08:19:11.7187144+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "261mkp-0",
+     "text": "En mindre trafikkulykke langs RV 461 ved avkjøringen til Hidreskogveien. Nødetatene er på stedet. En person er lettere skadet. Det er svært glatt på vegen der. VTS har sendt en strø bil med salt/sand til området.\nPolitiet oppretter ikke sak. En person ble tatt med av ambulanse for en sjekk på legevakta",
+     "createdOn": "2026-11-12T08:19:11.7187144+00:00",
+     "updatedOn": "2026-11-12T08:43:50.996365+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Edited"
+    }
+   ]
+  },
+  {
+   "id": "26glnp",
+   "district": "Oslo Politidistrikt",
+   "districtId": 201,
+   "category": "Trafikk",
+   "municipality": "Asker",
+   "area": "",
+   "createdOn": "2026-11-12T07:03:42.6530197+00:00",
+   "updatedOn": "2026-11-12T08:20:25.1286905+00:00",
+   "lastMessageOn": "2026-11-12T08:16:36.1669595+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26glnp-0",
+     "text": "Politiet er på ett trafikkuhell ved Semsveien i Asker. Der har en bil kjørt ut, landet opp ned og sklidd ut på ett jorde. Det er ikke meldt om skadde. Det undersøkes på stedet.",
+     "createdOn": "2026-11-12T07:03:42.6528022+00:00",
+     "updatedOn": "2026-11-12T07:03:42.7012823+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26glnp-1",
+     "text": "Politiet er i kontakt med fører av bilen som fremstår uskadd.",
+     "createdOn": "2026-11-12T07:05:54.2715445+00:00",
+     "updatedOn": "2026-11-12T07:05:54.2715445+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26glnp-2",
+     "text": "Det var en mopedbil som har kjørt ut. Det opprettes en anmeldelse på forholdet. Det tas ikke beslag i førerkort.",
+     "createdOn": "2026-11-12T08:16:36.1669595+00:00",
+     "updatedOn": "2026-11-12T08:20:21.2441398+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Edited"
+    }
+   ]
+  },
+  {
+   "id": "26qjl2",
+   "district": "Nordland Politidistrikt",
+   "districtId": 210,
+   "category": "Trafikk",
+   "municipality": "Vågan",
+   "area": "Svolvær",
+   "createdOn": "2026-11-12T08:11:52.6571801+00:00",
+   "updatedOn": "2026-11-12T14:20:56.2191947+00:00",
+   "lastMessageOn": "2026-11-12T08:11:52.6569045+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26qjl2-0",
+     "text": "Kontroll med fokus på dekk og sikt gjennom ruter: 138 kontrollerte - ingen reaksjoner fra Politiet.",
+     "createdOn": "2026-11-12T08:11:52.6569045+00:00",
+     "updatedOn": "2026-11-12T08:11:52.778782+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "269lx3",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Trafikk",
+   "municipality": "Åmot",
+   "area": "Osen",
+   "createdOn": "2026-11-12T08:07:31.2318564+00:00",
+   "updatedOn": "2026-11-12T10:34:55.7821011+00:00",
+   "lastMessageOn": "2026-11-12T08:07:31.2316567+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "269lx3-0",
+     "text": "Kl. 08:46; en lastebil har kjørt av Osveien, gjennom et autovern og ligger på siden ned mot Osensjøen. Ikke meldt om personskader pr. nå. Politiet er på veg til stedet. Oppdateres.",
+     "createdOn": "2026-11-12T08:07:31.2316567+00:00",
+     "updatedOn": "2026-11-12T08:07:31.2821519+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26lsrw",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Ulykke",
+   "municipality": "Lillestrøm",
+   "area": "",
+   "createdOn": "2026-11-12T05:15:57.8634103+00:00",
+   "updatedOn": "2026-11-12T07:59:18.8182072+00:00",
+   "lastMessageOn": "2026-11-12T07:59:13.0589913+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26lsrw-0",
+     "text": "Vi har fått melding om trafikkulykke langs Haldenveien rett vest for Lørenfallet. Front mot front.",
+     "createdOn": "2026-11-12T05:15:57.8632145+00:00",
+     "updatedOn": "2026-11-12T05:15:57.917645+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26lsrw-3",
+     "text": "Veien er sperret på stedet.",
+     "createdOn": "2026-11-12T05:17:19.913307+00:00",
+     "updatedOn": "2026-11-12T05:17:19.913307+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26lsrw-4",
+     "text": "Ett felt er åpnet og trafikken dirigeres forbi.",
+     "createdOn": "2026-11-12T06:08:10.6104014+00:00",
+     "updatedOn": "2026-11-12T06:08:10.6104014+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26lsrw-5",
+     "text": "Den ene bilen har kommet over i motgående kjørefelt, mulig illebefinnende. Var ikke glatt på stedet. Store materielle skader, men ikke personskader.\nBilene er berget og politiet oppretter sak.",
+     "createdOn": "2026-11-12T07:59:13.0589913+00:00",
+     "updatedOn": "2026-11-12T07:59:13.0589913+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "2682mp",
+   "district": "Møre og Romsdal Politidistrikt",
+   "districtId": 208,
+   "category": "Trafikk",
+   "municipality": "Ulstein",
+   "area": "Haddal",
+   "createdOn": "2026-11-12T07:40:58.4183776+00:00",
+   "updatedOn": "2026-11-12T07:41:10.7632519+00:00",
+   "lastMessageOn": "2026-11-12T07:40:58.4181846+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "2682mp-0",
+     "text": "Ein buss har sklidd av vegen. Nærmaste busstopp er Haddal skule. Det var 9 passasjerar i bussen. Ingen dramatikk per no. Men det kan vere at bussen kan velte. Fylkesvegen er open.",
+     "createdOn": "2026-11-12T07:40:58.4181846+00:00",
+     "updatedOn": "2026-11-12T07:40:58.4672481+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26xm2s",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Trafikk",
+   "municipality": "Vestre Slidre",
+   "area": "Røn",
+   "createdOn": "2026-11-12T07:35:04.3763828+00:00",
+   "updatedOn": "2026-11-12T09:04:17.4731326+00:00",
+   "lastMessageOn": "2026-11-12T07:35:04.3761686+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26xm2s-0",
+     "text": "Kl. 08:15: melding om en buss som har kjørt av Fossheimvegen. Bussen ligger på siden, ikke meldt om personskader pr. nå. Nødetatene er på stedet. Oppdateres.",
+     "createdOn": "2026-11-12T07:35:04.3761686+00:00",
+     "updatedOn": "2026-11-12T07:35:04.4316094+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26vpn8",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Trafikk",
+   "municipality": "Trysil",
+   "area": "Fv. 26 Sandbakken",
+   "createdOn": "2026-11-12T07:07:38.6588453+00:00",
+   "updatedOn": "2026-11-12T07:56:23.1006159+00:00",
+   "lastMessageOn": "2026-11-12T07:07:38.6586161+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26vpn8-0",
+     "text": "Politiet har gjennomført en fartskontroll i skiltet 60-sone. Utferdiget 6 forenklede forelegg - høyeste målte hastighet var 76 km/t.",
+     "createdOn": "2026-11-12T07:07:38.6586161+00:00",
+     "updatedOn": "2026-11-12T07:07:38.7089428+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26rcph",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Trafikk",
+   "municipality": "Sør-Øst politidistrikt",
+   "area": "",
+   "createdOn": "2026-11-12T06:51:50.6707404+00:00",
+   "updatedOn": "2026-11-12T09:21:15.8003539+00:00",
+   "lastMessageOn": "2026-11-12T06:51:50.6705492+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26rcph-0",
+     "text": "Operasjonssentralen i Sør-Øst mottar en rekke meldinger om utforkjøringer, trafikkulykker og glatte kjøreforhold i forbindelse snøfallet som har kommet. Snøfallet medfører endrede kjøreforhold som igjen endrer veggrep og bremselengder. Planlegg med å bruke litt lenger tid enn vanlig til jobb og avtaler. Kjør etter forholdene og hold god avstand til forankjørende.",
+     "createdOn": "2026-11-12T06:51:50.6705492+00:00",
+     "updatedOn": "2026-11-12T06:51:50.7234119+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "2605q8",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Trafikk",
+   "municipality": "Østre Toten",
+   "area": "Nordlihøgda",
+   "createdOn": "2026-11-12T06:48:39.5013167+00:00",
+   "updatedOn": "2026-11-12T08:07:42.1597748+00:00",
+   "lastMessageOn": "2026-11-12T06:48:39.5011176+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "2605q8-0",
+     "text": "Kl.07:29 - meldt om ei trafikkulykke med to biler innblandet. Skal ha vært en påkjørsel bakfra. Små materielle skader på bilene, og ingen personskader.",
+     "createdOn": "2026-11-12T06:48:39.5011176+00:00",
+     "updatedOn": "2026-11-12T06:48:39.5498303+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26zwrh",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Trafikk",
+   "municipality": "Lier",
+   "area": "Ringeriksveien/Kirkelina",
+   "createdOn": "2026-11-12T05:34:02.4013613+00:00",
+   "updatedOn": "2026-11-12T07:39:04.6957169+00:00",
+   "lastMessageOn": "2026-11-12T06:00:11.5326336+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26zwrh-0",
+     "text": "Melding om trafikkulykke mellom to kjøretøy ved rundkjøring Ringeriksveien. Melder sin bil har blitt truffet inn i siden. Airbager er utløst. Den andre bilen har kjørt fra stedet. Det skal være en hvit BMW 1-serie. Trafikken går greit forbi på stedet. Det er glatt veibane. Nødetater rykker ut.",
+     "createdOn": "2026-11-12T05:34:02.4011596+00:00",
+     "updatedOn": "2026-11-12T05:34:02.4511242+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26zwrh-2",
+     "text": "Nødetater på stedet.",
+     "createdOn": "2026-11-12T05:43:25.5205441+00:00",
+     "updatedOn": "2026-11-12T05:43:25.5205441+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26zwrh-3",
+     "text": "Det ene bilskiltet på BMW`en lå igjen på stedet. Patruljen er nå i kontakt med bilfører som var kommet hjem til egen adresse.",
+     "createdOn": "2026-11-12T05:53:13.3814687+00:00",
+     "updatedOn": "2026-11-12T05:53:13.3814687+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26zwrh-4",
+     "text": "Fornærmede blir kjørt videre til legevakt for ytterligere helsesjekk. Bilberger er bestilt.",
+     "createdOn": "2026-11-12T05:54:39.6962529+00:00",
+     "updatedOn": "2026-11-12T05:54:39.6962529+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26zwrh-5",
+     "text": "Mistenkte erkjenner å ha vært innblandet i et trafikkuhell. Mistenkte innehar ikke gyldig førerkort. Blir avhørt på stedet av patruljen.",
+     "createdOn": "2026-11-12T06:00:11.5326336+00:00",
+     "updatedOn": "2026-11-12T06:00:11.5326336+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "2611tp",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Trafikk",
+   "municipality": "Jevnaker",
+   "area": "Bakkavegen",
+   "createdOn": "2026-11-12T04:24:25.5904912+00:00",
+   "updatedOn": "2026-11-12T05:35:22.1759162+00:00",
+   "lastMessageOn": "2026-11-12T05:34:55.7678911+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "2611tp-0",
+     "text": "Kl. 05:15 - Melding om singel trafikkulykke hvor en bil og fører er involvert. Bilen har sklidd ut av veibanen og truffet en stolpe. Airbager er utløst. Fører er melder og sier seg uskadd. Det henger strømledninger ut i den ene kjørebanen. Bilen står utenfor vegbanen. E-verket blir varslet. Brannvesenet er på stedet.",
+     "createdOn": "2026-11-12T04:24:25.5902714+00:00",
+     "updatedOn": "2026-11-12T04:24:25.6444003+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "2611tp-1",
+     "text": "Politiet er på stedet om kort tid. Brannvesenet melder om tre-fire cm med snø i vegbanen og glatt føre. Det er ingen trafikkale utfordringer på stedet.",
+     "createdOn": "2026-11-12T04:32:13.0808904+00:00",
+     "updatedOn": "2026-11-12T04:32:13.0808904+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "2611tp-3",
+     "text": "Politiet oppretter sak.",
+     "createdOn": "2026-11-12T05:34:55.7678911+00:00",
+     "updatedOn": "2026-11-12T05:34:55.7678911+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "266nr8",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Dyr",
+   "municipality": "Flekkefjord",
+   "area": "",
+   "createdOn": "2026-11-12T05:14:54.8864602+00:00",
+   "updatedOn": "2026-11-12T05:14:56.5041958+00:00",
+   "lastMessageOn": "2026-11-12T05:14:54.8862754+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "266nr8-0",
+     "text": "Kl. 0545. Melding om påkjørt rådyr på E39 ved Austad. Dyret løp videre. Viltnemnd er varslet.",
+     "createdOn": "2026-11-12T05:14:54.8862754+00:00",
+     "updatedOn": "2026-11-12T05:14:54.9344742+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26wkrp",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Ro og orden",
+   "municipality": "Kristiansand",
+   "area": "Sentrum",
+   "createdOn": "2026-11-12T05:13:27.5367495+00:00",
+   "updatedOn": "2026-11-12T05:13:30.6610566+00:00",
+   "lastMessageOn": "2026-11-12T05:13:27.5365524+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26wkrp-0",
+     "text": "Kl. 0525. Melding om noen som kaster stein på en rute på en privat adresse. Politiet har vært i området uten å se noen aktuelle. Ikke meldt at det er blitt noen skader.",
+     "createdOn": "2026-11-12T05:13:27.5365524+00:00",
+     "updatedOn": "2026-11-12T05:13:27.6227764+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26hgs2",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Andre hendelser",
+   "municipality": "Kristiansand",
+   "area": "Sentrum",
+   "createdOn": "2026-11-12T05:12:15.4429444+00:00",
+   "updatedOn": "2026-11-12T05:12:16.7384805+00:00",
+   "lastMessageOn": "2026-11-12T05:12:15.4427499+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26hgs2-0",
+     "text": "Kl. 0425. Melding om at det er et pågående innbrudd på en adresse i sentrum. Politiet har vært på stedet. Viste seg at det var noen som var tidlig på jobb.",
+     "createdOn": "2026-11-12T05:12:15.4427499+00:00",
+     "updatedOn": "2026-11-12T05:12:15.4922145+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "264bsh",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Ro og orden",
+   "municipality": "Kristiansand",
+   "area": "Sentrum",
+   "createdOn": "2026-11-12T05:11:09.2015196+00:00",
+   "updatedOn": "2026-11-12T05:11:11.3038777+00:00",
+   "lastMessageOn": "2026-11-12T05:11:09.2013266+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "264bsh-0",
+     "text": "Kl. 0229. Bersuet kvinne innbrakt til politiet etter å ha forstyrret ro og orden i sentrum og ikke i standt til å ivareta seg selv.",
+     "createdOn": "2026-11-12T05:11:09.2013266+00:00",
+     "updatedOn": "2026-11-12T05:11:09.2515523+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26qzt2",
+   "district": "Trøndelag Politidistrikt",
+   "districtId": 209,
+   "category": "Trafikk",
+   "municipality": "Skaun",
+   "area": "Viggja",
+   "createdOn": "2026-11-12T04:19:04.5951313+00:00",
+   "updatedOn": "2026-11-12T06:45:13.6111594+00:00",
+   "lastMessageOn": "2026-11-12T04:48:49.1576443+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26qzt2-0",
+     "text": "Klokken 0124 kontrollerte politiet to kjøretøy som kjørte på fv 800 ved Viggja. En mann i 40-åra mistenkes for ruskjøring og tas med inn til arrest for bevisopptak. Politiet oppretter sak.",
+     "createdOn": "2026-11-12T04:19:04.594938+00:00",
+     "updatedOn": "2026-11-12T04:19:04.6465377+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26qzt2-1",
+     "text": "Fører av den andre bilen, en kvinne i 30-åra er også tatt med inn i arrest for bevissikring da det er mistanke om ruskjøring. Politiet oppretter sak.",
+     "createdOn": "2026-11-12T04:48:49.1576443+00:00",
+     "updatedOn": "2026-11-12T04:48:49.1576443+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26f4t8",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Ro og orden",
+   "municipality": "Lørenskog",
+   "area": "",
+   "createdOn": "2026-11-12T04:43:40.1445443+00:00",
+   "updatedOn": "2026-11-12T04:45:20.5833984+00:00",
+   "lastMessageOn": "2026-11-12T04:43:40.1443431+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26f4t8-0",
+     "text": "En person ble kl. 01:40 bortvist fra Esso Skårer etter å ha oppført seg dårlig inne på bensinstasjonen. Han hadde kastet sjokolade på betjeningen samt kranglet med andre kunder på stedet.",
+     "createdOn": "2026-11-12T04:43:40.1443431+00:00",
+     "updatedOn": "2026-11-12T04:43:40.2412847+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26bvvh",
+   "district": "Trøndelag Politidistrikt",
+   "districtId": 209,
+   "category": "Ro og orden",
+   "municipality": "Trondheim",
+   "area": "Supstad",
+   "createdOn": "2026-11-12T03:23:04.4403338+00:00",
+   "updatedOn": "2026-11-12T06:44:26.185076+00:00",
+   "lastMessageOn": "2026-11-12T03:23:04.4400514+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26bvvh-0",
+     "text": "Klokken 0028 mottok politiet melding om støy fra en leilighet på Saupstad. I følge melder var det noen som boret i leilighetskomplekset. Flere av naboene hadde gått ut i gaten da de ikke fikk sove. Da politiet kom til stedet kom patruljen i kontakt med en mann og en dame i 50-åra som sa de drev med oppussing. Begge fikk pålegg om å holde det stille frem til i morgen tidlig.",
+     "createdOn": "2026-11-12T03:23:04.4400514+00:00",
+     "updatedOn": "2026-11-12T03:23:04.5562785+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26rvwf",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Ro og orden",
+   "municipality": "Moss",
+   "area": "Dilling",
+   "createdOn": "2026-11-12T03:13:11.8789628+00:00",
+   "updatedOn": "2026-11-12T03:13:48.8921585+00:00",
+   "lastMessageOn": "2026-11-12T03:13:11.8787739+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26rvwf-0",
+     "text": "Ansatt på bensinstasjon meldte om mann som tok for seg av mat og drikke og spiste dette inne på bensinstasjonen uten å betale for seg. Den unge ansatte opplevde mannens fremferd som skremmende. Vi tok kontroll på vedkommende og fraktet ham vekk fra bensinstasjonen. Han er bortvist i 72 timer fra stedet og anmeldes.",
+     "createdOn": "2026-11-12T03:13:11.8787739+00:00",
+     "updatedOn": "2026-11-12T03:13:11.9322508+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "2656ww",
+   "district": "Oslo Politidistrikt",
+   "districtId": 201,
+   "category": "Tyveri",
+   "municipality": "Oslo",
+   "area": "Sørengkaia",
+   "createdOn": "2026-11-12T02:03:53.7765199+00:00",
+   "updatedOn": "2026-11-12T03:10:37.3181272+00:00",
+   "lastMessageOn": "2026-11-12T03:09:53.0478889+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "2656ww-0",
+     "text": "Vi er på Sørengkaia etter melding om utløst innbruddsalarm fra en restaurant. Det er konstatert at en eller flere innbruddstyver har tatt seg inn i restauranten og blant annet stjålet flaske med alkohol.\n\nEn av politipatruljene i området fikk kontroll på en person som gikk og drakk fra en flaske med alkoholholdig drikke. Vi gjør videre undersøkelser for å avklare om vedkommende har noe med innbruddet å gjøre.",
+     "createdOn": "2026-11-12T02:03:53.7762638+00:00",
+     "updatedOn": "2026-11-12T02:03:53.8228302+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "2656ww-2",
+     "text": "Personen er mistenkt for innbrudd og tyveri, og er besluttet pågrepet. Kjøres arrest.\n\nVi gjennomfører åstedsundersøkelse i restauranten.",
+     "createdOn": "2026-11-12T02:13:59.4687092+00:00",
+     "updatedOn": "2026-11-12T02:13:59.4687092+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "2656ww-4",
+     "text": "Vi har sjekket videoovervåkning i restauranten. Denne viser at det var to innbruddstyver på stedet. Vi søker etter tyv nr 2.",
+     "createdOn": "2026-11-12T02:43:24.5472471+00:00",
+     "updatedOn": "2026-11-12T02:43:24.5472471+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "2656ww-5",
+     "text": "Tyv nr. 2 ble påtruffet av en annen patrulje i sentrum. Besluttet pågrepet, og kjøres arrest.\n\nVi oppretter sak på forholdet.",
+     "createdOn": "2026-11-12T03:09:53.0478889+00:00",
+     "updatedOn": "2026-11-12T03:09:53.0478889+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "268jvp",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Brann",
+   "municipality": "Moss",
+   "area": "Jeløya",
+   "createdOn": "2026-11-12T02:36:21.0063186+00:00",
+   "updatedOn": "2026-11-12T03:04:40.844446+00:00",
+   "lastMessageOn": "2026-11-12T02:51:11.3643439+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "268jvp-0",
+     "text": "Nødetatene på vei til kraftig røykutvikling på kjøkken i Elias Kræmmers vei i Moss. To personer på stedet som mulig har fått i seg røyk.",
+     "createdOn": "2026-11-12T02:36:21.0060503+00:00",
+     "updatedOn": "2026-11-12T02:36:21.054772+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "268jvp-2",
+     "text": "Brannvesenet har kontroll. En godt stekt pizza i ovnen og platetopper som har stått på. Èn person sjekkes av ambulanse på stedet etter å ha fått i seg røyk.",
+     "createdOn": "2026-11-12T02:51:11.3643439+00:00",
+     "updatedOn": "2026-11-12T02:51:11.3643439+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26g0xp",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Innbrudd",
+   "municipality": "Nordre Follo",
+   "area": "Sofiemyr",
+   "createdOn": "2026-11-12T01:29:09.9829225+00:00",
+   "updatedOn": "2026-11-12T02:40:45.2008698+00:00",
+   "lastMessageOn": "2026-11-12T02:39:32.9265681+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26g0xp-0",
+     "text": "Vekter påtraff en mann og en dame inne på et gatekjøkken på Sofiemyr i gang med å lage seg mat. De løp da vekter ankom og vi er på vei for å søke etter disse to.",
+     "createdOn": "2026-11-12T01:29:09.9826846+00:00",
+     "updatedOn": "2026-11-12T01:29:10.043745+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26g0xp-2",
+     "text": "Vi er i søk i området med blant annet hundepatrulje.",
+     "createdOn": "2026-11-12T01:53:34.2038243+00:00",
+     "updatedOn": "2026-11-12T01:53:34.2038243+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26g0xp-3",
+     "text": "I forbindelse med søket har vi nå kontroll på to personer som passer beskrivelsen. De ble stoppet i en taxi i nærheten og innrømmer å ha stekt seg hamburgere på gatekjøkkenet.",
+     "createdOn": "2026-11-12T02:06:02.5535056+00:00",
+     "updatedOn": "2026-11-12T02:06:02.5535056+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26g0xp-4",
+     "text": "Det ble funnet narkotika og kniv på de mistenkte. Begge anmeldes for forholdene og er bortvist fra området.",
+     "createdOn": "2026-11-12T02:39:32.9265681+00:00",
+     "updatedOn": "2026-11-12T02:39:32.9265681+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26xfw2",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Trafikk",
+   "municipality": "Modum",
+   "area": "Åmot",
+   "createdOn": "2026-11-12T02:32:03.5221583+00:00",
+   "updatedOn": "2026-11-12T02:51:50.9434045+00:00",
+   "lastMessageOn": "2026-11-12T02:32:03.5219233+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26xfw2-0",
+     "text": "Kl. 23:29 - Patruljen stanset et kjøretøy hvor fører fremsto beruset - ble fremstilt for nødvendige prøver. Fører innehar ikke gyldig førerkort. Patruljen oppretter sak.",
+     "createdOn": "2026-11-12T02:32:03.5219233+00:00",
+     "updatedOn": "2026-11-12T02:32:03.5817735+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26v3x8",
+   "district": "Sør-Vest Politidistrikt",
+   "districtId": 206,
+   "category": "Brann",
+   "municipality": "Sola",
+   "area": "",
+   "createdOn": "2026-11-12T02:02:47.3771992+00:00",
+   "updatedOn": "2026-11-12T02:26:42.7301104+00:00",
+   "lastMessageOn": "2026-11-12T02:26:41.5257895+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26v3x8-0",
+     "text": "Nødetatene rykker ut til uklar melding om mulig bygningsbrann på Sola. Melder ser mye røyk og lys fra et boligområde. Ser dette fra en viss avstand. Oppdateres.",
+     "createdOn": "2026-11-12T02:02:47.3769577+00:00",
+     "updatedOn": "2026-11-12T02:02:47.4644349+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26v3x8-1",
+     "text": "Politiet er fremme i område hvor det meldes fra om. Ser ingen brann eller røyk. Undersøker videre.",
+     "createdOn": "2026-11-12T02:12:35.9818302+00:00",
+     "updatedOn": "2026-11-12T02:12:35.9818302+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26v3x8-2",
+     "text": "Nødetatene avslutter på stedet. Ingen brann. Trolig røyk fra et industriområde i nærheten.",
+     "createdOn": "2026-11-12T02:26:41.5257895+00:00",
+     "updatedOn": "2026-11-12T02:26:41.5257895+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26kbwg",
+   "district": "Oslo Politidistrikt",
+   "districtId": 201,
+   "category": "Trafikk",
+   "municipality": "Asker",
+   "area": "Solbråveien",
+   "createdOn": "2026-11-12T02:10:46.5559632+00:00",
+   "updatedOn": "2026-11-12T02:16:05.4571422+00:00",
+   "lastMessageOn": "2026-11-12T02:10:46.5555676+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26kbwg-0",
+     "text": "En bilist ble kontrollert av en politipatrulje i Solbråveien i Asker. Viste seg at bilisten var påvirket av alkohol. Vedkommende ble tatt med inn til politistasjonen for prøvetaking og bevissikring. \n\nVi oppretter sak på forholdet.",
+     "createdOn": "2026-11-12T02:10:46.5555676+00:00",
+     "updatedOn": "2026-11-12T02:10:46.8372793+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "260mz8",
+   "district": "Sør-Vest Politidistrikt",
+   "districtId": 206,
+   "category": "Trafikk",
+   "municipality": "Stord",
+   "area": "",
+   "createdOn": "2026-11-11T23:55:16.842766+00:00",
+   "updatedOn": "2026-11-12T01:38:34.6602069+00:00",
+   "lastMessageOn": "2026-11-12T01:38:34.6602069+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "260mz8-0",
+     "text": "Nødetatene rykker ut etter melding om trafikkulykke på Stordabroa på E39. En bil har krasjet. Uklart skadeomfang. Meldes om at det er svært glatt på stedet. Oppdateres.",
+     "createdOn": "2026-11-11T23:55:16.8425489+00:00",
+     "updatedOn": "2026-11-11T23:55:16.9393462+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "260mz8-1",
+     "text": "Brannvesenet og politiet er fremme på stedet. En bil har krasjet i autovernet. En person involvert. Oppegående, ingen synlige skader. Lite trafikale utfordringer. Ett felt er stengt og trafikken dirigeres forbi. Bilberger er rekvirert og VTS sender entreprenør for å vurdere kjøreforholdene.",
+     "createdOn": "2026-11-12T00:06:32.0393994+00:00",
+     "updatedOn": "2026-11-12T00:06:32.0393994+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "260mz8-2",
+     "text": "Politiet er fortsatt på stedet. Bilberger har ankommet og VTS vil stenge veien mens berging pågår. Fører av bilen ble kjørt til legevakt for en sjekk, ikke alvorlig.  Det blir ikke opprettet sak på forholdet.",
+     "createdOn": "2026-11-12T01:24:49.2558844+00:00",
+     "updatedOn": "2026-11-12T01:24:49.2558844+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "260mz8-3",
+     "text": "Veien er åpnet og bilen er fjernet. Politiet avslutter på stedet.",
+     "createdOn": "2026-11-12T01:38:34.6602069+00:00",
+     "updatedOn": "2026-11-12T01:38:34.6602069+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26rtzg",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Trafikk",
+   "municipality": "Modum",
+   "area": "Modum/Geithusveien",
+   "createdOn": "2026-11-12T00:27:09.974747+00:00",
+   "updatedOn": "2026-11-12T00:27:25.2639573+00:00",
+   "lastMessageOn": "2026-11-12T00:27:09.9745557+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26rtzg-0",
+     "text": "Patruljen stanset fører av en bil som ikke innehar gyldig førerkort. Bilen som mistenkte kjørte var uten skilter. Ikke mistanke om ruskjøring. Sak blir opprettet.",
+     "createdOn": "2026-11-12T00:27:09.9745557+00:00",
+     "updatedOn": "2026-11-12T00:27:10.027621+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26nhzp",
+   "district": "Trøndelag Politidistrikt",
+   "districtId": 209,
+   "category": "Trafikk",
+   "municipality": "Trondheim",
+   "area": "Kattem",
+   "createdOn": "2026-11-11T23:37:40.8029704+00:00",
+   "updatedOn": "2026-11-12T06:43:32.5574739+00:00",
+   "lastMessageOn": "2026-11-11T23:37:40.8027761+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26nhzp-0",
+     "text": "Klokken 2253 mottok politiet en rekke meldinger om en bil som kjørte inn i flere biler på Kattem. Til slutt kjørte bilen inn i et tre og stod der og spølet. Da politiet kom til stedet ble det tatt kontroll på føreren - en mann i 30 åra. Ingen ble skadet under kjøringen. Det er uklart hva som er årsaken til kjøringen. Politiet oppretter sak og har tatt beslag i mannens førerkort.",
+     "createdOn": "2026-11-11T23:37:40.8027761+00:00",
+     "updatedOn": "2026-11-11T23:37:40.8498348+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "269d20",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Trafikk",
+   "municipality": "Eidskog",
+   "area": "Skotterud",
+   "createdOn": "2026-11-11T23:28:54.5343358+00:00",
+   "updatedOn": "2026-11-12T06:56:04.1920022+00:00",
+   "lastMessageOn": "2026-11-11T23:28:54.5341456+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "269d20-0",
+     "text": "Politiet kontrollerte en bilfører som nå er siktet for å ha kjørt i påvirket tilstand. Fremstilt for bevissikring. Han hadde heller ikke gyldig førerkort da kjøringen fant sted og anmeldes også for dette forholdet.",
+     "createdOn": "2026-11-11T23:28:54.5341456+00:00",
+     "updatedOn": "2026-11-11T23:28:54.5821728+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "261g0p",
+   "district": "Nordland Politidistrikt",
+   "districtId": 210,
+   "category": "Voldshendelse",
+   "municipality": "Vestvågøy",
+   "area": "Leknes",
+   "createdOn": "2026-11-11T20:46:42.6989304+00:00",
+   "updatedOn": "2026-11-11T23:32:43.8273108+00:00",
+   "lastMessageOn": "2026-11-11T23:27:22.9552979+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "261g0p-0",
+     "text": "Politiet har rykket ut til en melding om en voldshendelse på en privatadresse i Leknes. Patruljen er framme på adressen og har kontroll på fornærmede.",
+     "createdOn": "2026-11-11T20:46:42.6987247+00:00",
+     "updatedOn": "2026-11-11T20:46:42.747516+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "261g0p-2",
+     "text": "Politiet har kontroll på både mistenkte og fornærmede. Fornærmede skal ha et lite kutt i skulderen etter å ha blitt stukket med kniv. Ambulansen tar fornærmede med seg til legevakten for behandling.",
+     "createdOn": "2026-11-11T21:11:10.5253125+00:00",
+     "updatedOn": "2026-11-11T21:11:10.5253125+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "261g0p-4",
+     "text": "Politiet er ferdig med undersøkelser på stedet. Sak opprettet.",
+     "createdOn": "2026-11-11T23:27:22.9552979+00:00",
+     "updatedOn": "2026-11-11T23:27:22.9552979+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26z9gx",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Trafikk",
+   "municipality": "Gausdal",
+   "area": "Baklivegen - Segalstad Bru",
+   "createdOn": "2026-11-11T23:24:33.0650241+00:00",
+   "updatedOn": "2026-11-12T06:55:51.5794518+00:00",
+   "lastMessageOn": "2026-11-11T23:24:33.0648273+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26z9gx-0",
+     "text": "Nødetatene rykket ut til en trafikkulykke. En personbil og bobil i møteulykke. Totalt tre personer hvorav den ene er kjørt til sykehus for kontroll. Fremstår med mindre skader. De to andre er uskadd. Vegen er ryddet og åpen for trafikk.",
+     "createdOn": "2026-11-11T23:24:33.0648273+00:00",
+     "updatedOn": "2026-11-11T23:24:33.1126347+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "264s0g",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Brann",
+   "municipality": "Grimstad",
+   "area": "Østerhus",
+   "createdOn": "2026-11-11T22:30:53.8983823+00:00",
+   "updatedOn": "2026-11-11T22:58:20.3715916+00:00",
+   "lastMessageOn": "2026-11-11T22:58:19.4922526+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "264s0g-0",
+     "text": "Kl. 2325. Melding om mulig brann i et bygg på industriområdet Østerhus. Brann er på stedet. Politiet på vei. Ukjent omfang pr. nå.",
+     "createdOn": "2026-11-11T22:30:53.8981848+00:00",
+     "updatedOn": "2026-11-11T22:30:53.9644523+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "264s0g-2",
+     "text": "Brann melder at branntilløpet er slukket. Brann starter utlufting. ",
+     "createdOn": "2026-11-11T22:32:35.4418781+00:00",
+     "updatedOn": "2026-11-11T22:48:08.2598657+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Edited"
+    },
+    {
+     "id": "264s0g-3",
+     "text": "Eier av firmaet er varslet. Poliitiet er ferdige på stedet. Kan tyde på at det er en selvantenning i noe avfall etter overflatebehandling av trevirke. Politiet oppretter sak.",
+     "createdOn": "2026-11-11T22:58:19.4922526+00:00",
+     "updatedOn": "2026-11-11T22:58:19.4922526+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26wplr",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Andre hendelser",
+   "municipality": "Tønsberg",
+   "area": "Kanalbrua",
+   "createdOn": "2026-11-11T22:50:54.4460111+00:00",
+   "updatedOn": "2026-11-12T02:29:25.7017681+00:00",
+   "lastMessageOn": "2026-11-11T22:50:54.4455956+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26wplr-0",
+     "text": "Vestfold Fylkeskommune informerer om at kanalbrua vil være helt stengt for vedlikehold natt til torsdag kl. 00:10 - 02:00.",
+     "createdOn": "2026-11-11T22:50:54.4455956+00:00",
+     "updatedOn": "2026-11-11T22:50:54.4941493+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26sp0w",
+   "district": "Møre og Romsdal Politidistrikt",
+   "districtId": 208,
+   "category": "Ro og orden",
+   "municipality": "Ålesund",
+   "area": "",
+   "createdOn": "2026-11-11T22:27:38.3772444+00:00",
+   "updatedOn": "2026-11-11T22:43:22.7862767+00:00",
+   "lastMessageOn": "2026-11-11T22:43:21.7359797+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26sp0w-0",
+     "text": "Politiet er på en privat adresse etter melding om rop og skrik fra stedet. Oppdateres.",
+     "createdOn": "2026-11-11T22:27:38.3768376+00:00",
+     "updatedOn": "2026-11-11T22:27:38.4289368+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26sp0w-1",
+     "text": "Vært høylytt krangling mellom et kjærestepar. Det var stille og rolig ved politiets ankomst. Ingen ytterligere tiltak eller pålegg fra politiets side.",
+     "createdOn": "2026-11-11T22:43:21.7359797+00:00",
+     "updatedOn": "2026-11-11T22:43:21.7359797+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26fl08",
+   "district": "Sør-Vest Politidistrikt",
+   "districtId": 206,
+   "category": "Trafikk",
+   "municipality": "Stavanger",
+   "area": "Høgsfjordgata",
+   "createdOn": "2026-11-11T21:16:08.1337907+00:00",
+   "updatedOn": "2026-11-11T22:37:08.4640036+00:00",
+   "lastMessageOn": "2026-11-11T22:37:06.4069352+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26fl08-0",
+     "text": "Melding om trafikkulykke hvor en bil har kjørt inn i en vegg. Oppdateres.",
+     "createdOn": "2026-11-11T21:16:08.1335884+00:00",
+     "updatedOn": "2026-11-11T21:16:08.1836963+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26fl08-1",
+     "text": "Politiet er på stedet og undersøker hva som er skjedd.",
+     "createdOn": "2026-11-11T21:18:57.0175232+00:00",
+     "updatedOn": "2026-11-11T21:18:57.0175232+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26fl08-2",
+     "text": "Det er ingen som er skadet.",
+     "createdOn": "2026-11-11T21:20:41.2521025+00:00",
+     "updatedOn": "2026-11-11T21:20:41.2521025+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26fl08-3",
+     "text": "Politiet er ferdig på stedet. Det blir opprettet sak på forholdet. En mann i 20 årene mistenkes for kjøring i ruspåvirket tilstand. Ingen er skadet. Bilen vil bli tauet bort fra stedet.",
+     "createdOn": "2026-11-11T22:37:06.4069352+00:00",
+     "updatedOn": "2026-11-11T22:37:06.4069352+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26xw21",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Redning",
+   "municipality": "Gran",
+   "area": "Brandbu",
+   "createdOn": "2026-11-11T19:34:51.1208606+00:00",
+   "updatedOn": "2026-11-12T06:55:37.7292722+00:00",
+   "lastMessageOn": "2026-11-11T22:18:50.015079+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26xw21-0",
+     "text": "Politiet har iverksatt søk etter en savnet mann i 70-årene. Søket er fokusert i skogsområdet mellom Bleiken og Lygna. Politiet får støtte fra frivillige redningsressurser.",
+     "createdOn": "2026-11-11T19:34:51.1206045+00:00",
+     "updatedOn": "2026-11-11T19:34:51.1714576+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26xw21-2",
+     "text": "Søket er nå avsluttet etter at savnede dessverre er funnet omkommet i søksområdet.",
+     "createdOn": "2026-11-11T22:18:50.015079+00:00",
+     "updatedOn": "2026-11-11T22:18:50.015079+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26m128",
+   "district": "Møre og Romsdal Politidistrikt",
+   "districtId": 208,
+   "category": "Voldshendelse",
+   "municipality": "Ålesund",
+   "area": "",
+   "createdOn": "2026-11-11T20:10:47.5059778+00:00",
+   "updatedOn": "2026-11-11T22:17:28.8797462+00:00",
+   "lastMessageOn": "2026-11-11T22:17:26.06548+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26m128-0",
+     "text": "Politi og ambulanse er på en privatadresse i sentrum etter en voldshendelse. Èn person fremstår skadet etter slag mot hodet/ansikt. Han blir ivaretatt av helsepersonell. Politiet snakker med de involverte partene for å få oversikt over hva som skal ha skjedd.",
+     "createdOn": "2026-11-11T20:10:47.5057433+00:00",
+     "updatedOn": "2026-11-11T20:10:47.5540962+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26m128-1",
+     "text": "En mann i 40-årene er pågrepet i forbindelse med voldshendelsen og innsatt i arrest. Politiet har vært i kontakt med flere vitner på stedet. \n\nDen skadde personen, en mann i 30-årene, er kjørt til Ålesund sykehus for nærmere undersøkelser og behandling. Utover det kan ikke politiet si noe mer om skadegrad.\n\nDet er for tidlig å si noe om bakgrunnen for hendelsen, men politiet oppretter sak og vil etterforske saken videre.",
+     "createdOn": "2026-11-11T22:17:26.06548+00:00",
+     "updatedOn": "2026-11-11T22:17:26.06548+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26kr3g",
+   "district": "Nordland Politidistrikt",
+   "districtId": 210,
+   "category": "Trafikk",
+   "municipality": "Gildeskål",
+   "area": "Jelstad",
+   "createdOn": "2026-11-11T19:32:18.1077338+00:00",
+   "updatedOn": "2026-11-11T23:32:47.4956338+00:00",
+   "lastMessageOn": "2026-11-11T21:30:39.256538+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26kr3g-0",
+     "text": "Politiet er på Jelstad mellom Inndyr og Skauvoll etter melding om et vogntog som har sakset. Vogntoget sperrer hele kjørebanen og trafikken står på stedet.",
+     "createdOn": "2026-11-11T19:32:18.107528+00:00",
+     "updatedOn": "2026-11-11T19:32:18.1582844+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26kr3g-1",
+     "text": "Man har fått åpnet ett felt som kan kjøre forbi vogntoget. Det er glatt på stedet og man må vente til tungberger kommer til stedet før man får fjernet vogntoget og at veien blir helt åpen igjen. Foreløpig har man fått melding om at dette vil skje rundt midnatt. Det er ikke mistanke om ruspåvirket kjøring og politiet forlater stedet.",
+     "createdOn": "2026-11-11T20:22:03.4796171+00:00",
+     "updatedOn": "2026-11-11T20:22:03.4796171+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26kr3g-2",
+     "text": "Politiet har mottatt melding om et nytt vogntog som har forsøkt å kjøre forbi vogntoget som sto fast på veien. Dette vogntoget klarte heller ikke å kjøre forbi på dette stedet og dermed er det nå to vogntog som står fast på glatta og veien er nå helt stengt. Politiet er ikke på stedet, men man antar at situasjonen løses etter tungberger kommer til stedet og får flyttet på vogntogene.",
+     "createdOn": "2026-11-11T21:30:39.256538+00:00",
+     "updatedOn": "2026-11-11T21:30:39.256538+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26qc11",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Sjø",
+   "municipality": "Flekkefjord",
+   "area": "Grønnes/Grønsundet",
+   "createdOn": "2026-11-11T20:27:37.7798404+00:00",
+   "updatedOn": "2026-11-11T21:28:55.4618092+00:00",
+   "lastMessageOn": "2026-11-11T20:44:47.1407759+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26qc11-0",
+     "text": "Kl 2054, melding fra person på land som observerte en båt som sannsynligvis kjørte på et skjær/land. Båten kjørte videre etter dette. Politi og brannvesen søker etter båten i området. Det er ingen informasjon som tilsier at noen personer har havnet i sjøen eller er skadet. Vi ønsker å komme i kontakt med båtfører, eller personer som observerer en båt i området. HRS koordinerer søk på sjøen.",
+     "createdOn": "2026-11-11T20:27:37.7796458+00:00",
+     "updatedOn": "2026-11-11T20:27:37.8284631+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26qc11-1",
+     "text": "Vi har kommet i kontakt med aktuell båt ute på sjøen, ingen som er skadet. Båten  hadde kjørt på et skjær, har mindre skader, og tar ikke inn vann. Båtfører kjører videre selv, nødetatene avslutter.",
+     "createdOn": "2026-11-11T20:44:47.1407759+00:00",
+     "updatedOn": "2026-11-11T20:44:47.1407759+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  }
+ ],
+ "hasMoreResults": true
+}

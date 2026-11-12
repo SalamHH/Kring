@@ -435,11 +435,14 @@ Accept: application/json
 
 - Field names inside a thread are NOT officially documented. Observed/expected: id, district, municipality, area, category, created/last-message timestamps, active flag, and a list of messages with text and timestamps. The agent MUST fetch a live sample first (the research script has `--sample`), then write a typed adapter with defensive, case-insensitive field lookup (see `pick()` in the reference script).
 - Only `timeSpanType=LastQuarter` is verified. Check the API's Swagger for smaller windows; use the smallest that covers the poll interval with margin.
-- Sort order is not globally reliable. Each cycle MUST read at least 3 pages (300 threads) and paginate by `skip += len(page)`. After the first 3 pages, continue only while a page still contains threads whose last message is newer than the last successful poll minus a safety margin; always stop at `hasMoreResults=false` or an empty page (decided 2026-11-12).
+  - (decided 2026-11-12) The Swagger spec (`/swagger/v1/swagger.json`) lists `None, Custom, LastHour, LastDay, LastWeek, LastMonth, LastQuarter, LastYear`. `LastHour` and `LastDay` filter on the thread's last message time. `Custom` needs both `DateTimeFrom` and `DateTimeTo`. `Take` may be up to 1000. The poller uses `LastDay`: about 130 threads nationwide, one page. While the last successful poll is more than 23 h old, it uses `LastQuarter` instead, so an outage is caught up.
+- Sort order is not globally reliable. Each cycle MUST read at least 3 pages (300 threads) and paginate by `skip += len(page)`. After the first 3 pages, continue only while a page still contains threads whose last message is newer than the last successful poll minus a safety margin of 15 minutes; always stop at `hasMoreResults=false` or an empty page (decided 2026-11-12).
+- Message identity (decided 2026-11-12): a message id is `<threadId>-<n>`, and `n` is stored as `event_messages.seq`. Gaps in `n` are normal (removed messages). Messages are upserted by `(event_id, seq)`, so an «Edited» message (type `Edited`) replaces its text. Messages of type `Draft` or `Removed`, and messages whose id does not match the pattern, are skipped (the latter with a WARN).
 - Upsert by thread id. New thread → geocode → classify → match → notify. Updated thread → store new messages; re-geocode if the area changed, there is no point yet, or the tier is still **bydel** or **nabolag** (so a later message with an address can improve the placement); never re-push (decided 2026-11-12).
 - An event's first message time (`first_message_at`) is the earliest message timestamp in the thread; fall back to the thread-level created field only if messages have no timestamps (decided 2026-11-12).
 - Handle 429/5xx with exponential backoff (1, 2, 4, 8, 16 s). Alert (log at ERROR) if no successful poll for 10 min.
 - Map the event's municipality name to a kommunenummer (kommuneinfo API, cached) and geocode within that municipality.
+  - (decided 2026-11-12) Both the Norwegian and the Sámi names are matched, ignoring case. Names that don't resolve are skipped with one WARN per name: police districts in the municipality field («Oslo politidistrikt»), qualified names («Våler (Øst)», «Herøy (Nordland)») and «Kvam Herad». None of them are in Oslo or Akershus. Only threads in the allowed fylker are stored.
 - Attribution: «Kilde: Politiloggen (NLOD 2.0)» on every screen showing police text.
 
 ## 8.4 Database schema
@@ -699,7 +702,7 @@ Where this section and `presisjonstest.py` disagree (for example the type and un
 
 # 15. Open questions
 
-1. Exact Politiloggen field names and the allowed values of `timeSpanType` (check Swagger).
+1. ~~Exact Politiloggen field names and the allowed values of `timeSpanType` (check Swagger).~~ Answered in §8.3 (decided 2026-11-12). Field names are still read defensively.
 2. Is 60-second polling acceptable to the police? No documented rate limit; consider contacting the API owner.
 3. Severity heuristics: validate with real beta data and user feedback.
 4. Should «bydel»-precision incidents be shown at all outside the digest?
