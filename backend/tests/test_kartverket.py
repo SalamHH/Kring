@@ -231,7 +231,7 @@ async def test_place_name_no_match_is_cached(
 ) -> None:
     router.get(STEDSNAVN_URLS[0]).mock(return_value=httpx.Response(200, json={"navn": []}))
     assert await geo.stedsnavn("Ingensteds", KNR) is None
-    assert await cache_row(db, f"sted3|{KNR}|ingensteds") == (True, None)
+    assert await cache_row(db, f"sted4|{KNR}|ingensteds") == (True, None)
 
 
 async def test_place_name_404_on_all_urls_is_not_cached(
@@ -243,4 +243,4 @@ async def test_place_name_404_on_all_urls_is_not_cached(
         router.get(url).mock(return_value=httpx.Response(404))
     assert await geo.stedsnavn("Furuset", KNR) is None
     assert geo.failures == 1
-    assert (await cache_row(db, f"sted3|{KNR}|furuset"))[0] is False
+    assert (await cache_row(db, f"sted4|{KNR}|furuset"))[0] is False

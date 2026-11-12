@@ -9,7 +9,7 @@ Calm, place-based alerts from the Norwegian police log (Politiloggen). The full 
 ## Read first
 
 - Spec §8 (architecture) and §9 (geocoding and classification) are the core. Words in capitals (MUST, SHOULD, MAY) are requirements.
-- `research/presisjonstest.py` (v4) is the reference geocoder. Port its logic; don't reinvent it. Where it disagrees with §9, the script wins. Appendix C lists the fixtures it must pass.
+- `research/presisjonstest.py` (v4) is the reference geocoder. Port its logic; don't reinvent it. Where it disagrees with §9, the script wins. The one deliberate exception is the `by`/`flyplass` place-name ranking (§9.2, `app/geocode/places.py`). Appendix C lists the fixtures it must pass.
 - Politiloggen field names are not officially documented. Inspect a live response before writing parsers, and parse defensively (§8.3).
 - Never cache failed external lookups. Never push the same event twice to the same place.
 

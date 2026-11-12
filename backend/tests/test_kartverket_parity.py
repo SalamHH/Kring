@@ -107,6 +107,39 @@ async def test_adresse_eksakt_parity(
 def test_tables_match_script() -> None:
     from app.geocode import places
 
-    assert places.STEDSTYPE_RADIUS == ref.STEDSTYPE_RADIUS
+    # The script's tables plus only the documented additions, which the script doesn't list.
+    assert not set(places.TILLEGG_RADIUS) & set(ref.SCRIPT_STEDSTYPE_RADIUS)
+    assert not set(places.TILLEGG_PRIORITET) & set(ref.SCRIPT_STEDSTYPE_PRIORITET)
+    assert places.STEDSTYPE_RADIUS == {**ref.SCRIPT_STEDSTYPE_RADIUS, **places.TILLEGG_RADIUS}
     assert places.STANDARD_STEDSRADIUS == ref.STANDARD_STEDSRADIUS
-    assert places.STEDSTYPE_PRIORITET == ref.STEDSTYPE_PRIORITET
+    assert places.STEDSTYPE_PRIORITET == {**ref.SCRIPT_STEDSTYPE_PRIORITET, **places.TILLEGG_PRIORITET}
+
+
+def _navn(typ: str, lat: float, lon: float, navn: str = "Jessheim") -> dict:
+    return {"skrivemåte": navn, "navneobjekttype": typ, "representasjonspunkt": {"nord": lat, "øst": lon}}
+
+
+@pytest.mark.parametrize(
+    "navn, items, typ, radius",
+    [
+        # Live answers for knr 3209 on 2026-11-12: the script picks the bridge (tie at 50, "bru" < "by").
+        ("Jessheim", [("By", 60.1415, 11.17516), ("Bru", 60.14139, 11.17592)], "by", 2500.0),
+        ("Gardermoen", [("Bru", 60.19, 11.09), ("Flyplass", 60.1939, 11.1004), ("Mo", 60.2, 11.08)],
+         "flyplass", 2500.0),
+        # A bridge still wins over a street name, as in the script.
+        ("Drammensveien", [("Adressenavn", 59.92, 10.70), ("Bru", 59.91, 10.66)], "bru", 150.0),
+    ],
+)  # fmt: skip
+def test_town_and_airport_beat_a_bridge_of_the_same_name(
+    navn: str, items: list[tuple[str, float, float]], typ: str, radius: float
+) -> None:
+    from app.geocode import places
+
+    data = {"navn": [_navn(t, lat, lon, navn) for t, lat, lon in items]}
+    got = places.velg_stedsnavn(data, navn)
+    assert got is not None and (got["detalj"], got["usikkerhet_m"]) == (typ, radius)
+    if typ != "bru":
+        with pytest.MonkeyPatch.context() as mp:  # the unmodified script chose the bridge
+            mp.setattr(ref, "STEDSTYPE_PRIORITET", ref.SCRIPT_STEDSTYPE_PRIORITET)
+            mp.setattr(places, "STEDSTYPE_PRIORITET", ref.SCRIPT_STEDSTYPE_PRIORITET)
+            assert places.velg_stedsnavn(data, navn)["detalj"] == "bru"

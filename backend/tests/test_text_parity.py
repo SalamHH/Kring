@@ -30,6 +30,15 @@ def _load_oracle() -> ModuleType:
     module = importlib.util.module_from_spec(spec)
     sys.modules["presisjonstest"] = module
     spec.loader.exec_module(module)
+    # The port's one deliberate deviation in place-name ranking (app.geocode.places): compare
+    # against the script with the same table additions. The originals are kept for
+    # test_tables_match_script.
+    from app.geocode import places
+
+    module.SCRIPT_STEDSTYPE_RADIUS = dict(module.STEDSTYPE_RADIUS)
+    module.SCRIPT_STEDSTYPE_PRIORITET = dict(module.STEDSTYPE_PRIORITET)
+    module.STEDSTYPE_RADIUS.update(places.TILLEGG_RADIUS)
+    module.STEDSTYPE_PRIORITET.update(places.TILLEGG_PRIORITET)
     return module
 
 

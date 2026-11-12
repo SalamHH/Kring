@@ -4,8 +4,10 @@
 - LookupFailed (429, 5xx, timeouts, connection errors, ...) is never cached: the lookup
   returns None for now and is retried on the next cycle.
 
-Cache keys follow the reference script (adrp|…, adrn|…, sted3|…) so a geocache.json
-produced by research/presisjonstest.py could be imported as-is.
+Cache keys follow the reference script (adrp|…, adrn|…) so its geocache.json could be
+imported. Place names use sted4|… instead of the script's sted3|…: the cached value is the chosen
+place, and the choice changed with the «by»/«flyplass» additions (app.geocode.places), so
+answers chosen under the old ranking must not be reused (decided 2026-11-12).
 """
 
 from __future__ import annotations
@@ -89,4 +91,4 @@ class CachedKartverket:
         )
 
     async def stedsnavn(self, navn: str, knr: str) -> dict[str, Any] | None:
-        return await self._cached(f"sted3|{knr}|{norm(navn)}", lambda: self.client.stedsnavn(navn, knr))
+        return await self._cached(f"sted4|{knr}|{norm(navn)}", lambda: self.client.stedsnavn(navn, knr))

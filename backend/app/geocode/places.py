@@ -2,6 +2,12 @@
 
 Tables and selection logic are ported verbatim from research/presisjonstest.py; where they
 differ from the summary tables in §9.2, the script wins (decided 2026-11-12).
+
+One deliberate deviation (decided 2026-11-12, after the M0 live run): the script gives every
+type it doesn't list the same priority and then breaks the tie alphabetically, so a bridge
+(«bru») named «Jessheim» beat the town («by») and was placed at ±150 m. The types in
+TILLEGG_RADIUS / TILLEGG_PRIORITET are added to the script's tables. Tests compare against the
+script with the same additions applied.
 """
 
 from __future__ import annotations
@@ -42,6 +48,12 @@ STEDSTYPE_RADIUS: dict[str, int] = {
 }
 STANDARD_STEDSRADIUS = 1500
 
+# Additions to the script's tables (see the module docstring). «by» ranks and sizes like
+# «tettsted»; «flyplass» (Gardermoen) is an area as large as a town.
+TILLEGG_RADIUS: dict[str, int] = {"by": 2500, "flyplass": 2500}
+TILLEGG_PRIORITET: dict[str, int] = {"by": 14, "flyplass": 16}
+STEDSTYPE_RADIUS.update(TILLEGG_RADIUS)
+
 # When several objects share the name, prefer area types (lower = preferred). Bus stops and
 # street names come last: «Furuset» in the police log means the area, not the bus stop.
 STEDSTYPE_PRIORITET: dict[str, int] = {
@@ -51,6 +63,7 @@ STEDSTYPE_PRIORITET: dict[str, int] = {
     "stasjon": 30, "jernbanestasjon": 30, "t-banestasjon": 30,
     "holdeplass": 90, "adressenavn": 95,
 }  # fmt: skip
+STEDSTYPE_PRIORITET.update(TILLEGG_PRIORITET)
 UKJENT_PRIORITET = 50
 
 # Police terms that are not official place names: (kommunenummer, normalised name) → placement.
