@@ -19,7 +19,7 @@ from sqlalchemy.ext.asyncio import AsyncConnection
 
 from app.geocode import places
 from app.geocode.cache import CachedKartverket, GeocodeCache
-from app.geocode.pipeline import METHOD_NAMES, Geocoder, Placement
+from app.geocode.pipeline import METHOD_NAMES, TILLEGG_METHODS, Geocoder, Placement
 from app.ingest.politiloggen import parse_thread
 from tests.appendix_c import FIXTURES, KNR, KOMMUNE, Fixture
 from tests.kartverket_replay import load_all, replay_handler, request_key
@@ -57,6 +57,14 @@ def as_tuple(p: Placement) -> tuple[Any, ...]:
     return (p.method, p.match, p.lat, p.lon, p.uncertainty_m, p.detail)
 
 
+def same_as_script(got: tuple[Any, ...], expected: tuple[Any, ...]) -> bool:
+    """The port's additions (app.geocode.tillegg) only run where the script gives up, so there
+    the script's answer must be «municipality only»; everywhere else the answers are identical."""
+    if got[0] in TILLEGG_METHODS:
+        return expected[0] == "kommune"
+    return got == expected
+
+
 def script_tuple(res: dict[str, Any]) -> tuple[Any, ...]:
     return (
         METHOD_NAMES[res["metode"]],
@@ -83,7 +91,7 @@ async def test_pipeline_matches_script(
             CachedKartverket(make_client(http, FakeTime()), GeocodeCache(db)), KNR, KOMMUNE
         ).place(f.area, f.text)
 
-    assert as_tuple(got) == script_tuple(expected)
+    assert same_as_script(as_tuple(got), script_tuple(expected))
 
 
 SCOPED_THREADS = scoped_raw_threads()
@@ -114,7 +122,7 @@ async def test_pipeline_matches_script_on_recorded_threads(
             t = parse_thread(raw)
             assert t is not None
             got = as_tuple(await Geocoder(cached, k.nummer, k.navn).place(t.area, t.text))
-            if got != expected:
+            if not same_as_script(got, expected):
                 diffs.append(f"{t.id} {k.navn} area={t.area!r}\n  port:   {got}\n  script: {expected}")
 
     rate = 1 - len(diffs) / len(threads)

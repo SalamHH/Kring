@@ -11,11 +11,15 @@ Inputs:
               `trad_til_rad`, each geocoded in its own municipality) →
               tests/fixtures/kartverket/threads.jsonl.gz. Requests that are already recorded
               are answered from the recording, not sent again.
+- --port:     like --threads, but runs the port's pipeline (app.geocode) instead of the
+              script, to record the extra lookups made by the additions in
+              app.geocode.tillegg, which the script never makes (decided 2026-11-12).
 
 Usage, from backend/:
     uv run python -m scripts.record_kartverket                       # record missing responses
     uv run python -m scripts.record_kartverket --refresh             # re-record everything
     uv run python -m scripts.record_kartverket --threads [--refresh]
+    uv run python -m scripts.record_kartverket --port
 
 Hits the public Kartverket APIs (no key). Transient errors (429/5xx) are not saved.
 """
@@ -23,12 +27,20 @@ Hits the public Kartverket APIs (no key). Transient errors (429/5xx) are not sav
 from __future__ import annotations
 
 import argparse
+import asyncio
 import json
 import os
 import tempfile
 from typing import Any
 
+import httpx
+
+from app.geocode.cache import CachedKartverket
+from app.geocode.kartverket import KartverketClient
+from app.geocode.pipeline import Geocoder
 from app.geocode.places import STED_ALIAS
+from app.ingest.politiloggen import parse_thread
+from app.settings import Settings
 from tests import kartverket_replay as replay
 from tests.appendix_c import FIXTURES, KNR, KOMMUNE
 from tests.politiloggen_fixtures import scoped_raw_threads
@@ -53,11 +65,66 @@ def recorded_response(rec: dict[str, Any], url: str) -> ref.requests.Response:
     return resp
 
 
+class RecordingTransport(httpx.AsyncBaseTransport):
+    """Answers recorded requests from the bundle; sends the rest live and records them."""
+
+    def __init__(self, known: dict[str, dict[str, Any]], bundle: dict[str, dict[str, Any]]) -> None:
+        self.known = known
+        self.bundle = bundle
+        self.live = httpx.AsyncHTTPTransport()
+        self.saved = 0
+
+    async def handle_async_request(self, request: httpx.Request) -> httpx.Response:
+        url = str(request.url.copy_with(query=None))
+        params = dict(request.url.params.multi_items())
+        key = replay.request_key(url, params)
+        rec = self.known.get(key)
+        if rec is not None:
+            if rec["body"] is None:
+                return httpx.Response(rec["status"])
+            return httpx.Response(rec["status"], json=rec["body"])
+        resp = await self.live.handle_async_request(request)
+        await resp.aread()
+        if resp.status_code == 429 or resp.status_code >= 500:
+            return resp  # transient: never recorded
+        body = resp.json() if resp.status_code < 400 else None
+        rec = replay.record(url, params, resp.status_code, body)
+        self.bundle[key] = self.known[key] = rec
+        self.saved += 1
+        return resp
+
+
+async def record_port() -> None:
+    from tests.quality import MemoryCache
+
+    bundle = replay.load_bundle()
+    known = {**bundle, **replay.load_files()}
+    transport = RecordingTransport(known, bundle)
+    s = Settings()
+    async with httpx.AsyncClient(transport=transport) as http:
+        client = KartverketClient(http, s.adresse_url, s.stedsnavn_urls)
+        cached = CachedKartverket(client, MemoryCache())  # type: ignore[arg-type]
+        for raw, k in scoped_raw_threads():
+            t = parse_thread(raw)
+            assert t is not None
+            p = await Geocoder(cached, k.nummer, k.navn).place(t.area, t.text)
+            if transport.saved and p.method.startswith(("stedsnavn_", "kommunenavn")):
+                print(f"{t.id} {k.navn:<14} {p.method:<18} {p.match!s:<30} u={p.uncertainty_m}")
+    replay.save_bundle(bundle)
+    if cached.failures:
+        print(f"WARNING: {cached.failures} lookups failed (not recorded); run again to fill them in")
+    print(f"saved {transport.saved} new recordings, {len(known)} in total")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--refresh", action="store_true", help="delete existing recordings first")
     ap.add_argument("--threads", action="store_true", help="record for the Oslo/Akershus threads")
+    ap.add_argument("--port", action="store_true", help="record the port's extra lookups for the threads")
     args = ap.parse_args()
+    if args.port:
+        asyncio.run(record_port())
+        return
 
     files = replay.load_files()
     if args.threads:

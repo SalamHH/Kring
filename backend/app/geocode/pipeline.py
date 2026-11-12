@@ -10,6 +10,7 @@ area; downgraded to the area if still less precise) → area place name → muni
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from typing import Any
 
@@ -25,6 +26,13 @@ from app.geocode.text import (
     norm,
     omradedeler,
 )
+from app.geocode.tillegg import (
+    KOMMUNE_TYPER,
+    UTEN_KOMMUNENAVN,
+    akseptabel,
+    omrade_kandidater,
+    tekst_kandidater,
+)
 
 LANG_GATE_M = 1000  # streets less precise than this are limited to the area (§9.1 step 4)
 OMRADE_MIN_RADIUS_M = 800.0
@@ -38,7 +46,12 @@ METHOD_NAMES = {
     "gate+område": "gate_omrade",
     "stedsnavn (area)": "stedsnavn",
     "kun kommune": "kommune",
+    # Additions (app.geocode.tillegg, decided 2026-11-12); not in the script
+    "stedsnavn (utvidet)": "stedsnavn_utvidet",
+    "stedsnavn (tekst)": "stedsnavn_tekst",
+    "kommunenavn": "kommunenavn",
 }
+TILLEGG_METHODS = frozenset({"stedsnavn_utvidet", "stedsnavn_tekst", "kommunenavn"})
 
 
 @dataclass(frozen=True)
@@ -171,5 +184,31 @@ class Geocoder:
         if omrade_sted:
             return _placement(omrade_sted, omrade_sted["treff"], "stedsnavn (area)")
 
-        # 5) Municipality only: no point, tier bydel, never pushed
+        # 5) Additions where the script gives up (app.geocode.tillegg)
+        tillegg = await self._tillegg(area, deler, tekst)
+        if tillegg:
+            return tillegg
+
+        # 6) Municipality only: no point, tier bydel, never pushed
         return Placement(None, None, None, "kommune", area or "", "")
+
+    async def _tillegg(self, area: str | None, deler: list[str], tekst: str) -> Placement | None:
+        kandidater, kommune_nevnt = omrade_kandidater(deler, self.kommune)
+        if area and norm(self.kommune) in {norm(d.strip(" .")) for d in re.split(r"[,/;]| - ", area)}:
+            kommune_nevnt = True
+        for k in kandidater:
+            res = await self.sted(k)
+            if res and akseptabel(res, k):
+                return _placement(res, k, "stedsnavn (utvidet)")
+        if not deler:  # the area field is empty or only names the municipality
+            kandidater, nevnt = tekst_kandidater(tekst, self.kommune)
+            kommune_nevnt = kommune_nevnt or nevnt
+            for k in kandidater:
+                res = await self.sted(k)
+                if res and akseptabel(res, k):
+                    return _placement(res, k, "stedsnavn (tekst)")
+        if kommune_nevnt and self.knr not in UTEN_KOMMUNENAVN:
+            res = await self.geo.stedsnavn(self.kommune, self.knr)
+            if res and res.get("detalj") in KOMMUNE_TYPER:
+                return _placement(res, self.kommune, "kommunenavn")
+        return None

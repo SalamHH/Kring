@@ -8,18 +8,21 @@ Uncertainty is as stored (rounded).
 
 | | Incidents | Controls | ≤ 300 m | ≤ 500 m | ≤ 1 000 m | ≤ 2 000 m | Unplaced |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Oslo (gated) | 393 | 28 | 21% | 27% | 63% | 75% | 18% |
-| Akershus (reported) | 768 | 45 | 12% | 16% | 30% | 40% | 32% |
+| Oslo (gated) | 393 | 28 | 22% | 28% | 68% | 81% | 11% |
+| Akershus (reported) | 768 | 45 | 13% | 18% | 34% | 46% | 18% |
 
 ## By placement method
 
 | Method | Oslo | Akershus |
 |---|---:|---:|
 | stedsnavn | 195 (50%) | 292 (38%) |
-| kommune | 69 (18%) | 248 (32%) |
+| kommune | 45 (11%) | 136 (18%) |
 | gate_tekst | 75 (19%) | 82 (11%) |
 | gate_area | 23 (6%) | 89 (12%) |
+| stedsnavn_utvidet | 18 (5%) | 46 (6%) |
 | gate_omrade | 15 (4%) | 44 (6%) |
+| stedsnavn_tekst | 6 (2%) | 32 (4%) |
+| kommunenavn | 0 (0%) | 34 (4%) |
 | kryss | 12 (3%) | 7 (1%) |
 | adresse | 4 (1%) | 6 (1%) |
 
@@ -27,20 +30,20 @@ Uncertainty is as stored (rounded).
 
 | Tier | Oslo | Akershus |
 |---|---:|---:|
-| gate | 27% | 16% |
-| nabolag | 47% | 23% |
-| bydel | 25% | 61% |
+| gate | 28% | 18% |
+| nabolag | 52% | 26% |
+| bydel | 19% | 56% |
 
 ## Oslo by category
 
 | Category | n | ≤ 500 m | ≤ 1 000 m |
 |---|---:|---:|---:|
-| Trafikk | 194 | 22% | 57% |
-| Brann | 66 | 44% | 77% |
+| Trafikk | 194 | 24% | 65% |
+| Brann | 66 | 44% | 79% |
 | Voldshendelse | 42 | 31% | 71% |
-| Ro og orden | 26 | 27% | 54% |
+| Ro og orden | 26 | 27% | 58% |
 | Andre hendelser | 21 | 29% | 62% |
-| Savnet | 21 | 5% | 62% |
+| Savnet | 21 | 5% | 67% |
 | Tyveri | 9 | 56% | 89% |
 | Innbrudd | 4 | 25% | 75% |
 | Ulykke | 3 | 0% | 33% |
@@ -54,32 +57,32 @@ Uncertainty is as stored (rounded).
 
 | Municipality | n | ≤ 500 m | ≤ 1 000 m | Unplaced |
 |---|---:|---:|---:|---:|
-| Lillestrøm | 122 | 18% | 35% | 39% |
-| Ullensaker | 110 | 12% | 15% | 27% |
-| Bærum | 88 | 20% | 57% | 19% |
-| Nordre Follo | 66 | 15% | 27% | 32% |
-| Asker | 62 | 18% | 37% | 19% |
-| Lørenskog | 46 | 26% | 41% | 48% |
-| Eidsvoll | 32 | 9% | 25% | 44% |
-| Vestby | 31 | 10% | 13% | 45% |
-| Ås | 29 | 17% | 45% | 45% |
+| Lillestrøm | 122 | 19% | 41% | 13% |
+| Ullensaker | 110 | 15% | 18% | 11% |
+| Bærum | 88 | 22% | 60% | 9% |
+| Nordre Follo | 66 | 18% | 33% | 18% |
+| Asker | 62 | 18% | 39% | 13% |
+| Lørenskog | 46 | 30% | 46% | 39% |
+| Eidsvoll | 32 | 9% | 25% | 34% |
+| Vestby | 31 | 10% | 19% | 26% |
+| Ås | 29 | 24% | 55% | 24% |
 | Nes | 27 | 19% | 33% | 22% |
-| Aurskog-Høland | 24 | 12% | 12% | 33% |
-| Frogn | 21 | 14% | 14% | 33% |
-| Jevnaker | 18 | 11% | 17% | 56% |
-| Nittedal | 18 | 17% | 17% | 11% |
-| Lunner | 16 | 12% | 25% | 50% |
-| Rælingen | 15 | 13% | 13% | 33% |
-| Enebakk | 13 | 15% | 23% | 31% |
+| Aurskog-Høland | 24 | 12% | 12% | 25% |
+| Frogn | 21 | 14% | 14% | 24% |
+| Jevnaker | 18 | 22% | 28% | 17% |
+| Nittedal | 18 | 17% | 17% | 6% |
+| Lunner | 16 | 12% | 25% | 31% |
+| Rælingen | 15 | 20% | 20% | 27% |
+| Enebakk | 13 | 15% | 31% | 8% |
 | Nannestad | 11 | 18% | 18% | 27% |
-| Nesodden | 10 | 40% | 60% | 20% |
-| Gjerdrum | 6 | 0% | 0% | 17% |
+| Nesodden | 10 | 40% | 70% | 10% |
+| Gjerdrum | 6 | 0% | 0% | 0% |
 | Hurdal | 3 | 0% | 0% | 33% |
 
 ## Most frequent unplaced area values, Oslo
 
-(empty) 16 · E6 3 · E6 Skulleruddumpa 3 · Rv4 2 · Oslo 2 · Majorstua 2 · Cc Vest 2 · Alfaset 2 · Bryn 2 · E18 Bygdøylokket 2 · Prinsdalen 1 · E6 Inngående Karihaugen 1 · Hosle 1 · Lysaker 1 · Ring 3 Økern Østgående. 1
+(empty) 12 · E6 3 · E6 Skulleruddumpa 3 · Oslo 2 · Majorstua 2 · Cc Vest 2 · Alfaset 2 · Bryn 2 · E18 Bygdøylokket 2 · Prinsdalen 1 · Hosle 1 · Lysaker 1 · Smestadkrysset 1 · Bygøylokket 1 · Bislett 1
 
 ## Most frequent unplaced area values, Akershus
 
-(empty) 107 · Sentrum 16 · E18 4 · Setskog 4 · Ski Sentrum 3 · Olumslinna 3 · E16 3 · E6 3 · Finstadjordet 2 · 56boksrud 2 · Skårersletta 2 · Varpet 2 · E6 Sydgående 2 · Thon Senter Jessheim 2 · E18 Inn Sandvika 2
+(empty) 63 · E18 4 · Setskog 4 · E6 3 · Finstadjordet 2 · 56boksrud 2 · Varpet 2 · E6 Sydgående 2 · E16 2 · Skedsmo 2 · Djupedalstoppen 1 · Taralrud 1 · E6 Nordgående Assurtjern 1 · Bothaugstangen 1 · Nøstvett 1

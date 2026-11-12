@@ -67,10 +67,33 @@ All are recorded in the spec with «(decided 2026-11-12)».
 - **Worker:** cycles start every 60 s. Stopping it rolls back the cycle in progress, and only one worker can run per database (§8.3).
 - **Place-name ranking:** «by» (town) and «flyplass» (airport) now rank above bridges. Before, «Jessheim» and «Gardermoen» were placed at bridges with ±150 m. This is the one deliberate difference from the research script (§9.2).
 
+## After M0: Akershus pass (13 November 2026)
+
+New rules handle incidents the script left unplaced (spec §9.2, `app/geocode/tillegg.py`):
+- road and direction words around a place («E18 Inn Sandvika»);
+- «Ski Sentrum» as the whole town;
+- a place named in the text when the area field is empty («brann på Åkrene»);
+- a municipality name, placed at its town at ±2 500 m («slåss i Lillestrøm»).
+
+Safeguards keep these rules from overstating precision. All 136 new placements were read by hand against the police text.
+
+| Replay | ≤ 500 m | ≤ 1 000 m | ≤ 2 000 m | Unplaced |
+|---|---:|---:|---:|---:|
+| Akershus, M0 | 16 % | 30 % | 40 % | 32 % |
+| Akershus, now | 18 % | 34 % | 46 % | 18 % |
+| Oslo, M0 | 27 % | 63 % | 75 % | 18 % |
+| Oslo, now | 28 % | 68 % | 81 % | 12 % |
+
+Akershus now has a regression floor in the quality gate (34 % within 1 000 m and at most 18 % unplaced). It is still not a gate, because the Akershus target is undecided.
+
+Most of what remains is how the police write:
+- About 29 % of Akershus incidents name only a town, such as «Kløfta». Town level (±2.5 km) is the honest answer for these.
+- Many of the remaining unplaced messages name no place at all.
+
 ## Open issues for M1 and later
 
 1. **District-wide notices are skipped.** Examples: «Oslo politidistrikt», «Øst politidistrikt»; about 1 a week each. These are missing persons, weather and airspace notices. How to show them is spec §15 question 8.
-2. **Akershus precision.** If Akershus should reach Oslo's level, the main levers are:
+2. **Akershus precision** (partly addressed in the Akershus pass above). The remaining levers are:
    - per-municipality aliases («Sentrum» → that municipality's centre; «Ski Sentrum», «Thon Senter Jessheim»);
    - reading a place from the message text when the area field is empty;
    - road data (DATEX II) for E6/E18/E16 messages.
