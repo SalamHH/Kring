@@ -62,6 +62,20 @@ uv run python -m app.worker
 
 On an empty database the first cycle reads the last quarter (about 100 pages) and geocodes every Oslo and Akershus thread, which takes a few minutes. Later cycles read `LastDay` and take a second or two.
 
+## Re-geocoding stored events
+
+After a geocoder change (a ranking, an alias, a new rule), stored events keep their old placement until their thread changes. Re-run the geocoder and classifier over them (spec §9.6). It is a dry run by default and prints every change:
+
+```bash
+uv run python -m app.regeocode
+```
+
+```bash
+uv run python -m app.regeocode --apply
+```
+
+Filters: `--since 2026-11-01`, `--kommune 0301,3201`, `--method kommune,none` (`none` = the last geocode failed), `--ids <id>,<id>`. It never sends pushes. It can run while the worker is running: events the worker changes in the meantime are skipped and reported, so run it again to pick them up. A dry run writes nothing to `events`, but it does fill the geocode cache.
+
 ## M0 report data
 
 Replays the recorded quarter offline and writes `docs/m0/replay-tables.md` and the 25-street review page `docs/m0/street-sample.html`:

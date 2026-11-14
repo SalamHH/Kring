@@ -683,8 +683,8 @@ Where this section and `presisjonstest.py` disagree (for example the type and un
 - It re-runs the geocoder and classifier over stored events, using the geocode cache. Filters: `--since`, `--kommune`, `--method`, `--ids`.
 - It is a dry run by default and prints the changes (old → new method, uncertainty and tier). `--apply` writes them.
 - It never pushes and never writes `notifications`.
-- It takes the worker's advisory lock, so it cannot run during a worker cycle.
 - It is run by hand after each geocoder change, locally and on Render.
+- (decided 2026-11-14, replaces «takes the worker's advisory lock») It runs alongside the worker; the worker holds that lock for its whole life, so taking it would mean stopping ingestion. Placements are computed without locks. Each batch is written in a short transaction that locks its rows with SKIP LOCKED and writes only rows whose `updated_at` hasn't changed since they were read. An event the worker touched in between is reported as skipped and picked up by the next run.
 
 # 10. Go-to-market
 
