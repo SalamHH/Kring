@@ -1,0 +1,1120 @@
+[
+ {
+  "path": "/adresser/v1/sok",
+  "params": {
+   "sok": "Tøyen skole*",
+   "treffPerSide": "10",
+   "utkoordsys": "4258"
+  },
+  "status": 200,
+  "body": {
+   "metadata": {
+    "treffPerSide": 10,
+    "side": 0,
+    "totaltAntallTreff": 0,
+    "viserFra": 0,
+    "viserTil": 10,
+    "sokeStreng": "sok=T%C3%B8yen+skole%2A&treffPerSide=10&utkoordsys=4258",
+    "asciiKompatibel": true
+   },
+   "adresser": []
+  }
+ },
+ {
+  "path": "/stedsnavn/v1/navn",
+  "params": {
+   "fuzzy": "false",
+   "sok": "Tøyen skole*",
+   "treffPerSide": "10",
+   "utkoordsys": "4258"
+  },
+  "status": 200,
+  "body": {
+   "metadata": {
+    "side": 1,
+    "sokeStreng": "sok=T%C3%B8yen+skole%2A&treffPerSide=10&utkoordsys=4258&fuzzy=false",
+    "totaltAntallTreff": 1,
+    "treffPerSide": 10,
+    "viserFra": 1,
+    "viserTil": 10
+   },
+   "navn": [
+    {
+     "fylker": [
+      {
+       "fylkesnavn": "Oslo",
+       "fylkesnummer": "03"
+      }
+     ],
+     "kommuner": [
+      {
+       "kommunenavn": "Oslo",
+       "kommunenummer": "0301"
+      }
+     ],
+     "navneobjekttype": "Skole",
+     "navnestatus": "hovednavn",
+     "representasjonspunkt": {
+      "nord": 59.91483,
+      "øst": 10.77318
+     },
+     "skrivemåte": "Tøyen skole",
+     "skrivemåtestatus": "godkjent og prioritert",
+     "språk": "Norsk",
+     "stedsnummer": 812851,
+     "stedstatus": "aktiv"
+    }
+   ]
+  }
+ },
+ {
+  "path": "/adresser/v1/sok",
+  "params": {
+   "sok": "Hølandsgata 1*",
+   "treffPerSide": "10",
+   "utkoordsys": "4258"
+  },
+  "status": 200,
+  "body": {
+   "metadata": {
+    "treffPerSide": 10,
+    "side": 0,
+    "totaltAntallTreff": 6,
+    "viserFra": 0,
+    "viserTil": 10,
+    "sokeStreng": "sok=H%C3%B8landsgata+1%2A&treffPerSide=10&utkoordsys=4258",
+    "asciiKompatibel": true
+   },
+   "adresser": [
+    {
+     "adressenavn": "Hølandsgata",
+     "adressetekst": "Hølandsgata 10",
+     "adressetilleggsnavn": null,
+     "adressekode": 13236,
+     "nummer": 10,
+     "bokstav": "",
+     "kommunenummer": "0301",
+     "kommunenavn": "OSLO",
+     "gardsnummer": 231,
+     "bruksnummer": 196,
+     "festenummer": 0,
+     "undernummer": null,
+     "bruksenhetsnummer": [
+      "H0101",
+      "H0201"
+     ],
+     "objtype": "Vegadresse",
+     "poststed": "OSLO",
+     "postnummer": "0655",
+     "adressetekstutenadressetilleggsnavn": "Hølandsgata 10",
+     "stedfestingverifisert": false,
+     "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.90953633296177,
+      "lon": 10.780925542075787
+     },
+     "oppdateringsdato": "2020-06-15T18:03:33",
+     "adresseid": "285710908",
+     "atkomstpunkt": {
+      "oy": null,
+      "nodetat": null,
+      "sommer": null,
+      "vinter": null,
+      "generell": null
+     }
+    },
+    {
+     "adressenavn": "Hølandsgata",
+     "adressetekst": "Hølandsgata 14",
+     "adressetilleggsnavn": null,
+     "adressekode": 13236,
+     "nummer": 14,
+     "bokstav": "",
+     "kommunenummer": "0301",
+     "kommunenavn": "OSLO",
+     "gardsnummer": 231,
+     "bruksnummer": 187,
+     "festenummer": 0,
+     "undernummer": null,
+     "bruksenhetsnummer": [],
+     "objtype": "Vegadresse",
+     "poststed": "OSLO",
+     "postnummer": "0655",
+     "adressetekstutenadressetilleggsnavn": "Hølandsgata 14",
+     "stedfestingverifisert": false,
+     "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.90984562998354,
+      "lon": 10.781299790495193
+     },
+     "oppdateringsdato": "2020-06-15T18:03:33",
+     "adresseid": "285710909",
+     "atkomstpunkt": {
+      "oy": null,
+      "nodetat": null,
+      "sommer": null,
+      "vinter": null,
+      "generell": null
+     }
+    },
+    {
+     "adressenavn": "Hølandsgata",
+     "adressetekst": "Hølandsgata 1A",
+     "adressetilleggsnavn": null,
+     "adressekode": 13236,
+     "nummer": 1,
+     "bokstav": "A",
+     "kommunenummer": "0301",
+     "kommunenavn": "OSLO",
+     "gardsnummer": 231,
+     "bruksnummer": 190,
+     "festenummer": 0,
+     "undernummer": null,
+     "bruksenhetsnummer": [
+      "H0101",
+      "H0102",
+      "H0201",
+      "H0202",
+      "H0203",
+      "H0204",
+      "H0205",
+      "H0206",
+      "H0301",
+      "H0302",
+      "H0303",
+      "H0304",
+      "H0305",
+      "H0306",
+      "H0401",
+      "H0402",
+      "H0403",
+      "H0404",
+      "H0405",
+      "H0406",
+      "H0501",
+      "H0502",
+      "H0503",
+      "H0504",
+      "H0505",
+      "H0506",
+      "H0601",
+      "H0602",
+      "H0603",
+      "H0604",
+      "H0605",
+      "H0606",
+      "H0701",
+      "H0702",
+      "H0703",
+      "H0704",
+      "H0705",
+      "H0706",
+      "H0801",
+      "H0802",
+      "H0803",
+      "H0804",
+      "H0805",
+      "H0806",
+      "H0901",
+      "H0902",
+      "H0903",
+      "H0904",
+      "H0905",
+      "H0906",
+      "H1001",
+      "H1002",
+      "H1003",
+      "H1004",
+      "H1005",
+      "H1006",
+      "H1101",
+      "H1102",
+      "H1103",
+      "H1104",
+      "H1105",
+      "H1106",
+      "H1201",
+      "H1202",
+      "H1203",
+      "H1204",
+      "H1205",
+      "H1206"
+     ],
+     "objtype": "Vegadresse",
+     "poststed": "OSLO",
+     "postnummer": "0655",
+     "adressetekstutenadressetilleggsnavn": "Hølandsgata 1A",
+     "stedfestingverifisert": true,
+     "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.908900008594614,
+      "lon": 10.779228292974825
+     },
+     "oppdateringsdato": "2023-03-01T18:43:14",
+     "adresseid": "285843901",
+     "atkomstpunkt": {
+      "oy": null,
+      "nodetat": null,
+      "sommer": null,
+      "vinter": null,
+      "generell": null
+     }
+    },
+    {
+     "adressenavn": "Hølandsgata",
+     "adressetekst": "Hølandsgata 1B",
+     "adressetilleggsnavn": null,
+     "adressekode": 13236,
+     "nummer": 1,
+     "bokstav": "B",
+     "kommunenummer": "0301",
+     "kommunenavn": "OSLO",
+     "gardsnummer": 231,
+     "bruksnummer": 190,
+     "festenummer": 0,
+     "undernummer": null,
+     "bruksenhetsnummer": [
+      "H0101",
+      "H0102",
+      "H0103",
+      "H0104"
+     ],
+     "objtype": "Vegadresse",
+     "poststed": "OSLO",
+     "postnummer": "0655",
+     "adressetekstutenadressetilleggsnavn": "Hølandsgata 1B",
+     "stedfestingverifisert": false,
+     "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.90882668234282,
+      "lon": 10.778938233991255
+     },
+     "oppdateringsdato": "2023-03-01T18:43:14",
+     "adresseid": "285843902",
+     "atkomstpunkt": {
+      "oy": null,
+      "nodetat": null,
+      "sommer": null,
+      "vinter": null,
+      "generell": null
+     }
+    },
+    {
+     "adressenavn": "Hølandsgata",
+     "adressetekst": "Hølandsgata 1C",
+     "adressetilleggsnavn": null,
+     "adressekode": 13236,
+     "nummer": 1,
+     "bokstav": "C",
+     "kommunenummer": "0301",
+     "kommunenavn": "OSLO",
+     "gardsnummer": 231,
+     "bruksnummer": 190,
+     "festenummer": 0,
+     "undernummer": null,
+     "bruksenhetsnummer": [
+      "H0101",
+      "H0102"
+     ],
+     "objtype": "Vegadresse",
+     "poststed": "OSLO",
+     "postnummer": "0655",
+     "adressetekstutenadressetilleggsnavn": "Hølandsgata 1C",
+     "stedfestingverifisert": false,
+     "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.90873910230228,
+      "lon": 10.778772597437143
+     },
+     "oppdateringsdato": "2023-03-01T18:43:14",
+     "adresseid": "285843903",
+     "atkomstpunkt": {
+      "oy": null,
+      "nodetat": null,
+      "sommer": null,
+      "vinter": null,
+      "generell": null
+     }
+    },
+    {
+     "adressenavn": "Hølandsgata",
+     "adressetekst": "Hølandsgata 1D",
+     "adressetilleggsnavn": null,
+     "adressekode": 13236,
+     "nummer": 1,
+     "bokstav": "D",
+     "kommunenummer": "0301",
+     "kommunenavn": "OSLO",
+     "gardsnummer": 231,
+     "bruksnummer": 342,
+     "festenummer": 0,
+     "undernummer": null,
+     "bruksenhetsnummer": [],
+     "objtype": "Vegadresse",
+     "poststed": "OSLO",
+     "postnummer": "0655",
+     "adressetekstutenadressetilleggsnavn": "Hølandsgata 1D",
+     "stedfestingverifisert": false,
+     "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.90921560170712,
+      "lon": 10.780067829902638
+     },
+     "oppdateringsdato": "2023-03-01T18:43:14",
+     "adresseid": "285857282",
+     "atkomstpunkt": {
+      "oy": null,
+      "nodetat": null,
+      "sommer": null,
+      "vinter": null,
+      "generell": null
+     }
+    }
+   ]
+  }
+ },
+ {
+  "path": "/stedsnavn/v1/navn",
+  "params": {
+   "fuzzy": "false",
+   "sok": "Hølandsgata 1*",
+   "treffPerSide": "10",
+   "utkoordsys": "4258"
+  },
+  "status": 200,
+  "body": {
+   "metadata": {
+    "side": 1,
+    "sokeStreng": "sok=H%C3%B8landsgata+1%2A&treffPerSide=10&utkoordsys=4258&fuzzy=false",
+    "totaltAntallTreff": 0,
+    "treffPerSide": 10,
+    "viserFra": 1,
+    "viserTil": 10
+   },
+   "navn": []
+  }
+ },
+ {
+  "path": "/adresser/v1/sok",
+  "params": {
+   "sok": "Tøyen*",
+   "treffPerSide": "10",
+   "utkoordsys": "4258"
+  },
+  "status": 200,
+  "body": {
+   "metadata": {
+    "treffPerSide": 10,
+    "side": 0,
+    "totaltAntallTreff": 146,
+    "viserFra": 0,
+    "viserTil": 10,
+    "sokeStreng": "sok=T%C3%B8yen%2A&treffPerSide=10&utkoordsys=4258",
+    "asciiKompatibel": true
+   },
+   "adresser": [
+    {
+     "adressenavn": "Tøyenbekken",
+     "adressetekst": "Tøyenbekken 1",
+     "adressetilleggsnavn": null,
+     "adressekode": 17872,
+     "nummer": 1,
+     "bokstav": "",
+     "kommunenummer": "0301",
+     "kommunenavn": "OSLO",
+     "gardsnummer": 230,
+     "bruksnummer": 413,
+     "festenummer": 0,
+     "undernummer": null,
+     "bruksenhetsnummer": [
+      "H0101",
+      "H0102",
+      "H0103",
+      "H0201",
+      "H0202",
+      "H0203",
+      "H0301",
+      "H0302",
+      "H0303",
+      "H0401",
+      "H0402",
+      "H0403",
+      "H0501",
+      "H0502",
+      "H0503",
+      "H0601",
+      "H0602",
+      "H0603",
+      "H0701",
+      "H0702"
+     ],
+     "objtype": "Vegadresse",
+     "poststed": "OSLO",
+     "postnummer": "0188",
+     "adressetekstutenadressetilleggsnavn": "Tøyenbekken 1",
+     "stedfestingverifisert": false,
+     "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.91341869355741,
+      "lon": 10.764052535307274
+     },
+     "oppdateringsdato": "2020-06-15T18:04:06",
+     "adresseid": "285784165",
+     "atkomstpunkt": {
+      "oy": null,
+      "nodetat": null,
+      "sommer": null,
+      "vinter": null,
+      "generell": null
+     }
+    },
+    {
+     "adressenavn": "Tøyenbekken",
+     "adressetekst": "Tøyenbekken 10A",
+     "adressetilleggsnavn": null,
+     "adressekode": 17872,
+     "nummer": 10,
+     "bokstav": "A",
+     "kommunenummer": "0301",
+     "kommunenavn": "OSLO",
+     "gardsnummer": 230,
+     "bruksnummer": 68,
+     "festenummer": 0,
+     "undernummer": null,
+     "bruksenhetsnummer": [
+      "H0201",
+      "H0202",
+      "H0301",
+      "H0302",
+      "H0401"
+     ],
+     "objtype": "Vegadresse",
+     "poststed": "OSLO",
+     "postnummer": "0188",
+     "adressetekstutenadressetilleggsnavn": "Tøyenbekken 10A",
+     "stedfestingverifisert": false,
+     "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.91247937665737,
+      "lon": 10.762832988739419
+     },
+     "oppdateringsdato": "2021-04-09T12:11:45",
+     "adresseid": "6394868672",
+     "atkomstpunkt": {
+      "oy": null,
+      "nodetat": null,
+      "sommer": null,
+      "vinter": null,
+      "generell": null
+     }
+    },
+    {
+     "adressenavn": "Tøyenbekken",
+     "adressetekst": "Tøyenbekken 10B",
+     "adressetilleggsnavn": null,
+     "adressekode": 17872,
+     "nummer": 10,
+     "bokstav": "B",
+     "kommunenummer": "0301",
+     "kommunenavn": "OSLO",
+     "gardsnummer": 230,
+     "bruksnummer": 69,
+     "festenummer": 0,
+     "undernummer": null,
+     "bruksenhetsnummer": [
+      "H0201",
+      "H0301"
+     ],
+     "objtype": "Vegadresse",
+     "poststed": "OSLO",
+     "postnummer": "0188",
+     "adressetekstutenadressetilleggsnavn": "Tøyenbekken 10B",
+     "stedfestingverifisert": false,
+     "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.91246267404905,
+      "lon": 10.763007379034233
+     },
+     "oppdateringsdato": "2021-04-09T12:12:10",
+     "adresseid": "6394868673",
+     "atkomstpunkt": {
+      "oy": null,
+      "nodetat": null,
+      "sommer": null,
+      "vinter": null,
+      "generell": null
+     }
+    },
+    {
+     "adressenavn": "Tøyenbekken",
+     "adressetekst": "Tøyenbekken 10C",
+     "adressetilleggsnavn": null,
+     "adressekode": 17872,
+     "nummer": 10,
+     "bokstav": "C",
+     "kommunenummer": "0301",
+     "kommunenavn": "OSLO",
+     "gardsnummer": 230,
+     "bruksnummer": 69,
+     "festenummer": 0,
+     "undernummer": null,
+     "bruksenhetsnummer": [],
+     "objtype": "Vegadresse",
+     "poststed": "OSLO",
+     "postnummer": "0188",
+     "adressetekstutenadressetilleggsnavn": "Tøyenbekken 10C",
+     "stedfestingverifisert": false,
+     "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.9123516584597,
+      "lon": 10.763047992984479
+     },
+     "oppdateringsdato": "2021-03-23T13:50:25",
+     "adresseid": "6394868674",
+     "atkomstpunkt": {
+      "oy": null,
+      "nodetat": null,
+      "sommer": null,
+      "vinter": null,
+      "generell": null
+     }
+    },
+    {
+     "adressenavn": "Tøyenbekken",
+     "adressetekst": "Tøyenbekken 10D",
+     "adressetilleggsnavn": null,
+     "adressekode": 17872,
+     "nummer": 10,
+     "bokstav": "D",
+     "kommunenummer": "0301",
+     "kommunenavn": "OSLO",
+     "gardsnummer": 230,
+     "bruksnummer": 68,
+     "festenummer": 0,
+     "undernummer": null,
+     "bruksenhetsnummer": [],
+     "objtype": "Vegadresse",
+     "poststed": "OSLO",
+     "postnummer": "0188",
+     "adressetekstutenadressetilleggsnavn": "Tøyenbekken 10D",
+     "stedfestingverifisert": false,
+     "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.912341218137286,
+      "lon": 10.762754121270644
+     },
+     "oppdateringsdato": "2021-03-23T13:51:01",
+     "adresseid": "6392168362",
+     "atkomstpunkt": {
+      "oy": null,
+      "nodetat": null,
+      "sommer": null,
+      "vinter": null,
+      "generell": null
+     }
+    },
+    {
+     "adressenavn": "Tøyenbekken",
+     "adressetekst": "Tøyenbekken 10E",
+     "adressetilleggsnavn": null,
+     "adressekode": 17872,
+     "nummer": 10,
+     "bokstav": "E",
+     "kommunenummer": "0301",
+     "kommunenavn": "OSLO",
+     "gardsnummer": 230,
+     "bruksnummer": 68,
+     "festenummer": 0,
+     "undernummer": null,
+     "bruksenhetsnummer": [
+      "H0201",
+      "H0301",
+      "H0302"
+     ],
+     "objtype": "Vegadresse",
+     "poststed": "OSLO",
+     "postnummer": "0188",
+     "adressetekstutenadressetilleggsnavn": "Tøyenbekken 10E",
+     "stedfestingverifisert": false,
+     "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.91239945019077,
+      "lon": 10.76283232731474
+     },
+     "oppdateringsdato": "2021-03-23T13:49:44",
+     "adresseid": "6394868671",
+     "atkomstpunkt": {
+      "oy": null,
+      "nodetat": null,
+      "sommer": null,
+      "vinter": null,
+      "generell": null
+     }
+    },
+    {
+     "adressenavn": "Tøyenbekken",
+     "adressetekst": "Tøyenbekken 10F",
+     "adressetilleggsnavn": null,
+     "adressekode": 17872,
+     "nummer": 10,
+     "bokstav": "F",
+     "kommunenummer": "0301",
+     "kommunenavn": "OSLO",
+     "gardsnummer": 230,
+     "bruksnummer": 68,
+     "festenummer": 0,
+     "undernummer": null,
+     "bruksenhetsnummer": [],
+     "objtype": "Vegadresse",
+     "poststed": "OSLO",
+     "postnummer": "0188",
+     "adressetekstutenadressetilleggsnavn": "Tøyenbekken 10F",
+     "stedfestingverifisert": false,
+     "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.9124270793733,
+      "lon": 10.762713961043628
+     },
+     "oppdateringsdato": "2021-03-23T13:51:16",
+     "adresseid": "6392168361",
+     "atkomstpunkt": {
+      "oy": null,
+      "nodetat": null,
+      "sommer": null,
+      "vinter": null,
+      "generell": null
+     }
+    },
+    {
+     "adressenavn": "Tøyenbekken",
+     "adressetekst": "Tøyenbekken 10G",
+     "adressetilleggsnavn": null,
+     "adressekode": 17872,
+     "nummer": 10,
+     "bokstav": "G",
+     "kommunenummer": "0301",
+     "kommunenavn": "OSLO",
+     "gardsnummer": 230,
+     "bruksnummer": 68,
+     "festenummer": 0,
+     "undernummer": null,
+     "bruksenhetsnummer": [],
+     "objtype": "Vegadresse",
+     "poststed": "OSLO",
+     "postnummer": "0188",
+     "adressetekstutenadressetilleggsnavn": "Tøyenbekken 10G",
+     "stedfestingverifisert": false,
+     "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.912316791483754,
+      "lon": 10.762632994954755
+     },
+     "oppdateringsdato": "2021-03-23T13:50:41",
+     "adresseid": "6394868670",
+     "atkomstpunkt": {
+      "oy": null,
+      "nodetat": null,
+      "sommer": null,
+      "vinter": null,
+      "generell": null
+     }
+    },
+    {
+     "adressenavn": "Tøyenbekken",
+     "adressetekst": "Tøyenbekken 12",
+     "adressetilleggsnavn": null,
+     "adressekode": 17872,
+     "nummer": 12,
+     "bokstav": "",
+     "kommunenummer": "0301",
+     "kommunenavn": "OSLO",
+     "gardsnummer": 230,
+     "bruksnummer": 328,
+     "festenummer": 0,
+     "undernummer": null,
+     "bruksenhetsnummer": [],
+     "objtype": "Vegadresse",
+     "poststed": "OSLO",
+     "postnummer": "0188",
+     "adressetekstutenadressetilleggsnavn": "Tøyenbekken 12",
+     "stedfestingverifisert": false,
+     "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.9121692195277,
+      "lon": 10.762787925079717
+     },
+     "oppdateringsdato": "2020-06-15T18:04:06",
+     "adresseid": "285784170",
+     "atkomstpunkt": {
+      "oy": null,
+      "nodetat": null,
+      "sommer": null,
+      "vinter": null,
+      "generell": null
+     }
+    },
+    {
+     "adressenavn": "Tøyenbekken",
+     "adressetekst": "Tøyenbekken 14",
+     "adressetilleggsnavn": null,
+     "adressekode": 17872,
+     "nummer": 14,
+     "bokstav": "",
+     "kommunenummer": "0301",
+     "kommunenavn": "OSLO",
+     "gardsnummer": 230,
+     "bruksnummer": 329,
+     "festenummer": 0,
+     "undernummer": null,
+     "bruksenhetsnummer": [],
+     "objtype": "Vegadresse",
+     "poststed": "OSLO",
+     "postnummer": "0188",
+     "adressetekstutenadressetilleggsnavn": "Tøyenbekken 14",
+     "stedfestingverifisert": false,
+     "representasjonspunkt": {
+      "epsg": "EPSG:4258",
+      "lat": 59.91203889416947,
+      "lon": 10.762459082797466
+     },
+     "oppdateringsdato": "2020-06-15T18:04:06",
+     "adresseid": "285784171",
+     "atkomstpunkt": {
+      "oy": null,
+      "nodetat": null,
+      "sommer": null,
+      "vinter": null,
+      "generell": null
+     }
+    }
+   ]
+  }
+ },
+ {
+  "path": "/stedsnavn/v1/navn",
+  "params": {
+   "fuzzy": "false",
+   "sok": "Tøyen*",
+   "treffPerSide": "10",
+   "utkoordsys": "4258"
+  },
+  "status": 200,
+  "body": {
+   "metadata": {
+    "side": 1,
+    "sokeStreng": "sok=T%C3%B8yen%2A&treffPerSide=10&utkoordsys=4258&fuzzy=false",
+    "totaltAntallTreff": 21,
+    "treffPerSide": 10,
+    "viserFra": 1,
+    "viserTil": 10
+   },
+   "navn": [
+    {
+     "fylker": [
+      {
+       "fylkesnavn": "Akershus",
+       "fylkesnummer": "32"
+      }
+     ],
+     "kommuner": [
+      {
+       "kommunenavn": "Nittedal",
+       "kommunenummer": "3232"
+      }
+     ],
+     "navneobjekttype": "Foss",
+     "navnestatus": "hovednavn",
+     "representasjonspunkt": {
+      "nord": 60.10771,
+      "øst": 10.86198
+     },
+     "skrivemåte": "Tøyenfossen",
+     "skrivemåtestatus": "godkjent og prioritert",
+     "språk": "Norsk",
+     "stedsnummer": 41087,
+     "stedstatus": "aktiv"
+    },
+    {
+     "fylker": [
+      {
+       "fylkesnavn": "Akershus",
+       "fylkesnummer": "32"
+      }
+     ],
+     "kommuner": [
+      {
+       "kommunenavn": "Nittedal",
+       "kommunenummer": "3232"
+      }
+     ],
+     "navneobjekttype": "Boligfelt",
+     "navnestatus": "hovednavn",
+     "representasjonspunkt": {
+      "nord": 60.11445,
+      "øst": 10.85999
+     },
+     "skrivemåte": "Tøyen",
+     "skrivemåtestatus": "godkjent og prioritert",
+     "språk": "Norsk",
+     "stedsnummer": 85873,
+     "stedstatus": "aktiv"
+    },
+    {
+     "fylker": [
+      {
+       "fylkesnavn": "Akershus",
+       "fylkesnummer": "32"
+      }
+     ],
+     "kommuner": [
+      {
+       "kommunenavn": "Aurskog-Høland",
+       "kommunenummer": "3226"
+      }
+     ],
+     "navneobjekttype": "Navnegard",
+     "navnestatus": "hovednavn",
+     "representasjonspunkt": {
+      "nord": 59.7807,
+      "øst": 11.49494
+     },
+     "skrivemåte": "Tøyen",
+     "skrivemåtestatus": "vedtatt",
+     "språk": "Norsk",
+     "stedsnummer": 828938,
+     "stedstatus": "aktiv"
+    },
+    {
+     "fylker": [
+      {
+       "fylkesnavn": "Akershus",
+       "fylkesnummer": "32"
+      }
+     ],
+     "kommuner": [
+      {
+       "kommunenavn": "Nittedal",
+       "kommunenummer": "3232"
+      }
+     ],
+     "navneobjekttype": "Boligfelt",
+     "navnestatus": "hovednavn",
+     "representasjonspunkt": {
+      "nord": 60.11351,
+      "øst": 10.86332
+     },
+     "skrivemåte": "Tøyenberget",
+     "skrivemåtestatus": "godkjent og prioritert",
+     "språk": "Norsk",
+     "stedsnummer": 162141,
+     "stedstatus": "aktiv"
+    },
+    {
+     "fylker": [
+      {
+       "fylkesnavn": "Oslo",
+       "fylkesnummer": "03"
+      }
+     ],
+     "kommuner": [
+      {
+       "kommunenavn": "Oslo",
+       "kommunenummer": "0301"
+      }
+     ],
+     "navneobjekttype": "Holdeplass",
+     "navnestatus": "hovednavn",
+     "representasjonspunkt": {
+      "nord": 59.92086,
+      "øst": 10.78072
+     },
+     "skrivemåte": "Tøyen holdeplass",
+     "skrivemåtestatus": "godkjent og prioritert",
+     "språk": "Norsk",
+     "stedsnummer": 611028,
+     "stedstatus": "aktiv"
+    },
+    {
+     "fylker": [
+      {
+       "fylkesnavn": "Oslo",
+       "fylkesnummer": "03"
+      }
+     ],
+     "kommuner": [
+      {
+       "kommunenavn": "Oslo",
+       "kommunenummer": "0301"
+      }
+     ],
+     "navneobjekttype": "Tettbebyggelse",
+     "navnestatus": "hovednavn",
+     "representasjonspunkt": {
+      "nord": 59.91642,
+      "øst": 10.77208
+     },
+     "skrivemåte": "Tøyen",
+     "skrivemåtestatus": "godkjent og prioritert",
+     "språk": "Norsk",
+     "stedsnummer": 934777,
+     "stedstatus": "aktiv"
+    },
+    {
+     "fylker": [
+      {
+       "fylkesnavn": "Akershus",
+       "fylkesnummer": "32"
+      }
+     ],
+     "kommuner": [
+      {
+       "kommunenavn": "Aurskog-Høland",
+       "kommunenummer": "3226"
+      }
+     ],
+     "navneobjekttype": "Bru",
+     "navnestatus": "hovednavn",
+     "representasjonspunkt": {
+      "nord": 59.77727,
+      "øst": 11.49405
+     },
+     "skrivemåte": "Tøyen",
+     "skrivemåtestatus": "godkjent og prioritert",
+     "språk": "Norsk",
+     "stedsnummer": 774052,
+     "stedstatus": "aktiv"
+    },
+    {
+     "fylker": [
+      {
+       "fylkesnavn": "Oslo",
+       "fylkesnummer": "03"
+      }
+     ],
+     "kommuner": [
+      {
+       "kommunenavn": "Oslo",
+       "kommunenummer": "0301"
+      }
+     ],
+     "navneobjekttype": "Kirke",
+     "navnestatus": "hovednavn",
+     "representasjonspunkt": {
+      "nord": 59.91494,
+      "øst": 10.76804
+     },
+     "skrivemåte": "Tøyen kirke",
+     "skrivemåtestatus": "godkjent og prioritert",
+     "språk": "Norsk",
+     "stedsnummer": 991017,
+     "stedstatus": "aktiv"
+    },
+    {
+     "fylker": [
+      {
+       "fylkesnavn": "Akershus",
+       "fylkesnummer": "32"
+      }
+     ],
+     "kommuner": [
+      {
+       "kommunenavn": "Nittedal",
+       "kommunenummer": "3232"
+      }
+     ],
+     "navneobjekttype": "Gard",
+     "navnestatus": "hovednavn",
+     "representasjonspunkt": {
+      "nord": 60.11304,
+      "øst": 10.86008
+     },
+     "skrivemåte": "Tøyen",
+     "skrivemåtestatus": "godkjent og prioritert",
+     "språk": "Norsk",
+     "stedsnummer": 66549,
+     "stedstatus": "aktiv"
+    },
+    {
+     "fylker": [
+      {
+       "fylkesnavn": "Oslo",
+       "fylkesnummer": "03"
+      }
+     ],
+     "kommuner": [
+      {
+       "kommunenavn": "Oslo",
+       "kommunenummer": "0301"
+      }
+     ],
+     "navneobjekttype": "Adressenavn",
+     "navnestatus": "hovednavn",
+     "representasjonspunkt": {
+      "nord": 59.91253,
+      "øst": 10.76368
+     },
+     "skrivemåte": "Tøyengata",
+     "skrivemåtestatus": "vedtatt",
+     "språk": "Norsk",
+     "stedsnummer": 997388,
+     "stedstatus": "aktiv"
+    }
+   ]
+  }
+ },
+ {
+  "path": "/kommuneinfo/v1/punkt",
+  "params": {
+   "koordsys": "4258",
+   "nord": "59.91483",
+   "ost": "10.77318"
+  },
+  "status": 200,
+  "body": {
+   "fylkesnavn": "Oslo",
+   "fylkesnummer": "03",
+   "kommunenavn": "Oslo",
+   "kommunenummer": "0301"
+  }
+ },
+ {
+  "path": "/kommuneinfo/v1/punkt",
+  "params": {
+   "koordsys": "4258",
+   "nord": "59.9089",
+   "ost": "10.77923"
+  },
+  "status": 200,
+  "body": {
+   "fylkesnavn": "Oslo",
+   "fylkesnummer": "03",
+   "kommunenavn": "Oslo",
+   "kommunenummer": "0301"
+  }
+ },
+ {
+  "path": "/kommuneinfo/v1/punkt",
+  "params": {
+   "koordsys": "4258",
+   "nord": "63.43049",
+   "ost": "10.39506"
+  },
+  "status": 200,
+  "body": {
+   "fylkesnavn": "Trøndelag",
+   "fylkesnummer": "50",
+   "kommunenavn": "Trondheim",
+   "kommunenummer": "5001"
+  }
+ },
+ {
+  "path": "/kommuneinfo/v1/punkt",
+  "params": {
+   "koordsys": "4258",
+   "nord": "58.5",
+   "ost": "3.0"
+  },
+  "status": 404,
+  "body": "<!doctype html>\n<html lang=en>\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>Ingen treff, sjekk parameterene.</p>\n"
+ }
+]

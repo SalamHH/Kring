@@ -532,6 +532,11 @@ CREATE TABLE places (
   created_at  TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 CREATE INDEX places_center_gix ON places USING GIST (center);
+-- (decided 2026-11-14, M1 step 5) The municipality of the centre, from Kartverket's reverse
+-- point lookup; NULL when the point is in no municipality. Places outside the ingested
+-- fylker are allowed and flagged as not covered (§6).
+ALTER TABLE places ADD COLUMN kommunenummer TEXT;
+CREATE INDEX places_device_idx ON places (device_id, created_at);
 
 CREATE TABLE notifications (
   id         BIGSERIAL PRIMARY KEY,
@@ -598,6 +603,28 @@ Decided 2026-11-14 (M1 step 3):
 - `last_seen_at` is updated at most once an hour.
 - `GET /v1/health` returns `{status, last_success_at, age_s}`: 200 when the last successful poll is at most 10 minutes old, else 503 (`stale`, or `db_unavailable`).
 - `GET /v1/health/live` returns 200 whenever the process is up. Render's health check uses it, because a stale poll is not fixed by restarting the API (M1 step 4).
+
+Decided 2026-11-14 (M1 step 5):
+- **Places.**
+  - A place is `{label, template, lat, lon, radius_m, categories, time_window, push}`. The response adds `id`, `kommunenummer`, `covered` and `created_at`.
+  - Categories and time window are optional on create; the template fills them in (§6.1). Categories come back in Appendix B order.
+  - «Annet» means all categories except Trafikk, as §6.1 says, so it includes Andre.
+  - A time window has `from` before `to`. Windows across midnight are not supported in M1.
+  - `PATCH` changes only the fields sent. Changing the template doesn't change the categories or the window. `lat` and `lon` are changed together, and the municipality is looked up again.
+  - A Kartverket failure during that lookup returns 502 and saves nothing.
+  - Errors: the 11th place returns 409 `place_limit`, and another device's place returns 404.
+- **`GET /v1/geocode/search?q=`.**
+  - Needs a device and is limited to 30 searches a minute per device. `q` is 2–100 characters.
+  - It searches addresses and place names, with a trailing `*`, because Kartverket matches whole words only without it. It returns up to 10 results `{kind: adresse|sted, label, secondary, lat, lon, kommunenummer, covered}`.
+  - Results are ranked as follows:
+    - exact name first;
+    - then results in the ingested fylker;
+    - then area types (the §9.2 priority);
+    - for addresses, the query's house number first.
+  - A query with a digit lists addresses first; otherwise place names come first.
+  - Kartverket's search APIs return no bydel, so `secondary` is the postcode and municipality for an address, and the place type and municipality for a place name.
+  - Results are cached for 30 days per query and source. A Kartverket failure returns 502 and caches nothing.
+  - The API calls Kartverket without retries and with a 5 s timeout, since someone is waiting.
 
 ## 8.7 Notifications
 

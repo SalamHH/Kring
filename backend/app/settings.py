@@ -47,6 +47,7 @@ class Settings(BaseSettings):
     # Kartverket (§9.2, §9.4). Place-name URLs are tried in order, as in the reference script.
     adresse_url: str = "https://ws.geonorge.no/adresser/v1/sok"
     kommuneinfo_url: str = "https://ws.geonorge.no/kommuneinfo/v1/kommuner"
+    kommune_punkt_url: str = "https://ws.geonorge.no/kommuneinfo/v1/punkt"
     stedsnavn_urls: list[str] = [
         "https://ws.geonorge.no/stedsnavn/v1/navn",
         "https://api.kartverket.no/stedsnavn/v1/navn",
@@ -57,6 +58,12 @@ class Settings(BaseSettings):
     # registrations are limited per client IP, since there is no device yet.
     rate_limit_per_minute: int = 120
     register_limit_per_hour: int = 20
+    # Geocode search (§8.6): per device, on top of the general limit. Kartverket is called
+    # without retries and with a short timeout, since someone is typing.
+    search_limit_per_minute: int = 30
+    search_timeout_s: float = 5.0
+    search_cache_max_age_days: int = 30
+    places_per_device: int = 10  # D10
     # GET /v1/health returns 503 when the last successful poll is older than this (§8.3).
     health_stale_after_s: int = 10 * 60
 

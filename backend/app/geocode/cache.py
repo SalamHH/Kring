@@ -25,7 +25,8 @@ from app.geocode.text import norm
 
 log = logging.getLogger(__name__)
 
-_MISS = object()
+MISS = object()
+_MISS = MISS
 
 
 class GeocodeCache:
@@ -34,11 +35,15 @@ class GeocodeCache:
     def __init__(self, conn: AsyncConnection) -> None:
         self.conn = conn
 
-    async def get(self, key: str) -> Any:
-        """The cached value (may be None for «not found»), or _MISS if the key is absent."""
-        row = (
-            await self.conn.execute(text("SELECT value::text FROM geocode_cache WHERE key = :k"), {"k": key})
-        ).first()
+    async def get(self, key: str, max_age_days: int | None = None) -> Any:
+        """The cached value (may be None for «not found»), or _MISS if the key is absent or,
+        with max_age_days, older than that."""
+        sql = "SELECT value::text FROM geocode_cache WHERE key = :k"
+        params: dict[str, Any] = {"k": key}
+        if max_age_days is not None:
+            sql += " AND fetched_at > now() - make_interval(days => :d)"
+            params["d"] = max_age_days
+        row = (await self.conn.execute(text(sql), params)).first()
         if row is None:
             return _MISS
         return None if row[0] is None else json.loads(row[0])

@@ -133,6 +133,12 @@ To record responses for the recorded Oslo and Akershus Politiloggen threads (ste
 uv run python -m scripts.record_kartverket --threads
 ```
 
+The API tests (places and geocode search, M1 step 5) replay `tests/fixtures/kartverket/api/search.json`. Re-record it with:
+
+```bash
+uv run python -m scripts.record_search
+```
+
 ## Recorded Politiloggen responses
 
 `tests/fixtures/politiloggen/` holds the kommuneinfo municipality list, one raw `/messagethreads` page, and every Oslo and Akershus thread from a `LastQuarter` fetch (`quarter.json`). `district_notices.json` holds every district-wide notice («Oslo politidistrikt» in the municipality field) from a `LastQuarter` fetch, nationwide. Re-record only that file with `uv run python -m scripts.record_politiloggen --notices`. To re-record them (re-record the Kartverket thread responses afterwards):
