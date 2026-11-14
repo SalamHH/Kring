@@ -1,6 +1,6 @@
 # stedSafe backend
 
-FastAPI + PostgreSQL/PostGIS. Spec: [`../docs/stedSafe-spec.md`](../docs/stedSafe-spec.md) §8–9. Current plan: [`../docs/plans/m0.md`](../docs/plans/m0.md).
+FastAPI + PostgreSQL/PostGIS. Spec: [`../docs/stedSafe-spec.md`](../docs/stedSafe-spec.md) §8–9. Current plan: [`../docs/plans/m1.md`](../docs/plans/m1.md).
 
 ## Local setup (macOS, no Docker)
 
@@ -62,6 +62,20 @@ uv run python -m app.worker
 
 On an empty database the first cycle reads the last quarter (about 100 pages) and geocodes every Oslo and Akershus thread, which takes a few minutes. Later cycles read `LastDay` and take a second or two.
 
+## Re-geocoding stored events
+
+After a geocoder change (a ranking, an alias, a new rule), stored events keep their old placement until their thread changes. Re-run the geocoder and classifier over them (spec §9.6). It is a dry run by default and prints every change:
+
+```bash
+uv run python -m app.regeocode
+```
+
+```bash
+uv run python -m app.regeocode --apply
+```
+
+Filters: `--since 2026-11-01`, `--kommune 0301,3201`, `--method kommune,none` (`none` = the last geocode failed), `--ids <id>,<id>`. It never sends pushes. It can run while the worker is running: events the worker changes in the meantime are skipped and reported, so run it again to pick them up. A dry run writes nothing to `events`, but it does fill the geocode cache.
+
 ## M0 report data
 
 Replays the recorded quarter offline and writes `docs/m0/replay-tables.md` and the 25-street review page `docs/m0/street-sample.html`:
@@ -111,7 +125,7 @@ uv run python -m scripts.record_kartverket --threads
 
 ## Recorded Politiloggen responses
 
-`tests/fixtures/politiloggen/` holds the kommuneinfo municipality list, one raw `/messagethreads` page, and every Oslo and Akershus thread from a `LastQuarter` fetch (`quarter.json`). To re-record them (re-record the Kartverket thread responses afterwards):
+`tests/fixtures/politiloggen/` holds the kommuneinfo municipality list, one raw `/messagethreads` page, and every Oslo and Akershus thread from a `LastQuarter` fetch (`quarter.json`). `district_notices.json` holds every district-wide notice («Oslo politidistrikt» in the municipality field) from a `LastQuarter` fetch, nationwide. Re-record only that file with `uv run python -m scripts.record_politiloggen --notices`. To re-record them (re-record the Kartverket thread responses afterwards):
 
 ```bash
 uv run python -m scripts.record_politiloggen

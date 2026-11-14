@@ -55,3 +55,9 @@ def scoped_raw_threads() -> list[tuple[dict[str, Any], Kommune]]:
         assert k is not None, t.get("municipality")
         out.append((t, k))
     return out
+
+
+@cache
+def district_notices() -> dict[str, Any]:
+    """Every district-wide notice in a LastQuarter fetch, nationwide (M1 step 2)."""
+    return _load("district_notices.json")

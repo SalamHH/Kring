@@ -73,6 +73,17 @@ class KommuneRegister:
         return k
 
 
+def is_district_notice(t: Thread) -> bool:
+    """A police district in the municipality field («Oslo politidistrikt»): a district-wide notice
+    with no area, such as a missing person or a weather warning (spec §8.3)."""
+    return norm(t.municipality).endswith("politidistrikt")
+
+
+def district_key(t: Thread) -> str:
+    """The district a notice belongs to, normalised to compare with events.district."""
+    return norm(t.district or t.municipality)
+
+
 @dataclass(frozen=True)
 class ScopedThread:
     thread: Thread
@@ -82,10 +93,13 @@ class ScopedThread:
 def in_scope(
     threads: Iterable[Thread], register: KommuneRegister, allowed_fylker: Iterable[str]
 ) -> list[ScopedThread]:
-    """Threads whose municipality resolves to an allowed fylke (first two digits of knr)."""
+    """Threads whose municipality resolves to an allowed fylke (first two digits of knr).
+    District-wide notices are left out without a WARN; the ingestor handles them."""
     allowed = set(allowed_fylker)
     out: list[ScopedThread] = []
     for t in threads:
+        if is_district_notice(t):
+            continue  # handled by the ingestor (district notices, spec §8.3)
         k = register.resolve(t.municipality)
         if k is not None and k.nummer[:2] in allowed:
             out.append(ScopedThread(t, k))

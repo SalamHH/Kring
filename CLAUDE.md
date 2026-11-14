@@ -4,7 +4,7 @@ Calm, place-based alerts from the Norwegian police log (Politiloggen). The full 
 
 ## Current milestone
 
-**M0:** backend spike (ingest + geocode + DB). The plan, with a checkbox per step and how each one is verified, is in [`docs/plans/m0.md`](docs/plans/m0.md).
+**M1:** API, matching, push, and the Expo screens Hjem, Nytt sted and Hendelse, plus the Render deploy. The plan, with a checkbox per step, how each one is verified, and the design choices D1–D12, is in [`docs/plans/m1.md`](docs/plans/m1.md). M0 is done: [`docs/m0-report.md`](docs/m0-report.md).
 
 ## Read first
 

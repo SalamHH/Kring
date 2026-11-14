@@ -1,0 +1,2487 @@
+{
+ "recorded_at": "2026-11-14T16:32:38.388516+00:00",
+ "timeSpanType": "LastQuarter",
+ "threads": [
+  {
+   "id": "26b836",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Ro og orden",
+   "municipality": "Agder politidistrikt",
+   "area": "",
+   "createdOn": "2026-11-14T04:08:27.0223574+00:00",
+   "updatedOn": "2026-11-14T04:08:34.2941563+00:00",
+   "lastMessageOn": "2026-11-14T04:08:27.0221493+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26b836-0",
+     "text": "Nattevakten har vært rolig i Agder politidistrikt. Det har vært noen mindre ordensforstyrrelser, men ingen alvorlige voldshendelser. \nFem personer har blitt bortvist fra Kristiansand sentrum, og to av de havnet i arresten da de ikke etterkom bortvisningen. I Arendal ble to personer bortvist fra sentrum. Det har ikke vært noen ordensforstyrrelser i de andre byene og tettstedene i Agder.",
+     "createdOn": "2026-11-14T04:08:27.0221493+00:00",
+     "updatedOn": "2026-11-14T04:08:27.0764934+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26874q",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Andre hendelser",
+   "municipality": "Agder politidistrikt",
+   "area": "",
+   "createdOn": "2026-11-12T14:47:21.194567+00:00",
+   "updatedOn": "2026-11-12T15:29:13.5334649+00:00",
+   "lastMessageOn": "2026-11-12T14:47:21.1943523+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26874q-0",
+     "text": "Vi advarer mot pågående telefonsvindel\n\nPolitiet har denne uken mottatt flere henvendelser fra personer som er blitt kontaktet av personer som utgir seg for å være ansatt i politiet i Agder. Det opplyses blant annet om at lån er tatt opp i fornærmedes navn før de blir satt over til en person som utgir seg for å være fra banken. Dette er svindel . Vi minner om å være kritiske til slike henvendelser og aldri oppgi personopplysninger, BankID-koder eller gjennomføre pengeoverføringer etter oppfordring fra ukjente.",
+     "createdOn": "2026-11-12T14:47:21.1943523+00:00",
+     "updatedOn": "2026-11-12T14:47:21.2962331+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26rcph",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Trafikk",
+   "municipality": "Sør-Øst politidistrikt",
+   "area": "",
+   "createdOn": "2026-11-12T06:51:50.6707404+00:00",
+   "updatedOn": "2026-11-12T09:21:15.8003539+00:00",
+   "lastMessageOn": "2026-11-12T06:51:50.6705492+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26rcph-0",
+     "text": "Operasjonssentralen i Sør-Øst mottar en rekke meldinger om utforkjøringer, trafikkulykker og glatte kjøreforhold i forbindelse snøfallet som har kommet. Snøfallet medfører endrede kjøreforhold som igjen endrer veggrep og bremselengder. Planlegg med å bruke litt lenger tid enn vanlig til jobb og avtaler. Kjør etter forholdene og hold god avstand til forankjørende.",
+     "createdOn": "2026-11-12T06:51:50.6705492+00:00",
+     "updatedOn": "2026-11-12T06:51:50.7234119+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26tvv7",
+   "district": "Sør-Vest Politidistrikt",
+   "districtId": 206,
+   "category": "Andre hendelser",
+   "municipality": "Sør-Vest politidistrikt",
+   "area": "",
+   "createdOn": "2026-11-11T04:28:36.2624266+00:00",
+   "updatedOn": "2026-11-11T04:28:39.2572486+00:00",
+   "lastMessageOn": "2026-11-11T04:28:36.261576+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26tvv7-0",
+     "text": "Rolig natt i politidistriktet.",
+     "createdOn": "2026-11-11T04:28:36.261576+00:00",
+     "updatedOn": "2026-11-11T04:28:36.3108447+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26tn3m",
+   "district": "Oslo Politidistrikt",
+   "districtId": 201,
+   "category": "Savnet",
+   "municipality": "Oslo politidistrikt",
+   "area": "",
+   "createdOn": "2026-11-08T00:13:15.1618901+00:00",
+   "updatedOn": "2026-11-08T08:07:32.3896534+00:00",
+   "lastMessageOn": "2026-11-08T08:07:12.8365384+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26tn3m-0",
+     "text": "Vi søker etter en savnet mann på 22 år. Han er sist sett i området Gaustad i Oslo ca kl 1300 lørdag. Ettersom det har gått litt tid vet vi pr nå ikke hvor han kan befinne seg.\n\nBeskrivelse: Eritreisk opprinnelse, kort mørkt krøllete hår, 172cm høy, slank, nordnorsk dialekt. Når han sist ble sett hadde han på seg mørk bukse og mørk tynn ytterjakke. Beskrevet som pent kledd. \n\nSe vedlagt bilde.\n\nTips om observasjoner kan ringes inn på 02800. Ved observasjon ring 112.",
+     "createdOn": "2026-11-08T00:13:15.1587625+00:00",
+     "updatedOn": "2026-11-08T08:07:22.9428902+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": true,
+     "type": "Edited"
+    },
+    {
+     "id": "26tn3m-1",
+     "text": "Mannen er funnet i god behold.",
+     "createdOn": "2026-11-08T08:07:12.8365384+00:00",
+     "updatedOn": "2026-11-08T08:07:12.8365384+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26vcfs",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Trafikk",
+   "municipality": "Øst politidistrikt",
+   "area": "",
+   "createdOn": "2026-11-05T16:18:25.9506992+00:00",
+   "updatedOn": "2026-11-05T20:42:04.428676+00:00",
+   "lastMessageOn": "2026-11-05T16:18:25.9502706+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26vcfs-0",
+     "text": "Har vært mange ulykker i distriktet i dag. Det forventes glatte veier flere steder i distriktet utover kvelden og natten. Sørg for gode dekk og tilpass hastighet.",
+     "createdOn": "2026-11-05T16:18:25.9502706+00:00",
+     "updatedOn": "2026-11-05T16:18:25.9997829+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26d297",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Andre hendelser",
+   "municipality": "Sør-Øst politidistrikt",
+   "area": "",
+   "createdOn": "2026-11-02T22:50:06.3276956+00:00",
+   "updatedOn": "2026-11-03T01:31:37.2992441+00:00",
+   "lastMessageOn": "2026-11-02T22:50:06.3274872+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26d297-0",
+     "text": "Grunnet vedlikehold så vil det ikke bli publisert meldinger fra Sør-Øst på politiloggen mellom kl. 01:30 og 02:00.",
+     "createdOn": "2026-11-02T22:50:06.3274872+00:00",
+     "updatedOn": "2026-11-02T22:50:06.3786759+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26zpbw",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Savnet",
+   "municipality": "Øst politidistrikt",
+   "area": "",
+   "createdOn": "2026-11-02T20:17:53.8007192+00:00",
+   "updatedOn": "2026-11-06T09:27:48.8379079+00:00",
+   "lastMessageOn": "2026-11-02T20:17:53.8004347+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26zpbw-0",
+     "text": "Politiet i Øst politidistrikt ønsker tips ved observasjoner av jenta på bildet. Hun er ca. 150 cm. høy.\nMest sannsynlig oppholdssted er Oslo m/omegn.\n\nTips på observasjoner på jenta ringes inn til tlf.nr; 45636754.",
+     "createdOn": "2026-11-02T20:17:53.8004347+00:00",
+     "updatedOn": "2026-11-06T09:27:48.8379079+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": true,
+     "type": "Edited"
+    }
+   ]
+  },
+  {
+   "id": "261fvb",
+   "district": "Finnmark Politidistrikt",
+   "districtId": 212,
+   "category": "Ro og orden",
+   "municipality": "Finnmark politidistrikt",
+   "area": "",
+   "createdOn": "2026-11-01T06:24:13.870862+00:00",
+   "updatedOn": "2026-11-01T06:24:18.5198848+00:00",
+   "lastMessageOn": "2026-11-01T06:24:13.8706429+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "261fvb-0",
+     "text": "I løpet av natta har 7 personer blitt bortvist fra Alta sentrum grunnet utagerende oppførsel i beruset tilstand i sentrum. Alle forlot sentrum etter pålegg gitt av politiet. Det er ikke opprettet sak på noen av forholdene.",
+     "createdOn": "2026-11-01T06:24:13.8706429+00:00",
+     "updatedOn": "2026-11-01T06:24:13.9153346+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26s115",
+   "district": "Trøndelag Politidistrikt",
+   "districtId": 209,
+   "category": "Andre hendelser",
+   "municipality": "Trøndelag politidistrikt",
+   "area": "",
+   "createdOn": "2026-11-01T04:06:58.3942714+00:00",
+   "updatedOn": "2026-11-01T07:53:04.2783555+00:00",
+   "lastMessageOn": "2026-11-01T04:06:58.3940726+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26s115-0",
+     "text": "Det har vært mye å gjøre i hele politidistriktet i natt, spesielt i Trondheim. Det har vært mange folk på byen. Flere rusa og berusete personer. En del slosskamper og voldshendelser uten alvorlige personskader. Det har også vært flere privatfester med tenåringer som har gått over styr.",
+     "createdOn": "2026-11-01T04:06:58.3940726+00:00",
+     "updatedOn": "2026-11-01T04:06:58.4482527+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26d1lr",
+   "district": "Vest Politidistrikt",
+   "districtId": 207,
+   "category": "Ro og orden",
+   "municipality": "Vest politidistrikt",
+   "area": "",
+   "createdOn": "2026-11-01T03:49:17.3891554+00:00",
+   "updatedOn": "2026-11-01T15:14:52.2121246+00:00",
+   "lastMessageOn": "2026-11-01T03:49:17.3889613+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26d1lr-0",
+     "text": "Vi hadde håpet på knask, men fikk mer enn nok knep denne Halloween-natten. Telefonene har gått varme, og patruljene har hatt hendene fulle. Vi hadde gjerne sett at flere lot kostymet være det eneste skremmende ved oppførselen sin. Totalt 5 personer har måttet tilbringe natten i arresten, og langt flere har blitt ilagt pålegg eller blitt bortvist fra sentrum. Det gode er at det ikke er meldt om alvorlige skader, tross alt.",
+     "createdOn": "2026-11-01T03:49:17.3889613+00:00",
+     "updatedOn": "2026-11-01T03:49:17.4378637+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "262wbc",
+   "district": "Møre og Romsdal Politidistrikt",
+   "districtId": 208,
+   "category": "Ro og orden",
+   "municipality": "Møre og Romsdal politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-31T22:16:16.0278486+00:00",
+   "updatedOn": "2026-11-01T07:39:49.2073414+00:00",
+   "lastMessageOn": "2026-10-31T22:16:16.0276641+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "262wbc-0",
+     "text": "Det meldes om flere fester med ansamlinger av berusede ungdommer fra flere steder i fylket, blant annet Volda, Kristiansund og Ålesund. Politiet oppfordrer foreldrene om å hente hjem sine barn/ungdommer.",
+     "createdOn": "2026-10-31T22:16:16.0276641+00:00",
+     "updatedOn": "2026-10-31T22:16:16.0722902+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26m41j",
+   "district": "Nordland Politidistrikt",
+   "districtId": 210,
+   "category": "Andre hendelser",
+   "municipality": "Nordland politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-31T20:44:54.9857051+00:00",
+   "updatedOn": "2026-10-31T20:45:00.9339417+00:00",
+   "lastMessageOn": "2026-10-31T20:44:54.985514+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26m41j-0",
+     "text": "Siden det er Halloween er det mange som har festligheter i kveld. Politiet har fått mange henvendelser fra hele Nordland om overstadig berusede ungdommer. Meldingene går på bruk av fyrverkeri, støy, samt overstadig beruselse. Patruljene kjører mellom både private og arrangerte Halloween-fester og har kommet i kontakt med mange berusede mindreårige. Politiet oppfordrer foreldre til å ta kontakt med deres ungdommer som er ute i kveld og sørge for at det går bra med dem, og at de kommer seg trygt hjem.",
+     "createdOn": "2026-10-31T20:44:54.985514+00:00",
+     "updatedOn": "2026-10-31T20:44:55.0315718+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "264r23",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Ro og orden",
+   "municipality": "Agder politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-31T20:31:06.3361263+00:00",
+   "updatedOn": "2026-10-31T20:33:30.1936001+00:00",
+   "lastMessageOn": "2026-10-31T20:31:06.335946+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "264r23-0",
+     "text": "Det har i kveld vært flere meldinger om bruk av fyrverkeri i Agder. Dette siden klokken 1800.\nI Arendal ved Lerkeveien, Nordåsveien, Sam Eyde VGS og Løkholmen.\nI Kristiansand ved Bjørneheia og Lovisenlund skole. \nI Farsund ved Vanse. \nPolitiet har sjekke noen av disse uten resultat.",
+     "createdOn": "2026-10-31T20:31:06.335946+00:00",
+     "updatedOn": "2026-10-31T20:31:06.384208+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "267xjx",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Andre hendelser",
+   "municipality": "Øst politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-31T14:35:20.3083489+00:00",
+   "updatedOn": "2026-10-31T20:36:08.7428782+00:00",
+   "lastMessageOn": "2026-10-31T14:35:20.3081432+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "267xjx-0",
+     "text": "Politiet ønsker alle en trygg og hyggelig Halloween. Vi ønsker å minne på at rekvisitter som kan forveksles med ekte våpen ikke bør tas med ut i det offentlige rom. Slike gjenstander kan skape frykt og bli oppfattet som truende av andre.\nErfaring tilsier at mange unge, ofte mindreårige, deltar på fester denne kvelden hvor det kan forekomme alkohol. Vi oppfordrer derfor foreldre og foresatte til å snakke med ungdommene sine på forhånd. Det er viktig å vite hvor de skal være, hvem de skal være sammen med, og hvordan de skal komme seg trygt hjem. God Halloween.",
+     "createdOn": "2026-10-31T14:35:20.3081432+00:00",
+     "updatedOn": "2026-10-31T14:35:20.3566558+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26chv2",
+   "district": "Møre og Romsdal Politidistrikt",
+   "districtId": 208,
+   "category": "Andre hendelser",
+   "municipality": "Møre og Romsdal politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-31T08:28:05.7518722+00:00",
+   "updatedOn": "2026-10-31T08:36:48.8143831+00:00",
+   "lastMessageOn": "2026-10-31T08:28:05.751685+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26chv2-0",
+     "text": "Søndag 25.10.26 ble det funnet en død person i sjøen, i Vestvågøy kommune i Nordland.\nPersonen er identifisert og politiet kan slå fast at dette er en av de tsjekkiske statsborgerne som har vært savnet siden båtulykken nær Grip, fredag 18.9.26.",
+     "createdOn": "2026-10-31T08:28:05.751685+00:00",
+     "updatedOn": "2026-10-31T08:28:05.8002302+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26954n",
+   "district": "Sør-Vest Politidistrikt",
+   "districtId": 206,
+   "category": "Arrangement",
+   "municipality": "Sør-Vest politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-30T12:25:11.501545+00:00",
+   "updatedOn": "2026-10-30T12:25:21.9648028+00:00",
+   "lastMessageOn": "2026-10-30T12:25:11.5013524+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26954n-0",
+     "text": "\"Nå er Halloween-helgen i gang, og politiet er bekymret for flere planlagte fester der vi vet at det vil være mindreårige til stede, og hvor det også er forventet alkoholbruk. Vi oppfordrer foreldre og foresatte til å ta en prat med ungdommene sine om planene for helgen. Vet du hvor de skal være, hvem de skal være sammen med, og hvordan de kommer seg hjem? God involvering fra voksne kan bidra til å forebygge uønskede hendelser og gjøre Halloween-helgen trygg og kjekk for alle. God feiring!\".",
+     "createdOn": "2026-10-30T12:25:11.5013524+00:00",
+     "updatedOn": "2026-10-30T12:25:11.5917391+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "2665wt",
+   "district": "Møre og Romsdal Politidistrikt",
+   "districtId": 208,
+   "category": "Andre hendelser",
+   "municipality": "Møre og Romsdal politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-29T16:28:20.1678516+00:00",
+   "updatedOn": "2026-10-30T16:04:44.2421583+00:00",
+   "lastMessageOn": "2026-10-29T16:28:20.1676427+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "2665wt-0",
+     "text": "Nødetatene har felles øvelser på flere steder torsdag kveld, blant annet i Ulstein og Rauma kommune. Følg skilting som er satt opp, og følg nødetatenes anvisninger på stedet.",
+     "createdOn": "2026-10-29T16:28:20.1676427+00:00",
+     "updatedOn": "2026-10-29T16:28:20.2169703+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "261p34",
+   "district": "Sør-Vest Politidistrikt",
+   "districtId": 206,
+   "category": "Trafikk",
+   "municipality": "Sør-Vest politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-28T12:51:57.3749801+00:00",
+   "updatedOn": "2026-10-28T14:52:14.840484+00:00",
+   "lastMessageOn": "2026-10-28T12:51:57.3745576+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "261p34-0",
+     "text": "Generell oppfordring til kjørende. Vær årvåkne, tilpass farten ved manglende sikt, bruk egnet lys og følg med på fareskiltene. Det er årstiden for påkjørsler av vilt, og da spesielt rådyr. Som oftest skjer dette i skumring og grålys. Bare siste to døgn er det meldt om 19 slike påkjørsler i vårt distrikt.",
+     "createdOn": "2026-10-28T12:51:57.3745576+00:00",
+     "updatedOn": "2026-10-28T12:51:57.4283159+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26c4bh",
+   "district": "Oslo Politidistrikt",
+   "districtId": 201,
+   "category": "Andre hendelser",
+   "municipality": "Oslo politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-28T12:38:06.1812216+00:00",
+   "updatedOn": "2026-10-28T21:35:25.9505589+00:00",
+   "lastMessageOn": "2026-10-28T12:38:06.18101+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26c4bh-0",
+     "text": "I dag vil det være militære øvelser med bruk av helikopter over Oslo-området og Oslo sentrum.  Politiet er informert om aktiviteten.\n \nPublikum i berørte områder vil måtte påregne økt aktivitet på dag og kveldstid fram til klokka 21:00.",
+     "createdOn": "2026-10-28T12:38:06.18101+00:00",
+     "updatedOn": "2026-10-28T12:38:06.2315193+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26p4jh",
+   "district": "Finnmark Politidistrikt",
+   "districtId": 212,
+   "category": "Andre hendelser",
+   "municipality": "Finnmark politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-27T07:37:37.8629429+00:00",
+   "updatedOn": "2026-10-28T06:15:46.7135221+00:00",
+   "lastMessageOn": "2026-10-27T20:04:41.184421+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26p4jh-0",
+     "text": "Som følge av vannmangel i Kirkenes vil Politihuset i Kirkenes være stengt i dag. Stengingen gjelder kun publikumsmottaket. Politiet opprettholder ordinær vakt- og beredskapstjeneste, og vil fortsatt rykke ut på hendelser og håndtere oppdrag som normalt.\nHar du behov for politiets bistand, kan du kontakte oss på tlf. 02800. Ved akutte hendelser skal du som alltid ringe 112.",
+     "createdOn": "2026-10-27T07:37:37.8627343+00:00",
+     "updatedOn": "2026-10-27T07:37:37.9114461+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26p4jh-1",
+     "text": "Oppdatering: \n\nDa vannet er tilbake i byen er Politihuset i Kirkenes åpent i morgen og man går tilbake til ordinære åpningstider.",
+     "createdOn": "2026-10-27T20:04:41.184421+00:00",
+     "updatedOn": "2026-10-27T20:04:41.184421+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26z6xx",
+   "district": "Nordland Politidistrikt",
+   "districtId": 210,
+   "category": "Andre hendelser",
+   "municipality": "Nordland politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-27T16:48:27.6997117+00:00",
+   "updatedOn": "2026-10-27T16:51:21.9731191+00:00",
+   "lastMessageOn": "2026-10-27T16:48:27.6995045+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26z6xx-0",
+     "text": "Politiet i Nordland har i ettermiddag fått meldinger fra personer som sier de har blitt oppringt av politiet i forbindelse med at noen har tatt opp lån i deres navn. For samtlige som har meldt inn til oss om dette er det snakk om forsøk på bedrageri og personene har både blitt oppringt fra skjult nummer og fra fiktive nummer (såkalt spoofing). De fleste som har meldt inn om dette i ettermiddag er bosatt i Narvik-området.\n\nPolitiet vil aldri ringe og be om sensitiv informasjon som BankID eller passord. Heller ikke banker vil ringe og be om BankID eller passord. \n\nEr du usikker, eller vil vite mer om svindel og ID-tyveri kan man få mer informasjon om dette på politiets nettside: www.politiet.no/rad/beskytt-deg-mot-svindel-og-id-tyveri.",
+     "createdOn": "2026-10-27T16:48:27.6995045+00:00",
+     "updatedOn": "2026-10-27T16:51:18.0574007+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Edited"
+    }
+   ]
+  },
+  {
+   "id": "2633xv",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Savnet",
+   "municipality": "Sør-Øst politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-25T15:43:46.8724214+00:00",
+   "updatedOn": "2026-10-25T17:35:29.3335737+00:00",
+   "lastMessageOn": "2026-10-25T15:43:46.8622873+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "2633xv-0",
+     "text": "Politiet i Oslo søker etter en savnet kvinne på 39 år. Hun er sist sett i området Hvalstad i Oslo politidistrikt i dag tidlig, men hele Asker & Bærum, samt Drammensområdet er aktuelt. Hun har trolig på seg ferskenfarget skalljakke og er 164 cm høy. Viser til vedlagt bilde. \n\nVed observasjon av vedkommende ring oss på 112. Har du tips, ring Oslo politidistrikt på tlf. 22 66 90 50.",
+     "createdOn": "2026-10-25T15:43:46.8622873+00:00",
+     "updatedOn": "2026-10-25T17:35:29.3335737+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": true,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26c1m1",
+   "district": "Oslo Politidistrikt",
+   "districtId": 201,
+   "category": "Vær",
+   "municipality": "Oslo politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-25T08:52:34.2705757+00:00",
+   "updatedOn": "2026-10-26T04:43:47.3414641+00:00",
+   "lastMessageOn": "2026-10-25T08:52:34.2703891+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26c1m1-0",
+     "text": "Det er kommet mye nedbør og det er meldt mer ut over søndagen. Vi har allerede hatt flere mindre trafikkulykker på formiddagen hvor mye tyder på at det er overvann i veibanen som har medført at bilførere har mistet kontrollen. Vi minner om at dere må avpasse farten og avstanden ut fra vær og føreforhold slik at alle kommer seg trygt rundt på veiene i dag.",
+     "createdOn": "2026-10-25T08:52:34.2703891+00:00",
+     "updatedOn": "2026-10-25T08:52:34.3191334+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26rf46",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Andre hendelser",
+   "municipality": "Agder politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-25T05:15:17.8376525+00:00",
+   "updatedOn": "2026-10-25T05:15:48.028889+00:00",
+   "lastMessageOn": "2026-10-25T05:15:17.8374532+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26rf46-0",
+     "text": "Natta er i ferd med å ebbe ut og det har vært ei ganske rolig natt for politiet i Agder. Det har vært en del mennesker ute i bysentraene, men det har vært få ordensoppdrag knyttet til dette. Det har heller ikke vært andre alvorlige hendelser.\n\nVæret har satt sine spor, men det er pr nå ikke meldt om alvorlige skader eller hendelser. Vi har mottatt i underkant av 20 meldinger om værrelaterte forhold, alle har gått på trær som har veltet over veibanen eller strømkabler. Meldingene har kommet fra hele Agder. Det virker nå som det verste er over og at værforholdene er noe bedre.",
+     "createdOn": "2026-10-25T05:15:17.8374532+00:00",
+     "updatedOn": "2026-10-25T05:15:17.8878642+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26v588",
+   "district": "Møre og Romsdal Politidistrikt",
+   "districtId": 208,
+   "category": "Ro og orden",
+   "municipality": "Møre og Romsdal politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-22T19:28:33.6350635+00:00",
+   "updatedOn": "2026-10-23T12:46:03.6738705+00:00",
+   "lastMessageOn": "2026-10-22T19:28:33.6348245+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26v588-0",
+     "text": "Det har i en periode vært et økende problem at barn og ungdom bedriver \"ring-på-og-spring\" i et så stort omfang at det går over i skremmende/plagsom adferd, noe som er straffbart og kan få konsekvenser de de involverte. Oppfordrer foreldre til å snakke med sine barn/ungdommer om dette.  I dag har vi har vi hatt oppdrag med dette i Ålesund, men ser at utfordringen gjelder flere steder i distriktet.",
+     "createdOn": "2026-10-22T19:28:33.6348245+00:00",
+     "updatedOn": "2026-10-22T19:28:33.7942254+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26hz0x",
+   "district": "Sør-Vest Politidistrikt",
+   "districtId": 206,
+   "category": "Andre hendelser",
+   "municipality": "Sør-Vest politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-21T04:17:41.2471039+00:00",
+   "updatedOn": "2026-10-21T04:17:43.8568607+00:00",
+   "lastMessageOn": "2026-10-21T04:17:41.2467178+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26hz0x-0",
+     "text": "Rolig natt i distriktet.",
+     "createdOn": "2026-10-21T04:17:41.2467178+00:00",
+     "updatedOn": "2026-10-21T04:17:41.2963079+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26xx3t",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Andre hendelser",
+   "municipality": "Agder politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-20T23:29:30.519566+00:00",
+   "updatedOn": "2026-10-21T00:12:06.9889448+00:00",
+   "lastMessageOn": "2026-10-21T00:12:06.0377543+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26xx3t-0",
+     "text": "Operasjonssentralen i Agder opplever problemer med telefonlinjen 02800. Dersom det ikke oppnås kontakt, ring 38 13 60 00. Nødnummeret 112 fungerer som normalt.",
+     "createdOn": "2026-10-20T23:29:30.5193792+00:00",
+     "updatedOn": "2026-10-20T23:29:30.5643213+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26xx3t-1",
+     "text": "Da skal feilen være rettet.",
+     "createdOn": "2026-10-21T00:12:06.0377543+00:00",
+     "updatedOn": "2026-10-21T00:12:06.0377543+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26np4k",
+   "district": "Oslo Politidistrikt",
+   "districtId": 201,
+   "category": "Andre hendelser",
+   "municipality": "Oslo politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-20T06:01:41.6736006+00:00",
+   "updatedOn": "2026-10-21T20:57:23.4832773+00:00",
+   "lastMessageOn": "2026-10-20T06:01:41.6466528+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26np4k-0",
+     "text": "Midlertidige luftfartsrestriksjoner 20. til 21. oktober 2026\n\nForbudet gjelder fra og med nå og frem til onsdag 21. oktober klokken 1800. De midlertidige restriksjonene gjelder over deler av Oslo og Romerike, og er innført i forbindelse med et offisielt besøk til hovedstaden. \nDe forhåndsdefinerte restriksjonsområdene Oslo 2, Romerike 1 og Romerike 2 er aktivert i den aktuelle perioden. Restriksjonene gjelder både for bemannet luftfart og ubemannet luftfart (droner).\nDet er ikke tillatt å fly i de aktuelle områdene uten særskilt tillatelse. Ved behov for dispensasjon kan Oslo politidistrikt kontaktes på telefon 476 98 750. Dispensasjon kan gis når dette er nødvendig for å ivareta viktige samfunnsinteresser.",
+     "createdOn": "2026-10-20T06:01:41.6466528+00:00",
+     "updatedOn": "2026-10-20T06:01:41.7201682+00:00",
+     "hasImage": true,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26cmzn",
+   "district": "Finnmark Politidistrikt",
+   "districtId": 212,
+   "category": "Andre hendelser",
+   "municipality": "Finnmark politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-17T08:05:09.8961973+00:00",
+   "updatedOn": "2026-10-17T20:28:22.8166418+00:00",
+   "lastMessageOn": "2026-10-17T08:05:09.8959971+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26cmzn-0",
+     "text": "Politiet ønsker å nå ut til innbyggere av Finnmark med informasjon om mulig svindelforsøk/useriøse dørselgere i området Vest-Finnmark. Informasjonen kommer etter tips fra publikum. Modus beskrives som at en mann tar kontakt på dør for å selge brannstiger og at eldre folk er utpekt som offer. \n\nDet er for to dager siden meldt om lignende hendelse i Sør-Varanger hvor en eldre kvinne fikk en \"reparatør\" inn i stua hvor han deretter ba om bankkort og PIN-kode. Denne hendelsen er det opprettet sak på og vil bli etterforsket. Det er pr. nå ukjent om denne saken kan sees i sammenheng med tips fra Vest-Finnmark.\n\nDersom innbyggere i Finnmark opplever lignende hendelser eller gjør relevante observasjoner som kan knyttes til dette bes det om tips på tlf: 02800.",
+     "createdOn": "2026-10-17T08:05:09.8959971+00:00",
+     "updatedOn": "2026-10-17T08:05:09.9455031+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26zrgj",
+   "district": "Sør-Vest Politidistrikt",
+   "districtId": 206,
+   "category": "Trafikk",
+   "municipality": "Sør-Vest politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-14T20:48:05.9239289+00:00",
+   "updatedOn": "2026-10-14T20:58:00.1579687+00:00",
+   "lastMessageOn": "2026-10-14T20:48:05.9237332+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26zrgj-0",
+     "text": "Trafikkontroller ettermiddag/kveld: \nUtrykningspolitiet har gjennomført trafikkontroll i 70- sonen på E39 ved Osli i tidsrommet kl. 1120-1425. Resultat: 54 forenklede forlegg og 1 førerkortbeslag. Høyeste hastighet ble 133 km/t. En taxi ble avskiltet grunnet manglende EU kontroll.\n\nKl. 1915. En patrulje kontrollerte ett kjøretøy på E39 ved Bråstein. Fører, mann i 50 årene, hadde ikke gyldig førerkort og blåste til over lovlig verdi i alkometeret.\nNødvendige prøver tatt. Sak opprettet.\n\nKl. 1930. En patrulje fra utrykningspolitiet kontrollerte et kjøretøy på Forus. Det ble foretatt en spyttprøve av fører, mann i 40 årene, den ga utslag på bruk av narkotika. \nMistenkte ble fremstilt på legevakten for nødvendige prøver. Sak opprettet.",
+     "createdOn": "2026-10-14T20:48:05.9237332+00:00",
+     "updatedOn": "2026-10-14T20:48:05.9656502+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "266h1h",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Trafikk",
+   "municipality": "Sør-Øst politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-10T10:19:14.8641653+00:00",
+   "updatedOn": "2026-10-10T10:19:18.525791+00:00",
+   "lastMessageOn": "2026-10-10T10:19:14.8639719+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "266h1h-0",
+     "text": "Det er i Sør-Øst flere steder med snø i terreng og på veien.  Dersom det ligger snø der du skal kjøre, og har sommerdekk må du enten bytte til vinterdekk eller la bilen stå. De som  er usikre på veimeldinger må aktivt selv finne ut av dette via nettsidene 175.no.",
+     "createdOn": "2026-10-10T10:19:14.8639719+00:00",
+     "updatedOn": "2026-10-10T10:19:14.9120161+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "261r6t",
+   "district": "Nordland Politidistrikt",
+   "districtId": 210,
+   "category": "Andre hendelser",
+   "municipality": "Nordland politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-08T14:39:58.590238+00:00",
+   "updatedOn": "2026-10-08T17:52:33.9952548+00:00",
+   "lastMessageOn": "2026-10-08T17:52:31.3518766+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "261r6t-0",
+     "text": "På grunn av problemer med telenettet kan publikum oppleve å ikke komme igjennom til politiet på 02800 og 112. \nFor å komme igjennom til politiets operasjonesentral i Nordland kan publikum forsøke å ringe 75 58 90 00, du vil da bli koblet videre til politiets operasjonssentral.",
+     "createdOn": "2026-10-08T14:39:58.5898281+00:00",
+     "updatedOn": "2026-10-08T14:39:58.7212916+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "261r6t-1",
+     "text": "Vi har nå fått melding om at problemene med telefoni nå skal være løst og fungere som normalt.",
+     "createdOn": "2026-10-08T17:52:31.3518766+00:00",
+     "updatedOn": "2026-10-08T17:52:31.3518766+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26w386",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Andre hendelser",
+   "municipality": "Sør-Øst politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-08T14:35:23.9205264+00:00",
+   "updatedOn": "2026-10-08T17:55:18.8737783+00:00",
+   "lastMessageOn": "2026-10-08T17:32:45.6925667+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26w386-0",
+     "text": "På bakgrunn  av problemer med telenettet kan publikum oppleve å ikke komme gjennom til nødetatene på 110,112 og 113 eller vanlige nummer til brann, ambulanse eller politi. Om du er i nød og ikke kommer gjennom, oppsøk lokal politistasjon, brann eller ambulansestasjon.",
+     "createdOn": "2026-10-08T14:35:23.9203228+00:00",
+     "updatedOn": "2026-10-08T14:35:24.112137+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26w386-1",
+     "text": "Det kan være problematisk å komme i kontakt med lokalt brannvesen der det er etablert av frivillige. Oppsøk politi eller ambulanse.",
+     "createdOn": "2026-10-08T15:02:59.6194439+00:00",
+     "updatedOn": "2026-10-08T15:02:59.6194439+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26w386-2",
+     "text": "Det er også slik at ambulansestasjoner ikke er bemannet. Oppsøk derfor legevakt eller sykehus.",
+     "createdOn": "2026-10-08T15:52:07.0751537+00:00",
+     "updatedOn": "2026-10-08T15:52:07.0751537+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26w386-3",
+     "text": "Politiets operasjonssentral kan nåes på tlf 33344400.",
+     "createdOn": "2026-10-08T16:13:26.619479+00:00",
+     "updatedOn": "2026-10-08T16:13:26.619479+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26w386-4",
+     "text": "Det er også mulig for innbyggerne i Sør-Øst å få kontakt med politiet via nettpatruljen på politiet.no.",
+     "createdOn": "2026-10-08T16:28:12.071386+00:00",
+     "updatedOn": "2026-10-08T16:28:12.071386+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26w386-5",
+     "text": "Politiet har nå fått melding om at problemet med telefonlinjene er løst og fungerer som normalt.",
+     "createdOn": "2026-10-08T17:32:45.6925667+00:00",
+     "updatedOn": "2026-10-08T17:32:45.6925667+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26pm66",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Andre hendelser",
+   "municipality": "Øst politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-08T14:39:43.3019792+00:00",
+   "updatedOn": "2026-10-08T18:11:30.4754175+00:00",
+   "lastMessageOn": "2026-10-08T17:32:28.4273472+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26pm66-0",
+     "text": "Det er store problemer med telefoni, som gjør at politiet mest sannsynlig ikke får inn alle telefoner. Det er problemer både med 112 og 02800. \n\nDersom man trenger å komme i kontakt med politiet i Øst politidistrikt, men ikke kommer igjennom på hurtignumrene 112 og 02800 kan man forsøke å benytte følgende nummer: \n\n64999072 for nødanrop\n64993000 for samtaler som ikke er nød.",
+     "createdOn": "2026-10-08T14:39:43.3017674+00:00",
+     "updatedOn": "2026-10-08T14:41:26.0441481+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Edited"
+    },
+    {
+     "id": "26pm66-1",
+     "text": "Telenor melder at feilen nå er rettet, og alt skal fungere som normalt igjen.",
+     "createdOn": "2026-10-08T17:32:28.4273472+00:00",
+     "updatedOn": "2026-10-08T17:32:28.4273472+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26315m",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Andre hendelser",
+   "municipality": "Innlandet politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-08T14:51:42.8308772+00:00",
+   "updatedOn": "2026-10-08T18:02:39.0446116+00:00",
+   "lastMessageOn": "2026-10-08T17:31:19.7206928+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26315m-0",
+     "text": "Nødetatene opplever store problemer med mobilnettet. Vi opplever at publikum ikke får kontakt på telefon med nødetatene. Dersom det er behov for politi og publikum ikke oppnår kontakt kan man først forsøke å ringe 625 39000. Vi er i ferd med å bemanne politistasjonene i Innlandet slik at publikum som ikke kommer gjennom på telefon, fysisk kan møte på disse stedene. Vi kan fra disse stedene formidle kontakt til andre nødetater.",
+     "createdOn": "2026-10-08T14:51:42.8304665+00:00",
+     "updatedOn": "2026-10-08T14:51:42.8978592+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26315m-1",
+     "text": "Telenor melder at problemene er løst. Vi går nå tilbake til normal drift.",
+     "createdOn": "2026-10-08T17:31:19.7206928+00:00",
+     "updatedOn": "2026-10-08T17:31:19.7206928+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26w3dp",
+   "district": "Trøndelag Politidistrikt",
+   "districtId": 209,
+   "category": "Andre hendelser",
+   "municipality": "Trøndelag politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-08T16:11:06.5523233+00:00",
+   "updatedOn": "2026-10-08T21:49:55.4609009+00:00",
+   "lastMessageOn": "2026-10-08T17:28:04.6653145+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26w3dp-0",
+     "text": "Det er store problemer med deler av mobilnettet i hele landet.\nFår du ikke kontakt med oss på 02800, kan du ringe 73899090.\nEr du i nød og ikke får kontakt med oss på 112, kan du ta ut SIM-kortet i telefonen, og deretter ringe 112.",
+     "createdOn": "2026-10-08T16:11:06.5519354+00:00",
+     "updatedOn": "2026-10-08T16:11:06.6431244+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26w3dp-1",
+     "text": "Feilen i mobilnettet er fikset.\nVi nås som vanlig på 02800 og 112.",
+     "createdOn": "2026-10-08T17:28:04.6653145+00:00",
+     "updatedOn": "2026-10-08T17:28:04.6653145+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26f7gw",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Andre hendelser",
+   "municipality": "Agder politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-08T14:38:49.742973+00:00",
+   "updatedOn": "2026-10-08T18:56:02.9224063+00:00",
+   "lastMessageOn": "2026-10-08T17:15:10.0048392+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26f7gw-0",
+     "text": "På bakgrunn av problemer med telenettet kan publikum oppleve å ikke komme gjennom til politiet på 02800 og 112. Det er også problemer med nødnummer til 110 og 113. Teleoperatørene jobber med å løse problemet.\nDersom du er i nød og ikke kommer gjennom til nødetatene, kan du oppsøke nærmeste politistasjon eller ta kontakt med patruljer ute.",
+     "createdOn": "2026-10-08T14:38:49.7427363+00:00",
+     "updatedOn": "2026-10-08T14:38:49.8276874+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26f7gw-1",
+     "text": "Et annet alternativ er å ringe politiet på 38136000 dersom du ikke kommer gjennom på 02800/112.",
+     "createdOn": "2026-10-08T15:34:49.9796459+00:00",
+     "updatedOn": "2026-10-08T15:34:49.9796459+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26f7gw-2",
+     "text": "Problemene med telenettet skal nå være rettet og politiets nummer 02800/112 skal fungere som normalt.",
+     "createdOn": "2026-10-08T17:15:10.0048392+00:00",
+     "updatedOn": "2026-10-08T17:15:10.0048392+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26j08m",
+   "district": "Oslo Politidistrikt",
+   "districtId": 201,
+   "category": "Andre hendelser",
+   "municipality": "Oslo politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-08T14:18:40.4574015+00:00",
+   "updatedOn": "2026-10-08T17:33:14.8227567+00:00",
+   "lastMessageOn": "2026-10-08T17:14:09.4707048+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26j08m-0",
+     "text": "På bakgrunn av problemer med telenettet kan publikum oppleve å ikke komme igjennom til politiet på 112 og 02800. Politiet vil tilstrebe å være tilgjengelig for publikum ute med patruljer. Teleoperatørene som har problemer, jobber for å ordne problemet.\nMan kan prøve å ringe 22669050.  \nDret vil stå uniformert politi utenfor hovedinngangen til politistasjonene i Oslo politidistrikt. Der kan det tas kontakt ved behov. \n",
+     "createdOn": "2026-10-08T14:18:40.4569917+00:00",
+     "updatedOn": "2026-10-08T15:24:12.7061128+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Edited"
+    },
+    {
+     "id": "26j08m-1",
+     "text": "Det meldes om at feilen er rettet. Publikum kan forholde seg til de normale telefonlinjene 02800 og 112.",
+     "createdOn": "2026-10-08T17:14:09.4707048+00:00",
+     "updatedOn": "2026-10-08T17:14:09.4707048+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26bj7m",
+   "district": "Møre og Romsdal Politidistrikt",
+   "districtId": 208,
+   "category": "Andre hendelser",
+   "municipality": "Møre og Romsdal politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-08T14:39:37.8136561+00:00",
+   "updatedOn": "2026-10-08T17:55:35.8557915+00:00",
+   "lastMessageOn": "2026-10-08T17:13:20.9628027+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26bj7m-0",
+     "text": "Det er for tiden store problemer med telefoni i hele landet. Dette berører også henvendelser til politiet. Får en ikke kontakt med politiet på 02800 eller 112 så kan en prøve 70118700. Det arbeides for å løse problemet så raskt som mulig.\nOppdateres.",
+     "createdOn": "2026-10-08T14:39:37.8134746+00:00",
+     "updatedOn": "2026-10-08T14:39:37.8890647+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26bj7m-1",
+     "text": "Problemene med telefoni er nå rettet. Alt skal nå fungere som normalt.",
+     "createdOn": "2026-10-08T17:13:20.9628027+00:00",
+     "updatedOn": "2026-10-08T17:13:20.9628027+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26dv6d",
+   "district": "Sør-Vest Politidistrikt",
+   "districtId": 206,
+   "category": "Andre hendelser",
+   "municipality": "Sør-Vest politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-08T14:43:34.8686848+00:00",
+   "updatedOn": "2026-10-08T21:21:14.2063478+00:00",
+   "lastMessageOn": "2026-10-08T14:43:34.8684596+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26dv6d-0",
+     "text": "Det er problemer med mobilnettet nasjonalt. Sør - Vest politidistrikt har opplevd problemer både med 112 og 02800. Oppnås det ikke kontakt med politiet på disse numrene kan tlf nr 51 89 90 00 forsøkes.",
+     "createdOn": "2026-10-08T14:43:34.8684596+00:00",
+     "updatedOn": "2026-10-08T14:43:34.956426+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26768t",
+   "district": "Finnmark Politidistrikt",
+   "districtId": 212,
+   "category": "Andre hendelser",
+   "municipality": "Finnmark politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-08T14:36:54.7423989+00:00",
+   "updatedOn": "2026-10-09T22:50:38.7455148+00:00",
+   "lastMessageOn": "2026-10-08T14:36:54.741979+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26768t-0",
+     "text": "Det er nasjonale problemer med telefoni, nødlinjen inn til politiet i Finnmark er også berørt. \nEr du i nød eller trenger du å komme i kontakt med politiet i Finnmark, ring 78972000. Du vil da bli koblet videre til politiets operasjonssentral.",
+     "createdOn": "2026-10-08T14:36:54.741979+00:00",
+     "updatedOn": "2026-10-08T14:36:54.8041475+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26v2ns",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Andre hendelser",
+   "municipality": "Øst politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-08T09:46:42.0058775+00:00",
+   "updatedOn": "2026-10-08T09:46:46.7769178+00:00",
+   "lastMessageOn": "2026-10-08T09:46:42.005426+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26v2ns-0",
+     "text": "Politiet har idag pågrepet en norsk mann i 20 årene et stykke inn i Sverige, sør for riksgrensen på Svinesund. Bakgrunnen for pågripelsen er brudd på vilkårene i et besøksforbud han er ilagt av politiet. Han opphold seg i et område han ikke har lov til å befinne seg i og kjørte videre inn i Sverige. For å få kontroll på siktede bistod patruljer fra Polisen i Sverige. Pågripelsen forløp rolig. Mannen er innsatt i arrest i Norge.",
+     "createdOn": "2026-10-08T09:46:42.005426+00:00",
+     "updatedOn": "2026-10-08T09:46:42.2239082+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26tnsc",
+   "district": "Oslo Politidistrikt",
+   "districtId": 201,
+   "category": "Andre hendelser",
+   "municipality": "Oslo politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-08T06:07:26.9994635+00:00",
+   "updatedOn": "2026-10-08T10:29:43.7818669+00:00",
+   "lastMessageOn": "2026-10-08T06:07:26.9990667+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26tnsc-0",
+     "text": "I dag gjennomfører politi, brann og helse felles PLIVO øvelse i Oslo sentrum, og enkelte områder utenfor sentrum. \n\nPLIVO står for pågående livstruende vold, og under øvelsen trener nødetatene sammen på å håndtere alvorlige og tidskritiske hendelser. Øvelsen vil gjennomføres så realistisk som mulig. Det betyr at du vil kunne se synlig bevæpnet politi, brannbiler og helsepersonell som en del av øvelsen.\n\nDet vil bli satt ut skilt som viser at det pågår øvelse der aktiviteten finner sted. Instruktører i oransje vester vil også være til stede og svare på spørsmål fra publikum.",
+     "createdOn": "2026-10-08T06:07:26.9990667+00:00",
+     "updatedOn": "2026-10-08T06:07:27.0438306+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26h43h",
+   "district": "Møre og Romsdal Politidistrikt",
+   "districtId": 208,
+   "category": "Andre hendelser",
+   "municipality": "Møre og Romsdal politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-05T15:39:28.3672229+00:00",
+   "updatedOn": "2026-10-05T16:16:58.5952065+00:00",
+   "lastMessageOn": "2026-10-05T15:39:28.3670224+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26h43h-0",
+     "text": "VI mottar melding fra VTS om at personer tar seg til fots over bruer som er stengt. Vi oppfordrer alle til å forholde seg til stengningene av vegstrekninger fra VTS.",
+     "createdOn": "2026-10-05T15:39:28.3670224+00:00",
+     "updatedOn": "2026-10-05T15:39:28.4152942+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26vth0",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Andre hendelser",
+   "municipality": "Agder politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-04T02:35:54.0007391+00:00",
+   "updatedOn": "2026-10-04T03:19:48.5984544+00:00",
+   "lastMessageOn": "2026-10-04T02:35:54.0005302+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26vth0-0",
+     "text": "Natten i Agder Politidistrikt har i det store vært preget av typiske helgeoppdrag. Vi har for det meste håndtert ordensforstyrrelser, tilløp til slagsmål og voldsepisoder i flere byer i Agder. Flere personer er bortvist fra sentrumsområdene i Arendal, Kristiansand og Farsund. I tillegg har politiet i natt pågrepet totalt 4 personer for vold og trusler. Politiet har hatt synlig tilstedeværelse som har hindret flere situasjoner i å utvikle seg.",
+     "createdOn": "2026-10-04T02:35:54.0005302+00:00",
+     "updatedOn": "2026-10-04T02:35:54.1256021+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "269xbn",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Andre hendelser",
+   "municipality": "Sør-Øst politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-01T05:31:54.2811469+00:00",
+   "updatedOn": "2026-10-01T11:04:26.3437837+00:00",
+   "lastMessageOn": "2026-10-01T11:04:23.0919917+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "269xbn-0",
+     "text": "Nødetatene skal i løpet av dagen gjennomføre flere PLIVO - Øvelser på ulike steder i Sør-Øst politidistrikt. Stedet hvor øvelsene foregår vil bli skiltet.",
+     "createdOn": "2026-10-01T05:31:54.280882+00:00",
+     "updatedOn": "2026-10-01T05:31:54.3290347+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "269xbn-1",
+     "text": "PLIVO - øvelsene i Sør-Øst politidistrikt er gjennomført for denne gang.",
+     "createdOn": "2026-10-01T11:04:23.0919917+00:00",
+     "updatedOn": "2026-10-01T11:04:23.0919917+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "262f8n",
+   "district": "Oslo Politidistrikt",
+   "districtId": 201,
+   "category": "Andre hendelser",
+   "municipality": "Oslo politidistrikt",
+   "area": "",
+   "createdOn": "2026-10-01T06:06:01.7156578+00:00",
+   "updatedOn": "2026-10-01T09:10:19.8503003+00:00",
+   "lastMessageOn": "2026-10-01T06:06:01.7154573+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "262f8n-0",
+     "text": "I dag gjennomfører politi, brann og helse felles PLIVO øvelse i Oslo sentrum, og enkelte områder utenfor sentrum. \n\nPLIVO står for pågående livstruende vold, og under øvelsen trener nødetatene sammen på å håndtere alvorlige og tidskritiske hendelser. Øvelsen vil gjennomføres så realistisk som mulig. Det betyr at du vil kunne se synlig bevæpnet politi, brannbiler og helsepersonell som en del av øvelsen.\n\nDet vil bli satt ut skilt som viser at det pågår øvelse der aktiviteten finner sted. Instruktører i oransje vester vil også være til stede og svare på spørsmål fra publikum.",
+     "createdOn": "2026-10-01T06:06:01.7154573+00:00",
+     "updatedOn": "2026-10-01T06:06:01.8159078+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "262bcv",
+   "district": "Oslo Politidistrikt",
+   "districtId": 201,
+   "category": "Savnet",
+   "municipality": "Oslo politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-29T09:05:54.5393593+00:00",
+   "updatedOn": "2026-09-29T09:46:01.6349175+00:00",
+   "lastMessageOn": "2026-09-29T09:45:59.0942642+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "262bcv-0",
+     "text": "Vi trenger publikums hjelp til å finne en saknet mann som heter NN, sist sett i området Lovisenberg kl 07. Har trolig på seg en mørkblå/sort dunjakke, ca 180 cm. Han oppfattes som glemsk, forvirret, men er på ingen på farlig. Har du observasjon på NN nå så ring oss på 112 og forsøk å hold observasjon til vi kommer. Viser til vedlagt bilde.",
+     "createdOn": "2026-09-29T09:05:54.5305601+00:00",
+     "updatedOn": "2026-09-29T09:46:19.7474753+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": true,
+     "type": "Edited"
+    },
+    {
+     "id": "262bcv-2",
+     "text": "Saknede er funnet av familie og er i god behold.",
+     "createdOn": "2026-09-29T09:45:59.0942642+00:00",
+     "updatedOn": "2026-09-29T09:45:59.0942642+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26f5lq",
+   "district": "Oslo Politidistrikt",
+   "districtId": 201,
+   "category": "Savnet",
+   "municipality": "Oslo politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-16T16:26:49.0893951+00:00",
+   "updatedOn": "2026-09-27T10:25:30.0799802+00:00",
+   "lastMessageOn": "2026-09-27T05:25:11.000879+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26f5lq-0",
+     "text": "Vi søker etter en savnet kvinne som sist er sett kl 09:50 i dag i området Majorstuen. Beskrivelse: Mørk bukse, genser med forskjellige farger og joggesko. 169cm, slank, bruker briller. Se foto.\n\nHar du observert saknede eller har informasjon i saken så ta kontakt på 02800. Ser du saknede nå, så ring oss på 112.",
+     "createdOn": "2026-09-16T16:26:49.0804098+00:00",
+     "updatedOn": "2026-09-21T20:55:23.5509234+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": true,
+     "type": "Published"
+    },
+    {
+     "id": "26f5lq-2",
+     "text": "Politiet har innhentet videoovervåkning. Aktuelt bilde viser savnede i dag og hennes klesdrakt.",
+     "createdOn": "2026-09-16T18:10:08.4835202+00:00",
+     "updatedOn": "2026-09-21T20:55:23.5509234+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": true,
+     "type": "Published"
+    },
+    {
+     "id": "26f5lq-3",
+     "text": "Vi er godt i gang med å søke etter savnede, vi får god hjelp av frivillige (FORF). Området Smestad, Frøn, Vinderen, Majorstuen, Skøyen, Frogner er aktuelle. Vi ber beboere i område sjekke ut garasjer, boder, fellesområdet etc.",
+     "createdOn": "2026-09-16T20:12:28.860442+00:00",
+     "updatedOn": "2026-09-16T20:14:59.7457552+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Edited"
+    },
+    {
+     "id": "26f5lq-6",
+     "text": "Vi har søkt etter savnede sammen med FORF igjennom natten uten å ha funnet henne. \n\nDamen er sist sett utenfor Diakonhjemmet onsdag 16.9 kl. 09:30. Hun kan også ha beveget seg langt i den perioden hun har vært savnet.\n\nVed mulig observasjoner ønsker vi at det tas kontakt med politiet på 02800.",
+     "createdOn": "2026-09-17T04:02:46.3266047+00:00",
+     "updatedOn": "2026-09-17T04:02:46.3266047+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26f5lq-7",
+     "text": "Politiet leter fortsatt etter kvinnen på bildet. Hun har nå vært borte i over et døgn og vi ønsker så mange tips som mulig. Som et tillegg på beskrivelsen så legger vi til at hun er 66 år gammel. Legg også merke til at at boblevesten hun har på seg er lang og når nesten til knærne. Den er av merket Nike og vi legger ut bilde av den også. Det er mulig at savnede har gått opp mot Nordmarka et eller annet sted.  Ring politiet så raskt som mulig på 112 /02800 dersom du ser eller har sett noen som passer beskrivelsen.",
+     "createdOn": "2026-09-17T09:21:53.5189695+00:00",
+     "updatedOn": "2026-09-21T20:55:23.5509234+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": true,
+     "type": "Published"
+    },
+    {
+     "id": "26f5lq-8",
+     "text": "Her er bilde av savnede med vesten hun skal ha på seg.",
+     "createdOn": "2026-09-17T09:23:01.4987927+00:00",
+     "updatedOn": "2026-09-21T20:55:23.5509234+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": true,
+     "type": "Published"
+    },
+    {
+     "id": "26f5lq-11",
+     "text": "Bilde av savnede.",
+     "createdOn": "2026-09-22T07:33:38.1172535+00:00",
+     "updatedOn": "2026-09-27T05:25:45.357533+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": true,
+     "type": "Edited"
+    },
+    {
+     "id": "26f5lq-12",
+     "text": "Savnede er fortsatt savnet.  Ved mulig observasjoner ønsker vi at det tas kontakt med politiet på 02800.",
+     "createdOn": "2026-09-22T07:35:11.3121565+00:00",
+     "updatedOn": "2026-09-22T07:35:11.3121565+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26f5lq-13",
+     "text": "Bilde av savnede med vesten hun skal ha vært iført.",
+     "createdOn": "2026-09-22T07:38:08.607767+00:00",
+     "updatedOn": "2026-09-27T05:25:41.4976065+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": true,
+     "type": "Edited"
+    },
+    {
+     "id": "26f5lq-14",
+     "text": "Savnede.",
+     "createdOn": "2026-09-22T07:39:37.4786425+00:00",
+     "updatedOn": "2026-09-27T05:25:38.0214007+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": true,
+     "type": "Edited"
+    },
+    {
+     "id": "26f5lq-15",
+     "text": "Savnede sett bakfra.",
+     "createdOn": "2026-09-22T07:42:08.2559247+00:00",
+     "updatedOn": "2026-09-27T05:25:33.3472754+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": true,
+     "type": "Edited"
+    },
+    {
+     "id": "26f5lq-16",
+     "text": "Savnede er til rette. Hun følges opp  av politi og helse all den tid hun har vært savnet i så lang tid.",
+     "createdOn": "2026-09-27T05:25:11.000879+00:00",
+     "updatedOn": "2026-09-27T05:25:11.000879+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "2623tt",
+   "district": "Nordland Politidistrikt",
+   "districtId": 210,
+   "category": "Brann",
+   "municipality": "Nordland politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-26T11:06:04.3134336+00:00",
+   "updatedOn": "2026-09-26T17:20:23.4206708+00:00",
+   "lastMessageOn": "2026-09-26T13:02:04.3183038+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "2623tt-0",
+     "text": "Patrulje fra Sortland kjører mot Sørdalen og bistår Troms PD. En henger har tatt fyr og står ved siden av E10 og det er en sikkerhetsavstand på 100 meter.  E10 vil derfor bli stengt til det er kontroll på stedet. Dette er i nærheten av Sørdalstunellen på østlig side. Trailersjåfør er uskadd .",
+     "createdOn": "2026-09-26T11:06:04.3132314+00:00",
+     "updatedOn": "2026-09-26T11:06:04.3586632+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "2623tt-2",
+     "text": "Det vil bli sluppet gjennom enkelte puljer med kjøretøy gjennom stedet via dirigering.",
+     "createdOn": "2026-09-26T11:34:54.3200886+00:00",
+     "updatedOn": "2026-09-26T11:34:54.3200886+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "2623tt-3",
+     "text": "Brannvesenet er ennå på stedet og bedriver kontrollert nedbrenning av kjøretøyet. Trafikken dirigeres forbi puljevis en god stund fremover.",
+     "createdOn": "2026-09-26T13:02:04.3183038+00:00",
+     "updatedOn": "2026-09-26T13:02:04.3183038+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "262xkf",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Dyr",
+   "municipality": "Innlandet politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-25T10:51:24.5997787+00:00",
+   "updatedOn": "2026-09-25T11:03:10.9969205+00:00",
+   "lastMessageOn": "2026-09-25T10:51:24.5995505+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "262xkf-0",
+     "text": "Det er mange viltpåkjørsler for tiden. I tidsrommet kl. 0618 til kl. 0738 har politiet fått innmeldt 11 viltpåkjørsler. Det gjaldt 6 rådyr og 5 elg. Vi kontakter viltnemnd som foretar ettersøk eller fjerner døde dyr. \nKjør forsiktig og beveg blikket utom vegkantene også.",
+     "createdOn": "2026-09-25T10:51:24.5995505+00:00",
+     "updatedOn": "2026-09-25T10:51:24.6475072+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26sfbj",
+   "district": "Oslo Politidistrikt",
+   "districtId": 201,
+   "category": "Andre hendelser",
+   "municipality": "Oslo politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-24T21:30:41.7474478+00:00",
+   "updatedOn": "2026-09-24T21:30:56.4134575+00:00",
+   "lastMessageOn": "2026-09-24T21:30:41.747214+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26sfbj-0",
+     "text": "Torsdagene i uke 39, 40 og 41 gjennomfører politi, brann og helse felles PLIVO øvelser i Oslo sentrum, og enkelte områder utenfor sentrum. \n\nPLIVO står for pågående livstruende vold, og under øvelsene trener nødetatene sammen på å håndtere alvorlige og tidskritiske hendelser. Øvelsene vil gjennomføres så realistisk som mulig. Det betyr at du vil kunne se synlig bevæpnet politi, brannbiler og helsepersonell som en del av øvelsene.\n\nDet vil bli satt ut skilt som viser at det pågår øvelser der aktiviteten finner sted. Instruktører i oransje vester vil også være til stede og svare på spørsmål fra publikum.",
+     "createdOn": "2026-09-24T21:30:41.747214+00:00",
+     "updatedOn": "2026-09-24T21:30:41.793429+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26xmb4",
+   "district": "Oslo Politidistrikt",
+   "districtId": 201,
+   "category": "Savnet",
+   "municipality": "Oslo politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-21T16:24:30.3694136+00:00",
+   "updatedOn": "2026-09-21T17:11:18.1051346+00:00",
+   "lastMessageOn": "2026-09-21T17:11:13.0412547+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26xmb4-0",
+     "text": "Politiet i Øst politidistrikt leter etter en eldre kvinne på 82 år som sist var sett rundt klokken 1300 på Skedsmokorset fra et bo og behandlingsenter. Det kan ikke utelukkes at savnede er i Oslo politidistrikt.\n\nHun blir beskrevet som oppegående og fysisk sprek, 163 cm høy, slank kroppsbygning og har kortklippet grått hår. Er i ført en lysegrå jakke, mørke bukser, svarte hansker. Mulig hun har på seg biller. Bruker høreapparat. På grunn av sykdom har saknede manglende orienteringsevne. \n\nVed observasjon kan politiet i Øst politidistrikt kontaktes på tlf nr 64999130.",
+     "createdOn": "2026-09-21T16:24:30.3692116+00:00",
+     "updatedOn": "2026-09-21T16:24:30.4168647+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "26xmb4-1",
+     "text": "Bilde av savnede.",
+     "createdOn": "2026-09-21T16:27:30.3340721+00:00",
+     "updatedOn": "2026-09-21T17:11:16.7156426+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": true,
+     "type": "Edited"
+    },
+    {
+     "id": "26xmb4-2",
+     "text": "Savnede er funnet og i god behold.",
+     "createdOn": "2026-09-21T17:11:13.0412547+00:00",
+     "updatedOn": "2026-09-21T17:11:13.0412547+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26m7sp",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Ro og orden",
+   "municipality": "Sør-Øst politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-20T15:35:24.0172592+00:00",
+   "updatedOn": "2026-09-20T15:40:08.3615782+00:00",
+   "lastMessageOn": "2026-09-20T15:35:24.017073+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26m7sp-0",
+     "text": "Klokken 1725:\n\nPolitiet har en oppfordring om at ungdommer som bedriver \"ringepigge\" og kaster epler på husstander flere steder i distriktet om å slutte med dette.\n\nDet generer flere nødtelefoner inn til politiet og legger beslag på tid vi trenger å bruke på mer alvorlige saker.",
+     "createdOn": "2026-09-20T15:35:24.017073+00:00",
+     "updatedOn": "2026-09-20T15:35:24.0635239+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26hqr9",
+   "district": "Sør-Vest Politidistrikt",
+   "districtId": 206,
+   "category": "Andre hendelser",
+   "municipality": "Sør-Vest politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-20T03:42:15.9685817+00:00",
+   "updatedOn": "2026-09-20T03:42:20.8851003+00:00",
+   "lastMessageOn": "2026-09-20T03:42:15.9683972+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26hqr9-0",
+     "text": "Det er har vært en relativt normal natt til søndag i distriktet. I stort en del bortvisninger, mindre slagsmål og ordensforstyrrelser.",
+     "createdOn": "2026-09-20T03:42:15.9683972+00:00",
+     "updatedOn": "2026-09-20T03:42:16.0123635+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26q0bm",
+   "district": "Møre og Romsdal Politidistrikt",
+   "districtId": 208,
+   "category": "Andre hendelser",
+   "municipality": "Møre og Romsdal politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-20T01:41:13.592005+00:00",
+   "updatedOn": "2026-09-20T01:42:19.5821037+00:00",
+   "lastMessageOn": "2026-09-20T01:41:13.5918122+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26q0bm-0",
+     "text": "Politiet har blitt kontaktet av en person som har blitt utelåst fra sitt eget hjem av nattens flamme. Kom seg til slutt inn i egen bopel uten dramatikk.",
+     "createdOn": "2026-09-20T01:41:13.5918122+00:00",
+     "updatedOn": "2026-09-20T01:41:13.6399568+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "268l1z",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Andre hendelser",
+   "municipality": "Øst politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-20T01:35:11.6384341+00:00",
+   "updatedOn": "2026-09-20T01:36:12.2092897+00:00",
+   "lastMessageOn": "2026-09-20T01:35:11.6382419+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "268l1z-0",
+     "text": "Politiet har så langt i natt tatt hånd om 3 overstadige berusede personer som ikke var i stand til å ta vare på seg selv. Vi har fått disse personene trygt hjem. Pass på så dere ikke drikker for mye.",
+     "createdOn": "2026-09-20T01:35:11.6382419+00:00",
+     "updatedOn": "2026-09-20T01:35:11.6856328+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26j6z8",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Trafikk",
+   "municipality": "Sør-Øst politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-19T13:58:31.1641935+00:00",
+   "updatedOn": "2026-09-19T14:19:15.3812423+00:00",
+   "lastMessageOn": "2026-09-19T13:58:31.1639165+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26j6z8-0",
+     "text": "Det har i løpet av formiddagen vært gjennomført diverse trafikkontroller i Sør-Øst Politidistrikt.\n\nMed fokus både på hastighet og mobilbruk og ruskjøring.\n\nDet har resultert i flere forenklede forelegg.\n\nKontrollene er nå avsluttet.",
+     "createdOn": "2026-09-19T13:58:31.1639165+00:00",
+     "updatedOn": "2026-09-19T13:58:31.2124978+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26r9pr",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Savnet",
+   "municipality": "Øst politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-19T08:36:54.7332267+00:00",
+   "updatedOn": "2026-09-27T05:45:43.9176298+00:00",
+   "lastMessageOn": "2026-09-19T09:42:52.9424757+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26r9pr-0",
+     "text": "Politiet i Oslo leter fortsatt etter kvinnen på bildet. Den savnede kan også befinne seg i Øst politidistrikt. Hun har nå vært borte i over et døgn og vi ønsker så mange tips som mulig. Som et tillegg på beskrivelsen så legger vi til at hun er 66 år gammel. Legg også merke til at at boblevesten hun har på seg er lang og når nesten til knærne. Den er av merket Nike og vi legger ut bilde av den også. Det er mulig at savnede har gått opp mot Nordmarka et eller annet sted.  Ring politiet så raskt som mulig på 112 /22669050 dersom du ser eller har sett noen som passer beskrivelsen.",
+     "createdOn": "2026-09-19T08:36:54.7130465+00:00",
+     "updatedOn": "2026-09-27T05:45:35.9887583+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": true,
+     "type": "Edited"
+    }
+   ]
+  },
+  {
+   "id": "265d81",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Savnet",
+   "municipality": "Sør-Øst politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-19T09:28:15.9316868+00:00",
+   "updatedOn": "2026-09-19T10:56:44.7510647+00:00",
+   "lastMessageOn": "2026-09-19T09:28:15.9314658+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "265d81-0",
+     "text": "Politiet i Oslo leter fortsatt etter en savnet kvinnen i 60 årene. Den savnede kan også befinne seg i Sør-Øst politidistrikt. Savnede er trolig i ført en knelang mørk boblevest av merket \"Nike\". Det er mulig at savnede har gått opp mot Nordmarka eller annet sted. Ring politiet på 112 /22669050 dersom du ser eller har sett noen som passer beskrivelsen. Se Politiloggen til Oslo Politidistrikt av 16.09.2026 kl 18:26 for ytterligere detaljer.",
+     "createdOn": "2026-09-19T09:28:15.9314658+00:00",
+     "updatedOn": "2026-09-19T09:39:15.7503195+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Edited"
+    }
+   ]
+  },
+  {
+   "id": "26md4m",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Sjø",
+   "municipality": "Sør-Øst politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-18T20:10:15.6485654+00:00",
+   "updatedOn": "2026-09-18T20:19:55.5315537+00:00",
+   "lastMessageOn": "2026-09-18T20:10:15.6378171+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26md4m-0",
+     "text": "Hovedredningssentralen har funnet en drivende båt i området Hui/ Lindholmen.\n\nDet er en Yamarin 58 BR\n\nEier kan kontakte HRS.",
+     "createdOn": "2026-09-18T20:10:15.6378171+00:00",
+     "updatedOn": "2026-09-18T20:10:15.7090211+00:00",
+     "hasImage": true,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26t8zd",
+   "district": "Finnmark Politidistrikt",
+   "districtId": 212,
+   "category": "Sjø",
+   "municipality": "Finnmark politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-18T07:45:13.6678916+00:00",
+   "updatedOn": "2026-09-18T07:47:41.9979803+00:00",
+   "lastMessageOn": "2026-09-18T07:45:13.6676762+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26t8zd-0",
+     "text": "Kystverket er ilagt et forelegg på 750 000 kroner etter et dieselutslipp ved Vardø fyr på Hornøya i Vardø kommune i januar 2025. Les mer: https://www.politiet.no/nyheter-og-presse/finnmark/nyhet/2026-09-18/kystverket-ilagt-forelegg-pa-750-000-kroner",
+     "createdOn": "2026-09-18T07:45:13.6676762+00:00",
+     "updatedOn": "2026-09-18T08:09:39.2630284+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Edited"
+    }
+   ]
+  },
+  {
+   "id": "26s886",
+   "district": "Sør-Øst Politidistrikt",
+   "districtId": 204,
+   "category": "Savnet",
+   "municipality": "Sør-Øst politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-17T19:35:20.2536622+00:00",
+   "updatedOn": "2026-09-18T05:01:11.2993411+00:00",
+   "lastMessageOn": "2026-09-17T19:37:35.7406771+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26s886-0",
+     "text": "Oslo politidistrikt leter etter en savnet kvinne på 66 år. Kvinnen er sist sett i området Majorstua onsdag 16.09.26 kl. 09:50. Kvinnen er trolig iført en mørk buks, mørk tynn boblevest mrk. Nike, og joggesko. Hun er ca. 169 cm høy, slank og bruker briller. Kontakt politiet på tlf. 02800, eller sendt tips til Oslo politidistrikt.",
+     "createdOn": "2026-09-17T19:35:20.2533253+00:00",
+     "updatedOn": "2026-09-18T05:01:11.2993411+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": true,
+     "type": "Published"
+    },
+    {
+     "id": "26s886-1",
+     "text": "Kvinnen har trolig på seg samme Nike vest som på bilde.",
+     "createdOn": "2026-09-17T19:37:35.7406771+00:00",
+     "updatedOn": "2026-09-18T05:01:11.2993411+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": true,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26mnbc",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Savnet",
+   "municipality": "Innlandet politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-17T17:19:05.8201027+00:00",
+   "updatedOn": "2026-09-19T00:07:23.5898581+00:00",
+   "lastMessageOn": "2026-09-17T17:19:59.7447021+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26mnbc-0",
+     "text": "Innlandet politidistrikt deler denne savnetmeldingen fra Oslo politidistrikt:\n\nOslo politidistrikt leter etter en savnet kvinne på 66 år. \nKvinnen er sist sett i området Majorstua, 16.09, kl. 09:50. \n\nViser til foto hva gjelder beskrivelse. Kvinnen var ikledd en mørk bukse, mørk tynn boblevest(merket \"Nike\") og joggesko. Hun er ca 169 høy, slank og bruker briller.  \nVesten savnede har på seg, er den samme som hun har på seg på bildet. \n\nHar du noe informasjon vedrørende denne saken, kontakt politiet på tlf 02800, eller sendt tips til Oslo politidistrikt.",
+     "createdOn": "2026-09-17T17:19:05.7988665+00:00",
+     "updatedOn": "2026-09-19T00:07:23.5898581+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": true,
+     "type": "Published"
+    },
+    {
+     "id": "26mnbc-1",
+     "text": "Bilde 2.",
+     "createdOn": "2026-09-17T17:19:59.7447021+00:00",
+     "updatedOn": "2026-09-19T00:07:23.5898581+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": true,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "261rtz",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Savnet",
+   "municipality": "Øst politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-12T14:40:52.240571+00:00",
+   "updatedOn": "2026-09-16T12:58:02.0314195+00:00",
+   "lastMessageOn": "2026-09-16T12:56:20.6548822+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "261rtz-0",
+     "text": "Politiet ønsker opplysninger om savnet jente på 16 år.  Hun forsvant fra området Kløfta, men kan befinne seg i hele Østlandsområdet. \nHun er:  Ca 160 cm høy, tynn, har svart hår.  Hun skal muligens ha på seg en mørk genser og grå bukse og ha med seg en brun veske. \nDersom du har opplysninger om henne, ring politiet på 45636754.",
+     "createdOn": "2026-09-12T14:40:52.2374219+00:00",
+     "updatedOn": "2026-09-16T12:57:59.1662969+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": true,
+     "type": "Edited"
+    },
+    {
+     "id": "261rtz-1",
+     "text": "Personen er tilrette.",
+     "createdOn": "2026-09-16T12:56:20.6548822+00:00",
+     "updatedOn": "2026-09-16T12:56:20.6548822+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "263srp",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Andre hendelser",
+   "municipality": "Innlandet politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-11T14:28:59.8449695+00:00",
+   "updatedOn": "2026-09-11T16:41:37.542118+00:00",
+   "lastMessageOn": "2026-09-11T14:28:59.844722+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "263srp-0",
+     "text": "Politiet har fått flere meldinger om utenlandske varebiler som forsøker å selge verktøy til tilfeldige personer. Det skal være flere biler og vi har fått meldinger fra flere stedet i Innlandet. Politiet ønsker å komme i kontakt med disse og ønsker derfor tips dersom noen har observasjoner på bilene.",
+     "createdOn": "2026-09-11T14:28:59.844722+00:00",
+     "updatedOn": "2026-09-11T14:28:59.9349199+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26vpnv",
+   "district": "Oslo Politidistrikt",
+   "districtId": 201,
+   "category": "Trafikk",
+   "municipality": "Oslo politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-10T12:33:08.3631571+00:00",
+   "updatedOn": "2026-09-10T15:37:08.2452996+00:00",
+   "lastMessageOn": "2026-09-10T13:00:42.8512375+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26vpnv-0",
+     "text": "Melding om en trafikkulykke på E6 nordgående ved avkjøring Bryn, en MC i singelulykke. Et felt sperret og kø/saktegående trafikk forbi stedet.",
+     "createdOn": "2026-09-10T12:33:08.3629541+00:00",
+     "updatedOn": "2026-09-10T12:34:45.7529334+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Edited"
+    },
+    {
+     "id": "26vpnv-1",
+     "text": "Bekreftet singelulykke. MC fører får behandling av ambulansepersonell. Trolig brudd i en arm.",
+     "createdOn": "2026-09-10T13:00:42.8512375+00:00",
+     "updatedOn": "2026-09-10T13:00:42.8512375+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26lsrf",
+   "district": "Oslo Politidistrikt",
+   "districtId": 201,
+   "category": "Voldshendelse",
+   "municipality": "Oslo politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-10T10:51:40.1374269+00:00",
+   "updatedOn": "2026-09-10T12:25:48.6767471+00:00",
+   "lastMessageOn": "2026-09-10T10:51:40.1372116+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26lsrf-0",
+     "text": "Politiet er i området Tveita senter i forbindelse med slagsmål mellom flere ungdom. Pr nå er ingen skadd og vi søker etter de involverte. Slagsmålet medfører ikke fare for andre mennesker i området.",
+     "createdOn": "2026-09-10T10:51:40.1372116+00:00",
+     "updatedOn": "2026-09-10T10:51:40.1984319+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "263xxn",
+   "district": "Oslo Politidistrikt",
+   "districtId": 201,
+   "category": "Trafikk",
+   "municipality": "Oslo politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-10T05:50:03.9513679+00:00",
+   "updatedOn": "2026-09-10T07:50:34.107889+00:00",
+   "lastMessageOn": "2026-09-10T06:12:11.8402203+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "263xxn-0",
+     "text": "E18 utgående rett etter avkjøring Blommenholm har det vært en ulykke mellom en personbil og et vogntog. Ingen personskade, men det er store trafikale problemer på stedet. Vi venter på berging.",
+     "createdOn": "2026-09-10T05:50:03.9511804+00:00",
+     "updatedOn": "2026-09-10T05:50:03.9970561+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    },
+    {
+     "id": "263xxn-1",
+     "text": "Fortsatt trafikale problemer på E18 utgående. Det er behov for tungberger til vogntoget, det vil ta ca 30 minutter før de er fremme. Oppfordrer øvrige trafikanter på E18 til å slippe tungberger fra Redgo frem slik at trafikkbildet kan normaliseres raskest mulig.",
+     "createdOn": "2026-09-10T06:12:11.8402203+00:00",
+     "updatedOn": "2026-09-10T06:12:11.8402203+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26nb14",
+   "district": "Øst Politidistrikt",
+   "districtId": 202,
+   "category": "Andre hendelser",
+   "municipality": "Øst politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-07T10:41:09.6085755+00:00",
+   "updatedOn": "2026-09-10T12:02:30.4739865+00:00",
+   "lastMessageOn": "2026-09-07T10:41:09.6083727+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26nb14-0",
+     "text": "Trafikanter må regne med stengte veier, omfattende kø og svært redusert fremkommelighet på E6 i både sørgående og nordgående retning mellom Oslo og Gardermoen i perioden 8. til 10. september i forbindelse med gravferden til Kong Harald V. Følg med på vegvesenets sider for mer informasjon: www.vegvesen.no/trafikk .\n\nDet er ønskelig med minst mulig trafikk disse dagene. Vi vil oppfordre befolkningen til å bruke alternative ruter heller enn å kjøre E6 om det er mulig. Det må påregnes køer og ventetid i forbindelse med dette oppdraget. Dette er nødvendig for å ivareta sikkerheten.\n\nPolitiet oppfordrer trafikanter og øvrige berørte til å følge anvisninger fra politiet og annet personell. Det gjøres samtidig oppmerksom på at endringer kan bli innført på kort varsel.",
+     "createdOn": "2026-09-07T10:41:09.6083727+00:00",
+     "updatedOn": "2026-09-07T10:41:09.6794638+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "267m79",
+   "district": "Trøndelag Politidistrikt",
+   "districtId": 209,
+   "category": "Trafikk",
+   "municipality": "Trøndelag politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-02T11:50:49.0927455+00:00",
+   "updatedOn": "2026-09-02T16:39:22.9613835+00:00",
+   "lastMessageOn": "2026-09-02T11:50:49.0924958+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "267m79-0",
+     "text": "Politiets trafikkontroller - aksjon skolevei\nHov skole - 07:30 til 09:00, 38 kontrollerte - ingen reaksjoner.\nOrkanger ungdomsskole - 07:30 til 08:30 - 7 personer fikk muntlig beskjed om manglende bruk av hjelm på sparkesykkel.\nGjølme skole - 07:40 til 08:40, 23 kontrollerte - ingen reaksjoner.\nÅrlivoll skole - 07:40 til 08:40, 46 kontrollerte - ingen reaksjoner.\nRødde folkehøgskole - 7 forenklede forelegg, høyeste var 65 km/t i skiltet 40 -sone.\nFlå skole og barnehage - 08:00 til 09:10, 1 reaksjon. Kjøretøy ikke fremstilt for periodisk kjøretøykontroll, skiltene beslaglagt.\nFv714 Hitra ved Leirvågan - 08:00 til 09:50, 246 kontrollerte, ingen reaksjoner.\nE39 Viggjatunnelen - 08:20 til 09:35, 191 kontrollerte, ingen reaksjoner.\nE39 Søvasskjølen - 10:20 til 13:15, 18 forenklede forelegg, høyeste var 113 km/t i 80 sone.",
+     "createdOn": "2026-09-02T11:50:49.0924958+00:00",
+     "updatedOn": "2026-09-02T11:50:49.1786243+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "265rjh",
+   "district": "Møre og Romsdal Politidistrikt",
+   "districtId": 208,
+   "category": "Trafikk",
+   "municipality": "Møre og Romsdal politidistrikt",
+   "area": "",
+   "createdOn": "2026-09-02T07:21:03.0633717+00:00",
+   "updatedOn": "2026-09-02T07:21:15.0334771+00:00",
+   "lastMessageOn": "2026-09-02T07:21:03.0631793+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "265rjh-0",
+     "text": "Patruljer har gjennomført trafikkontroller på en flere skoleveier i distriktet. Ingen reaksjoner.",
+     "createdOn": "2026-09-02T07:21:03.0631793+00:00",
+     "updatedOn": "2026-09-02T07:21:03.1111676+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26prtl",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Andre hendelser",
+   "municipality": "Innlandet politidistrikt",
+   "area": "",
+   "createdOn": "2026-08-30T05:30:43.0152237+00:00",
+   "updatedOn": "2026-08-30T07:14:13.1249405+00:00",
+   "lastMessageOn": "2026-08-30T05:30:43.0145483+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26prtl-0",
+     "text": "Det har vært en natt til søndag på det jevne i Innlandet Politidistrikt, med en del mindre hendelser knyttet til ro og orden i det offentlige rom.\n\nDokka kl. 2303; Patrulje kom over en person som sa seg utsatt for vold inne på Dokka Camping. Fornærmede ble fraktet Gjøvik legevakt og mistenkte ble bortvist. Patruljen oppretter sak. \n\nGjøvik kl. 0140; Mann i slutten av tenårene bortvist fra Gjøvik sentrum og anmeldes for bruk av falsk id og å nekte å oppgi personalia for politiet.\n\nHamar kl. 0203; Meldt om et samboerpar som kranglet og var til sjenanse. Mannlig part bortvist fra Hamar sentrum.\n\nLillehammer kl. 0205; Mann i 20-årene bortvist fra Lillehammer sentrum etter å ha vært kranglete og utøvd noe vold mot vektere ved utested.\n\nBrumunddal kl. 0218; Mann i 50-årene bortvist etter å ha forsøkt å gått til angrep på en annen inne på utested. \n\nGjøvik kl. 0224; Mann i 20-årene bortvist etter å ha vært aggressiv og kommet med trusler mot vekter ved utested.\n\nLillehammer kl. 0228; Mann hevder seg utsatt for vold inne på utested av ukjent gjerningsmann. Patruljen har tatt i mot forklaring og oppretter sak.\n\nLillehammer kl. 0236; Mann i slutten av tenårene bortvist etter å ha vært full og kverulerende.\n\nJaren kl. 0314; Ruset mann i 40-årene anmeldes for brudd på pålegg etter å ha brutt en bortvisning fra tidligere på kvelden.",
+     "createdOn": "2026-08-30T05:30:43.0145483+00:00",
+     "updatedOn": "2026-08-30T05:30:43.0644859+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "267pmz",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Trafikk",
+   "municipality": "Agder politidistrikt",
+   "area": "",
+   "createdOn": "2026-08-27T07:50:27.3250471+00:00",
+   "updatedOn": "2026-08-27T07:50:30.5895398+00:00",
+   "lastMessageOn": "2026-08-27T07:50:27.3247771+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "267pmz-0",
+     "text": "Det er gjennomført trafikkontroller i tilknytning til skoler i morgentimene.\nVed Kringsjå skole i 50 km/t sone i Kristiansand er det utstedt fem forenklede forelegg for fart. Høyeste hastighet var 64 km/t.\nPå Birkelandsveien i Lillesand er 47 førere kontrollert for promille, ingen utslag. Det ble utstedt et gebyr for barn som ikke var sikret tilstrekkelig i bilen.\nVed Berge skole i Lyngdal ble 35 førere kontrollert for promille, ingen utslag.\nVed Tvedestrand barneskole ble det utstedt et forenklet forelegg til en fører som kjørte i 62 kmt i 50 km/t sone. 15 førere ble også kontrollert for promille, ingen utslag.",
+     "createdOn": "2026-08-27T07:50:27.3247771+00:00",
+     "updatedOn": "2026-08-27T07:50:27.3704167+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26nqrc",
+   "district": "Sør-Vest Politidistrikt",
+   "districtId": 206,
+   "category": "Arrangement",
+   "municipality": "Sør-Vest politidistrikt",
+   "area": "",
+   "createdOn": "2026-08-26T09:07:12.0262958+00:00",
+   "updatedOn": "2026-08-26T20:22:33.6122749+00:00",
+   "lastMessageOn": "2026-08-26T09:07:12.0260944+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26nqrc-0",
+     "text": "Politiet er godt forberedt foran kveldens kamp mellom Viking og Dinamo Zagreb på Lyse Arena, og vil være til stede før, under og etter arrangementet. Vi oppfordrer alle til å vise hensyn og bidra til en trygg og positiv ramme rundt kampen. Heia Viking!",
+     "createdOn": "2026-08-26T09:07:12.0260944+00:00",
+     "updatedOn": "2026-08-26T09:07:12.0851859+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26p812",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Trafikk",
+   "municipality": "Agder politidistrikt",
+   "area": "",
+   "createdOn": "2026-08-24T08:06:01.4543998+00:00",
+   "updatedOn": "2026-08-24T08:06:04.2307246+00:00",
+   "lastMessageOn": "2026-08-24T08:06:01.4541782+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26p812-0",
+     "text": "Politiet og UP har i dag hatt trafikkontroller i forbindelse med Aksjon skolevei. De har vært tilstede ved Tvedestrand skole, Lillesand ungdomsskole, Tunballen skole og Eide Skole. Fokuset har vært fart, rus og sikring av barn.\nI Lillesand ble det skrevet 17 forenklede forelegg for fart, hvor høyeste hastighet ble målt til 58 km/t i 40 sone. Ved Tunballen skole ble det skrevet 3 forenklede forelegg for fart, og 2 førerkort ble beslaglagt grunnet fart. Høyeste hastighet her ble mål til 95 km/t i 60 sone.",
+     "createdOn": "2026-08-24T08:06:01.4541782+00:00",
+     "updatedOn": "2026-08-24T08:06:01.5074+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26m28x",
+   "district": "Trøndelag Politidistrikt",
+   "districtId": 209,
+   "category": "Trafikk",
+   "municipality": "Trøndelag politidistrikt",
+   "area": "",
+   "createdOn": "2026-08-24T07:35:51.2868632+00:00",
+   "updatedOn": "2026-08-24T23:39:08.2935558+00:00",
+   "lastMessageOn": "2026-08-24T07:35:51.2866505+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26m28x-0",
+     "text": "Politiet har gjennomført en rekke trafikkontroller i forbindelse med aksjon skolevei. \n\nRøros: Kontroll ved barneskole, ingen reaksjoner.\nOrkanger: Kontroll ved barneskole, ingen reaksjoner. \nOkstad: Kontroll ved barneskole, ingen reaksjoner.\nLundamo: Kontroll ved barneskole, 1 forenklet forelegg utstedt for hastighet.\nRanheim: Kontroll ved barneskole, 2 forenklede forelegg utstedt, høyeste hastighet ble målt til 44 km/t i 30-sone.",
+     "createdOn": "2026-08-24T07:35:51.2866505+00:00",
+     "updatedOn": "2026-08-24T07:35:51.3308521+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26zv5z",
+   "district": "Møre og Romsdal Politidistrikt",
+   "districtId": 208,
+   "category": "Andre hendelser",
+   "municipality": "Møre og Romsdal politidistrikt",
+   "area": "",
+   "createdOn": "2026-08-22T20:53:50.1359114+00:00",
+   "updatedOn": "2026-08-22T21:01:58.5248488+00:00",
+   "lastMessageOn": "2026-08-22T20:53:50.1357226+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26zv5z-0",
+     "text": "En mann er pågrepet, siktet for voldtekt av en kvinne. Saken etterforskes både taktisk og teknisk. Kvinnen skal ikke være alvorlig skadet.",
+     "createdOn": "2026-08-22T20:53:50.1357226+00:00",
+     "updatedOn": "2026-08-22T20:53:50.2297998+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "2690v9",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Trafikk",
+   "municipality": "Agder politidistrikt",
+   "area": "",
+   "createdOn": "2026-08-21T07:00:24.8611235+00:00",
+   "updatedOn": "2026-08-21T08:13:49.6703222+00:00",
+   "lastMessageOn": "2026-08-21T07:00:24.86093+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "2690v9-0",
+     "text": "UP og politipatruljer har også i dag hatt trafikkontroller ifb med Aksjon skolevei. Vi har vært på skoler på Birkelund, Jappa, Strømme, Nygård, Hellemyr, Grim og Hovden.\nDet har vært fokus på blant annet fart, rus og sikring av barn i bil.\nEn person ble anmeldt for kjøring uten gyldig førerkort ved Jappa skole.\nPå Hovden VS ble det skrevet 5 forenklede forelegg for fart, høyeste hastighet 53 km/t i 30 sone.",
+     "createdOn": "2026-08-21T07:00:24.86093+00:00",
+     "updatedOn": "2026-08-21T07:00:24.9619594+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26hw1w",
+   "district": "Finnmark Politidistrikt",
+   "districtId": 212,
+   "category": "Trafikk",
+   "municipality": "Finnmark politidistrikt",
+   "area": "",
+   "createdOn": "2026-08-20T09:58:12.3348334+00:00",
+   "updatedOn": "2026-08-20T10:04:03.7159202+00:00",
+   "lastMessageOn": "2026-08-20T09:58:12.3346255+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26hw1w-0",
+     "text": "Politiet og utrykningspolitiet har avholdt flere trafikkontroller på skoler rundt omkring i Finnmark i dag. Dette i forbindelse med aksjon skolevei. Det har vært fokus på fart, rus og sikring av barn. Det har blitt utstedt til sammen 6 forenklede forelegg for fart. Utenom dette har alt sett bra ut.\nDet har blitt gjennomført kontroller i Kirkenes, Alta, Hammerfest, Vadsø, Havøysund og Vardø",
+     "createdOn": "2026-08-20T09:58:12.3346255+00:00",
+     "updatedOn": "2026-08-20T10:02:34.9255186+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Edited"
+    }
+   ]
+  },
+  {
+   "id": "26cg1t",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Trafikk",
+   "municipality": "Agder politidistrikt",
+   "area": "",
+   "createdOn": "2026-08-20T08:03:36.7142558+00:00",
+   "updatedOn": "2026-08-20T09:32:07.5196503+00:00",
+   "lastMessageOn": "2026-08-20T08:03:36.7140417+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26cg1t-0",
+     "text": "UP og øvrige politipatruljer har gjennomført en rekke trafikkontroller ifb med Aksjon skolevei.\n\nVi har vært på Justvik, Mosby, Karuss, Krossen, Dvergsnes, Abel, Grimstad ungdomsskole, Holvika barneskole, Vegårshei, Byremo VGS og Holum.\n\nDet ble skrevet 8 forenklede forelegg ved Karuss, samt en anmeldelse for kjøring uten gyldig førerkort.\nDet ble skrevet 12 forenklede forelegg på Mosby og 3 forenklede forelegg på Dvergsnes.",
+     "createdOn": "2026-08-20T08:03:36.7140417+00:00",
+     "updatedOn": "2026-08-20T08:03:36.8106043+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26c5z0",
+   "district": "Sør-Vest Politidistrikt",
+   "districtId": 206,
+   "category": "Trafikk",
+   "municipality": "Sør-Vest politidistrikt",
+   "area": "",
+   "createdOn": "2026-08-19T10:19:31.5137303+00:00",
+   "updatedOn": "2026-08-19T11:21:53.0825558+00:00",
+   "lastMessageOn": "2026-08-19T10:19:31.5134265+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26c5z0-0",
+     "text": "Det er i løpet av morgentimene blitt utført flere adferdskontroller i nærheten av skoler i distriktet. Politiet har vært ved Bryne skule, Husabø ungdomsskole, Rosseland skule og Jærtun skule. Dette i forbindelse med skolestart og med hensikt å forebygge alvorlige ulykker. Det ble prioritert fart, ruskjøring, sikring av barn i bil og uoppmerksomhet. Alt var i orden under kontrollene, ingen anmeldelser eller forenklede forelegg utstedt.",
+     "createdOn": "2026-08-19T10:19:31.5134265+00:00",
+     "updatedOn": "2026-08-19T10:19:31.6136444+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26bq1m",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Trafikk",
+   "municipality": "Agder politidistrikt",
+   "area": "",
+   "createdOn": "2026-08-19T07:55:46.8779466+00:00",
+   "updatedOn": "2026-08-19T08:28:29.1717141+00:00",
+   "lastMessageOn": "2026-08-19T07:55:46.8771962+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26bq1m-0",
+     "text": "UP og vanlige patruljer har i morgentimene gjennomført trafikkontroller ved skolene i store deler av Agder PD, ifm Aksjon Skolevei: \n\nVi har vært synlige ved: Tingsaker Skole, Sira Skole, Vardåsen skole, Hellemyr skole, Fjære skole, Voiebyen skole, Vennesla skole, Mosby oppvekstsenter, Stuenes skole, Froland skole, Nedenes skole, Wilds minne skole. \n\nResulterte i 2 forenklede forelegg for fart ved Wilds Minnes skole. Høyeste fart var 42 km/t i 30 sonen.",
+     "createdOn": "2026-08-19T07:55:46.8771962+00:00",
+     "updatedOn": "2026-08-19T07:55:46.9429309+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26gx3t",
+   "district": "Trøndelag Politidistrikt",
+   "districtId": 209,
+   "category": "Trafikk",
+   "municipality": "Trøndelag politidistrikt",
+   "area": "",
+   "createdOn": "2026-08-19T07:26:33.143911+00:00",
+   "updatedOn": "2026-08-19T14:46:58.189656+00:00",
+   "lastMessageOn": "2026-08-19T07:26:33.1435545+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26gx3t-0",
+     "text": "Politiet har vært tilstede på \"Aksjon skolevei\" i hele politidistriktet. I dag har lokalt politi og utrykningspolitiet vær tilstede følgende steder: Hovin skole, Gimse skole, Brekstad skole, Grong skole, Skjelstadmark skole, Kattem skole, Statsbygd skole, Brekken skole, Nypvang skole, Løkken skole, Hegra skole, Åsvang skole, Vikåsen skole, Frosta skole, Lø skole, Mære skole, Forradal skole og Røros skole.\n\nSvært mange bilister er kontrollert, men kun en reaksjon. En bilist fikk et gebyr for manglede bruk av bilbelte.",
+     "createdOn": "2026-08-19T07:26:33.1435545+00:00",
+     "updatedOn": "2026-08-19T07:26:33.1997294+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "264dts",
+   "district": "Finnmark Politidistrikt",
+   "districtId": 212,
+   "category": "Trafikk",
+   "municipality": "Finnmark politidistrikt",
+   "area": "",
+   "createdOn": "2026-08-18T09:30:02.2411966+00:00",
+   "updatedOn": "2026-08-18T13:16:49.7985917+00:00",
+   "lastMessageOn": "2026-08-18T09:30:02.2409741+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "264dts-0",
+     "text": "Politiet har i morgentimene gjennomført trafikkontroller ved og rundt skolene i distriktet. Ingen reaksjoner fra politiet.",
+     "createdOn": "2026-08-18T09:30:02.2409741+00:00",
+     "updatedOn": "2026-08-18T09:30:02.2967659+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26sv48",
+   "district": "Agder Politidistrikt",
+   "districtId": 205,
+   "category": "Trafikk",
+   "municipality": "Agder politidistrikt",
+   "area": "",
+   "createdOn": "2026-08-18T07:40:28.0395429+00:00",
+   "updatedOn": "2026-08-18T07:46:28.3254629+00:00",
+   "lastMessageOn": "2026-08-18T07:40:28.0393305+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26sv48-0",
+     "text": "Politi og UP-patruljene i Agder politidistrikt har i morgentimene gjennomført flere skolekontroller i hele politidistriktet. Det ble kontrollert opp mot rus, fart og adferd. Det ble ikke gitt reaksjoner ved noen av kontrollene.\n\nSkolene vi gjennomførte kontroller ved var:\n\nTunballen skole\nVanse skole\nJustvik skole\nSøyland skole\nFagerholt skole\nRisør ungdomsskole\nLandvik skole\nTvedestrand skole\nKvarstein skole\nGyland skole\nRoligheten skole\nTorridal skole.",
+     "createdOn": "2026-08-18T07:40:28.0393305+00:00",
+     "updatedOn": "2026-08-18T07:40:28.1524723+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26fm1r",
+   "district": "Møre og Romsdal Politidistrikt",
+   "districtId": 208,
+   "category": "Trafikk",
+   "municipality": "Møre og Romsdal politidistrikt",
+   "area": "",
+   "createdOn": "2026-08-18T06:22:54.7237831+00:00",
+   "updatedOn": "2026-08-18T13:36:40.6235084+00:00",
+   "lastMessageOn": "2026-08-18T06:22:54.7235722+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26fm1r-0",
+     "text": "Politiet gjennomfører trafikkontroller i forbindelse med Aksjon skolevei i hele Møre og Romsdal i dag. Vi prioriterer tilstedeværelse, kontroll og veiledning på skoleveier og ved skolene.",
+     "createdOn": "2026-08-18T06:22:54.7235722+00:00",
+     "updatedOn": "2026-08-18T06:22:54.7913983+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26mctq",
+   "district": "Troms Politidistrikt",
+   "districtId": 211,
+   "category": "Trafikk",
+   "municipality": "Troms politidistrikt",
+   "area": "",
+   "createdOn": "2026-08-17T10:35:06.4490834+00:00",
+   "updatedOn": "2026-08-17T11:02:25.5564103+00:00",
+   "lastMessageOn": "2026-08-17T10:35:06.4488147+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26mctq-0",
+     "text": "Politiet og UP har gjennomført flere skolekontroller i dag. Totalt ble 23 bilfører bøtelagt for å ha kjørt for fort i 30-sonen. Det ble også avdekket at en bilfører hadde lavpromille. Han fikk kjøre videre etter å ha ventet en stund. \n\nKontrollene ble gjort i Målselv, Senja, Storslett og flere plasser i Tromsø.",
+     "createdOn": "2026-08-17T10:35:06.4488147+00:00",
+     "updatedOn": "2026-08-17T10:35:06.5116266+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26x5vj",
+   "district": "Møre og Romsdal Politidistrikt",
+   "districtId": 208,
+   "category": "Trafikk",
+   "municipality": "Møre og Romsdal politidistrikt",
+   "area": "",
+   "createdOn": "2026-08-17T10:33:28.4487827+00:00",
+   "updatedOn": "2026-08-17T19:15:51.5258662+00:00",
+   "lastMessageOn": "2026-08-17T10:33:28.448508+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26x5vj-0",
+     "text": "Politiet i Møre og Romsdal har vært til stede ved skoler og utdanningsinstitusjoner i hele fylket i dag i forbindelse med skolestart for å sørge for en trygg skolevei og trafikkavvikling.",
+     "createdOn": "2026-08-17T10:33:28.448508+00:00",
+     "updatedOn": "2026-08-17T10:33:28.5502756+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26p7z3",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Trafikk",
+   "municipality": "Innlandet politidistrikt",
+   "area": "",
+   "createdOn": "2026-08-17T09:19:28.811403+00:00",
+   "updatedOn": "2026-08-17T15:01:14.9450269+00:00",
+   "lastMessageOn": "2026-08-17T09:19:28.8108423+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26p7z3-0",
+     "text": "Politiet har vært til stede på følgende skoler i Innlandet i forbindelse med skolestart:\nBagn Skule.\nGlommasvingen skole. Skarnes\nLangeland Skole Kongsvinger. \nEidsskog ungdomsskole, Skotterud.\nNord Østerdal Videregående.\nTynset ungdomsskole\nHamartun barne og ungdomsskole. Lillehammer.\nYdalir barneskole Elverum\nVinstra videregående skole. \nBarhaug skole Vinstra.\nLena videregående skole.\nKapp skole. Østre toten\nLom ungdomsskole.\nJotunheimen videregående skole, Lom\nREAKSJONER:\nI forbindelse med kontroll Ydalir skole i Elverum, stanset politiet en bil som var midlertidig avregistrert. Bilen ble avskiltet.\nVed Lena videregående skole ble ca 50 UTV, lett mc og mopeder kontrollert. 6 fikk kontrollseddel og må vise kjøretøyet hos statens vegvesen. I tillegg utbedret 8 stk mangler på stedet. \nUtover dette har det ikke vært noen reaksjoner fra politiets side.",
+     "createdOn": "2026-08-17T09:19:28.8108423+00:00",
+     "updatedOn": "2026-08-17T09:19:28.8614352+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "26z53w",
+   "district": "Trøndelag Politidistrikt",
+   "districtId": 209,
+   "category": "Andre hendelser",
+   "municipality": "Trøndelag politidistrikt",
+   "area": "",
+   "createdOn": "2026-08-16T03:54:11.4716187+00:00",
+   "updatedOn": "2026-08-16T07:55:12.0765976+00:00",
+   "lastMessageOn": "2026-08-16T03:54:11.4713942+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "26z53w-0",
+     "text": "Politiet i Trøndelag har håndtert mange oppdrag som omhandler ordensforstyrrelser og beruselse natt til søndag 16.8.26. Det har dessverre ikke vært kapasitet til å følge opp alle oppdragene.\n\n- Det har vært 10 oppdrag kategorisert som ordensforstyrrelse. 5 av disse var i Trondheim. \n- Det har vært 40 oppdrag kategorisert som beruset person og forstyrrelse av natteroen. 25 av disse var i Trondheim.",
+     "createdOn": "2026-08-16T03:54:11.4713942+00:00",
+     "updatedOn": "2026-08-16T03:54:11.5231975+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  },
+  {
+   "id": "262cgd",
+   "district": "Innlandet Politidistrikt",
+   "districtId": 203,
+   "category": "Andre hendelser",
+   "municipality": "Innlandet politidistrikt",
+   "area": "",
+   "createdOn": "2026-08-15T09:31:24.9658921+00:00",
+   "updatedOn": "2026-08-15T10:19:18.9110243+00:00",
+   "lastMessageOn": "2026-08-15T09:31:24.9656956+00:00",
+   "isActive": false,
+   "messages": [
+    {
+     "id": "262cgd-0",
+     "text": "Politihelikopteret gjennomfører trening i og rundt byene ved Mjøsa i dag. Det skal trenes på prosedyrer rundt instrumentflyging.",
+     "createdOn": "2026-08-15T09:31:24.9656956+00:00",
+     "updatedOn": "2026-08-15T09:31:25.0651512+00:00",
+     "hasImage": false,
+     "previouslyIncludedImage": false,
+     "type": "Published"
+    }
+   ]
+  }
+ ]
+}
