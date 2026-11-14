@@ -12,7 +12,14 @@ import respx
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncConnection
 
-from app.ingest.kommuner import KEY, KommuneinfoFailed, KommuneRegister, in_scope, load_register
+from app.ingest.kommuner import (
+    KEY,
+    KommuneinfoFailed,
+    KommuneRegister,
+    in_scope,
+    is_district_notice,
+    load_register,
+)
 from app.ingest.politiloggen import parse_page
 from app.settings import Settings
 from tests.politiloggen_fixtures import kommuner, page_sample, quarter, register
@@ -45,7 +52,7 @@ def test_unknown_municipality_warns_once_and_is_skipped(caplog) -> None:
     reg = register()
     page = parse_page(page_sample())
     t = page.threads[0]
-    unknown = [replace(t, id=f"x{i}", municipality="Oslo politidistrikt") for i in range(3)]
+    unknown = [replace(t, id=f"x{i}", municipality="Atlantis") for i in range(3)]
     oslo = replace(t, id="oslo1", municipality="Oslo")
     with caplog.at_level(logging.WARNING, logger="app.ingest.kommuner"):
         scoped = in_scope([*unknown, oslo], reg, ALLOWED)
@@ -53,7 +60,20 @@ def test_unknown_municipality_warns_once_and_is_skipped(caplog) -> None:
     assert scoped[0].kommune.nummer == "0301"
     warns = [r for r in caplog.records if r.levelno == logging.WARNING]
     assert len(warns) == 1
-    assert "Oslo politidistrikt" in warns[0].getMessage()
+    assert "Atlantis" in warns[0].getMessage()
+
+
+def test_district_notices_are_left_out_without_a_warning(caplog) -> None:
+    """Police districts in the municipality field are district-wide notices; the ingestor handles
+    them (M1 step 2), so in_scope neither returns nor warns about them."""
+    t = parse_page(page_sample()).threads[0]
+    names = ["Oslo politidistrikt", "Øst politidistrikt", "Agder Politidistrikt"]
+    notices = [replace(t, id=f"n{i}", municipality=m) for i, m in enumerate(names)]
+    assert all(is_district_notice(n) for n in notices)
+    assert not is_district_notice(replace(t, municipality="Oslo"))
+    with caplog.at_level(logging.WARNING, logger="app.ingest.kommuner"):
+        assert in_scope(notices, register(), ALLOWED) == []
+    assert not [r for r in caplog.records if r.levelno == logging.WARNING]
 
 
 def test_known_municipality_outside_scope_is_skipped_quietly(caplog) -> None:

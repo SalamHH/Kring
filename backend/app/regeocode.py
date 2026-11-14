@@ -115,7 +115,7 @@ _SELECT = """
 
 
 async def select_ids(conn: AsyncConnection, f: Filters) -> list[str]:
-    where = ["kommunenummer IS NOT NULL"]
+    where = ["scope = 'kommune'", "kommunenummer IS NOT NULL"]  # notices are never geocoded
     params: dict[str, Any] = {}
     if f.since is not None:
         where.append("first_message_at >= :since")

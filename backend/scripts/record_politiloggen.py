@@ -5,15 +5,19 @@ Writes to tests/fixtures/politiloggen/:
 - page_sample.json   one raw /messagethreads page (take=100, LastDay), all of Norway
 - quarter.json       every LastQuarter thread whose municipality is in the allowed set
                      (Oslo + Akershus), raw, with the time of recording
+- district_notices.json  every LastQuarter district-wide notice (a police district in the
+                     municipality field), nationwide, raw (M1 step 2)
 
 Usage, from backend/:
     uv run python -m scripts.record_politiloggen
+    uv run python -m scripts.record_politiloggen --notices   # only district_notices.json
 
 Hits the public APIs: a handful of requests, 1 s apart.
 """
 
 from __future__ import annotations
 
+import argparse
 import json
 import time
 from datetime import UTC, datetime
@@ -23,7 +27,7 @@ from typing import Any
 import httpx
 
 from app.geocode.kartverket import USER_AGENT
-from app.ingest.kommuner import KommuneRegister, in_scope
+from app.ingest.kommuner import KommuneRegister, in_scope, is_district_notice
 from app.ingest.politiloggen import parse_page
 from app.settings import get_settings
 
@@ -37,7 +41,7 @@ def write(name: str, data: Any) -> None:
     print(f"wrote {OUT / name}")
 
 
-def main() -> None:
+def main(notices_only: bool = False) -> None:
     s = get_settings()
     headers = {"Accept": "application/json", "User-Agent": USER_AGENT}
     with httpx.Client(headers=headers, timeout=60.0) as http:
@@ -47,6 +51,10 @@ def main() -> None:
             resp.raise_for_status()
             time.sleep(1.0)
             return resp.json()
+
+        if notices_only:
+            record_notices(get, s.politiloggen_url)
+            return
 
         kommuner = get(s.kommuneinfo_url)
         write("kommuner.json", kommuner)
@@ -85,5 +93,28 @@ def main() -> None:
         )
 
 
+def record_notices(get: Any, url: str) -> None:
+    recorded_at = datetime.now(UTC).isoformat()
+    raw: dict[str, dict[str, Any]] = {}
+    skip = 0
+    while True:
+        data = get(url, {"sortByEnum": "LastMessageOn", "take": QUARTER_PAGE, "skip": skip,
+                         "timeSpanType": "LastQuarter"})  # fmt: skip
+        page = parse_page(data)
+        for t in page.threads:
+            if is_district_notice(t):
+                raw.setdefault(t.id, t.raw)
+        print(f"  skip={skip}: {page.size} threads, {len(raw)} district notices so far")
+        if page.size == 0 or not page.has_more:
+            break
+        skip += page.size
+    write(
+        "district_notices.json",
+        {"recorded_at": recorded_at, "timeSpanType": "LastQuarter", "threads": list(raw.values())},
+    )
+
+
 if __name__ == "__main__":
-    main()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--notices", action="store_true", help="only record district_notices.json")
+    main(notices_only=ap.parse_args().notices)

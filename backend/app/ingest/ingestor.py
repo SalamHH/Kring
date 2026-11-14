@@ -15,6 +15,13 @@ Decided 2026-11-12:
   with geocode_method NULL. Any event in the window with a NULL method is geocoded again next
   cycle, changed or not. Failed lookups are never cached.
 
+District-wide notices (decided 2026-11-13, M1 step 2): a police district in the municipality
+field («Oslo politidistrikt») is stored with scope 'distrikt', kommunenummer NULL, no point and
+no tier, and is never geocoded. It is stored only if its district covers an allowed fylke, read
+from the stored events themselves (district → kommunenummer, see district_kommuner); others are
+skipped with one WARN per district. Notices are processed after the cycle's other threads, so a
+first cycle on an empty database already knows the districts.
+
 The caller owns the transaction. Each thread runs in a savepoint, so one bad thread is logged
 and rolled back without losing the rest of the cycle.
 """
@@ -36,8 +43,17 @@ from app.classify.rules import is_control, precision_tier, round_uncertainty, se
 from app.geocode.cache import CachedKartverket, GeocodeCache
 from app.geocode.kartverket import KartverketClient
 from app.geocode.pipeline import Geocoder, Placement
+from app.geocode.text import norm
 from app.ingest.client import PolitiloggenClient, PollFailed, fetch_window
-from app.ingest.kommuner import Kommune, KommuneinfoFailed, KommuneRegister, in_scope, load_register
+from app.ingest.kommuner import (
+    Kommune,
+    KommuneinfoFailed,
+    KommuneRegister,
+    district_key,
+    in_scope,
+    is_district_notice,
+    load_register,
+)
 from app.ingest.politiloggen import Thread
 from app.settings import Settings
 
@@ -60,6 +76,8 @@ class CycleResult:
     unchanged: int = 0
     geocoded: int = 0
     geocode_failed: int = 0
+    notices: int = 0  # district-wide notices stored or updated
+    notices_skipped: int = 0  # district-wide notices from districts outside the allowed fylker
     errors: int = 0
     error: str | None = None
 
@@ -108,6 +126,7 @@ class Ingestor:
         self.clock = clock
         self.started_at = clock()
         self._register: KommuneRegister | None = None
+        self._warned_districts: set[str] = set()
         self._register_at: datetime | None = None
 
     # --- cycle ------------------------------------------------------------------------------
@@ -136,6 +155,26 @@ class Ingestor:
                 res.errors += 1
                 log.exception("ingest: thread %s failed, rolled back", st.thread.id)
 
+        notices = [t for t in window.threads if is_district_notice(t)]
+        if notices:
+            allowed = await allowed_districts(conn, self.settings.allowed_fylker)
+            for t in notices:
+                key = district_key(t)
+                if key not in allowed:
+                    res.notices_skipped += 1
+                    if key not in self._warned_districts:
+                        self._warned_districts.add(key)
+                        log.warning(
+                            "Politiloggen: district %r covers no allowed fylke, notices skipped", t.district
+                        )
+                    continue
+                try:
+                    async with conn.begin_nested():
+                        await self._process_notice(conn, t, res)
+                except Exception:
+                    res.errors += 1
+                    log.exception("ingest: notice %s failed, rolled back", t.id)
+
         await conn.execute(
             text(
                 """
@@ -147,9 +186,11 @@ class Ingestor:
         )
         log.info(
             "ingest %s: %d pages, %d threads, %d in scope, %d new, %d updated, %d unchanged, "
-            "%d geocoded (%d with failed lookups), %d errors, %d Kartverket requests",
+            "%d geocoded (%d with failed lookups), %d district notices stored (%d skipped), %d errors, "
+            "%d Kartverket requests",
             res.time_span, res.pages, res.fetched, res.in_scope, res.new, res.updated, res.unchanged,
-            res.geocoded, res.geocode_failed, res.errors, self.kartverket.requests,
+            res.geocoded, res.geocode_failed, res.notices, res.notices_skipped, res.errors,
+            self.kartverket.requests,
         )  # fmt: skip
         return res
 
@@ -229,6 +270,14 @@ class Ingestor:
         await self._upsert_event(conn, t, k, placement if not failed else None, regeocode)
         await self._upsert_messages(conn, t)
 
+    async def _process_notice(self, conn: AsyncConnection, t: Thread, res: CycleResult) -> None:
+        stored = await self._load(conn, t.id)
+        if stored is not None and stored.fields == _fields(t) and stored.messages == _messages(t):
+            return
+        res.notices += 1
+        await self._upsert_event(conn, t, None, None, True)
+        await self._upsert_messages(conn, t)
+
     async def _load(self, conn: AsyncConnection, event_id: str) -> Stored | None:
         row = (
             await conn.execute(
@@ -258,18 +307,22 @@ class Ingestor:
         )
 
     async def _upsert_event(
-        self, conn: AsyncConnection, t: Thread, k: Kommune, p: Placement | None, set_geo: bool
+        self, conn: AsyncConnection, t: Thread, k: Kommune | None, p: Placement | None, set_geo: bool
     ) -> None:
         """Insert or update the event. Geo columns are written only when `set_geo`; then p=None
-        means «geocoding failed»: no point, method NULL (retried next cycle)."""
+        means «geocoding failed»: no point, method NULL (retried next cycle).
+        k=None stores a district-wide notice: scope 'distrikt', no kommunenummer, no point, no tier."""
         u = round_uncertainty(p.uncertainty_m) if p else None
+        notice = k is None
         params = {
-            "id": t.id, "district": t.district, "municipality": t.municipality, "knr": k.nummer,
+            "id": t.id, "district": t.district, "municipality": t.municipality,
+            "knr": None if notice else k.nummer, "scope": "distrikt" if notice else "kommune",
             "area": t.area, "category": t.category, "is_control": is_control(t.category, t.text),
             "severity": severity(t.category, t.text), "first": t.first_message_at, "last": t.last_message_at,
             "active": t.is_active, "raw": json.dumps(t.raw, ensure_ascii=False),
             "lat": p.lat if p and p.has_point else None, "lon": p.lon if p and p.has_point else None,
-            "u": u if p and p.has_point else None, "tier": precision_tier(u if p and p.has_point else None),
+            "u": u if p and p.has_point else None,
+            "tier": None if notice else precision_tier(u if p and p.has_point else None),
             "method": p.method if p else None, "match": p.match if p else None,
         }  # fmt: skip
         geo_update = (
@@ -285,20 +338,20 @@ class Ingestor:
                 f"""
                 INSERT INTO events (id, district, municipality, kommunenummer, area, category, is_control,
                   severity, first_message_at, last_message_at, is_active, geom, uncertainty_m,
-                  precision_tier, geocode_method, geocode_match, raw, updated_at)
+                  precision_tier, geocode_method, geocode_match, raw, scope, updated_at)
                 VALUES (:id, :district, :municipality, :knr, :area, :category, :is_control, :severity,
                   :first, :last, :active,
                   CASE WHEN CAST(:lat AS double precision) IS NULL THEN NULL
                        ELSE ST_SetSRID(ST_MakePoint(CAST(:lon AS double precision),
                                                     CAST(:lat AS double precision)), 4326)::geography END,
-                  :u, :tier, :method, :match, CAST(:raw AS jsonb), now())
+                  :u, :tier, :method, :match, CAST(:raw AS jsonb), :scope, now())
                 ON CONFLICT (id) DO UPDATE SET
                   district = EXCLUDED.district, municipality = EXCLUDED.municipality,
                   kommunenummer = EXCLUDED.kommunenummer, area = EXCLUDED.area,
                   category = EXCLUDED.category, is_control = EXCLUDED.is_control,
                   severity = EXCLUDED.severity, first_message_at = EXCLUDED.first_message_at,
                   last_message_at = EXCLUDED.last_message_at, is_active = EXCLUDED.is_active,
-                  raw = EXCLUDED.raw, updated_at = now(){geo_update}
+                  raw = EXCLUDED.raw, scope = EXCLUDED.scope, updated_at = now(){geo_update}
                 """
             ),
             params,
@@ -329,3 +382,24 @@ class Ingestor:
             log.warning(
                 "ingest: thread %s has %d unparsed messages; stored messages kept", t.id, t.unparsed_messages
             )
+
+
+async def district_kommuner(conn: AsyncConnection) -> dict[str, set[str]]:
+    """Which municipalities each police district covers, read from the stored events
+    (decided 2026-11-13: not hard-coded). Keys are normalised district names."""
+    rows = await conn.execute(
+        text(
+            """SELECT DISTINCT district, kommunenummer FROM events
+               WHERE scope = 'kommune' AND district IS NOT NULL AND kommunenummer IS NOT NULL"""
+        )
+    )
+    out: dict[str, set[str]] = {}
+    for district, knr in rows:
+        out.setdefault(norm(district), set()).add(knr)
+    return out
+
+
+async def allowed_districts(conn: AsyncConnection, allowed_fylker: list[str]) -> set[str]:
+    """Districts that cover at least one municipality in an allowed fylke."""
+    fylker = set(allowed_fylker)
+    return {d for d, knrs in (await district_kommuner(conn)).items() if any(k[:2] in fylker for k in knrs)}

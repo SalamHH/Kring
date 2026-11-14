@@ -488,10 +488,14 @@ CREATE TABLE events (
   geocode_method   TEXT,   -- adresse|kryss|gate_area|gate_tekst|gate_omrade|stedsnavn|kommune
   geocode_match    TEXT,
   raw              JSONB NOT NULL,
-  updated_at       TIMESTAMPTZ NOT NULL DEFAULT now()
+  updated_at       TIMESTAMPTZ NOT NULL DEFAULT now(),
+  -- district-wide notices (§8.3, decided 2026-11-13; migration 0002): 'distrikt' rows have
+  -- kommunenummer, geom, uncertainty_m, precision_tier and geocode_method all NULL
+  scope            TEXT NOT NULL DEFAULT 'kommune' CHECK (scope IN ('kommune','distrikt'))
 );
 CREATE INDEX events_geom_gix  ON events USING GIST (geom);
 CREATE INDEX events_first_idx ON events (first_message_at DESC);
+CREATE INDEX events_distrikt_idx ON events (district, first_message_at DESC) WHERE scope = 'distrikt';
 
 CREATE TABLE event_messages (
   event_id   TEXT REFERENCES events(id) ON DELETE CASCADE,
