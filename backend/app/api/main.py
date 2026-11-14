@@ -9,7 +9,7 @@ import httpx
 from fastapi import FastAPI
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
-from app.api import devices, errors, geocode, health, places
+from app.api import devices, errors, events, geocode, health, places
 from app.api.ratelimit import RateLimiter
 from app.geocode.kartverket import KartverketClient
 from app.settings import Settings, get_settings
@@ -52,6 +52,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(health.router)
     app.include_router(places.router)
     app.include_router(geocode.router)
+    app.include_router(events.router)
     return app
 
 

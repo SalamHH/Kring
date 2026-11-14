@@ -37,3 +37,18 @@ def canonical(categories: list[str]) -> list[str]:
     if unknown:
         raise ValueError(f"unknown categories: {', '.join(unknown)}")
     return [c for c in APP_CATEGORIES if c in categories]
+
+
+_APP_FOR_POLICE = {p: app for app, ps in POLICE_CATEGORIES.items() for p in ps}
+
+
+def app_category(police_category: str) -> str:
+    """The app category of a police category. A police category Appendix B doesn't list falls
+    under Andre, so a new category in Politiloggen is shown, not lost (decided 2026-11-14)."""
+    return _APP_FOR_POLICE.get(police_category, "Andre")
+
+
+def police_categories(app_categories: list[str]) -> list[str]:
+    """The police categories behind app categories. Andre also stands for unlisted ones, which a
+    query has to handle separately (see app.match.rules)."""
+    return [p for c in app_categories for p in POLICE_CATEGORIES.get(c, ())]

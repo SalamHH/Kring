@@ -577,6 +577,13 @@ WHERE :e_category = ANY (p.categories)
   AND (:e_tier = 'gate' OR (:e_tier = 'nabolag' AND p.radius_m >= 1000));
 ```
 
+(decided 2026-11-14, M1 step 6) As built in `app/match/rules.py`:
+- **Index use:** the query above can't use the GiST index on `places.center`, because the radius varies per place. The index condition uses `ST_DWithin(p.center, e.geom, 2001)`, which is the largest radius allowed plus a margin, and the place's own radius is checked after that.
+- **Distance:** distances are compared with `ST_Distance(...) <= radius`, the same distance the API reports. PostGIS's `ST_DWithin` is false when the distance equals the radius exactly; the difference is under a micrometre. §6.2 says «≤».
+- **The other direction:** a place's list and the preview find events for a circle. They use the GiST index on `events.geom`, widening the radius by the largest stored uncertainty to find imprecise-nearby candidates.
+- **Scope:** only events with `scope = 'kommune'` are considered.
+- **Category «Andre»:** it also covers police categories that Appendix B doesn't list, so a new category in Politiloggen is shown, not lost.
+
 `places.categories` holds app categories (Appendix B), so the matcher expands them to police categories before the `:e_category` comparison above, using one backend module that holds the Appendix B mapping (decided 2026-11-12).
 
 ## 8.6 REST API (v1)
@@ -625,6 +632,22 @@ Decided 2026-11-14 (M1 step 5):
   - Kartverket's search APIs return no bydel, so `secondary` is the postcode and municipality for an address, and the place type and municipality for a place name.
   - Results are cached for 30 days per query and source. A Kartverket failure returns 502 and caches nothing.
   - The API calls Kartverket without retries and with a 5 s timeout, since someone is waiting.
+
+Decided 2026-11-14 (M1 step 6):
+- **`GET /v1/preview?lat&lon&radius_m&categories`.**
+  - `categories` is repeated or comma-separated, and uses app categories. The radius is validated as for places.
+  - It returns `{days: 30, matched, severe, hidden_traffic, imprecise_nearby}`.
+  - `severe` counts the matched events that are severe.
+  - `hidden_traffic` counts the Trafikk events that would match if Trafikk were followed, and is 0 when it is.
+- **`GET /v1/places/{id}/events?days=30`** (1–90 days) returns `{events, municipality_only, district_notices}`.
+  - `events` are matched and imprecise-nearby events, newest first. Each has `title`, the app and police category, tier, `distance_m`, `relation` and `pushed`.
+  - `municipality_only` counts the events in the place's municipality that have no point (D1).
+  - `district_notices` are the last 24 h of notices for every police district that covers the place's municipality, read from the stored events (D2).
+- **`GET /v1/events/{id}`** returns every message in order, plus the point, uncertainty, tier, method and title.
+  - With `?place_id=`, the response adds `for_place: {distance_m, relation, category_followed, pushed}` for «Hvorfor fikk jeg dette?» and the push deep link.
+  - Events are public data, so any device may read any event. A place belongs to its own device.
+- **`POST /v1/events/{id}/feedback`** with `{place_id}` returns 204. There is one row per (event, place), so a second tap changes nothing.
+- **Titles (D5):** the category in a title is the app category, except for Andre, which uses the police category («Ulykke · Lysaker»), since «Andre» says nothing. A district is written «Oslo politidistrikt», not Politiloggen's «Oslo Politidistrikt».
 
 ## 8.7 Notifications
 
