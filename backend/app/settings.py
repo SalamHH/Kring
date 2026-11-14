@@ -38,6 +38,14 @@ class Settings(BaseSettings):
         "https://api.kartverket.no/stedsnavn/v1/navn",
     ]
 
+    # API (§8.6, §8.8). The rate limits are kept in memory: one web instance in M1 (§14 M4
+    # moves to a shared limit). A device may make rate_limit_per_minute requests a minute;
+    # registrations are limited per client IP, since there is no device yet.
+    rate_limit_per_minute: int = 120
+    register_limit_per_hour: int = 20
+    # GET /v1/health returns 503 when the last successful poll is older than this (§8.3).
+    health_stale_after_s: int = 10 * 60
+
     def kommune_allowed(self, kommunenummer: str | None) -> bool:
         return bool(kommunenummer) and kommunenummer[:2] in self.allowed_fylker
 

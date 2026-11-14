@@ -62,6 +62,16 @@ uv run python -m app.worker
 
 On an empty database the first cycle reads the last quarter (about 100 pages) and geocodes every Oslo and Akershus thread, which takes a few minutes. Later cycles read `LastDay` and take a second or two.
 
+## Running the API
+
+The REST API (spec §8.6) on http://127.0.0.1:8000, using the same dev database:
+
+```bash
+uv run uvicorn app.api.main:app --reload
+```
+
+Interactive docs are at `/docs`. `GET /v1/health` returns 503 until the worker has polled successfully in the last 10 minutes. Rate limits are kept in memory, so they reset when the server restarts.
+
 ## Re-geocoding stored events
 
 After a geocoder change (a ranking, an alias, a new rule), stored events keep their old placement until their thread changes. Re-run the geocoder and classifier over them (spec §9.6). It is a dry run by default and prints every change:

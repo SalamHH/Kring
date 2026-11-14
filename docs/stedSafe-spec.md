@@ -516,6 +516,8 @@ CREATE TABLE devices (
   created_at   TIMESTAMPTZ NOT NULL DEFAULT now(),
   last_seen_at TIMESTAMPTZ
 );
+-- Every request looks the device up by its secret's hash (decided 2026-11-14)
+CREATE UNIQUE INDEX devices_secret_hash_key ON devices (secret_hash);
 
 CREATE TABLE places (
   id          UUID PRIMARY KEY,
@@ -586,6 +588,15 @@ WHERE :e_category = ANY (p.categories)
 | `GET /v1/events/{id}` | Event with all messages, point, uncertainty, tier, method. |
 | `POST /v1/events/{id}/feedback` | «Feil plassering?» (body: place_id). |
 | `GET /v1/health` | Liveness + last successful poll time. |
+
+Decided 2026-11-14 (M1 step 3):
+- The secret is 32 random bytes (base64url), stored as SHA-256. A random high-entropy secret doesn't need a slow hash.
+- Errors are JSON: `{"error": <code>, "message": <text>}`, plus `details` for 422 validation errors. 401 carries `WWW-Authenticate: Bearer`; 429 carries `Retry-After`.
+- Rate limits, kept in memory (one web instance until M4): 120 requests a minute per device, and 20 registrations an hour per client IP.
+- `PUT /v1/devices/me` changes only the fields sent; `push_token` and `platform` may be sent as null to clear them.
+- `DELETE /v1/devices/me` also deletes the device's `placement_feedback` rows, which have no foreign key.
+- `last_seen_at` is updated at most once an hour.
+- `GET /v1/health` returns `{status, last_success_at, age_s}`: 200 when the last successful poll is at most 10 minutes old, else 503 (`stale`, or `db_unavailable`).
 
 ## 8.7 Notifications
 

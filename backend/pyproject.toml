@@ -13,6 +13,7 @@ dependencies = [
     "alembic",
     "httpx",
     "apscheduler",
+    "uvicorn>=0.54.0",
 ]
 
 [dependency-groups]
