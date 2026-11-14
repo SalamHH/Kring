@@ -54,7 +54,7 @@ uv run ruff format .
 
 ## Running the worker
 
-The ingestion worker polls Politiloggen every 60 s, geocodes new and changed threads, and writes to the dev database. Stop it with Ctrl-C; a cycle in progress is rolled back. Only one worker can run per database (Postgres advisory lock).
+The ingestion worker polls Politiloggen every 60 s, geocodes new and changed threads, and writes to the dev database. Stop it with Ctrl-C; a cycle in progress is rolled back. Only one worker can run per database (Postgres advisory lock). A second one exits at once, unless `STEDSAFE_WORKER_WAIT_FOR_LOCK=true`, which makes it wait for the lock (used on Render; see [`../docs/deploy.md`](../docs/deploy.md)).
 
 ```bash
 uv run python -m app.worker

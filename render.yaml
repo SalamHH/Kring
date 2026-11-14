@@ -1,0 +1,65 @@
+# Render Blueprint: the API, the ingestion worker and Postgres 17 + PostGIS, in Frankfurt
+# (spec §8.1, decided 2026-11-13). How to deploy, roll back and read logs: docs/deploy.md.
+#
+# Plans are the smallest paid instance types (Render renamed «starter» to 0.5c-512mb). Region,
+# runtime, database name/user and Postgres version can't be changed after creation.
+
+databases:
+  - name: stedsafe-db
+    plan: 0.1c-256mb
+    region: frankfurt
+    postgresMajorVersion: "17"
+    databaseName: stedsafe
+    user: stedsafe
+    # No access from outside Render: places are personal data (§8.8). To connect from your
+    # own machine for a while, add your IP in the dashboard (docs/deploy.md).
+    ipAllowList: []
+
+services:
+  - type: web
+    name: stedsafe-api
+    runtime: python
+    plan: 0.5c-512mb
+    region: frankfurt
+    branch: m1
+    rootDir: backend
+    buildCommand: uv sync --locked --no-dev
+    # Both services run the migrations; alembic/env.py serialises them with an advisory lock.
+    preDeployCommand: uv run --no-sync alembic upgrade head
+    # Render's load balancer terminates TLS and is the only thing that can reach the service.
+    startCommand: >-
+      uv run --no-sync uvicorn app.api.main:app --host 0.0.0.0 --port $PORT
+      --proxy-headers --forwarded-allow-ips '*'
+    # Liveness only. /v1/health returns 503 while the poll is stale, which would cancel the
+    # first deploy (before the worker's first poll) and restart the API whenever Politiloggen
+    # is down.
+    healthCheckPath: /v1/health/live
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.16
+      - key: STEDSAFE_DATABASE_URL
+        fromDatabase:
+          name: stedsafe-db
+          property: connectionString
+
+  - type: worker
+    name: stedsafe-worker
+    runtime: python
+    plan: 0.5c-512mb
+    region: frankfurt
+    branch: m1
+    rootDir: backend
+    buildCommand: uv sync --locked --no-dev
+    preDeployCommand: uv run --no-sync alembic upgrade head
+    startCommand: uv run --no-sync python -m app.worker
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.16
+      - key: STEDSAFE_DATABASE_URL
+        fromDatabase:
+          name: stedsafe-db
+          property: connectionString
+      # During a deploy the new worker starts ~60 s before the old one gets SIGTERM: it waits
+      # for the ingestion lock instead of exiting.
+      - key: STEDSAFE_WORKER_WAIT_FOR_LOCK
+        value: "true"

@@ -414,7 +414,7 @@ Images below are full-length (scrolled content included). Versions cropped to on
 | API | FastAPI (Python 3.12), Pydantic v2, SQLAlchemy 2 / asyncpg | Matches founder's stack; geocoder is already Python |
 | Database | PostgreSQL 17 + PostGIS (decided 2026-11-12: 17 instead of 16, because Homebrew's PostGIS is not built for 16) | Geography types, ST_DWithin, GiST indexes |
 | Worker | Separate process (same codebase) with an asyncio loop / APScheduler | Polling, geocoding, matching, push, digest |
-| Hosting | Render (web service + background worker + managed Postgres). Decided 2026-11-13: paid starter tiers for all three, in the Frankfurt region (EU). | Founder already uses it; low ops. Render has no free background worker, its free Postgres expires and its free web service sleeps. |
+| Hosting | Render (web service + background worker + managed Postgres). Decided 2026-11-13: paid starter tiers for all three, in the Frankfurt region (EU). Render has since renamed them: `0.5c-512mb` for web and worker, `0.1c-256mb` for Postgres (2026-11-14, `render.yaml`). | Founder already uses it; low ops. Render has no free background worker, its free Postgres expires and its free web service sleeps. |
 | Push | Expo Push API (+ receipts) | Handles APNs/FCM |
 
 ## 8.2 Components & data flow
@@ -455,7 +455,7 @@ Accept: application/json
   - (decided 2026-11-12) If a Kartverket lookup fails while placing an event, the event is stored without a point and with `geocode_method` NULL. Every cycle re-geocodes NULL-method events in the fetched window, whether or not they changed.
 - An event's first message time (`first_message_at`) is the earliest message timestamp in the thread; fall back to the thread-level created field only if messages have no timestamps (decided 2026-11-12).
 - Handle 429/5xx with exponential backoff (1, 2, 4, 8, 16 s). Alert (log at ERROR) if no successful poll for 10 min.
-- Worker loop (decided 2026-11-12): `python -m app.worker` runs one cycle per transaction, starting a cycle every 60 s from the previous start. A cycle that runs over is followed at once by the next, with no catch-up. SIGINT or SIGTERM aborts the cycle in progress and rolls it back. A session-level Postgres advisory lock allows only one worker per database; a second one exits with status 1.
+- Worker loop (decided 2026-11-12): `python -m app.worker` runs one cycle per transaction, starting a cycle every 60 s from the previous start. A cycle that runs over is followed at once by the next, with no catch-up. SIGINT or SIGTERM aborts the cycle in progress and rolls it back. A session-level Postgres advisory lock allows only one worker per database; a second one exits with status 1. (decided 2026-11-14) On Render, where a deploy starts the new worker ~60 s before the old one is stopped, the second worker waits for the lock instead (`STEDSAFE_WORKER_WAIT_FOR_LOCK`).
 - Map the event's municipality name to a kommunenummer (kommuneinfo API, cached) and geocode within that municipality.
   - (decided 2026-11-12) Both the Norwegian and the Sámi names are matched, ignoring case. Names that don't resolve are skipped with one WARN per name: police districts in the municipality field («Oslo politidistrikt»), qualified names («Våler (Øst)», «Herøy (Nordland)») and «Kvam Herad». Only threads in the allowed fylker are stored.
   - (decided 2026-11-12, corrected after the M0 live run) A police district in the municipality field marks a district-wide notice with no area: missing persons, weather warnings, airspace restrictions and the like. «Oslo politidistrikt» and «Øst politidistrikt» (which covers part of Akershus) had 4 and 3 such threads in a month. They are skipped in M0; how to show them is open question 8 in §15.
@@ -597,6 +597,7 @@ Decided 2026-11-14 (M1 step 3):
 - `DELETE /v1/devices/me` also deletes the device's `placement_feedback` rows, which have no foreign key.
 - `last_seen_at` is updated at most once an hour.
 - `GET /v1/health` returns `{status, last_success_at, age_s}`: 200 when the last successful poll is at most 10 minutes old, else 503 (`stale`, or `db_unavailable`).
+- `GET /v1/health/live` returns 200 whenever the process is up. Render's health check uses it, because a stale poll is not fixed by restarting the API (M1 step 4).
 
 ## 8.7 Notifications
 

@@ -5,7 +5,7 @@ import asyncio
 from logging.config import fileConfig
 
 from alembic import context
-from sqlalchemy import pool
+from sqlalchemy import pool, text
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
@@ -34,9 +34,16 @@ def run_migrations_offline() -> None:
         context.run_migrations()
 
 
+# Both Render services run `alembic upgrade head` before they deploy (docs/deploy.md), possibly at
+# the same time. A transaction-level advisory lock serialises them: the second waits, then finds
+# the database already at head. All migrations run in one transaction (transactional DDL).
+MIGRATION_LOCK_KEY = 0x57ED0A1E
+
+
 def do_run_migrations(connection: Connection) -> None:
     context.configure(connection=connection, target_metadata=target_metadata)
     with context.begin_transaction():
+        connection.execute(text("SELECT pg_advisory_xact_lock(:k)"), {"k": MIGRATION_LOCK_KEY})
         context.run_migrations()
 
 

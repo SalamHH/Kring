@@ -310,3 +310,11 @@ async def test_commit_failure_is_not_reported_as_success(db: AsyncConnection) ->
     assert r.status_code == 500
     assert r.json()["error"] == "internal_error"
     assert await count(db, "SELECT count(*) FROM devices") == 0
+
+
+async def test_liveness_is_200_even_when_the_poll_is_stale(
+    client: httpx.AsyncClient, db: AsyncConnection
+) -> None:
+    await set_last_success(db, None)
+    r = await client.get("/v1/health/live")
+    assert r.status_code == 200 and r.json() == {"status": "ok"}

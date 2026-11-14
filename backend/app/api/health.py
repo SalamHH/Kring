@@ -47,3 +47,11 @@ async def health(request: Request, session: Session) -> JSONResponse:
     stale = age is None or age > request.app.state.settings.health_stale_after_s
     body = Health(status="stale" if stale else "ok", last_success_at=last, age_s=age)
     return JSONResponse(body.model_dump(mode="json"), 503 if stale else 200)
+
+
+@router.get("/health/live")
+async def live() -> dict[str, str]:
+    """Process liveness for Render's health check. It doesn't touch the database or the poll
+    status: a stale poll (503 on /v1/health) is not fixed by restarting the web service, and the
+    first deploy happens before the worker's first poll."""
+    return {"status": "ok"}
