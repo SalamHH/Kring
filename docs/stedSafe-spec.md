@@ -734,6 +734,7 @@ Where this section and `presisjonstest.py` disagree (for example the type and un
 | M1 · week 2–4 | API, matching, push, Expo screens Hjem / Nytt sted / Hendelse | Internal build (TestFlight + Play internal); push ≤ 2 min end-to-end. |
 | M2 · week 5–6 | Digest, settings, delete, privacy policy, store listings | Closed beta with 20–30 Oslo users. |
 | M3 · week 7–10 | Iterate on metrics; aliases; Akershus municipalities; feedback loop; road-only messages such as «E6 Inng. Trosterud» (decided 2026-11-13: deferred from M1, since they are nearly all Trafikk, which is off by default) | Metrics in section 13 met or explained. |
+| M4 · after M3 (decided 2026-11-14) | Public launch in the App Store and Google Play, Norway. The goal is thousands of daily users. Scope: the name cleared (§15 question 6); App Review and Play production access; scaling for that load: more than one web instance, a rate limit shared across instances, map tiles and geocode search within Kartverket's terms at that volume, receipt and error alarms, and the app's status banner (§12). | Live in both stores. A load test at 10× the expected daily users passes, with push p95 still ≤ 2 min. The §13 targets are met in the beta. |
 | Later | Family sharing, commuter routes (Vegvesen DATEX II, Entur), MET weather warnings, SEO pages, B2B | Prioritise from beta learnings. |
 
 # 15. Open questions
