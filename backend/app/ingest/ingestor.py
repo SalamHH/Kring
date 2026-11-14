@@ -79,6 +79,7 @@ class CycleResult:
     notices: int = 0  # district-wide notices stored or updated
     notices_skipped: int = 0  # district-wide notices from districts outside the allowed fylker
     errors: int = 0
+    kartverket_requests: int = 0  # HTTP requests to Kartverket in this cycle (cache misses)
     error: str | None = None
 
 
@@ -133,6 +134,7 @@ class Ingestor:
 
     async def run_cycle(self, conn: AsyncConnection) -> CycleResult:
         now = self.clock()
+        kartverket_before = self.kartverket.requests  # the client counts for its whole life
         last_success = await self._last_success(conn)
         try:
             register = await self._get_register(conn, now)
@@ -184,13 +186,14 @@ class Ingestor:
             ),
             {"now": now},
         )
+        res.kartverket_requests = self.kartverket.requests - kartverket_before
         log.info(
             "ingest %s: %d pages, %d threads, %d in scope, %d new, %d updated, %d unchanged, "
             "%d geocoded (%d with failed lookups), %d district notices stored (%d skipped), %d errors, "
             "%d Kartverket requests",
             res.time_span, res.pages, res.fetched, res.in_scope, res.new, res.updated, res.unchanged,
             res.geocoded, res.geocode_failed, res.notices, res.notices_skipped, res.errors,
-            self.kartverket.requests,
+            res.kartverket_requests,
         )  # fmt: skip
         return res
 
