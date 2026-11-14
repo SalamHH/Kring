@@ -74,6 +74,7 @@ A complete rundown of the stedSafe idea written from the perspective of a produc
   - [9.3 Text parsing rules](#93-text-parsing-rules)
   - [9.4 External-call hygiene](#94-external-call-hygiene)
   - [9.5 Quality gates (CI)](#95-quality-gates-ci)
+  - [9.6 Re-geocoding stored events](#96-re-geocoding-stored-events)
 - [10. Go-to-market](#10-go-to-market)
 - [11. Business model & costs](#11-business-model--costs)
 - [12. Risks & mitigations](#12-risks--mitigations)
@@ -285,6 +286,9 @@ Platforms: iOS and Android via Expo. UI language: Norwegian Bokmål. Launch mark
 | F10 | «Feil plassering?» feedback | P1 | One tap on F5 logs event id + place id; used to tune the geocoder. |
 | F11 | Family sharing, commuter routes, SEO pages, extra sources | P2 | Out of MVP; keep schema extensible. |
 
+- (decided 2026-11-13) Places can be created anywhere in Norway. Incidents exist only for the ingested area (Oslo and Akershus in M1), so for a place outside it, Nytt sted says «Vi dekker foreløpig Oslo og Akershus».
+- (decided 2026-11-13) A device can have at most 10 places, to stop abuse. A lower free limit (§11) is a later premium decision.
+
 ## 6.1 Templates
 
 | Template | Default categories | Push time window |
@@ -307,7 +311,11 @@ Platforms: iOS and Android via Expo. UI language: Norwegian Bokmål. Launch mark
 
 **Imprecise nearby** (digest only, never push): tier **bydel** and the uncertainty circle overlaps the place circle, i.e. distance ≤ radius + u.
 
+- (decided 2026-11-13) Town-level placements (tier **bydel** with a point, such as a town at ±2 500 m) follow these rules unchanged. They never match and never push. In the app they appear in a place's incident list only as imprecise nearby. Municipality-only events (no point) are not listed for any place. They only add to the count on the place card that says some incidents give only a district or larger area (the *Jobben* card in §7.6), counted over the place's municipality.
+
 **Push** when the incident matches AND is **severe** AND the first police message is ≤ 30 min old at detection AND the first message time is inside the place's time window AND the place has fewer than 3 pushes today. Otherwise it goes to the digest. Updates to a thread never re-push.
+
+- (decided 2026-11-13) «At detection» means when the worker first stored the event (`events.ingested_at`, added in M1). «Today» for the 3-push limit is the calendar day in the device's tz, as for the time window.
 
 **Severe** (v1 heuristic, tune in beta): category in {Brann, Voldshendelse, Savnet, Redning, Ulykke} OR text contains any of: `kniv, skudd, skyt, våpen, eksplosjon, evakuer, ran, trusselsituasjon, gissel`. Category Trafikk is severe only if the text contains `alvorlig skadd, omkommet, påkjørt barn`. Both keyword lists match case-insensitively at the start of a word, so stems work («skyt» → skyting) but «ran» does not match inside «brannvesenet» (decided 2026-11-12).
 
@@ -354,11 +362,15 @@ The chosen direction is **A: soft cards**, with deep teal as the accent. The int
 | Hendelse | Back «Dine steder» · category + status chips · title · «gate, område · dato tid» · map (place circle dashed + incident ring) · legend · «Hvor presist er dette?» card with badge, explanation, 3-tier legend · «Hvorfor fikk jeg dette?» · timeline «Oppdateringer fra politiet» · actions «Del med familien», «Færre slike varsler» · source line. |
 | Push (OS-rendered) | The OS draws notifications. Only title/body text is ours. See 7.4. The prototype's custom-styled lock screen is illustrative only. |
 
+- (decided 2026-11-13) Politiloggen threads have no title field. The incident title on Hjem and Hendelse is built from our own fields: category + place, such as «Brann · Hølandsgata». The place is the matched street or place name, otherwise the area field, otherwise the municipality; for a district-wide notice (§8.3) it is the district. Police text is never shortened into a title. The police text is shown in full under «Oppdateringer fra politiet».
+- (decided 2026-11-13) «Del med familien» opens the OS share sheet with the title, time, police text and «Kilde: Politiloggen». There is no app link yet. «Færre slike varsler» opens the place's edit screen with this category highlighted.
+
 ## 7.4 Notification copy rules
 
 - Title = what + distance + place: «Brann ca. 150 m fra Hjemme».
 - Body = where + status + precision: «Hølandsgata, Kampen. Branntilløp i leilighet, nødetatene er på stedet. Presisjon: gate.»
 - Never include names, ages, ethnicity or descriptions of people, even if the police text does. Max two lines.
+- (decided 2026-11-13) The body contains no police text, so the rule above holds by construction. It has only place, category, status and precision: «Hølandsgata, Kampen. Brann, pågår. Presisjon: gate.» This replaces the body example above. The full police text is one tap away. A district-wide Savnet notice (§8.3) reads «Savnet i Oslo politidistrikt» / «Politiet ber om tips. Trykk for å lese meldingen.»
 - Digest title: «Uke 46: rolig ved Skolen» or «Uke 46: 4 hendelser rundt stedene dine».
 
 ## 7.5 Accessibility
@@ -398,11 +410,11 @@ Images below are full-length (scrolled content included). Versions cropped to on
 
 | Layer | Choice | Why |
 |---|---|---|
-| Mobile | Expo (React Native, TypeScript), expo-router, react-native-maps, expo-notifications | One codebase for iOS + Android; Expo Push is free |
+| Mobile | Expo (React Native, TypeScript), expo-router, MapLibre (`@maplibre/maplibre-react-native`) with Kartverket map tiles, expo-notifications (decided 2026-11-13: MapLibre instead of react-native-maps, so there is no Google Maps SDK or key and the same Norwegian map on both platforms; the map shows «© Kartverket») | One codebase for iOS + Android; Expo Push is free |
 | API | FastAPI (Python 3.12), Pydantic v2, SQLAlchemy 2 / asyncpg | Matches founder's stack; geocoder is already Python |
 | Database | PostgreSQL 17 + PostGIS (decided 2026-11-12: 17 instead of 16, because Homebrew's PostGIS is not built for 16) | Geography types, ST_DWithin, GiST indexes |
 | Worker | Separate process (same codebase) with an asyncio loop / APScheduler | Polling, geocoding, matching, push, digest |
-| Hosting | Render (web service + background worker + managed Postgres) | Founder already uses it; low ops |
+| Hosting | Render (web service + background worker + managed Postgres). Decided 2026-11-13: paid starter tiers for all three, in the Frankfurt region (EU). | Founder already uses it; low ops. Render has no free background worker, its free Postgres expires and its free web service sleeps. |
 | Push | Expo Push API (+ receipts) | Handles APNs/FCM |
 
 ## 8.2 Components & data flow
@@ -447,6 +459,10 @@ Accept: application/json
 - Map the event's municipality name to a kommunenummer (kommuneinfo API, cached) and geocode within that municipality.
   - (decided 2026-11-12) Both the Norwegian and the Sámi names are matched, ignoring case. Names that don't resolve are skipped with one WARN per name: police districts in the municipality field («Oslo politidistrikt»), qualified names («Våler (Øst)», «Herøy (Nordland)») and «Kvam Herad». Only threads in the allowed fylker are stored.
   - (decided 2026-11-12, corrected after the M0 live run) A police district in the municipality field marks a district-wide notice with no area: missing persons, weather warnings, airspace restrictions and the like. «Oslo politidistrikt» and «Øst politidistrikt» (which covers part of Akershus) had 4 and 3 such threads in a month. They are skipped in M0; how to show them is open question 8 in §15.
+  - (decided 2026-11-13) From M1, district-wide notices are stored if the district covers an allowed fylke. Each is stored with `events.scope = 'distrikt'` (the default is `'kommune'`), `kommunenummer` NULL and no point, and is never geocoded.
+    - Which municipalities a district covers is read from stored events (district → kommunenummer), not hard-coded. In the recorded quarter, Oslo politidistrikt covers Oslo, Bærum and Asker, and Øst politidistrikt covers 17 Akershus municipalities.
+    - Devices with a place in the district see the notice on Hjem for 24 h.
+    - Savnet notices also push, under the place's normal push rules (§6.2): the place follows Savnet and has push on, the first message is ≤ 30 min old at detection, it is inside the time window, and the place is under the daily limit. They push at most once per device, to the device's oldest qualifying place. Other notices never push.
 - Attribution: «Kilde: Politiloggen (NLOD 2.0)» on every screen showing police text.
 
 ## 8.4 Database schema
@@ -570,6 +586,7 @@ WHERE :e_category = ANY (p.categories)
 ## 8.7 Notifications
 
 - Insert into `notifications` BEFORE sending; the unique constraint prevents duplicates across worker restarts.
+- (decided 2026-11-13) Matching and push run in the worker, after each cycle's ingest transaction commits, for the events first stored in that cycle. Events that are placed or improved later (by a thread update, or by re-geocoding, §9.6) are never pushed.
 - Send via Expo Push in batches of ≤ 100; poll receipts after 15 min; null the token on DeviceNotRegistered.
 - Payload data: {event_id, place_id}. Deep link opens the incident detail.
 - Digest job: Sundays 18:00 in the device's tz. Per place: matched (7 days), severe, imprecise_nearby. Always send, even if zero («Rolig uke»).
@@ -660,6 +677,15 @@ Where this section and `presisjonstest.py` disagree (for example the type and un
 - Replay of a recorded Oslo quarter: ≥ 60 % of non-control incidents with uncertainty ≤ 1 000 m and ≥ 25 % ≤ 500 m. The gate is Oslo-only; Akershus is reported but not gated (decided 2026-11-12).
 - Manual sample of 25 street-based placements: ≥ 90 % correct street (tracked per release).
 
+## 9.6 Re-geocoding stored events
+
+(decided 2026-11-13) After a geocoder change, stored events keep their old placement until their thread changes. `python -m app.regeocode` fixes this:
+- It re-runs the geocoder and classifier over stored events, using the geocode cache. Filters: `--since`, `--kommune`, `--method`, `--ids`.
+- It is a dry run by default and prints the changes (old → new method, uncertainty and tier). `--apply` writes them.
+- It never pushes and never writes `notifications`.
+- It takes the worker's advisory lock, so it cannot run during a worker cycle.
+- It is run by hand after each geocoder change, locally and on Render.
+
 # 10. Go-to-market
 
 - **Launch area:** Oslo, where incident density makes the value obvious. Expand to Akershus municipalities next (Lørenskog, Bærum, Asker).
@@ -707,7 +733,7 @@ Where this section and `presisjonstest.py` disagree (for example the type and un
 | M0 · week 0–1 | Parent interviews (3–5) with the prototype · backend spike: ingest + geocode + DB | Live Oslo ingestion running; Appendix C fixtures green; interview notes summarised. Ingestion covers Oslo + Akershus and runs locally; the Render deploy moves to M1 (decided 2026-11-12). |
 | M1 · week 2–4 | API, matching, push, Expo screens Hjem / Nytt sted / Hendelse | Internal build (TestFlight + Play internal); push ≤ 2 min end-to-end. |
 | M2 · week 5–6 | Digest, settings, delete, privacy policy, store listings | Closed beta with 20–30 Oslo users. |
-| M3 · week 7–10 | Iterate on metrics; aliases; Akershus municipalities; feedback loop | Metrics in section 13 met or explained. |
+| M3 · week 7–10 | Iterate on metrics; aliases; Akershus municipalities; feedback loop; road-only messages such as «E6 Inng. Trosterud» (decided 2026-11-13: deferred from M1, since they are nearly all Trafikk, which is off by default) | Metrics in section 13 met or explained. |
 | Later | Family sharing, commuter routes (Vegvesen DATEX II, Entur), MET weather warnings, SEO pages, B2B | Prioritise from beta learnings. |
 
 # 15. Open questions
@@ -715,11 +741,11 @@ Where this section and `presisjonstest.py` disagree (for example the type and un
 1. ~~Exact Politiloggen field names and the allowed values of `timeSpanType` (check Swagger).~~ Answered in §8.3 (decided 2026-11-12). Field names are still read defensively.
 2. Is 60-second polling acceptable to the police? No documented rate limit; consider contacting the API owner.
 3. Severity heuristics: validate with real beta data and user feedback.
-4. Should «bydel»-precision incidents be shown at all outside the digest?
+4. ~~Should «bydel»-precision incidents be shown at all outside the digest?~~ Answered in §6.2 (decided 2026-11-13): only as «imprecise nearby» in a place's incident list, and never pushed.
 5. Legal review of storing place locations (consent wording, DPIA-light).
 6. Name: is «stedSafe» available (trademark, App Store, domain)?
 7. Parent interviews: do users understand Gatenivå / Nabolag / Bydel without explanation?
-8. District-wide notices («Oslo politidistrikt» and similar in the municipality field, no area): should they reach everyone with a place in that district, go only in the digest, or be left out? Found in the M0 live run (§8.3).
+8. ~~District-wide notices («Oslo politidistrikt» and similar in the municipality field, no area): should they reach everyone with a place in that district, go only in the digest, or be left out?~~ Answered in §8.3 (decided 2026-11-13): shown on Hjem for 24 h to devices with a place in the district; Savnet notices also push, under the place's push rules.
 
 # Appendix A · Precision test details
 
