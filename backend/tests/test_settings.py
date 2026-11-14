@@ -10,9 +10,9 @@ from app.settings import Settings
 @pytest.mark.parametrize(
     ("given", "expected"),
     [
-        ("postgresql://u:p@dpg-x-a/stedsafe", "postgresql+asyncpg://u:p@dpg-x-a/stedsafe"),
-        ("postgres://u:p@dpg-x-a:5432/stedsafe", "postgresql+asyncpg://u:p@dpg-x-a:5432/stedsafe"),
-        ("postgresql+asyncpg://localhost/stedsafe", "postgresql+asyncpg://localhost/stedsafe"),
+        ("postgresql://u:p@dpg-x-a/kring", "postgresql+asyncpg://u:p@dpg-x-a/kring"),
+        ("postgres://u:p@dpg-x-a:5432/kring", "postgresql+asyncpg://u:p@dpg-x-a:5432/kring"),
+        ("postgresql+asyncpg://localhost/kring", "postgresql+asyncpg://localhost/kring"),
     ],
 )
 def test_database_url_uses_asyncpg(given: str, expected: str) -> None:

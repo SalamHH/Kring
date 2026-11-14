@@ -41,7 +41,7 @@ from app.settings import Settings, get_settings
 
 log = logging.getLogger("app.worker")  # not __main__ under `python -m`
 
-# pg advisory lock key for "the stedSafe ingestion worker" (arbitrary, fixed).
+# pg advisory lock key for "the Kring ingestion worker" (arbitrary, fixed).
 LOCK_KEY = 0x57ED5AFE
 
 

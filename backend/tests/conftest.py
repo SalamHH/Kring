@@ -1,7 +1,7 @@
 """Shared test fixtures.
 
-Database tests run against a separate database (default: stedsafe_test on localhost,
-override with STEDSAFE_TEST_DATABASE_URL). The schema is rebuilt from the Alembic
+Database tests run against a separate database (default: kring_test on localhost,
+override with KRING_TEST_DATABASE_URL). The schema is rebuilt from the Alembic
 migrations once per session, and every test runs inside a transaction that is rolled back.
 """
 
@@ -18,9 +18,7 @@ from sqlalchemy import pool
 from sqlalchemy.ext.asyncio import AsyncConnection, create_async_engine
 
 BACKEND_DIR = Path(__file__).resolve().parents[1]
-TEST_DATABASE_URL = os.environ.get(
-    "STEDSAFE_TEST_DATABASE_URL", "postgresql+asyncpg://localhost/stedsafe_test"
-)
+TEST_DATABASE_URL = os.environ.get("KRING_TEST_DATABASE_URL", "postgresql+asyncpg://localhost/kring_test")
 
 
 def alembic_config(url: str = TEST_DATABASE_URL) -> Config:

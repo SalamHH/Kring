@@ -1,13 +1,13 @@
-# stedSafe — Product brief, analysis & build specification
+# Kring — Product brief, analysis & build specification
 
 **Calm, place-based alerts from the Norwegian police log (Politiloggen)**
-v0.1 · 11 November 2026 · working name «stedSafe» (not yet checked for trademark)
+v0.1 · 11 November 2026 · name «Kring» (decided 2026-11-14; the v0.1 working name was «stedSafe»; not yet checked for trademark)
 
 Bundle contents: this file · `screens/` (prototype screenshots + static HTML) · `research/presisjonstest.py` (v4 reference geocoder)
 
 ### What this document is
 
-A complete rundown of the stedSafe idea written from the perspective of a product manager and startup advisor, and a build specification precise enough to hand to a coding agent. It consolidates the research, the precision test of the police-log data, the competitive scan and the chosen prototype design (direction A).
+A complete rundown of the Kring idea written from the perspective of a product manager and startup advisor, and a build specification precise enough to hand to a coding agent. It consolidates the research, the precision test of the police-log data, the competitive scan and the chosen prototype design (direction A).
 
 > **How to read it**
 >
@@ -35,7 +35,7 @@ A complete rundown of the stedSafe idea written from the perspective of a produc
   - [2.2 Target users](#22-target-users)
   - [2.3 What «good» looks like for the user](#23-what-good-looks-like-for-the-user)
 - [3. Market & competition](#3-market--competition)
-  - [3.1 Where stedSafe wins](#31-where-stedsafe-wins)
+  - [3.1 Where Kring wins](#31-where-kring-wins)
   - [3.2 Honest assessment](#32-honest-assessment)
 - [4. Data foundation & precision analysis](#4-data-foundation--precision-analysis)
   - [4.1 Sources](#41-sources)
@@ -91,7 +91,7 @@ A complete rundown of the stedSafe idea written from the perspective of a produc
 
 # 1. Executive summary
 
-**stedSafe** turns the Norwegian police operations log (*Politiloggen*) into calm, precise alerts for the specific places a person cares about: a child's school, home, the cabin, the office. The official Politiloggen app only lets users follow a whole police district or municipality, which in Oslo means a steady stream of irrelevant traffic messages. Users have asked for map views and alerts near a location; the nearest independent competitor offers radius alerts but has a weak experience and is iOS-only.
+**Kring** turns the Norwegian police operations log (*Politiloggen*) into calm, precise alerts for the specific places a person cares about: a child's school, home, the cabin, the office. The official Politiloggen app only lets users follow a whole police district or municipality, which in Oslo means a steady stream of irrelevant traffic messages. Users have asked for map views and alerts near a location; the nearest independent competitor offers radius alerts but has a weak experience and is iOS-only.
 
 | **63 %** | **28 %** | **~2 / day** | **0 kr** |
 |---|---|---|---|
@@ -163,9 +163,9 @@ Interview 3–5 parents with the prototype while building the ingestion + geocod
 | **Nabohjælp** (Denmark) | Up to two addresses (e.g. home + summer house) | Neighbour warnings | ~290k users; piloting police burglary data in the app. |
 | **Citizen / Ring Neighbors** (US) | GPS radius | Real-time push | Large, but widely criticised for creating a «culture of fear». |
 
-## 3.1 Where stedSafe wins
+## 3.1 Where Kring wins
 
-| Dimension | Politiloggen | Politipuls | stedSafe (target) |
+| Dimension | Politiloggen | Politipuls | Kring (target) |
 |---|---|---|---|
 | Unit of interest | District / municipality | Municipality / radius | **Named places** with templates |
 | Precision shown | No | Partly (location field) | **Always**, as Gatenivå / Nabolag / Bydel |
@@ -248,7 +248,7 @@ All 127 street-from-text matches from v3 were read by hand. The street name was 
 
 ## 5.1 Positioning
 
-*For parents and residents who want to know when something serious happens near the places they care about, stedSafe is a calm alert app that turns the police log into precise, place-based notifications. Unlike the official Politiloggen app, it follows named places instead of whole municipalities, says honestly how precise each incident is, and only interrupts you when it matters.*
+*For parents and residents who want to know when something serious happens near the places they care about, Kring is a calm alert app that turns the police log into precise, place-based notifications. Unlike the official Politiloggen app, it follows named places instead of whole municipalities, says honestly how precise each incident is, and only interrupts you when it matters.*
 
 ## 5.2 Product principles
 
@@ -455,7 +455,7 @@ Accept: application/json
   - (decided 2026-11-12) If a Kartverket lookup fails while placing an event, the event is stored without a point and with `geocode_method` NULL. Every cycle re-geocodes NULL-method events in the fetched window, whether or not they changed.
 - An event's first message time (`first_message_at`) is the earliest message timestamp in the thread; fall back to the thread-level created field only if messages have no timestamps (decided 2026-11-12).
 - Handle 429/5xx with exponential backoff (1, 2, 4, 8, 16 s). Alert (log at ERROR) if no successful poll for 10 min.
-- Worker loop (decided 2026-11-12): `python -m app.worker` runs one cycle per transaction, starting a cycle every 60 s from the previous start. A cycle that runs over is followed at once by the next, with no catch-up. SIGINT or SIGTERM aborts the cycle in progress and rolls it back. A session-level Postgres advisory lock allows only one worker per database; a second one exits with status 1. (decided 2026-11-14) On Render, where a deploy starts the new worker ~60 s before the old one is stopped, the second worker waits for the lock instead (`STEDSAFE_WORKER_WAIT_FOR_LOCK`).
+- Worker loop (decided 2026-11-12): `python -m app.worker` runs one cycle per transaction, starting a cycle every 60 s from the previous start. A cycle that runs over is followed at once by the next, with no catch-up. SIGINT or SIGTERM aborts the cycle in progress and rolls it back. A session-level Postgres advisory lock allows only one worker per database; a second one exits with status 1. (decided 2026-11-14) On Render, where a deploy starts the new worker ~60 s before the old one is stopped, the second worker waits for the lock instead (`KRING_WORKER_WAIT_FOR_LOCK`).
 - Map the event's municipality name to a kommunenummer (kommuneinfo API, cached) and geocode within that municipality.
   - (decided 2026-11-12) Both the Norwegian and the Sámi names are matched, ignoring case. Names that don't resolve are skipped with one WARN per name: police districts in the municipality field («Oslo politidistrikt»), qualified names («Våler (Øst)», «Herøy (Nordland)») and «Kvam Herad». Only threads in the allowed fylker are stored.
   - (decided 2026-11-12, corrected after the M0 live run) A police district in the municipality field marks a district-wide notice with no area: missing persons, weather warnings, airspace restrictions and the like. «Oslo politidistrikt» and «Øst politidistrikt» (which covers part of Akershus) had 4 and 3 such threads in a month. They are skipped in M0; how to show them is open question 8 in §15.
@@ -617,10 +617,10 @@ Decided 2026-11-14 (M1 step 3):
 
 ## 8.9 Repository layout
 
-The repository root (currently named `Kring`) is the `stedsafe/` level below (decided 2026-11-12).
+The repository root (`Kring`) is the `kring/` level below (decided 2026-11-12).
 
 ```text
-stedsafe/
+kring/
   backend/
     app/  api/  ingest/  geocode/  classify/  match/  notify/  digest/  db/  settings.py
     tests/  fixtures/politiloggen/  fixtures/kartverket/  test_geocode_golden.py
@@ -628,7 +628,8 @@ stedsafe/
   mobile/   (Expo, TypeScript, expo-router)
     app/(tabs)/index.tsx  app/place/new.tsx  app/event/[id].tsx  components/  theme/tokens.ts
   research/presisjonstest.py      # v4 reference implementation
-  docs/stedSafe-spec.pdf
+  docs/kring-spec.md               # this spec (decided 2026-11-14: renamed from kring-spec.md)
+  docs/stedSafe-spec.pdf           # the v0.1 original, under its old name
 ```
 
 # 9. Geocoding & classification specification
@@ -760,7 +761,7 @@ Where this section and `presisjonstest.py` disagree (for example the type and un
 3. Severity heuristics: validate with real beta data and user feedback.
 4. ~~Should «bydel»-precision incidents be shown at all outside the digest?~~ Answered in §6.2 (decided 2026-11-13): only as «imprecise nearby» in a place's incident list, and never pushed.
 5. Legal review of storing place locations (consent wording, DPIA-light).
-6. Name: is «stedSafe» available (trademark, App Store, domain)?
+6. Name: is «Kring» available (trademark, App Store, domain)? (decided 2026-11-14: the name is Kring, replacing the working name «stedSafe»; availability is still to be checked before M4.)
 7. Parent interviews: do users understand Gatenivå / Nabolag / Bydel without explanation?
 8. ~~District-wide notices («Oslo politidistrikt» and similar in the municipality field, no area): should they reach everyone with a place in that district, go only in the digest, or be left out?~~ Answered in §8.3 (decided 2026-11-13): shown on Hjem for 24 h to devices with a place in the district; Savnet notices also push, under the place's push rules.
 
@@ -835,7 +836,7 @@ Where this section and `presisjonstest.py` disagree (for example the type and un
 | `event.updates` | Oppdateringer fra politiet |
 | `event.share / fewer` | Del med familien / Færre slike varsler |
 | `tier.gate / nabolag / bydel` | Gatenivå / Nabolag / Bydel |
-| `source` | Kilde: Politiloggen (NLOD 2.0). stedSafe er ikke tilknyttet politiet. |
+| `source` | Kilde: Politiloggen (NLOD 2.0). Kring er ikke tilknyttet politiet. |
 
 # Appendix C · Geocoder test fixtures
 

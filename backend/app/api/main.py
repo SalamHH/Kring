@@ -25,7 +25,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         finally:
             await engine.dispose()
 
-    app = FastAPI(title="stedSafe API", version="1", lifespan=lifespan)
+    app = FastAPI(title="Kring API", version="1", lifespan=lifespan)
     app.state.settings = settings
     app.state.device_limiter = RateLimiter(settings.rate_limit_per_minute, 60)
     app.state.register_limiter = RateLimiter(settings.register_limit_per_hour, 3600)

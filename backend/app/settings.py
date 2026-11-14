@@ -1,4 +1,4 @@
-"""Runtime settings, read from environment variables prefixed STEDSAFE_ (or backend/.env)."""
+"""Runtime settings, read from environment variables prefixed KRING_ (or backend/.env)."""
 
 from __future__ import annotations
 
@@ -9,9 +9,9 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_prefix="STEDSAFE_", env_file=".env", extra="ignore")
+    model_config = SettingsConfigDict(env_prefix="KRING_", env_file=".env", extra="ignore")
 
-    database_url: str = "postgresql+asyncpg://localhost/stedsafe"
+    database_url: str = "postgresql+asyncpg://localhost/kring"
     # On Render a new worker starts before the old one is stopped; it waits for the lock
     # instead of exiting (decided 2026-11-14). Locally a second worker exits at once.
     worker_wait_for_lock: bool = False

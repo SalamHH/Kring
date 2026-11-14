@@ -1,6 +1,6 @@
-# stedSafe backend
+# Kring backend
 
-FastAPI + PostgreSQL/PostGIS. Spec: [`../docs/stedSafe-spec.md`](../docs/stedSafe-spec.md) §8–9. Current plan: [`../docs/plans/m1.md`](../docs/plans/m1.md).
+FastAPI + PostgreSQL/PostGIS. Spec: [`../docs/kring-spec.md`](../docs/kring-spec.md) §8–9. Current plan: [`../docs/plans/m1.md`](../docs/plans/m1.md).
 
 ## Local setup (macOS, no Docker)
 
@@ -25,16 +25,16 @@ LC_ALL=en_US.UTF-8 /opt/homebrew/opt/postgresql@17/bin/pg_ctl -D /opt/homebrew/v
 Create the dev and test databases (once):
 
 ```bash
-/opt/homebrew/opt/postgresql@17/bin/createdb stedsafe && /opt/homebrew/opt/postgresql@17/bin/createdb stedsafe_test
+/opt/homebrew/opt/postgresql@17/bin/createdb kring && /opt/homebrew/opt/postgresql@17/bin/createdb kring_test
 ```
 
-Apply migrations to the dev database (the tests rebuild `stedsafe_test` themselves):
+Apply migrations to the dev database (the tests rebuild `kring_test` themselves):
 
 ```bash
 uv run alembic upgrade head
 ```
 
-Migrations are hand-written SQL in `alembic/versions/`, taken from spec §8.4; there is no autogenerate. The test database URL can be changed with `STEDSAFE_TEST_DATABASE_URL`.
+Migrations are hand-written SQL in `alembic/versions/`, taken from spec §8.4; there is no autogenerate. The test database URL can be changed with `KRING_TEST_DATABASE_URL`.
 
 ## Everyday commands
 
@@ -54,7 +54,7 @@ uv run ruff format .
 
 ## Running the worker
 
-The ingestion worker polls Politiloggen every 60 s, geocodes new and changed threads, and writes to the dev database. Stop it with Ctrl-C; a cycle in progress is rolled back. Only one worker can run per database (Postgres advisory lock). A second one exits at once, unless `STEDSAFE_WORKER_WAIT_FOR_LOCK=true`, which makes it wait for the lock (used on Render; see [`../docs/deploy.md`](../docs/deploy.md)).
+The ingestion worker polls Politiloggen every 60 s, geocodes new and changed threads, and writes to the dev database. Stop it with Ctrl-C; a cycle in progress is rolled back. Only one worker can run per database (Postgres advisory lock). A second one exits at once, unless `KRING_WORKER_WAIT_FOR_LOCK=true`, which makes it wait for the lock (used on Render; see [`../docs/deploy.md`](../docs/deploy.md)).
 
 ```bash
 uv run python -m app.worker
@@ -96,11 +96,11 @@ uv run python -m scripts.m0_report
 
 ## Settings
 
-Read from environment variables prefixed `STEDSAFE_` or from `backend/.env` (git-ignored). See `app/settings.py`. For example:
+Read from environment variables prefixed `KRING_` or from `backend/.env` (git-ignored). See `app/settings.py`. For example:
 
 ```bash
-STEDSAFE_DATABASE_URL=postgresql+asyncpg://localhost/stedsafe
-STEDSAFE_ALLOWED_FYLKER='["03","32"]'
+KRING_DATABASE_URL=postgresql+asyncpg://localhost/kring
+KRING_ALLOWED_FYLKER='["03","32"]'
 ```
 
 ## Layout

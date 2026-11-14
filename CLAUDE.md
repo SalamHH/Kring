@@ -1,6 +1,6 @@
-# stedSafe (repo: Kring)
+# Kring
 
-Calm, place-based alerts from the Norwegian police log (Politiloggen). The full spec is in [`docs/stedSafe-spec.md`](docs/stedSafe-spec.md). Changes made after v0.1 are marked "(decided <date>)" in the section they belong to.
+Calm, place-based alerts from the Norwegian police log (Politiloggen). The full spec is in [`docs/kring-spec.md`](docs/kring-spec.md). Changes made after v0.1 are marked "(decided <date>)" in the section they belong to.
 
 ## Current milestone
 
@@ -15,7 +15,7 @@ Calm, place-based alerts from the Norwegian police log (Politiloggen). The full 
 
 ## Repo layout
 
-The repo root is the `stedsafe/` level in spec §8.9.
+The repo root is the `kring/` level in spec §8.9.
 
 ## Local environment
 

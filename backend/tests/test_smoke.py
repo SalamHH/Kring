@@ -35,5 +35,5 @@ def test_kommune_allowed(knr: str | None, allowed: bool) -> None:
 
 
 def test_settings_from_env(monkeypatch: pytest.MonkeyPatch) -> None:
-    monkeypatch.setenv("STEDSAFE_ALLOWED_FYLKER", '["03"]')
+    monkeypatch.setenv("KRING_ALLOWED_FYLKER", '["03"]')
     assert Settings().kommune_allowed("3201") is False

@@ -22,7 +22,7 @@ import httpx
 from app.geocode.geometry import Point  # [lat, lon], rounded to 6 decimals as in the script
 from app.geocode.places import velg_stedsnavn
 
-USER_AGENT = "stedsafe-backend/0.0.1"
+USER_AGENT = "kring-backend/0.0.1"
 MIN_SPACING_S = 0.15
 RETRY_DELAYS_S: tuple[float, ...] = (1.0, 2.0)
 TIMEOUT_S = 30.0

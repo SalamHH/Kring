@@ -1,5 +1,5 @@
 """Print event counts and the poll status, to compare two databases (e.g. production with
-local, M1 step 4). Uses STEDSAFE_DATABASE_URL like everything else:
+local, M1 step 4). Uses KRING_DATABASE_URL like everything else:
 
     uv run python -m scripts.db_counts
 """
