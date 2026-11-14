@@ -72,6 +72,16 @@ uv run uvicorn app.api.main:app --reload
 
 Interactive docs are at `/docs`. `GET /v1/health` returns 503 until the worker has polled successfully in the last 10 minutes. Rate limits are kept in memory, so they reset when the server restarts.
 
+## Push
+
+After each ingest cycle, the worker's notifier pushes new severe events to matching places (spec §6.2, §8.7). Locally it runs in dry run: each push is logged (`push (dry run): …`) and stored in `notifications` with status `dry_run`, and nothing is sent. To send for real, set `KRING_PUSH_DRY_RUN=false`. Expo needs no access token unless «enhanced security» is on for the project.
+
+To see how many pushes sample places would get per week from the stored events (spec §13 target: 0.5–2):
+
+```bash
+uv run python -m scripts.push_replay
+```
+
 ## Re-geocoding stored events
 
 After a geocoder change (a ranking, an alias, a new rule), stored events keep their old placement until their thread changes. Re-run the geocoder and classifier over them (spec §9.6). It is a dry run by default and prints every change:

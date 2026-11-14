@@ -496,6 +496,13 @@ CREATE TABLE events (
 CREATE INDEX events_geom_gix  ON events USING GIST (geom);
 CREATE INDEX events_first_idx ON events (first_message_at DESC);
 CREATE INDEX events_distrikt_idx ON events (district, first_message_at DESC) WHERE scope = 'distrikt';
+-- (decided 2026-11-14, M1 step 7; migration 0005) Detection (D7) and the notifier's progress.
+-- ingested_at: set by the database when the event is first stored (default clock_timestamp());
+-- NULL for events stored before migration 0005. notified_at: when the notifier handled the event
+-- (NULL = still to do); every event stored before migration 0005 is marked handled.
+ALTER TABLE events ADD COLUMN ingested_at TIMESTAMPTZ DEFAULT clock_timestamp();
+ALTER TABLE events ADD COLUMN notified_at TIMESTAMPTZ;
+CREATE INDEX events_notify_pending_idx ON events (ingested_at) WHERE notified_at IS NULL;
 
 CREATE TABLE event_messages (
   event_id   TEXT REFERENCES events(id) ON DELETE CASCADE,
@@ -655,6 +662,20 @@ Decided 2026-11-14 (M1 step 6):
 - (decided 2026-11-13) Matching and push run in the worker, after each cycle's ingest transaction commits, for the events first stored in that cycle. Events that are placed or improved later (by a thread update, or by re-geocoding, §9.6) are never pushed.
 - Send via Expo Push in batches of ≤ 100; poll receipts after 15 min; null the token on DeviceNotRegistered.
 - Payload data: {event_id, place_id}. Deep link opens the incident detail.
+- (decided 2026-11-14, M1 step 7) As built (`app/notify/`):
+  - **Which events are handled.** The notifier handles every event with `notified_at IS NULL`, not just the events from the cycle that just ran. So if the worker dies between ingest and notify, the next cycle catches up. An event the notifier first sees more than 10 minutes after it was stored is marked handled without a push.
+  - **`notifications.status`:**
+    - `pending`: inserted before sending;
+    - `sent`: Expo accepted it, and `ticket_id` is set;
+    - `ok` or `error:<code>`: from the receipt;
+    - `error:send_failed`: Expo was unreachable after 2 retries. The push is never sent again.
+    - `receipt_missing`: no receipt after a day;
+    - `dry_run`: logged, not sent.
+  - **`sent_at`** is when Expo accepted the push. Step 13 measures latency to it.
+  - **Time windows** are half-open: 08:00–16:00 includes 08:00 and excludes 16:00.
+  - **One push per place:** a device with two matching places gets one push per place, as §6.2 says. Only district notices are once per device (D2).
+  - **Distances in the title** are rounded to 50 m under 1 km, and to 100 m above, written «1,2 km».
+  - **Dry run** (`KRING_PUSH_DRY_RUN`, on by default) logs pushes instead of sending them. Render turns it off. Push tokens are never logged.
 - Digest job: Sundays 18:00 in the device's tz. Per place: matched (7 days), severe, imprecise_nearby. Always send, even if zero («Rolig uke»).
 
 ## 8.8 Privacy & security

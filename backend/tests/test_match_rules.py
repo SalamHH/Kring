@@ -257,13 +257,17 @@ async def test_places_for_event_respects_each_places_categories_and_radius(db: A
 
 
 async def test_queries_can_use_the_gist_indexes(db: AsyncConnection) -> None:
-    """With sequential scans disabled, the planner uses the GiST indexes. If a query couldn't use
-    them (e.g. a distance computed per row inside ST_DWithin's index condition), it would fall back
-    to a sequential scan even so."""
+    """The queries can use the GiST indexes: with other access paths taken away, the planner uses
+    them. If a query couldn't (e.g. a per-row radius in ST_DWithin's index condition), it would fall
+    back to a sequential scan even so."""
     from app.match import rules
 
     await add_event(db, distance=100)
     await db.execute(text("SET LOCAL enable_seqscan = off"))
+    # With sequential scans off the planner may still pick the time index instead, depending on
+    # table statistics (flaky in the full suite). Drop it inside the test's transaction (rolled
+    # back), so the only way to avoid a sequential scan is the GiST index.
+    await db.execute(text("DROP INDEX events_first_idx"))
     params = {
         **rules.circle_params(Circle(*CENTER, 1000)),
         **rules.category_params(["Brann"]),

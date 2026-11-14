@@ -90,7 +90,15 @@ The database accepts no outside connections (`ipAllowList: []`), because places 
 
 ## Secrets
 
-Nothing secret is in the repo. The database URL comes from the Blueprint (`fromDatabase`). The Expo access token (M1 step 7) is added in the dashboard as an environment variable on `kring-worker` when push starts.
+Nothing secret is in the repo. The database URL comes from the Blueprint (`fromDatabase`).
+
+Push (M1 step 7): the worker sends for real on Render (`KRING_PUSH_DRY_RUN=false` in `render.yaml`). An Expo access token is only needed if «enhanced security for push» is turned on in the Expo project. If it is, add `KRING_EXPO_ACCESS_TOKEN` in the dashboard on `kring-worker`.
+
+To see what was pushed and its status, run this in the worker shell:
+
+```bash
+uv run --no-sync python -m scripts.db_counts
+```
 
 ## Known limits (M1)
 

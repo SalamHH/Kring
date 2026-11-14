@@ -65,3 +65,9 @@ services:
       # for the ingestion lock instead of exiting.
       - key: KRING_WORKER_WAIT_FOR_LOCK
         value: "true"
+      # Send pushes for real (locally they are only logged). Devices only get a push token from
+      # the app's development build (step 8), so nothing is sent before then. An Expo access token
+      # (KRING_EXPO_ACCESS_TOKEN) is only needed if «enhanced security» is on for the Expo
+      # project; it is set in the dashboard, never here.
+      - key: KRING_PUSH_DRY_RUN
+        value: "false"

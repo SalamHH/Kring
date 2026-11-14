@@ -64,6 +64,19 @@ class Settings(BaseSettings):
     search_timeout_s: float = 5.0
     search_cache_max_age_days: int = 30
     places_per_device: int = 10  # D10
+    # Push (§6.2, §8.7; M1 step 7). Dry run logs each push instead of sending it; Render turns
+    # it off. The access token is only needed if «enhanced security» is on in the Expo project.
+    push_dry_run: bool = True
+    expo_access_token: str | None = None
+    expo_push_url: str = "https://exp.host/--/api/v2/push/send"
+    expo_receipts_url: str = "https://exp.host/--/api/v2/push/getReceipts"
+    push_max_age_min: int = 30  # first message at most this old at detection
+    push_daily_limit: int = 3  # pushes per place per calendar day in the device's tz
+    # An event the notifier first sees this long after it was stored (the worker was down between
+    # ingest and notify) is marked handled without a push.
+    push_late_after_s: int = 600
+    receipt_delay_s: int = 15 * 60
+    receipt_give_up_s: int = 24 * 3600  # Expo keeps receipts for about a day
     # GET /v1/health returns 503 when the last successful poll is older than this (§8.3).
     health_stale_after_s: int = 10 * 60
 

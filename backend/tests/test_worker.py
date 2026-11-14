@@ -227,3 +227,28 @@ async def test_a_waiting_worker_stops_without_a_cycle(engine: AsyncEngine) -> No
     await asyncio.wait_for(new, timeout=5)
     stop_old.set()
     await asyncio.wait_for(old, timeout=5)
+
+
+async def test_the_notifier_runs_after_the_ingest_commit_and_its_failure_is_logged(
+    engine: AsyncEngine, caplog: pytest.LogCaptureFixture
+) -> None:
+    seen: list[str | None] = []
+
+    class SpyNotifier:
+        def __init__(self, fail: bool) -> None:
+            self.fail = fail
+
+        async def run(self, eng: AsyncEngine) -> None:
+            # A new connection sees the cycle's write only if the ingest transaction has committed.
+            seen.append(await stored_marker(eng))
+            if self.fail:
+                raise RuntimeError("Expo is down")
+
+    stop = asyncio.Event()
+    clock = FakeTime(stop, stop_after=2)
+    ing = FakeIngestor(clock, [1, 1])
+    w = Worker(engine, ing, 60, monotonic=clock.monotonic, wait=clock.wait, notifier=SpyNotifier(fail=True))  # type: ignore[arg-type]
+    await w.run(stop)
+    assert seen == ["cycle 0", "cycle 1"]
+    assert w.cycles == 2  # the failure didn't stop the loop
+    assert "notifier failed" in caplog.text and "Expo is down" in caplog.text

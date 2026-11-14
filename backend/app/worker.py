@@ -37,6 +37,8 @@ from sqlalchemy.ext.asyncio import AsyncConnection, AsyncEngine, create_async_en
 from app.geocode.kartverket import KartverketClient
 from app.ingest.client import PolitiloggenClient
 from app.ingest.ingestor import CycleResult, Ingestor
+from app.notify.expo import ExpoClient
+from app.notify.notifier import Notifier
 from app.settings import Settings, get_settings
 
 log = logging.getLogger("app.worker")  # not __main__ under `python -m`
@@ -69,6 +71,7 @@ class Worker:
         wait: Callable[[asyncio.Event, float], Awaitable[None]] = _wait_or_stop,
         wait_for_lock: bool = False,
         lock_retry_s: float = 5.0,
+        notifier: Notifier | None = None,
     ) -> None:
         self.engine = engine
         self.ingestor = ingestor
@@ -76,12 +79,21 @@ class Worker:
         self._monotonic = monotonic
         self._wait = wait
         self.wait_for_lock = wait_for_lock
+        self.notifier = notifier
         self.lock_retry_s = lock_retry_s
         self.cycles = 0
 
     async def run_once(self) -> CycleResult:
         async with self.engine.begin() as conn:
-            return await self.ingestor.run_cycle(conn)
+            res = await self.ingestor.run_cycle(conn)
+        # After the ingest transaction has committed (D7, §8.7). A notifier failure is logged and
+        # doesn't fail the cycle: the events stay unhandled and the next cycle tries again.
+        if self.notifier is not None:
+            try:
+                await self.notifier.run(self.engine)
+            except Exception:
+                log.exception("worker: notifier failed")
+        return res
 
     async def run(self, stop: asyncio.Event) -> None:
         """Loop until `stop` is set. If another worker holds the lock: raises AlreadyRunning, or
@@ -164,8 +176,17 @@ async def main(settings: Settings | None = None) -> int:
                 KartverketClient(http, settings.adresse_url, settings.stedsnavn_urls),
                 http,
             )
+            expo = ExpoClient(
+                http, settings.expo_push_url, settings.expo_receipts_url, settings.expo_access_token
+            )
+            if settings.push_dry_run:
+                log.info("worker: push dry run: pushes are logged, not sent")
             await Worker(
-                engine, ingestor, settings.poll_interval_s, wait_for_lock=settings.worker_wait_for_lock
+                engine,
+                ingestor,
+                settings.poll_interval_s,
+                wait_for_lock=settings.worker_wait_for_lock,
+                notifier=Notifier(settings, expo),
             ).run(stop)
     except AlreadyRunning as e:
         log.error("worker: %s; exiting", e)

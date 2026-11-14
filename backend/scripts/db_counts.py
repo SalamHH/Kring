@@ -21,6 +21,7 @@ QUERIES = {
     "WHERE first_message_at > now() - interval '24 hours'",
     "first and last message": "SELECT min(first_message_at)::text, max(last_message_at)::text FROM events",
     "devices and places": "SELECT (SELECT count(*) FROM devices), (SELECT count(*) FROM places)",
+    "notifications by status": "SELECT status, count(*) FROM notifications GROUP BY 1 ORDER BY 1",
     "ingest_state": "SELECT last_success_at::text, last_error_at::text, last_error FROM ingest_state",
 }
 
