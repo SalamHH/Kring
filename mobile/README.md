@@ -9,6 +9,11 @@ MapLibre and push need native code, so the app runs as a **development build**, 
 - Node 24 (Homebrew `node@24`).
 - Xcode with an iOS Simulator runtime, and CocoaPods (`brew install cocoapods`).
 - Android Studio with an emulator that has a Google Play system image, plus JDK 17 (`brew install --cask zulu@17`). `ANDROID_HOME` and `JAVA_HOME` set in `~/.zshrc`.
+- [Maestro](https://docs.maestro.dev) for the end-to-end flows, from its own Homebrew tap. The plain `maestro` cask is a different product.
+
+```bash
+brew tap mobile-dev-inc/tap && brew install mobile-dev-inc/tap/maestro
+```
 
 ```bash
 npm install
@@ -38,8 +43,20 @@ Don't start Metro with `CI=1`: it turns off Fast Refresh and the typed-routes ge
 npx tsc --noEmit && npx expo lint && npx jest
 ```
 
+End-to-end on the iOS Simulator, with the dev build installed and Metro and the local API running (see Run):
+
+```bash
+npm run test:e2e
+```
+
+- **Component tests** (`__tests__/*.test.tsx`, React Native Testing Library) render a screen in Node with the map, router, API session and push prompt replaced. They check what the screen shows and what it sends, so most of a screen's behaviour is covered without a simulator.
+- **Maestro flows** (`.maestro/`) tap through the real app on the simulator and report each step as text. `open-dev-build.yaml` (tag `helper`) opens the dev build on Metro's bundle, and the other flows start with it. Each flow cleans up the data it creates. On a failure, Maestro saves its logs and a screenshot under `~/.maestro/tests/`.
+- Maestro can't type «æøå» reliably, so flows search with plain-ASCII queries such as «Grensen 10».
+- The script turns Maestro's usage analytics off (`MAESTRO_CLI_NO_ANALYTICS`).
+
 - `__tests__/tokens.test.ts` and `strings.test.ts` read the spec itself (§7.1 and Appendix B), so a change on one side only fails here.
 - `__tests__/api.test.ts` runs the API client, device registration and the place, search and preview calls against a mock HTTP server.
+- `__tests__/PlaceEditor.test.tsx` covers Nytt sted: the defaults, the debounced search, templates, the small-radius note, the coverage note, saving, push only after a save with push on, errors, editing (only changed fields) and deleting.
 - `__tests__/places.test.ts` checks the templates against spec §6.1 and the categories against Appendix B, and covers the radius label, the small-radius note, time-window labels, the preview text and the edit diff.
 
 ## Layout
