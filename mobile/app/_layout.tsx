@@ -5,11 +5,13 @@ import {
   Inter_700Bold,
 } from '@expo-google-fonts/inter';
 import { SpaceGrotesk_600SemiBold, SpaceGrotesk_700Bold } from '@expo-google-fonts/space-grotesk';
+import Feather from '@expo/vector-icons/Feather';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { configureForegroundNotifications } from '@/lib/push';
 import { color } from '@/theme/tokens';
@@ -26,6 +28,7 @@ export default function RootLayout() {
     Inter_700Bold,
     SpaceGrotesk_600SemiBold,
     SpaceGrotesk_700Bold,
+    ...Feather.font,
   });
 
   useEffect(() => {
@@ -36,9 +39,14 @@ export default function RootLayout() {
   if (!loaded && !error) return null;
 
   return (
-    <>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <StatusBar style="dark" />
-      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: color.bg } }} />
-    </>
+      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: color.bg } }}>
+        <Stack.Screen name="index" />
+        {/* Nytt sted is a full-screen modal: «Avbryt» closes it, and a swipe can't lose the input. */}
+        <Stack.Screen name="place/new" options={{ presentation: 'fullScreenModal' }} />
+        <Stack.Screen name="place/[id]" options={{ presentation: 'fullScreenModal' }} />
+      </Stack>
+    </GestureHandlerRootView>
   );
 }

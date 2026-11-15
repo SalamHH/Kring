@@ -30,6 +30,8 @@ On an Android 17 (API 37) emulator, the development build asks to «find, connec
 
 After the first build, only JavaScript changes need no rebuild: `npm start` and press `i` or `a`. A new native package or an `app.json` change needs `npm run ios` / `npm run android` again.
 
+Don't start Metro with `CI=1`: it turns off Fast Refresh and the typed-routes generation that `tsc` needs for `router.push('/place/new')`.
+
 ## Check
 
 ```bash
@@ -37,17 +39,22 @@ npx tsc --noEmit && npx expo lint && npx jest
 ```
 
 - `__tests__/tokens.test.ts` and `strings.test.ts` read the spec itself (§7.1 and Appendix B), so a change on one side only fails here.
-- `__tests__/api.test.ts` runs the API client and device registration against a mock HTTP server.
+- `__tests__/api.test.ts` runs the API client, device registration and the place, search and preview calls against a mock HTTP server.
+- `__tests__/places.test.ts` checks the templates against spec §6.1 and the categories against Appendix B, and covers the radius label, the small-radius note, time-window labels, the preview text and the edit diff.
 
 ## Layout
 
 | Path | What |
 |---|---|
-| `app/` | Screens (expo-router). `_layout.tsx` loads the fonts. |
+| `app/` | Screens (expo-router). `_layout.tsx` loads the fonts. `index.tsx` is Hjem; `place/new.tsx` and `place/[id].tsx` are Nytt sted and its edit mode, as full-screen modals. |
 | `components/PlaceMap.tsx` | The shared map: place circle (solid or dashed), incident point and uncertainty ring, «© Kartverket». |
+| `components/PlaceEditor.tsx` | Nytt sted (F1–F3): search, type and category chips, name, map, radius, preview, «Når», push, save and delete. |
+| `components/RadiusSlider.tsx`, `Chip.tsx`, `InfoNote.tsx` | The §7.2 components. The slider is built on gesture-handler, so it needs no native slider module. |
+| `lib/places.ts` | Templates (§6.1), categories, radius and time-window labels, the preview text. No React, so jest covers it. |
+| `lib/placeHooks.ts` | The debounced search and the preview, which ignore answers to questions no longer asked. |
 | `lib/api.ts` | API client (§8.6). Errors become `ApiError` with the API's `error` code. |
 | `lib/device.ts`, `lib/session.ts` | Anonymous device: registered on first launch, secret in the Keychain / Keystore (`expo-secure-store`). Registers again if the server has forgotten the device. |
-| `lib/push.ts`, `lib/bootstrap.ts` | Push permission and the Expo push token, sent with `PUT /v1/devices/me`; refreshed when the app comes back to the foreground. |
+| `lib/push.ts`, `lib/bootstrap.ts` | Push permission and the Expo push token, sent with `PUT /v1/devices/me`; refreshed when the app comes back to the foreground. The OS prompt is shown only by `askForPush`, after a place is saved. |
 | `lib/tiles.ts` | Kartverket map tiles and their terms (§8.1). The only place the tile URL lives. |
 | `lib/strings.ts` | All UI strings (Appendix B first). |
 | `theme/tokens.ts` | Design tokens (§7.1). |
@@ -56,6 +63,8 @@ npx tsc --noEmit && npx expo lint && npx jest
 
 The EAS project is `@salamhh/kring`; its ID is in `app.json` under `extra.eas.projectId`, and the Expo push token is requested with it.
 
+- **When the app asks:** not at launch, but right after a place with push on is saved (spec §8.7, decided 2026-11-15). Each launch only reads the permission: if it's granted, the token is sent; otherwise the token is cleared on the server.
+- **To see the prompt again** on the simulator, reinstall the app (the Keychain keeps the device): `xcrun simctl uninstall booted no.kring.app`, then `xcrun simctl install booted <DerivedData>/Build/Products/Debug-iphonesimulator/Kring.app`.
 - **iOS Simulator:** gets an Expo push token, which ends up on the device row.
 - **Android:** needs Firebase. Until `google-services.json` is in the app config, the app logs `Default FirebaseApp is not initialized` and registers without a token.
 - **Sending:** an actual push needs APNs and FCM credentials on the EAS project (M1 step 12).

@@ -1,6 +1,7 @@
 /**
  * First launch and every return to the app: make sure the device is registered (§8.6)
- * and the push token on the server is current (§8.7).
+ * and the push token on the server is current (§8.7). This never shows the push prompt;
+ * `askForPush` does, after the first saved place.
  */
 import * as Notifications from 'expo-notifications';
 import { useEffect, useState } from 'react';
@@ -24,6 +25,19 @@ async function run(): Promise<DeviceState> {
   } catch (e) {
     console.warn('device bootstrap failed', e);
     return { state: 'error', message: e instanceof Error ? e.message : String(e) };
+  }
+}
+
+/**
+ * Shows the OS push prompt if the user hasn't answered it yet, then syncs the token. Called by
+ * Nytt sted after a place with push on is saved (decided 2026-11-15, §8.7). Never throws.
+ */
+export async function askForPush(): Promise<PushStatus> {
+  try {
+    return await syncPushToken(session, { ask: true });
+  } catch (e) {
+    console.warn('push: asking for permission failed', e);
+    return 'unavailable';
   }
 }
 

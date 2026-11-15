@@ -9,7 +9,7 @@ import { Platform } from 'react-native';
 import type { DeviceSession } from './device';
 import { deviceInfo } from './session';
 
-export type PushStatus = 'granted' | 'denied' | 'unavailable';
+export type PushStatus = 'granted' | 'denied' | 'undetermined' | 'unavailable';
 
 /** Android channel. The backend sends no channelId, so Expo delivers to «default». */
 const ANDROID_CHANNEL = 'default';
@@ -31,11 +31,15 @@ function projectId(): string | undefined {
 }
 
 /**
- * Asks for permission if it hasn't been refused, then sends the token to the API.
- * Returns 'unavailable' when there is no token to get: no EAS project yet (`eas init`),
- * or a simulator without push.
+ * Sends the current push token to the API, or clears it there when push is not allowed.
+ *
+ * With `ask`, the OS prompt is shown first if the user hasn't answered it yet. Only Nytt sted
+ * asks, right after a place with push on is saved (decided 2026-11-15, §8.7); every launch
+ * calls this without `ask`. Returns 'undetermined' when the user hasn't been asked yet, and
+ * 'unavailable' when there is no token to get: no EAS project yet (`eas init`), or a simulator
+ * without push.
  */
-export async function syncPushToken(session: DeviceSession): Promise<PushStatus> {
+export async function syncPushToken(session: DeviceSession, { ask = false } = {}): Promise<PushStatus> {
   if (Platform.OS === 'android') {
     // Android 13+ shows the permission prompt only once a channel exists.
     await Notifications.setNotificationChannelAsync(ANDROID_CHANNEL, {
@@ -45,14 +49,14 @@ export async function syncPushToken(session: DeviceSession): Promise<PushStatus>
   }
 
   let { granted, canAskAgain } = await Notifications.getPermissionsAsync();
-  if (!granted && canAskAgain) {
-    ({ granted } = await Notifications.requestPermissionsAsync({
+  if (!granted && canAskAgain && ask) {
+    ({ granted, canAskAgain } = await Notifications.requestPermissionsAsync({
       ios: { allowAlert: true, allowSound: true, allowBadge: false },
     }));
   }
   if (!granted) {
     await session.call((api) => api.updateDevice({ push_token: null }));
-    return 'denied';
+    return canAskAgain ? 'undetermined' : 'denied';
   }
 
   const id = projectId();

@@ -3,7 +3,7 @@
  * optionally an incident point with its uncertainty ring. Kartverket tiles, «© Kartverket» on the map.
  */
 import { Camera, GeoJSONSource, Layer, Map } from '@maplibre/maplibre-react-native';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { boundsOfCircles, circlePolygon, type LatLon } from '@/lib/geo';
@@ -16,6 +16,13 @@ export interface PlaceMapProps {
   /** Dashed outline, as on Hendelse. Solid by default. */
   dashed?: boolean;
   incident?: { point: LatLon; uncertaintyM: number };
+  /**
+   * The radius the camera fits, if not the drawn one. Nytt sted passes the radius at the last
+   * slider release, so the circle grows and shrinks over a still map while dragging.
+   */
+  fitRadiusM?: number;
+  /** Milliseconds the camera takes to a new place or radius. 0 (the default) jumps. */
+  animationMs?: number;
   height?: number;
   /** Pan and zoom. Off by default: the map shows the area, it is not for browsing. */
   interactive?: boolean;
@@ -33,6 +40,8 @@ export function PlaceMap({
   place,
   dashed = false,
   incident,
+  fitRadiusM,
+  animationMs = 0,
   height = 220,
   interactive = false,
   accessibilityLabel,
@@ -48,14 +57,17 @@ export function PlaceMap({
     () => (incident ? feature({ type: 'Point', coordinates: [incident.point.lon, incident.point.lat] }) : null),
     [incident],
   );
+  const fitRadius = fitRadiusM ?? radiusM;
   const bounds = useMemo(
     () =>
       boundsOfCircles([
-        { center, radiusM },
+        { center, radiusM: fitRadius },
         ...(incident ? [{ center: incident.point, radiusM: incident.uncertaintyM }] : []),
       ]),
-    [center, radiusM, incident],
+    [center, fitRadius, incident],
   );
+  // The first frame starts at the first bounds, so an animated camera doesn't fly in from afar.
+  const [initialBounds] = useState(bounds);
 
   return (
     <View style={[styles.frame, { height }]}>
@@ -74,7 +86,14 @@ export function PlaceMap({
           touchRotate={false}
           touchPitch={false}
         >
-          <Camera bounds={bounds} padding={PADDING} duration={0} maxZoom={KARTVERKET_MAX_ZOOM} />
+          <Camera
+            initialViewState={{ bounds: initialBounds, padding: PADDING }}
+            bounds={bounds}
+            padding={PADDING}
+            duration={animationMs}
+            easing={animationMs ? 'ease' : undefined}
+            maxZoom={KARTVERKET_MAX_ZOOM}
+          />
 
           <GeoJSONSource id="place-area" data={circle}>
             <Layer id="place-fill" type="fill" paint={{ 'fill-color': color.accent, 'fill-opacity': 0.12 }} />

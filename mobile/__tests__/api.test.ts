@@ -10,6 +10,7 @@ import type { AddressInfo } from 'net';
 
 import { ApiClient, ApiError } from '@/lib/api';
 import { DEVICE_ID_KEY, DeviceSession, SECRET_KEY, type SecretStore } from '@/lib/device';
+import { type Place, type PlaceFields, TEMPLATES } from '@/lib/places';
 
 interface Device {
   id: string;
@@ -22,6 +23,7 @@ interface Device {
 class MockApi {
   server: Server;
   devices = new Map<string, Device>();
+  places = new Map<string, { device: string; out: Place }>();
   registrations = 0;
   requests: { method: string; url: string; auth?: string; body?: unknown }[] = [];
   /** Set to make the next request fail with this status and body. */
@@ -86,6 +88,35 @@ class MockApi {
     }
     if (req.method === 'DELETE' && req.url === '/v1/devices/me') {
       this.devices.delete(secret!);
+      return send(204);
+    }
+
+    const url = new URL(req.url!, 'http://mock');
+    if (req.method === 'GET' && url.pathname === '/v1/geocode/search') {
+      return send(200, [
+        { kind: 'sted', label: url.searchParams.get('q'), secondary: 'Skole, Oslo', lat: 59.9, lon: 10.7, kommunenummer: '0301', covered: true },
+      ]);
+    }
+    if (req.method === 'GET' && url.pathname === '/v1/preview') {
+      return send(200, { days: 30, matched: 5, severe: 5, hidden_traffic: 3, imprecise_nearby: 2 });
+    }
+    const mine = [...this.places.values()].filter((p) => p.device === device.id);
+    if (req.method === 'GET' && url.pathname === '/v1/places') return send(200, mine.map((p) => p.out));
+    if (req.method === 'POST' && url.pathname === '/v1/places') {
+      if (mine.length >= 10) return send(409, { error: 'place_limit', message: 'A device can have at most 10 places' });
+      const out = { id: randomUUID(), ...body, kommunenummer: '0301', covered: true, created_at: '2026-11-15T12:00:00Z' };
+      this.places.set(out.id, { device: device.id, out });
+      return send(201, out);
+    }
+    const one = url.pathname.match(/^\/v1\/places\/([^/]+)$/);
+    const place = one ? this.places.get(one[1]) : undefined;
+    if (one && (!place || place.device !== device.id)) return send(404, { error: 'not_found', message: 'No such place' });
+    if (place && req.method === 'PATCH') {
+      Object.assign(place.out, body);
+      return send(200, place.out);
+    }
+    if (place && req.method === 'DELETE') {
+      this.places.delete(place.out.id);
       return send(204);
     }
     send(404, { error: 'not_found', message: 'Not found' });
@@ -274,5 +305,68 @@ describe('DeviceSession', () => {
     expect(store.data.size).toBe(0);
     await session.ensure(); // and recovers on the next try
     expect(store.data.get(SECRET_KEY)).toMatch(/^secret-/);
+  });
+});
+
+describe('places, search and preview', () => {
+  const skole: PlaceFields = {
+    label: 'Skolen',
+    place_name: 'Tøyen skole',
+    template: 'skole',
+    lat: 59.91483,
+    lon: 10.77318,
+    radius_m: 1000,
+    categories: [...TEMPLATES.skole.categories],
+    time_window: TEMPLATES.skole.window,
+    push: true,
+  };
+
+  it('encodes the search query', async () => {
+    const { session } = newSession();
+    const results = await session.call((api) => api.searchPlaces('tøyen skole & co'));
+    expect(results[0].label).toBe('tøyen skole & co');
+    expect(mock.requests.at(-1)!.url).toBe('/v1/geocode/search?q=t%C3%B8yen%20skole%20%26%20co');
+  });
+
+  it('sends the preview query with comma-separated categories', async () => {
+    const { session } = newSession();
+    const p = await session.call((api) =>
+      api.preview({ lat: 59.91483, lon: 10.77318, radius_m: 700, categories: ['Vold', 'Ro og orden'] }),
+    );
+    expect(p.matched).toBe(5);
+    expect(mock.requests.at(-1)!.url).toBe(
+      '/v1/preview?lat=59.91483&lon=10.77318&radius_m=700&categories=Vold%2CRo%20og%20orden',
+    );
+  });
+
+  it('creates, lists, changes and deletes a place', async () => {
+    const { session } = newSession();
+    const created = await session.call((api) => api.createPlace(skole));
+    expect(mock.requests.at(-1)).toMatchObject({ method: 'POST', url: '/v1/places', body: skole });
+    expect(await session.call((api) => api.listPlaces())).toEqual([created]);
+
+    const changed = await session.call((api) => api.updatePlace(created.id, { radius_m: 700 }));
+    expect(mock.requests.at(-1)).toMatchObject({ method: 'PATCH', url: `/v1/places/${created.id}`, body: { radius_m: 700 } });
+    expect(changed.radius_m).toBe(700);
+
+    await session.call((api) => api.deletePlace(created.id));
+    expect(mock.requests.at(-1)).toMatchObject({ method: 'DELETE', url: `/v1/places/${created.id}` });
+    expect(await session.call((api) => api.listPlaces())).toEqual([]);
+  });
+
+  it('reports the 11th place as place_limit', async () => {
+    const { session } = newSession();
+    for (let i = 0; i < 10; i++) await session.call((api) => api.createPlace(skole));
+    await expect(session.call((api) => api.createPlace(skole))).rejects.toMatchObject({
+      status: 409,
+      code: 'place_limit',
+    });
+  });
+
+  it('gets 404 for another device\'s place', async () => {
+    const a = newSession().session;
+    const b = newSession().session;
+    const created = await a.call((api) => api.createPlace(skole));
+    await expect(b.call((api) => api.deletePlace(created.id))).rejects.toMatchObject({ status: 404 });
   });
 });

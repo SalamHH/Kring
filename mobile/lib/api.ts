@@ -2,8 +2,15 @@
  * Kring API client (spec §8.6). Plain fetch, no state: the device secret comes from
  * `getSecret`, so lib/device.ts decides where it lives and when to register.
  */
+import type { Place, PlaceFields, Preview, SearchResult } from './places';
 
 export type Platform = 'ios' | 'android';
+
+function query(params: Record<string, string | number>): string {
+  return Object.entries(params)
+    .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`)
+    .join('&');
+}
 
 export interface Registered {
   device_id: string;
@@ -76,6 +83,39 @@ export class ApiClient {
   /** DELETE /v1/devices/me: the device, its places and notifications. */
   deleteDevice(): Promise<void> {
     return this.request('DELETE', '/v1/devices/me');
+  }
+
+  /** GET /v1/geocode/search: Kartverket addresses and place names, up to 10. `q` is 2–100 characters. */
+  searchPlaces(q: string): Promise<SearchResult[]> {
+    return this.request('GET', `/v1/geocode/search?${query({ q })}`);
+  }
+
+  /** GET /v1/preview: counts for the last 30 days around a point (F3). */
+  preview(p: { lat: number; lon: number; radius_m: number; categories: readonly string[] }): Promise<Preview> {
+    return this.request(
+      'GET',
+      `/v1/preview?${query({ lat: p.lat, lon: p.lon, radius_m: p.radius_m, categories: p.categories.join(',') })}`,
+    );
+  }
+
+  /** GET /v1/places: this device's places, oldest first. */
+  listPlaces(): Promise<Place[]> {
+    return this.request('GET', '/v1/places');
+  }
+
+  /** POST /v1/places. 409 `place_limit` at 10 places (D10); 502 when Kartverket doesn't answer. */
+  createPlace(body: PlaceFields): Promise<Place> {
+    return this.request('POST', '/v1/places', { body });
+  }
+
+  /** PATCH /v1/places/{id}: only the fields sent are changed. */
+  updatePlace(id: string, body: Partial<PlaceFields>): Promise<Place> {
+    return this.request('PATCH', `/v1/places/${encodeURIComponent(id)}`, { body });
+  }
+
+  /** DELETE /v1/places/{id}. */
+  deletePlace(id: string): Promise<void> {
+    return this.request('DELETE', `/v1/places/${encodeURIComponent(id)}`);
   }
 
   async request<T>(
