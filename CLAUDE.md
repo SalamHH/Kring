@@ -6,6 +6,16 @@ Calm, place-based alerts from the Norwegian police log (Politiloggen). The full 
 
 **M1:** API, matching, push, and the Expo screens Hjem, Nytt sted and Hendelse, plus the Render deploy. The plan, with a checkbox per step, how each one is verified, and the design choices D1–D12, is in [`docs/plans/m1.md`](docs/plans/m1.md). M0 is done: [`docs/m0-report.md`](docs/m0-report.md).
 
+## Board
+
+The backlog is the GitHub project [Kring](https://github.com/users/SalamHH/projects/2) (project 2, owner `SalamHH`), with one issue per plan step or task and milestones M1–M4. Status columns: Backlog (later milestones), Todo, In progress, Done. Use `gh`; the project's IDs are fetched with `gh project field-list 2 --owner SalamHH`. Keep it current without being asked:
+
+- Starting a step or issue: set its status to In progress.
+- Its commit: end the message with `Closes #N`. When it reaches the default branch, or when the step is ticked in the plan, close the issue and set it to Done.
+- Missing work, a bug, or an open question found along the way: open an issue with the right milestone and labels (`backend`, `mobile`, `infra`, `docs`, `your-track`, `decision`), add it to the project, and say so in your reply.
+- A new milestone plan: one issue per step, added as Todo; the milestone after it stays Backlog.
+- The plan in `docs/plans/` stays the source of truth for how a step is verified. The board tracks status only.
+
 ## Read first
 
 - Spec §8 (architecture) and §9 (geocoding and classification) are the core. Words in capitals (MUST, SHOULD, MAY) are requirements.
