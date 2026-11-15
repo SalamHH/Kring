@@ -545,6 +545,10 @@ CREATE INDEX places_center_gix ON places USING GIST (center);
 -- fylker are allowed and flagged as not covered (§6).
 ALTER TABLE places ADD COLUMN kommunenummer TEXT;
 CREATE INDEX places_device_idx ON places (device_id, created_at);
+-- (decided 2026-11-15, M1 step 9; migration 0006) The name of the search result the place was
+-- made from («Tøyen skole»), for the Hjem card meta and the edit screen. The label («Skolen») stays
+-- the user's own name for the place. NULL for places made before migration 0006.
+ALTER TABLE places ADD COLUMN place_name TEXT CHECK (char_length(place_name) BETWEEN 1 AND 100);
 
 CREATE TABLE notifications (
   id         BIGSERIAL PRIMARY KEY,
@@ -657,12 +661,16 @@ Decided 2026-11-14 (M1 step 6):
 - **`POST /v1/events/{id}/feedback`** with `{place_id}` returns 204. There is one row per (event, place), so a second tap changes nothing.
 - **Titles (D5):** the category in a title is the app category, except for Andre, which uses the police category («Ulykke · Lysaker»), since «Andre» says nothing. A district is written «Oslo politidistrikt», not Politiloggen's «Oslo Politidistrikt».
 
+Decided 2026-11-15 (M1 step 9):
+- **`place_name`** on places: optional, 1–100 characters after trimming. The app sends the label of the chosen search result («Tøyen skole»). `PATCH` may send it as null to clear it; it is not changed when it is left out, also not when `lat` and `lon` change.
+
 ## 8.7 Notifications
 
 - Insert into `notifications` BEFORE sending; the unique constraint prevents duplicates across worker restarts.
 - (decided 2026-11-13) Matching and push run in the worker, after each cycle's ingest transaction commits, for the events first stored in that cycle. Events that are placed or improved later (by a thread update, or by re-geocoding, §9.6) are never pushed.
 - Send via Expo Push in batches of ≤ 100; poll receipts after 15 min; null the token on DeviceNotRegistered.
 - Payload data: {event_id, place_id}. Deep link opens the incident detail.
+- (decided 2026-11-15, M1 step 9) **Push permission** is asked right after the device's first place is saved in Nytt sted, not at first launch, so the iOS prompt (shown only once) comes with a reason. First launch only registers the device. On every launch the app reads the permission without asking: if granted, it sends the current token; if refused, it clears the token on the server.
 - (decided 2026-11-14, M1 step 7) As built (`app/notify/`):
   - **Which events are handled.** The notifier handles every event with `notified_at IS NULL`, not just the events from the cycle that just ran. So if the worker dies between ingest and notify, the next cycle catches up. An event the notifier first sees more than 10 minutes after it was stored is marked handled without a push.
   - **`notifications.status`:**

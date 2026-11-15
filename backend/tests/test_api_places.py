@@ -144,6 +144,25 @@ async def test_crud_round_trip(env: Env) -> None:
     assert await env.scalar("SELECT count(*) FROM places") == 0
 
 
+async def test_place_name_is_stored_trimmed_changed_and_cleared(env: Env) -> None:
+    me = await env.device()
+    r = await env.client.post("/v1/places", headers=me, json=place(place_name="  Tøyen skole  "))
+    assert r.status_code == 201, r.text
+    pid = r.json()["id"]
+    assert r.json()["label"] == "Skolen" and r.json()["place_name"] == "Tøyen skole"
+    assert (await env.client.get("/v1/places", headers=me)).json()[0]["place_name"] == "Tøyen skole"
+
+    r = await env.client.patch(f"/v1/places/{pid}", headers=me, json={"place_name": "Hølandsgata 1A"})
+    assert r.status_code == 200 and r.json()["place_name"] == "Hølandsgata 1A"
+    r = await env.client.patch(f"/v1/places/{pid}", headers=me, json={"label": "Hjemme"})
+    assert r.json()["place_name"] == "Hølandsgata 1A"  # untouched when not sent
+    r = await env.client.patch(f"/v1/places/{pid}", headers=me, json={"place_name": None})
+    assert r.status_code == 200 and r.json()["place_name"] is None
+
+    r = await env.client.post("/v1/places", headers=me, json=place())
+    assert r.status_code == 201 and r.json()["place_name"] is None
+
+
 async def test_skole_without_categories_gets_template_defaults(env: Env) -> None:
     me = await env.device()
     r = await env.client.post("/v1/places", headers=me, json=place())
@@ -194,6 +213,8 @@ async def test_another_devices_place_is_404(env: Env) -> None:
 INVALID_CREATE: list[tuple[str, dict[str, Any]]] = [
     ("empty label", {"label": "   "}),
     ("label too long", {"label": "x" * 41}),
+    ("empty place name", {"place_name": "  "}),
+    ("place name too long", {"place_name": "x" * 101}),
     ("radius too small", {"radius_m": 200}),
     ("radius too large", {"radius_m": 2100}),
     ("radius not a step of 100", {"radius_m": 1050}),
@@ -232,6 +253,8 @@ async def test_invalid_create_is_422(env: Env, case: str, change: dict[str, Any]
     "change",
     [
         {"label": None},
+        {"place_name": ""},
+        {"place_name": "x" * 101},
         {"radius_m": 250},
         {"lat": 59.9},
         {"categories": []},

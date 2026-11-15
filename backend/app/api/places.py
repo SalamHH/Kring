@@ -2,6 +2,8 @@
 
 Validation follows §8.4 and §6:
 - label: 1-40 characters after trimming;
+- place_name: optional, 1-100 characters after trimming; the search result the place was made from
+  (decided 2026-11-15, M1 step 9). PATCH may send null to clear it;
 - radius 300-2 000 m in steps of 100 (default 1 000);
 - template one of §6.1;
 - categories: app categories (Appendix B), at least one;
@@ -37,6 +39,7 @@ router = APIRouter(prefix="/v1/places", tags=["places"])
 
 Template = Literal["skole", "hjem", "hytte", "jobb", "annet"]
 Label = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=40)]
+PlaceName = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=100)]
 
 ALL_DAY: dict[str, Any] = {"all": True}
 WEEKDAYS = [1, 2, 3, 4, 5]
@@ -113,6 +116,7 @@ def _categories(v: list[str] | None) -> list[str] | None:
 class PlaceCreate(BaseModel):
     model_config = ConfigDict(extra="forbid")
     label: Label
+    place_name: PlaceName | None = None
     template: Template
     lat: float = Field(ge=-90, le=90)
     lon: float = Field(ge=-180, le=180)
@@ -130,6 +134,7 @@ class PlaceUpdate(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
     label: Label | None = None
+    place_name: PlaceName | None = None  # null clears it
     template: Template | None = None
     lat: float | None = Field(default=None, ge=-90, le=90)
     lon: float | None = Field(default=None, ge=-180, le=180)
@@ -143,7 +148,7 @@ class PlaceUpdate(BaseModel):
 
     @model_validator(mode="after")
     def _no_nulls_and_both_coordinates(self) -> PlaceUpdate:
-        for name in self.model_fields_set:
+        for name in self.model_fields_set - {"place_name"}:
             if getattr(self, name) is None:
                 raise ValueError(f"{name} cannot be null")
         if ("lat" in self.model_fields_set) != ("lon" in self.model_fields_set):
@@ -154,6 +159,7 @@ class PlaceUpdate(BaseModel):
 class PlaceOut(BaseModel):
     id: uuid.UUID
     label: str
+    place_name: str | None
     template: Template
     lat: float
     lon: float
@@ -167,7 +173,7 @@ class PlaceOut(BaseModel):
 
 
 _SELECT = """
-    SELECT id, label, template, ST_Y(center::geometry) AS lat, ST_X(center::geometry) AS lon,
+    SELECT id, label, place_name, template, ST_Y(center::geometry) AS lat, ST_X(center::geometry) AS lon,
            radius_m, categories, time_window, push, kommunenummer, created_at
     FROM places
 """
@@ -178,6 +184,7 @@ def _out(request: Request, row: Any) -> PlaceOut:
     return PlaceOut(
         id=row.id,
         label=row.label,
+        place_name=row.place_name,
         template=row.template,
         lat=row.lat,
         lon=row.lon,
@@ -239,15 +246,17 @@ async def create_place(
     place_id = uuid.uuid4()
     await session.execute(
         text("""
-            INSERT INTO places (id, device_id, label, template, center, radius_m, categories, time_window,
-                                push, kommunenummer)
-            VALUES (:id, :d, :label, :template, ST_SetSRID(ST_MakePoint(:lon, :lat), 4326)::geography,
+            INSERT INTO places (id, device_id, label, place_name, template, center, radius_m, categories,
+                                time_window, push, kommunenummer)
+            VALUES (:id, :d, :label, :place_name, :template,
+                    ST_SetSRID(ST_MakePoint(:lon, :lat), 4326)::geography,
                     :radius, :categories, CAST(:tw AS jsonb), :push, :knr)
         """),
         {
             "id": place_id,
             "d": device.id,
             "label": body.label,
+            "place_name": body.place_name,
             "template": body.template,
             "lon": body.lon,
             "lat": body.lat,
@@ -271,6 +280,7 @@ async def update_place(
     fields = body.model_fields_set
     for name, col in (
         ("label", "label"),
+        ("place_name", "place_name"),
         ("template", "template"),
         ("radius_m", "radius_m"),
         ("push", "push"),
