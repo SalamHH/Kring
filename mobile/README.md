@@ -21,7 +21,7 @@ npm install
 
 ## Run
 
-Start the local API first (see [`../backend/README.md`](../backend/README.md)). In development the app talks to it at `http://localhost:8000`, or `http://10.0.2.2:8000` from the Android emulator. Set `EXPO_PUBLIC_API_URL` in `.env.local` to use another API, such as `https://kring-api.onrender.com`.
+Start the local API first (see [`../backend/README.md`](../backend/README.md)). In development the app talks to it at `http://localhost:8000`, or `http://10.0.2.2:8000` from the Android emulator. Set `EXPO_PUBLIC_API_URL` in `.env.local` to use another API, such as `https://kring-api.onrender.com`, and restart Metro with `--clear`. The app then registers a new device on that API, and again when you switch back.
 
 ```bash
 npm run ios        # builds, installs on the iOS Simulator and starts Metro
@@ -56,6 +56,7 @@ npm run test:e2e
 
 - `__tests__/tokens.test.ts` and `strings.test.ts` read the spec itself (§7.1 and Appendix B), so a change on one side only fails here.
 - `__tests__/api.test.ts` runs the API client, device registration and the place, search and preview calls against a mock HTTP server.
+- `__tests__/Home.test.tsx` and `home.test.ts` cover Hjem: every status row, «N ny», the district row, the poll status, navigation and the opened store.
 - `__tests__/PlaceEditor.test.tsx` covers Nytt sted: the defaults, the debounced search, templates, the small-radius note, the coverage note, saving, push only after a save with push on, errors, editing (only changed fields) and deleting.
 - `__tests__/places.test.ts` checks the templates against spec §6.1 and the categories against Appendix B, and covers the radius label, the small-radius note, time-window labels, the preview text and the edit diff.
 
@@ -63,7 +64,11 @@ npm run test:e2e
 
 | Path | What |
 |---|---|
-| `app/` | Screens (expo-router). `_layout.tsx` loads the fonts. `index.tsx` is Hjem; `place/new.tsx` and `place/[id].tsx` are Nytt sted and its edit mode, as full-screen modals. |
+| `app/` | Screens (expo-router). `_layout.tsx` loads the fonts. `index.tsx` is Hjem; `place/new.tsx` and `place/[id].tsx` are Nytt sted and its edit mode, as full-screen modals; `event/[id].tsx` is Hendelse (a placeholder until step 11). |
+| `components/HomeParts.tsx` | Hjem's PlaceCard, IncidentRow, PrecisionBadge and the district notice row (§7.2). |
+| `lib/home.ts`, `lib/useHome.ts` | Hjem's rules (status row, «N ny», texts) and its data loading. |
+| `lib/opened.ts`, `lib/openedFile.ts` | Which incidents were opened on this device, for «N ny»; a JSON file, never sent. |
+| `lib/textScale.ts` | Dynamic Type: the 2× cap (1.5× for headings) and when rows stack. |
 | `components/PlaceMap.tsx` | The shared map: place circle (solid or dashed), incident point and uncertainty ring, «© Kartverket». |
 | `components/PlaceEditor.tsx` | Nytt sted (F1–F3): search, type and category chips, name, map, radius, preview, «Når», push, save and delete. |
 | `components/RadiusSlider.tsx`, `Chip.tsx`, `InfoNote.tsx` | The §7.2 components. The slider is built on gesture-handler, so it needs no native slider module. |

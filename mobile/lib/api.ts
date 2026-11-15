@@ -2,6 +2,7 @@
  * Kring API client (spec §8.6). Plain fetch, no state: the device secret comes from
  * `getSecret`, so lib/device.ts decides where it lives and when to register.
  */
+import type { EventDetail, Health, PlaceEvents } from './home';
 import type { Place, PlaceFields, Preview, SearchResult } from './places';
 
 export type Platform = 'ios' | 'android';
@@ -118,10 +119,26 @@ export class ApiClient {
     return this.request('DELETE', `/v1/places/${encodeURIComponent(id)}`);
   }
 
+  /** GET /v1/places/{id}/events: matched and imprecise-nearby events, newest first (1–90 days). */
+  placeEvents(id: string, days: number): Promise<PlaceEvents> {
+    return this.request('GET', `/v1/places/${encodeURIComponent(id)}/events?${query({ days })}`);
+  }
+
+  /** GET /v1/events/{id}, with `for_place` when a place is given. */
+  event(id: string, placeId?: string): Promise<EventDetail> {
+    const q = placeId ? `?${query({ place_id: placeId })}` : '';
+    return this.request('GET', `/v1/events/${encodeURIComponent(id)}${q}`);
+  }
+
+  /** GET /v1/health. A stale poll answers 503 with the same body, which is returned too. */
+  health(): Promise<Health> {
+    return this.request('GET', '/v1/health', { auth: false, acceptStatus: [503] });
+  }
+
   async request<T>(
     method: Method,
     path: string,
-    { body, auth = true }: { body?: unknown; auth?: boolean } = {},
+    { body, auth = true, acceptStatus = [] }: { body?: unknown; auth?: boolean; acceptStatus?: number[] } = {},
   ): Promise<T> {
     const headers: Record<string, string> = { Accept: 'application/json' };
     if (body !== undefined) headers['Content-Type'] = 'application/json';
@@ -156,7 +173,7 @@ export class ApiClient {
     } catch {
       // Not JSON: a proxy error page, for example. Handled below.
     }
-    if (res.ok) {
+    if (res.ok || (acceptStatus.includes(res.status) && json !== undefined)) {
       if (json === undefined) throw new ApiError(res.status, 'bad_response', `${method} ${path}: not JSON`);
       return json as T;
     }

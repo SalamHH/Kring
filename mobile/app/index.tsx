@@ -1,18 +1,23 @@
 /**
- * Hjem. Interim (step 9): the title, a plain list of the device's places that opens the edit
- * screen, and «Legg til sted» pinned at the bottom. In development builds also the device
- * status. Step 10 replaces the list with the place cards (F4).
+ * Hjem («Dine steder», F4, §7.3): the poll status, one card per place with its status row and
+ * «N ny», a quiet row per district notice from the last 24 h (D2), the source line, and
+ * «Legg til sted» pinned at the bottom. Pull to refresh. No digest card until M2.
  */
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useRouter } from 'expo-router';
-import { useCallback, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useCallback } from 'react';
+import { ActivityIndicator, Pressable, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { NoticeRow, PlaceCard } from '@/components/HomeParts';
 import { type DeviceState, useDeviceBootstrap } from '@/lib/bootstrap';
 import { apiBaseUrl } from '@/lib/config';
-import { type Place, radiusLabel, windowLabel } from '@/lib/places';
-import { session } from '@/lib/session';
+import { districtNotices, newCount, placeStatus, updatedText } from '@/lib/home';
+import { useOpened } from '@/lib/opened';
+import { openedStore } from '@/lib/openedFile';
 import { t } from '@/lib/strings';
+import { MAX_SCALE } from '@/lib/textScale';
+import { useHome } from '@/lib/useHome';
 import { color, font, radius, spacing } from '@/theme/tokens';
 
 function describe(s: DeviceState): string {
@@ -26,72 +31,90 @@ function describe(s: DeviceState): string {
   }
 }
 
-/** «Tøyen skole · 1 km · hverdager 08–16» (§7.2 PlaceCard meta). */
-function meta(p: Place): string {
-  const w = windowLabel(p.time_window);
-  return [p.place_name, radiusLabel(p.radius_m), w.charAt(0).toLowerCase() + w.slice(1)]
-    .filter(Boolean)
-    .join(' · ');
-}
-
 export default function Home() {
   const router = useRouter();
   const device = useDeviceBootstrap();
-  const [places, setPlaces] = useState<Place[] | null>(null);
-  const [failed, setFailed] = useState(false);
+  const isOpened = useOpened(openedStore);
+  const { state, refreshing, load } = useHome();
 
-  // Reload whenever Hjem is shown again, such as after Nytt sted closes.
+  // Reload whenever Hjem is shown again, such as after Nytt sted or Hendelse closes.
   useFocusEffect(
     useCallback(() => {
-      let alive = true;
-      session
-        .call((api) => api.listPlaces())
-        .then(
-          (ps) => {
-            if (!alive) return;
-            setPlaces(ps);
-            setFailed(false);
-          },
-          () => alive && setFailed(true),
-        );
-      return () => {
-        alive = false;
-      };
-    }, []),
+      void load();
+    }, [load]),
   );
+
+  const now = new Date();
+  const data = state.status === 'ok' ? state.data : null;
+  const updated = updatedText(data?.health ?? null);
+  const notices = data ? districtNotices(Object.values(data.events)) : [];
+
+  const openEvent = (id: string, placeId?: string) =>
+    router.push({ pathname: '/event/[id]', params: placeId ? { id, place: placeId } : { id } });
 
   return (
     <SafeAreaView style={styles.screen} edges={['top', 'left', 'right']}>
-      <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.title} accessibilityRole="header">
-          {t('home.title')}
+      <ScrollView
+        contentContainerStyle={styles.content}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => load(true)} tintColor={color.muted} />}
+        testID="home-scroll"
+      >
+        <Text maxFontSizeMultiplier={MAX_SCALE.display} style={styles.logo} accessibilityRole="text">
+          Kring
         </Text>
+        <View style={styles.titleBlock}>
+          <Text maxFontSizeMultiplier={MAX_SCALE.display} style={styles.title} accessibilityRole="header">
+            {t('home.title')}
+          </Text>
+          {updated ? (
+            <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.updated} testID="updated">
+              {updated}
+            </Text>
+          ) : null}
+        </View>
 
-        {failed ? <Text style={styles.muted}>{t('home.loadFailed')}</Text> : null}
-        {places && places.length === 0 ? <Text style={styles.muted}>{t('home.empty')}</Text> : null}
-        {places?.map((p) => (
-          <Pressable
-            key={p.id}
-            onPress={() => router.push({ pathname: '/place/[id]', params: { id: p.id } })}
-            accessibilityRole="button"
-            style={({ pressed }) => [styles.card, pressed && styles.pressed]}
-            testID={`place-${p.id}`}
-          >
-            <Text style={styles.label}>{p.label}</Text>
-            <Text style={styles.meta}>{meta(p)}</Text>
-          </Pressable>
+        {state.status === 'loading' ? <ActivityIndicator color={color.muted} style={styles.loading} /> : null}
+        {state.status === 'error' ? (
+          <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.muted}>
+            {t('home.loadFailed')} {state.message}
+          </Text>
+        ) : null}
+        {data && data.places.length === 0 ? (
+          <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.muted} testID="home-empty">
+            {t('home.empty')}
+          </Text>
+        ) : null}
+
+        {data?.places.map((p) => {
+          const pe = data.events[p.id];
+          return (
+            <PlaceCard
+              key={p.id}
+              place={p}
+              status={pe ? placeStatus(p, pe, now) : null}
+              newCount={pe ? newCount(pe, isOpened, now) : 0}
+              failed={data.failed.has(p.id)}
+              now={now}
+              onEdit={() => router.push({ pathname: '/place/[id]', params: { id: p.id } })}
+              onOpenIncident={(e) => openEvent(e.id, p.id)}
+            />
+          );
+        })}
+
+        {notices.map((n) => (
+          <NoticeRow key={n.id} notice={n} now={now} onPress={() => openEvent(n.id)} />
         ))}
+
+        <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.source}>{t('source')}</Text>
 
         {__DEV__ ? (
           <View style={styles.dev}>
-            <Text style={styles.devText} testID="device-status">
+            <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.devText} testID="device-status">
               {describe(device)}
             </Text>
-            <Text style={styles.devText}>API: {apiBaseUrl()}</Text>
+            <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.devText}>API: {apiBaseUrl()}</Text>
           </View>
         ) : null}
-
-        <Text style={styles.muted}>{t('source')}</Text>
       </ScrollView>
 
       <SafeAreaView edges={['bottom']} style={styles.bottomBar}>
@@ -101,7 +124,8 @@ export default function Home() {
           style={({ pressed }) => [styles.primary, pressed && styles.primaryPressed]}
           testID="add-place"
         >
-          <Text style={styles.primaryText}>{t('home.add')}</Text>
+          <Ionicons name="add" size={22} color={color.surface} />
+          <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.primaryText}>{t('home.add')}</Text>
         </Pressable>
       </SafeAreaView>
     </SafeAreaView>
@@ -111,20 +135,14 @@ export default function Home() {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: color.bg },
   content: { padding: spacing.screen, gap: spacing.stackGapTight },
-  title: { fontFamily: font.display[700], fontSize: 32, color: color.ink, marginBottom: 4 },
-  pressed: { opacity: 0.7 },
-  card: {
-    backgroundColor: color.surface,
-    borderWidth: 1,
-    borderColor: color.border,
-    borderRadius: radius.card,
-    padding: spacing.cardPadding,
-    gap: 2,
-  },
-  label: { fontFamily: font.body[600], fontSize: 16, color: color.ink },
-  meta: { fontFamily: font.body[400], fontSize: 13, color: color.muted },
-  muted: { fontFamily: font.body[400], fontSize: 13, lineHeight: 19, color: color.muted },
-  dev: { gap: 4, marginTop: 8 },
+  logo: { fontFamily: font.display[700], fontSize: 17, color: color.accentStrong },
+  titleBlock: { gap: 2, marginBottom: 4 },
+  title: { fontFamily: font.display[700], fontSize: 32, color: color.ink },
+  updated: { fontFamily: font.body[400], fontSize: 14, color: color.muted },
+  loading: { marginVertical: 24 },
+  muted: { fontFamily: font.body[400], fontSize: 14, lineHeight: 20, color: color.muted },
+  source: { fontFamily: font.body[400], fontSize: 13, lineHeight: 19, color: color.muted, marginTop: 4 },
+  dev: { gap: 4, marginTop: 4 },
   devText: { fontFamily: font.body[400], fontSize: 12, color: color.muted },
   bottomBar: {
     paddingHorizontal: spacing.screen,
@@ -134,13 +152,17 @@ const styles = StyleSheet.create({
     backgroundColor: color.bg,
   },
   primary: {
-    height: 52,
+    minHeight: 52,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
     borderRadius: radius.button,
     backgroundColor: color.accent,
+    flexDirection: 'row',
+    gap: 6,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 8,
   },
   primaryPressed: { backgroundColor: color.accentStrong },
-  primaryText: { fontFamily: font.body[600], fontSize: 16, color: color.surface },
+  primaryText: { fontFamily: font.body[600], fontSize: 16, color: color.surface, textAlign: 'center', flexShrink: 1 },
 });

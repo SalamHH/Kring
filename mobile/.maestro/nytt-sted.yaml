@@ -54,7 +54,7 @@ name: Nytt sted – lage, endre og slette et sted
 - extendedWaitUntil:
     visible: ".*E2E Grensen.*"
     timeout: 10000
-- assertVisible: ".*Grensen 10 · 1,0 km · hverdager 07–17.*"
+- assertVisible: ".*Grensen 10 · 1 km · hverdager 07–17.*"
 
 # Drag the radius slider to the left: below 1 km the small-radius note shows (F3)
 - tapOn: ".*E2E Grensen.*"

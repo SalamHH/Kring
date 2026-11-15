@@ -39,6 +39,21 @@ const strings = {
 
   'home.empty': 'Du har ingen steder ennå. Legg til skolen, hjemmet eller et annet sted du vil følge med på.',
   'home.loadFailed': 'Fikk ikke hentet stedene dine.',
+  'home.eventsFailed': 'Fikk ikke hentet hendelsene. Dra ned for å prøve igjen.',
+  'home.updatedNow': 'Oppdatert nå nettopp',
+  'home.updatedOne': 'Oppdatert for 1 minutt siden',
+  'home.updatedHour': 'Oppdatert for 1 time siden',
+  'home.updatedHours': 'Oppdatert for {n} timer siden',
+  'home.imprecise':
+    'Ingen gatepresise hendelser denne uken. {n} hendelser er bare oppgitt med bydel eller kommune og vises ikke i et så lite område.',
+  'home.impreciseOne':
+    'Ingen gatepresise hendelser denne uken. 1 hendelse er bare oppgitt med bydel eller kommune og vises ikke i et så lite område.',
+  'home.district': 'Fra politidistriktet',
+  'home.editHint': 'Åpner innstillingene for stedet',
+  'home.openHint': 'Åpner hendelsen',
+
+  'event.back': 'Dine steder',
+  'event.loadFailed': 'Fikk ikke hentet hendelsen.',
 
   'new.editTitle': 'Endre sted',
   'new.question': 'Hva vil du følge med på?',

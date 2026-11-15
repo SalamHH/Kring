@@ -6,6 +6,7 @@ import {
 } from '@expo-google-fonts/inter';
 import { SpaceGrotesk_600SemiBold, SpaceGrotesk_700Bold } from '@expo-google-fonts/space-grotesk';
 import Feather from '@expo/vector-icons/Feather';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -29,6 +30,7 @@ export default function RootLayout() {
     SpaceGrotesk_600SemiBold,
     SpaceGrotesk_700Bold,
     ...Feather.font,
+    ...Ionicons.font,
   });
 
   useEffect(() => {
@@ -46,6 +48,7 @@ export default function RootLayout() {
         {/* Nytt sted is a full-screen modal: «Avbryt» closes it, and a swipe can't lose the input. */}
         <Stack.Screen name="place/new" options={{ presentation: 'fullScreenModal' }} />
         <Stack.Screen name="place/[id]" options={{ presentation: 'fullScreenModal' }} />
+        <Stack.Screen name="event/[id]" />
       </Stack>
     </GestureHandlerRootView>
   );

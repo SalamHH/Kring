@@ -363,6 +363,10 @@ The chosen direction is **A: soft cards**, with deep teal as the accent. The int
 | Push (OS-rendered) | The OS draws notifications. Only title/body text is ours. See 7.4. The prototype's custom-styled lock screen is illustrative only. |
 
 - (decided 2026-11-13) Politiloggen threads have no title field. The incident title on Hjem and Hendelse is built from our own fields: category + place, such as «Brann · Hølandsgata». The place is the matched street or place name, otherwise the area field, otherwise the municipality; for a district-wide notice (§8.3) it is the district. Police text is never shortened into a title. The police text is shown in full under «Oppdateringer fra politiet».
+- (decided 2026-11-15, M1 step 10) **Hjem as built:**
+  - The status row is the newest matched incident of the last 7 days. Without one, a place under 1 km shows the small-radius note, counting the bydel-tier incidents nearby plus the municipality-only ones (D1): «Ingen gatepresise hendelser denne uken. N hendelser er bare oppgitt med bydel eller kommune og vises ikke i et så lite område.» Otherwise «Rolig siste 7 dager». From 1 km up, the bydel-only incidents are left to the digest, so the card can be calm.
+  - «N ny» counts the matched incidents of the last 7 days that haven't been opened on this device. The opened ids stay on the device (a file, kept 30 days) and are never sent.
+  - The card's top opens the place's edit screen; the incident row opens Hendelse. District notices from the last 24 h are listed once each, below the cards.
 - (decided 2026-11-13) «Del med familien» opens the OS share sheet with the title, time, police text and «Kilde: Politiloggen». There is no app link yet. «Færre slike varsler» opens the place's edit screen with this category highlighted.
 
 ## 7.4 Notification copy rules
@@ -379,6 +383,7 @@ The chosen direction is **A: soft cards**, with deep teal as the accent. The int
 - Touch targets ≥ 44 px. Every icon-only button has an accessibilityLabel.
 - Precision and severity are never conveyed by colour alone (badge shape + text label).
 - Support Dynamic Type / font scaling; cards grow, nothing truncates critical text.
+- (decided 2026-11-15, M1 step 10) Text follows the system size up to 2× (headings 1.5×), so the largest accessibility sizes (about 3×) don't split words on a phone. From 1.4×, rows that sit side by side stack: the card's icon and «N ny» move above the label.
 
 ## 7.6 Prototype screens (guidance only)
 
