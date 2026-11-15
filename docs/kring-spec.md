@@ -270,7 +270,7 @@ All 127 street-from-text matches from v3 were read by hand. The street name was 
 
 # 6. MVP scope (product requirements)
 
-Platforms: iOS and Android via Expo. UI language: Norwegian Bokmål. Launch market: Oslo (the pipeline MUST handle any municipality; marketing starts in Oslo).
+Platforms: iOS and Android via Expo (decided 2026-11-15: iOS only for the M1 internal build and the M2 beta; Android is decided at the end of M3, see §14). UI language: Norwegian Bokmål. Launch market: Oslo (the pipeline MUST handle any municipality; marketing starts in Oslo).
 
 | ID | Feature | Pri. | Acceptance criteria |
 |---|---|---|---|
@@ -823,8 +823,8 @@ Where this section and `presisjonstest.py` disagree (for example the type and un
 | Milestone | Scope | Definition of done |
 |---|---|---|
 | M0 · week 0–1 | Parent interviews (3–5) with the prototype · backend spike: ingest + geocode + DB | Live Oslo ingestion running; Appendix C fixtures green; interview notes summarised. Ingestion covers Oslo + Akershus and runs locally; the Render deploy moves to M1 (decided 2026-11-12). |
-| M1 · week 2–4 | API, matching, push, Expo screens Hjem / Nytt sted / Hendelse | Internal build (TestFlight + Play internal); push ≤ 2 min end-to-end. |
-| M2 · week 5–6 | Digest, settings, delete, privacy policy, store listings | Closed beta with 20–30 Oslo users. |
+| M1 · week 2–4 | API, matching, push, Expo screens Hjem / Nytt sted / Hendelse | Internal build (TestFlight); push ≤ 2 min end-to-end. Decided 2026-11-15: iOS only for M1 and the M2 beta. The code stays cross-platform, but Android (Firebase/FCM, Google Play) waits. Whether M4 includes Google Play is decided at the end of M3. |
+| M2 · week 5–6 | Digest, settings, delete, privacy policy, store listings | Closed beta with 20–30 Oslo users, on iPhone (decided 2026-11-15). |
 | M3 · week 7–10 | Iterate on metrics; aliases; Akershus municipalities; feedback loop; road-only messages such as «E6 Inng. Trosterud» (decided 2026-11-13: deferred from M1, since they are nearly all Trafikk, which is off by default); a Statens vegvesen DATEX II spike: record a week of road situations next to the police log, check access terms, update rate and Oslo/Akershus coverage, and count how many road-only police threads it could place (decided 2026-11-14) | Metrics in section 13 met or explained. |
 | M4 · after M3 (decided 2026-11-14) | Public launch in the App Store and Google Play, Norway. The goal is thousands of daily users. Scope: the name cleared (§15 question 6); App Review and Play production access; scaling for that load: more than one web instance, a rate limit shared across instances, map tiles and geocode search within Kartverket's terms at that volume, receipt and error alarms, and the app's status banner (§12). | Live in both stores. A load test at 10× the expected daily users passes, with push p95 still ≤ 2 min. The §13 targets are met in the beta. |
 | Later | Family sharing, commuter routes (Vegvesen DATEX II, Entur), MET weather warnings, SEO pages, B2B | Prioritise from beta learnings. |
