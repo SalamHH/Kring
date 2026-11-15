@@ -411,6 +411,7 @@ Images below are full-length (scrolled content included). Versions cropped to on
 | Layer | Choice | Why |
 |---|---|---|
 | Mobile | Expo (React Native, TypeScript), expo-router, MapLibre (`@maplibre/maplibre-react-native`) with Kartverket map tiles, expo-notifications (decided 2026-11-13: MapLibre instead of react-native-maps, so there is no Google Maps SDK or key and the same Norwegian map on both platforms; the map shows «© Kartverket») | One codebase for iOS + Android; Expo Push is free |
+| Map tiles | Kartverket's raster WMTS, layer `topograatone` (greyscale) in `webmercator`: `https://cache.kartverket.no/v1/wmts/1.0.0/topograatone/default/webmercator/{z}/{y}/{x}.png` (note the `{y}/{x}` order), 256 px tiles, zoom 0–18. (Decided 2026-11-14.) **Terms:** CC BY 4.0, commercial use allowed. The map MUST show «© Kartverket» and SHOULD link to kartverket.no. At zoom 12–20 the tiles contain Geovekst data, which may be shown through the service as it is, but copying it needs separate permission (post@kartverket.no). So the app MUST NOT bulk-download, offline-pack, prefetch or re-host tiles. MapLibre's normal on-device cache is fine, and the server sends `Cache-Control: public, max-age=345600` (4 days). **Rate limits:** none published; no key and no registration. The URL lives in one constant in the app, so the layer (`topo` for colour) or the provider can be swapped in one place if Kartverket ever throttles us. Vector tiles are not an option: the test host `vectortiles.kartverket.no` from 2024 no longer resolves. | Free, no key, the official Norwegian map; greyscale keeps the place circle and incident point the strongest colours on screen |
 | API | FastAPI (Python 3.12), Pydantic v2, SQLAlchemy 2 / asyncpg | Matches founder's stack; geocoder is already Python |
 | Database | PostgreSQL 17 + PostGIS (decided 2026-11-12: 17 instead of 16, because Homebrew's PostGIS is not built for 16) | Geography types, ST_DWithin, GiST indexes |
 | Worker | Separate process (same codebase) with an asyncio loop / APScheduler | Polling, geocoding, matching, push, digest |
@@ -684,6 +685,7 @@ Decided 2026-11-14 (M1 step 6):
 - Store the minimum: place center, radius, categories, user-chosen label. Advise in the UI: do not use children's names in labels.
 - Device secret stored hashed; HTTPS only; rate limit per device.
 - One-tap delete (DELETE /v1/devices/me). Retain events (public data) for 13 months; delete inactive devices after 12 months.
+- Map tiles are fetched straight from Kartverket (§8.1), so Kartverket sees the device's IP address and the map area around each place shown. No identifier or label is sent. The privacy policy MUST say so. (Decided 2026-11-14.)
 - Privacy policy MUST explain that place locations are processed to send alerts (legal basis: consent). v2: evaluate on-device matching so the server never sees places.
 
 ## 8.9 Repository layout
@@ -702,6 +704,8 @@ kring/
   docs/kring-spec.md               # this spec (decided 2026-11-14: renamed from kring-spec.md)
   docs/stedSafe-spec.pdf           # the v0.1 original, under its old name
 ```
+
+(Decided 2026-11-15, M1 step 8.) The app has no tab bar, so Hjem is `mobile/app/index.tsx`, not `app/(tabs)/index.tsx`. Code that is not a screen is in `mobile/lib/`: the API client, the device and push setup, the map tiles, and the UI strings (`lib/strings.ts`, Appendix B first).
 
 # 9. Geocoding & classification specification
 
