@@ -1,0 +1,50 @@
+# Helper: one place at Kikut named ${LABEL}, template ${TEMPLATE}; SMALL=yes drags the radius under 1 km.
+appId: no.kring.app
+tags:
+  - helper
+---
+- tapOn:
+    id: "add-place"
+- tapOn:
+    id: "search-input"
+- inputText: "Kikut"
+- extendedWaitUntil:
+    visible:
+      id: "search-result-0"
+    timeout: 10000
+- tapOn:
+    id: "search-result-0"
+- assertVisible: ".*Kikut · Ås, Oslo.*"
+- tapOn:
+    id: "template-${TEMPLATE}"
+- tapOn:
+    id: "label-input"
+- eraseText: 30
+- inputText: "${LABEL}"
+- hideKeyboard
+- runFlow:
+    when:
+      true: ${SMALL == 'yes'}
+    commands:
+      - scrollUntilVisible:
+          element:
+            id: "radius-slider"
+          direction: DOWN
+          centerElement: true
+      - swipe:
+          from:
+            id: "radius-slider"
+          direction: LEFT
+      - assertVisible:
+          id: "small-radius-note"
+- tapOn:
+    id: "save"
+- runFlow:
+    when:
+      visible: "Allow"
+    commands:
+      - tapOn: "Allow"
+- scrollUntilVisible:
+    element: "${LABEL}, Kikut · .*"
+    direction: DOWN
+    timeout: 15000

@@ -8,7 +8,13 @@ const file = new File(Paths.document, 'opened-incidents.json');
 export const openedStore = new OpenedStore({
   read: () => (file.exists ? file.textSync() : null),
   write: (text) => {
-    if (!file.exists) file.create();
-    void file.write(text);
+    // The write finishes after markOpened returns, so its errors are caught here: a failed save
+    // only means the badge may come back after a restart.
+    Promise.resolve()
+      .then(() => {
+        if (!file.exists) file.create();
+        return file.write(text);
+      })
+      .catch((e) => console.warn('opened: could not save the list', e));
   },
 });

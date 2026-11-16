@@ -1,83 +1,63 @@
-# M1 step 10 (F4): Hjem with a new place, its status row, the incident screen, pull to refresh.
-# Needs the iOS Simulator with the dev build, Metro and an API (local or Render; mobile/README.md).
-# The flow makes «E2E Hjem» and deletes it at the end. Assertions don't depend on which incidents
-# exist: the status row is one of incident, calm or the small-radius note.
+# M1 step 10 (F4): Hjem with the test data from fixtures/up.sql (run through `npm run test:e2e`).
+# Checks every status row, «N ny» going away after the incident is opened and staying away after
+# a restart, and the district notice opening. It only touches places named «E2E …», so other
+# places on the device stay as they are.
 appId: no.kring.app
-name: Hjem – kort, statusrad og hendelse
+name: Hjem – statusrader, «N ny» og varsel fra distriktet
 ---
 - runFlow: open-dev-build.yaml
 - assertVisible: "Dine steder"
 - assertVisible:
     id: "updated"
+- runFlow: hjem-places.yaml
 
-# A place to look at
-- tapOn:
-    id: "add-place"
-- tapOn:
-    id: "search-input"
-- inputText: "Grensen 10"
-- extendedWaitUntil:
-    visible:
-      id: "search-result-0"
-    timeout: 10000
-- tapOn:
-    id: "search-result-0"
-- tapOn:
-    id: "template-annet"
-- tapOn:
-    id: "label-input"
-- eraseText: 30
-- inputText: "E2E Hjem"
-- hideKeyboard
-- tapOn:
-    id: "save"
-- runFlow:
-    when:
-      visible: "Allow"
-    commands:
-      - tapOn: "Allow"
-
-# The card: label, meta, and one of the three status rows
-- extendedWaitUntil:
-    visible: ".*E2E Hjem.*Grensen 10 · 1 km · hele døgnet.*"
-    timeout: 15000
-- extendedWaitUntil:
-    visible:
-      id: "(calm|imprecise|incident)-.*"
-    timeout: 15000
-
-# Pull to refresh keeps the screen
-- swipe:
-    from:
-      id: "updated"
+# Each status row, top to bottom
+- scrollUntilVisible:
+    element: "E2E 1 km, Kikut · 1 km · hele døgnet, 1 ny"
+    direction: UP
+- assertVisible: "Innbrudd · Kikutstua, Gatenivå, ca\\. 700 m unna · \\d\\d:\\d\\d"
+- scrollUntilVisible:
+    element: ".*1 hendelse er bare oppgitt med bydel eller kommune og vises ikke i et så lite område\\."
     direction: DOWN
-- assertVisible: ".*E2E Hjem.*"
-
-# An incident row, if there is one, opens the incident and goes back
-- runFlow:
-    when:
-      visible:
-        id: "incident-.*"
-    commands:
-      - tapOn:
-          id: "incident-.*"
-      - extendedWaitUntil:
-          visible: "Oppdateringer fra politiet"
-          timeout: 10000
-      - tapOn:
-          id: "event-back"
-      - assertVisible: "Dine steder"
-
-# Clean up: the card opens the place settings, where it is deleted
-- tapOn: ".*E2E Hjem.*Grensen 10.*"
-- assertVisible: "Endre sted"
+- scrollUntilVisible:
+    element: "E2E rolig, Kikut · 1 km · hverdager 07–17"
+    direction: DOWN
+# (Other places on the device may be calm too, so look below the E2E card only.)
 - scrollUntilVisible:
     element:
-      id: "delete"
+      text: ".*Rolig siste 7 dager"
+      below: "E2E rolig, Kikut · .*"
     direction: DOWN
-- tapOn:
-    id: "delete"
-- tapOn: "Slett"
+
+# The district notice (D2) is listed once and opens
+- scrollUntilVisible:
+    element: "Fra politidistriktet: Savnet · Oslo politidistrikt, \\d\\d:\\d\\d"
+    direction: DOWN
+- tapOn: "Fra politidistriktet: Savnet · Oslo politidistrikt, .*"
 - extendedWaitUntil:
-    notVisible: ".*E2E Hjem.*"
+    visible: "E2E-test: Politiet ber om tips om en savnet person\\."
     timeout: 10000
+- tapOn:
+    id: "event-back"
+
+# Opening the incident removes «1 ny» …
+- scrollUntilVisible:
+    element: "Innbrudd · Kikutstua, Gatenivå, .*"
+    direction: UP
+- tapOn: "Innbrudd · Kikutstua, Gatenivå, .*"
+- extendedWaitUntil:
+    visible: "E2E-test: Innbrudd i en hytte\\. Politiet er på stedet\\."
+    timeout: 10000
+- tapOn:
+    id: "event-back"
+- assertVisible: "E2E 1 km, Kikut · 1 km · hele døgnet"
+- assertNotVisible: "E2E 1 km, Kikut · 1 km · hele døgnet, 1 ny"
+
+# … also after the app restarts (the opened list is a file on the device)
+- runFlow: open-dev-build.yaml
+- extendedWaitUntil:
+    visible: "E2E 1 km, Kikut · 1 km · hele døgnet"
+    timeout: 15000
+- assertNotVisible: "E2E 1 km, Kikut · 1 km · hele døgnet, 1 ny"
+
+- runFlow: hjem-cleanup.yaml

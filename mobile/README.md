@@ -43,14 +43,15 @@ Don't start Metro with `CI=1`: it turns off Fast Refresh and the typed-routes ge
 npx tsc --noEmit && npx expo lint && npx jest
 ```
 
-End-to-end on the iOS Simulator, with the dev build installed and Metro and the local API running (see Run):
+End-to-end on the iOS Simulator, with the dev build installed and Metro and the local API running (see Run). `scripts/e2e.sh` loads test data into the local database first and removes it afterwards; one flow: `npm run test:e2e -- .maestro/hjem.yaml`.
 
 ```bash
 npm run test:e2e
 ```
 
 - **Component tests** (`__tests__/*.test.tsx`, React Native Testing Library) render a screen in Node with the map, router, API session and push prompt replaced. They check what the screen shows and what it sends, so most of a screen's behaviour is covered without a simulator.
-- **Maestro flows** (`.maestro/`) tap through the real app on the simulator and report each step as text. `open-dev-build.yaml` (tag `helper`) opens the dev build on Metro's bundle, and the other flows start with it. Each flow cleans up the data it creates. On a failure, Maestro saves its logs and a screenshot under `~/.maestro/tests/`.
+- **Maestro flows** (`.maestro/`) tap through the real app on the simulator and report each step as text. Flows tagged `helper` are steps the others run (open the dev build, create or delete the test places). On a failure, Maestro saves its logs, the screen hierarchy and a screenshot under `~/.maestro/tests/`.
+- **Test data** (`.maestro/fixtures/`): incidents and a district notice at Kikut in Nordmarka, where real incidents are rare, so `hjem.yaml` can check exact rows. The flows create places named «E2E …» and delete them; other places on the device are never touched.
 - Maestro can't type «æøå» reliably, so flows search with plain-ASCII queries such as «Grensen 10».
 - The script turns Maestro's usage analytics off (`MAESTRO_CLI_NO_ANALYTICS`).
 

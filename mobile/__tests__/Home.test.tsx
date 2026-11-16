@@ -192,6 +192,23 @@ describe('Hjem', () => {
     expect(screen.queryByText('Fra politidistriktet')).not.toBeOnTheScreen();
   });
 
+  it('pull to refresh loads again and shows the new data', async () => {
+    await show();
+    expect(screen.getByTestId('calm-p2')).toBeOnTheScreen();
+    serve({
+      p1: events('p1', []),
+      p2: events('p2', [event('fresh', 0.1, { title: 'Vold · Tøyen' })]),
+      p3: events('p3', []),
+    });
+    const calls = mockApi.listPlaces.mock.calls.length;
+    await act(async () => {
+      screen.getByTestId('home-scroll').props.refreshControl.props.onRefresh();
+    });
+    expect(mockApi.listPlaces.mock.calls.length).toBe(calls + 1);
+    expect(screen.getByTestId('incident-fresh')).toHaveTextContent(/Vold · Tøyen/);
+    expect(screen.queryByTestId('calm-p2')).not.toBeOnTheScreen();
+  });
+
   it('keeps a card whose events failed, with a note', async () => {
     serve({ p1: new Error('boom'), p2: events('p2', []), p3: events('p3', []) });
     await show();
