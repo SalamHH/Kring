@@ -47,11 +47,15 @@ export function categoryIcon(category: string): IconName {
 
 // --- PrecisionBadge --------------------------------------------------------------------------
 
-export function PrecisionBadge({ tier }: { tier: Tier }) {
+/** The tier by fill and outline (§7.2). `text` replaces the tier name, as in «Gatenivå · ±150 m». */
+export function PrecisionBadge({ tier, text, large }: { tier: Tier; text?: string; large?: boolean }) {
   return (
-    <View style={[styles.badge, badgeStyles[tier]]} testID={`badge-${tier}`}>
-      <Text maxFontSizeMultiplier={MAX_SCALE.body} style={[styles.badgeText, badgeTextStyles[tier]]}>
-        {t(`tier.${tier}`)}
+    <View style={[styles.badge, large && styles.badgeLarge, badgeStyles[tier]]} testID={`badge-${tier}`}>
+      <Text
+        maxFontSizeMultiplier={MAX_SCALE.body}
+        style={[styles.badgeText, large && styles.badgeTextLarge, badgeTextStyles[tier]]}
+      >
+        {text ?? t(`tier.${tier}`)}
       </Text>
     </View>
   );
@@ -198,6 +202,8 @@ const styles = StyleSheet.create({
 
   badge: { borderWidth: 1.5, borderRadius: radius.badge, paddingHorizontal: 6, paddingVertical: 1 },
   badgeText: { fontFamily: font.body[600], fontSize: 12 },
+  badgeLarge: { paddingHorizontal: 10, paddingVertical: 4, borderRadius: radius.badge + 2 },
+  badgeTextLarge: { fontSize: 14 },
 
   card: {
     backgroundColor: color.surface,

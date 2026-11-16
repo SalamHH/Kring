@@ -56,6 +56,7 @@ import {
 import { type PreviewState, usePlaceSearch, usePreview } from '@/lib/placeHooks';
 import { session } from '@/lib/session';
 import { t } from '@/lib/strings';
+import { MAX_SCALE, useLargeText } from '@/lib/textScale';
 import { color, font, radius as radii, spacing } from '@/theme/tokens';
 
 /** The chosen location: a search result, or the place being edited. */
@@ -84,11 +85,22 @@ function fieldsOf(p: Place): PlaceFields {
 
 const [PUSH_LABEL, PUSH_DETAIL] = t('new.push').split(' · ');
 
-export function PlaceEditor({ place }: { place?: Place }) {
+export interface PlaceEditorProps {
+  place?: Place;
+  /**
+   * A category to point out, from Hendelse's «Færre slike varsler» (D12): the editor scrolls to
+   * the categories and marks that chip, so it can be turned off.
+   */
+  highlight?: string;
+}
+
+export function PlaceEditor({ place, highlight }: PlaceEditorProps) {
   const router = useRouter();
   const editing = place !== undefined;
   const scroll = useRef<ScrollViewInstance>(null);
   const searchInput = useRef<TextInputInstance>(null);
+  const scrolledToHighlight = useRef(false);
+  const large = useLargeText();
 
   const [query, setQuery] = useState('');
   // The query a result was chosen for. Its results stay hidden even if the keyboard sends that
@@ -222,9 +234,9 @@ export function PlaceEditor({ place }: { place?: Place }) {
           style={styles.cancel}
           testID="cancel"
         >
-          <Text style={styles.cancelText}>{t('new.cancel')}</Text>
+          <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.cancelText}>{t('new.cancel')}</Text>
         </Pressable>
-        <Text style={styles.headerTitle} accessibilityRole="header">
+        <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.headerTitle} accessibilityRole="header">
           {editing ? t('new.editTitle') : t('new.title')}
         </Text>
         <View style={styles.cancel} />
@@ -239,12 +251,12 @@ export function PlaceEditor({ place }: { place?: Place }) {
       >
         {/* Search and the selected result */}
         <View style={styles.section}>
-          <Text style={styles.sectionLabel} nativeID="search-label">
+          <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.sectionLabel} nativeID="search-label">
             {t('new.question')}
           </Text>
           <View style={[styles.searchBox, triedToSave && missingSpot && styles.inputProblem]}>
             <Feather name="search" size={18} color={color.muted} />
-            <TextInput
+            <TextInput maxFontSizeMultiplier={MAX_SCALE.body}
               ref={searchInput}
               value={query}
               onChangeText={setQuery}
@@ -274,11 +286,11 @@ export function PlaceEditor({ place }: { place?: Place }) {
           {search.status !== 'idle' && query.trim() !== answeredQuery ? (
             <View style={styles.results} testID="search-results">
               {search.status === 'loading' && results.length === 0 ? (
-                <Text style={styles.resultNote}>{t('new.searching')}</Text>
+                <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.resultNote}>{t('new.searching')}</Text>
               ) : null}
-              {search.status === 'error' ? <Text style={styles.resultNote}>{search.message}</Text> : null}
+              {search.status === 'error' ? <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.resultNote}>{search.message}</Text> : null}
               {search.status === 'done' && results.length === 0 ? (
-                <Text style={styles.resultNote}>{t('new.noResults', { q: query.trim() })}</Text>
+                <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.resultNote}>{t('new.noResults', { q: query.trim() })}</Text>
               ) : null}
               {results.map((r, i) => (
                 <Pressable
@@ -291,8 +303,8 @@ export function PlaceEditor({ place }: { place?: Place }) {
                 >
                   <Feather name={r.kind === 'adresse' ? 'home' : 'map-pin'} size={16} color={color.muted} />
                   <View style={styles.resultText}>
-                    <Text style={styles.resultLabel}>{r.label}</Text>
-                    <Text style={styles.resultSecondary}>{r.secondary}</Text>
+                    <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.resultLabel}>{r.label}</Text>
+                    <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.resultSecondary}>{r.secondary}</Text>
                   </View>
                 </Pressable>
               ))}
@@ -302,19 +314,19 @@ export function PlaceEditor({ place }: { place?: Place }) {
           {spot ? (
             <View style={styles.selected} accessible testID="selected-place">
               <Feather name="map-pin" size={18} color={color.accentStrong} />
-              <Text style={styles.selectedText}>
-                <Text style={styles.selectedName}>{shownName}</Text>
+              <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.selectedText}>
+                <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.selectedName}>{shownName}</Text>
                 {spot.secondary ? ` · ${spot.secondary}` : ''}
               </Text>
-              <Text style={styles.selectedTag}>{t('new.selected')}</Text>
+              <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.selectedTag}>{t('new.selected')}</Text>
             </View>
           ) : null}
-          {triedToSave && missingSpot ? <Text style={styles.problem}>{t('new.pickFirst')}</Text> : null}
+          {triedToSave && missingSpot ? <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.problem}>{t('new.pickFirst')}</Text> : null}
         </View>
 
         {/* Type */}
         <View style={styles.section}>
-          <Text style={styles.sectionLabel}>{t('new.type')}</Text>
+          <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.sectionLabel}>{t('new.type')}</Text>
           <View style={styles.chips}>
             {TEMPLATE_ORDER.map((tpl) => (
               <TypeChip
@@ -330,8 +342,8 @@ export function PlaceEditor({ place }: { place?: Place }) {
 
         {/* Name */}
         <View style={styles.section}>
-          <Text style={styles.sectionLabel}>{t('new.label')}</Text>
-          <TextInput
+          <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.sectionLabel}>{t('new.label')}</Text>
+          <TextInput maxFontSizeMultiplier={MAX_SCALE.body}
             value={label}
             onChangeText={(v) => {
               setLabel(v);
@@ -345,9 +357,9 @@ export function PlaceEditor({ place }: { place?: Place }) {
             testID="label-input"
           />
           {triedToSave && missingLabel ? (
-            <Text style={styles.problem}>{t('new.labelMissing')}</Text>
+            <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.problem}>{t('new.labelMissing')}</Text>
           ) : (
-            <Text style={styles.hint}>{t('new.labelHint', { label: label.trim() || '…' })}</Text>
+            <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.hint}>{t('new.labelHint', { label: label.trim() || '…' })}</Text>
           )}
         </View>
 
@@ -362,9 +374,10 @@ export function PlaceEditor({ place }: { place?: Place }) {
               accessibilityLabel={t('new.mapLabel', { name: shownName, radius: radiusLabel(radiusM) })}
             />
           ) : null}
-          <View style={styles.radiusHeader}>
-            <Text style={styles.sectionLabel}>{t('new.radius')}</Text>
-            <Text style={styles.radiusValue} testID="radius-label">
+          {/* With large text the value goes below the label (§7.5). */}
+          <View style={[styles.radiusHeader, large && styles.radiusHeaderLarge]}>
+            <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.sectionLabel}>{t('new.radius')}</Text>
+            <Text maxFontSizeMultiplier={MAX_SCALE.display} style={styles.radiusValue} testID="radius-label">
               {radiusLabel(radiusM)}
             </Text>
           </View>
@@ -378,8 +391,8 @@ export function PlaceEditor({ place }: { place?: Place }) {
             accessibilityLabel={t('new.radius')}
           />
           <View style={styles.radiusEnds} importantForAccessibility="no-hide-descendants" accessibilityElementsHidden>
-            <Text style={styles.radiusEnd}>{t('new.radiusMin')}</Text>
-            <Text style={styles.radiusEnd}>{t('new.radiusMax')}</Text>
+            <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.radiusEnd}>{t('new.radiusMin')}</Text>
+            <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.radiusEnd}>{t('new.radiusMax')}</Text>
           </View>
           {showsSmallRadiusNote(radiusM) ? <InfoNote text={t('new.smallRadius')} testID="small-radius-note" /> : null}
         </View>
@@ -392,20 +405,34 @@ export function PlaceEditor({ place }: { place?: Place }) {
         )}
 
         {/* Categories */}
-        <View style={styles.section}>
-          <Text style={styles.sectionLabel}>{t('new.categories')}</Text>
+        <View
+          style={styles.section}
+          onLayout={(ev) => {
+            if (!highlight || scrolledToHighlight.current) return;
+            scrolledToHighlight.current = true;
+            scroll.current?.scrollTo({ y: Math.max(0, ev.nativeEvent.layout.y - 16), animated: true });
+          }}
+          testID="categories"
+        >
+          <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.sectionLabel}>{t('new.categories')}</Text>
           <View style={styles.chips}>
             {APP_CATEGORIES.map((c) => (
               <CategoryChip
                 key={c}
                 label={c}
                 selected={categories.includes(c)}
+                highlighted={c === highlight}
                 onPress={() => toggleCategory(c)}
                 testID={`category-${c}`}
               />
             ))}
           </View>
-          {missingCategories ? <Text style={styles.problem}>{t('new.noCategories')}</Text> : null}
+          {highlight && categories.includes(highlight as AppCategory) ? (
+            <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.hint} testID="fewer-note">
+              {t('new.fewerNote', { category: highlight })}
+            </Text>
+          ) : null}
+          {missingCategories ? <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.problem}>{t('new.noCategories')}</Text> : null}
         </View>
 
         {/* When and push */}
@@ -418,9 +445,9 @@ export function PlaceEditor({ place }: { place?: Place }) {
             style={({ pressed }) => [styles.row, pressed && styles.pressed]}
             testID="when-row"
           >
-            <Text style={styles.rowLabel}>{t('new.when')}</Text>
+            <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.rowLabel}>{t('new.when')}</Text>
             <View style={styles.rowRight}>
-              <Text style={styles.rowValue}>{windowLabel(timeWindow)}</Text>
+              <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.rowValue}>{windowLabel(timeWindow)}</Text>
               <Feather name={whenOpen ? 'chevron-up' : 'chevron-down'} size={18} color={color.muted} />
             </View>
           </Pressable>
@@ -438,7 +465,7 @@ export function PlaceEditor({ place }: { place?: Place }) {
                     accessibilityState={{ checked: on }}
                     style={({ pressed }) => [styles.choice, pressed && styles.pressed]}
                   >
-                    <Text style={[styles.choiceText, on && styles.choiceTextOn]}>{windowLabel(w)}</Text>
+                    <Text maxFontSizeMultiplier={MAX_SCALE.body} style={[styles.choiceText, on && styles.choiceTextOn]}>{windowLabel(w)}</Text>
                     {on ? <Feather name="check" size={18} color={color.accentStrong} /> : null}
                   </Pressable>
                 );
@@ -446,9 +473,9 @@ export function PlaceEditor({ place }: { place?: Place }) {
             : null}
           <View style={styles.rowDivider} />
           <View style={styles.row}>
-            <View>
-              <Text style={styles.rowLabel}>{PUSH_LABEL}</Text>
-              <Text style={styles.rowDetail}>{PUSH_DETAIL}</Text>
+            <View style={styles.rowText}>
+              <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.rowLabel}>{PUSH_LABEL}</Text>
+              <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.rowDetail}>{PUSH_DETAIL}</Text>
             </View>
             <Switch
               value={push}
@@ -459,7 +486,7 @@ export function PlaceEditor({ place }: { place?: Place }) {
             />
           </View>
         </View>
-        <Text style={styles.footnote}>{t('new.footnote')}</Text>
+        <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.footnote}>{t('new.footnote')}</Text>
 
         {editing ? (
           <Pressable
@@ -470,14 +497,14 @@ export function PlaceEditor({ place }: { place?: Place }) {
             testID="delete"
           >
             <Feather name="trash-2" size={18} color={color.ink2} />
-            <Text style={styles.deleteText}>{t('new.delete')}</Text>
+            <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.deleteText}>{t('new.delete')}</Text>
           </Pressable>
         ) : null}
       </ScrollView>
 
       <SafeAreaView edges={['bottom']} style={styles.bottomBar}>
         {saveError ? (
-          <Text style={styles.saveError} accessibilityLiveRegion="polite" testID="save-error">
+          <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.saveError} accessibilityLiveRegion="polite" testID="save-error">
             {saveError}
           </Text>
         ) : null}
@@ -489,7 +516,7 @@ export function PlaceEditor({ place }: { place?: Place }) {
           style={({ pressed }) => [styles.primary, (pressed || busy) && styles.primaryPressed]}
           testID="save"
         >
-          <Text style={styles.primaryText}>
+          <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.primaryText}>
             {busy === 'saving' ? t('new.saving') : editing ? t('new.saveChanges') : t('new.save')}
           </Text>
         </Pressable>
@@ -509,13 +536,13 @@ function PreviewCard({
 }) {
   let body: React.ReactNode;
   if (!hasSpot || noCategories) {
-    body = <Text style={styles.previewDetail}>{hasSpot ? t('new.noCategories') : t('new.previewPick')}</Text>;
+    body = <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.previewDetail}>{hasSpot ? t('new.noCategories') : t('new.previewPick')}</Text>;
   } else if (state.status === 'error') {
     body = (
       <>
-        <Text style={styles.previewDetail}>{state.message}</Text>
+        <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.previewDetail}>{state.message}</Text>
         <Pressable onPress={state.retry} accessibilityRole="button" hitSlop={8} style={styles.retry}>
-          <Text style={styles.link}>{t('new.retry')}</Text>
+          <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.link}>{t('new.retry')}</Text>
         </Pressable>
       </>
     );
@@ -525,18 +552,18 @@ function PreviewCard({
     body = (
       <>
         <View style={styles.previewRow}>
-          <Text style={[styles.previewCount, !text && styles.previewCountEmpty]} testID="preview-count">
+          <Text maxFontSizeMultiplier={MAX_SCALE.display} style={[styles.previewCount, !text && styles.previewCountEmpty]} testID="preview-count">
             {text ? text.headline : '…'}
           </Text>
           {state.status === 'loading' ? <ActivityIndicator size="small" color={color.muted} /> : null}
         </View>
-        {text && text.detail.length > 0 ? <Text style={styles.previewDetail}>{text.detail.join(' ')}</Text> : null}
+        {text && text.detail.length > 0 ? <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.previewDetail}>{text.detail.join(' ')}</Text> : null}
       </>
     );
   }
   return (
     <View style={styles.previewCard} accessible testID="preview-card">
-      <Text style={styles.previewTitle}>{t('new.preview')}</Text>
+      <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.previewTitle}>{t('new.preview')}</Text>
       {body}
     </View>
   );
@@ -621,6 +648,7 @@ const styles = StyleSheet.create({
   problem: { fontFamily: font.body[500], fontSize: 13, lineHeight: 18, color: color.ink2 },
 
   radiusHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', marginTop: 4 },
+  radiusHeaderLarge: { flexDirection: 'column', alignItems: 'flex-start', gap: 2 },
   radiusValue: { fontFamily: font.display[700], fontSize: 22, color: color.ink },
   radiusEnds: { flexDirection: 'row', justifyContent: 'space-between', marginTop: -6 },
   radiusEnd: { fontFamily: font.body[400], fontSize: 13, color: color.muted },
@@ -666,7 +694,8 @@ const styles = StyleSheet.create({
   },
   rowRight: { flexDirection: 'row', alignItems: 'center', gap: 6, flexShrink: 1 },
   rowLabel: { fontFamily: font.body[400], fontSize: 15, color: color.ink },
-  rowValue: { fontFamily: font.body[600], fontSize: 15, color: color.ink },
+  rowValue: { fontFamily: font.body[600], fontSize: 15, color: color.ink, flexShrink: 1, textAlign: 'right' },
+  rowText: { flexShrink: 1 },
   rowDetail: { fontFamily: font.body[400], fontSize: 13, color: color.muted },
   rowDivider: { height: 1, backgroundColor: color.border, marginHorizontal: spacing.cardPadding },
   choice: {

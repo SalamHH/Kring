@@ -50,10 +50,12 @@ name: Nytt sted – lage, endre og slette et sted
     commands:
       - tapOn: "Allow"
 
-# Hjem lists it with the place name, radius and window
-- extendedWaitUntil:
-    visible: ".*E2E Grensen.*"
-    timeout: 10000
+# Hjem lists it with the place name, radius and window (other places may come first)
+- scrollUntilVisible:
+    element: ".*E2E Grensen.*"
+    direction: DOWN
+    timeout: 15000
+    centerElement: true
 - assertVisible: ".*Grensen 10 · 1 km · hverdager 07–17.*"
 
 # Drag the radius slider to the left: below 1 km the small-radius note shows (F3)
@@ -73,9 +75,11 @@ name: Nytt sted – lage, endre og slette et sted
     id: "small-radius-note"
 - tapOn:
     id: "save"
-- extendedWaitUntil:
-    visible: ".*Grensen 10 · [3-9]00 m · hverdager 07–17.*"
-    timeout: 10000
+- scrollUntilVisible:
+    element: ".*Grensen 10 · [3-9]00 m · hverdager 07–17.*"
+    direction: DOWN
+    timeout: 15000
+    centerElement: true
 
 # Delete, with confirmation
 - tapOn: ".*E2E Grensen.*"

@@ -2,7 +2,8 @@
  * Kring API client (spec §8.6). Plain fetch, no state: the device secret comes from
  * `getSecret`, so lib/device.ts decides where it lives and when to register.
  */
-import type { EventDetail, Health, PlaceEvents } from './home';
+import type { EventDetail } from './event';
+import type { Health, PlaceEvents } from './home';
 import type { Place, PlaceFields, Preview, SearchResult } from './places';
 
 export type Platform = 'ios' | 'android';
@@ -124,7 +125,7 @@ export class ApiClient {
     return this.request('GET', `/v1/places/${encodeURIComponent(id)}/events?${query({ days })}`);
   }
 
-  /** GET /v1/events/{id}, with `for_place` when a place is given. */
+  /** GET /v1/events/{id}, with `for_place` when a place is given (404 for another device's place). */
   event(id: string, placeId?: string): Promise<EventDetail> {
     const q = placeId ? `?${query({ place_id: placeId })}` : '';
     return this.request('GET', `/v1/events/${encodeURIComponent(id)}${q}`);

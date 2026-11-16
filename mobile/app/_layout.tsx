@@ -15,6 +15,7 @@ import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { configureForegroundNotifications } from '@/lib/push';
+import { usePushLinks } from '@/lib/pushLinks';
 import { color } from '@/theme/tokens';
 
 SplashScreen.preventAutoHideAsync();
@@ -37,6 +38,9 @@ export default function RootLayout() {
     if (error) console.warn('fonts failed to load; using system fonts', error);
     if (loaded || error) SplashScreen.hideAsync();
   }, [loaded, error]);
+
+  // A tapped push opens Hendelse, once the stack below is rendered.
+  usePushLinks(loaded || !!error);
 
   if (!loaded && !error) return null;
 

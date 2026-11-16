@@ -12,7 +12,8 @@ import { KARTVERKET_MAX_ZOOM, KARTVERKET_URL, mapStyle } from '@/lib/tiles';
 import { color, font, radius } from '@/theme/tokens';
 
 export interface PlaceMapProps {
-  place: { center: LatLon; radiusM: number };
+  /** The place circle. Left out when there is no place, such as an incident opened on its own. */
+  place?: { center: LatLon; radiusM: number };
   /** Dashed outline, as on Hendelse. Solid by default. */
   dashed?: boolean;
   incident?: { point: LatLon; uncertaintyM: number };
@@ -46,9 +47,16 @@ export function PlaceMap({
   interactive = false,
   accessibilityLabel,
 }: PlaceMapProps) {
-  const { center, radiusM } = place;
-  const circle = useMemo(() => feature(circlePolygon(center, radiusM)), [center, radiusM]);
-  const centerPoint = useMemo(() => feature({ type: 'Point', coordinates: [center.lon, center.lat] }), [center]);
+  const center = place?.center;
+  const radiusM = place?.radiusM;
+  const circle = useMemo(
+    () => (center && radiusM ? feature(circlePolygon(center, radiusM)) : null),
+    [center, radiusM],
+  );
+  const centerPoint = useMemo(
+    () => (center ? feature({ type: 'Point', coordinates: [center.lon, center.lat] }) : null),
+    [center],
+  );
   const ring = useMemo(
     () => (incident ? feature(circlePolygon(incident.point, incident.uncertaintyM)) : null),
     [incident],
@@ -61,7 +69,7 @@ export function PlaceMap({
   const bounds = useMemo(
     () =>
       boundsOfCircles([
-        { center, radiusM: fitRadius },
+        ...(center && fitRadius ? [{ center, radiusM: fitRadius }] : []),
         ...(incident ? [{ center: incident.point, radiusM: incident.uncertaintyM }] : []),
       ]),
     [center, fitRadius, incident],
@@ -95,30 +103,34 @@ export function PlaceMap({
             maxZoom={KARTVERKET_MAX_ZOOM}
           />
 
-          <GeoJSONSource id="place-area" data={circle}>
-            <Layer id="place-fill" type="fill" paint={{ 'fill-color': color.accent, 'fill-opacity': 0.12 }} />
-            <Layer
-              id="place-line"
-              type="line"
-              paint={{
-                'line-color': color.accent,
-                'line-width': 2,
-                ...(dashed ? { 'line-dasharray': [2, 2] } : {}),
-              }}
-            />
-          </GeoJSONSource>
-          <GeoJSONSource id="place-center" data={centerPoint}>
-            <Layer
-              id="place-dot"
-              type="circle"
-              paint={{
-                'circle-radius': 6,
-                'circle-color': color.accent,
-                'circle-stroke-color': color.surface,
-                'circle-stroke-width': 2,
-              }}
-            />
-          </GeoJSONSource>
+          {circle && centerPoint ? (
+            <>
+              <GeoJSONSource id="place-area" data={circle}>
+                <Layer id="place-fill" type="fill" paint={{ 'fill-color': color.accent, 'fill-opacity': 0.12 }} />
+                <Layer
+                  id="place-line"
+                  type="line"
+                  paint={{
+                    'line-color': color.accent,
+                    'line-width': 2,
+                    ...(dashed ? { 'line-dasharray': [2, 2] } : {}),
+                  }}
+                />
+              </GeoJSONSource>
+              <GeoJSONSource id="place-center" data={centerPoint}>
+                <Layer
+                  id="place-dot"
+                  type="circle"
+                  paint={{
+                    'circle-radius': 6,
+                    'circle-color': color.accent,
+                    'circle-stroke-color': color.surface,
+                    'circle-stroke-width': 2,
+                  }}
+                />
+              </GeoJSONSource>
+            </>
+          ) : null}
 
           {ring && incidentPoint ? (
             <>
@@ -150,7 +162,10 @@ export function PlaceMap({
         accessibilityLabel={t('map.attributionLabel')}
         onPress={() => Linking.openURL(KARTVERKET_URL)}
       >
-        <Text style={styles.attributionText}>{t('map.attribution')}</Text>
+        {/* A label on the map: it may grow a little, but never over the circles (§7.5). */}
+        <Text maxFontSizeMultiplier={1.3} style={styles.attributionText}>
+          {t('map.attribution')}
+        </Text>
       </Pressable>
     </View>
   );

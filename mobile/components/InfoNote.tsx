@@ -2,6 +2,7 @@
 import Feather from '@expo/vector-icons/Feather';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { MAX_SCALE } from '@/lib/textScale';
 import { color, font, radius } from '@/theme/tokens';
 
 export function InfoNote({ title, text, testID }: { title?: string; text: string; testID?: string }) {
@@ -9,8 +10,8 @@ export function InfoNote({ title, text, testID }: { title?: string; text: string
     <View style={styles.note} accessible testID={testID}>
       <Feather name="info" size={16} color={color.muted} style={styles.icon} />
       <View style={styles.body}>
-        {title ? <Text style={styles.title}>{title}</Text> : null}
-        <Text style={styles.text}>{text}</Text>
+        {title ? <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.title}>{title}</Text> : null}
+        <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.text}>{text}</Text>
       </View>
     </View>
   );

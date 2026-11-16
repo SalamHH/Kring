@@ -10,12 +10,14 @@ import { errorText } from '@/lib/errors';
 import type { Place } from '@/lib/places';
 import { session } from '@/lib/session';
 import { t } from '@/lib/strings';
+import { MAX_SCALE } from '@/lib/textScale';
 import { color, font, spacing } from '@/theme/tokens';
 
 type Load = { status: 'loading' } | { status: 'ok'; place: Place } | { status: 'error'; message: string };
 
 export default function EditPlace() {
-  const { id } = useLocalSearchParams<{ id: string }>();
+  // `highlight`: a category, from Hendelse's «Færre slike varsler» (D12).
+  const { id, highlight } = useLocalSearchParams<{ id: string; highlight?: string }>();
   const router = useRouter();
   const [attempt, setAttempt] = useState(0);
   const [load, setLoad] = useState<Load>({ status: 'loading' });
@@ -39,20 +41,20 @@ export default function EditPlace() {
     };
   }, [id, attempt]);
 
-  if (load.status === 'ok') return <PlaceEditor key={load.place.id} place={load.place} />;
+  if (load.status === 'ok') return <PlaceEditor key={load.place.id} place={load.place} highlight={highlight} />;
 
   return (
     <SafeAreaView style={styles.screen}>
       <Pressable onPress={() => router.back()} accessibilityRole="button" style={styles.cancel}>
-        <Text style={styles.link}>{t('new.cancel')}</Text>
+        <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.link}>{t('new.cancel')}</Text>
       </Pressable>
       <View style={styles.center}>
         {load.status === 'loading' ? (
           <ActivityIndicator color={color.muted} />
         ) : (
           <>
-            <Text style={styles.text}>{t('new.loadFailed')}</Text>
-            <Text style={styles.text}>{load.message}</Text>
+            <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.text}>{t('new.loadFailed')}</Text>
+            <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.text}>{load.message}</Text>
             <Pressable
               onPress={() => {
                 setLoad({ status: 'loading' });
@@ -61,7 +63,7 @@ export default function EditPlace() {
               accessibilityRole="button"
               style={styles.retry}
             >
-              <Text style={styles.link}>{t('new.retry')}</Text>
+              <Text maxFontSizeMultiplier={MAX_SCALE.body} style={styles.link}>{t('new.retry')}</Text>
             </Pressable>
           </>
         )}

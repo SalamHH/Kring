@@ -54,6 +54,54 @@ const strings = {
 
   'event.back': 'Dine steder',
   'event.loadFailed': 'Fikk ikke hentet hendelsen.',
+  'event.retry': 'Prøv igjen',
+  'event.active': 'Pågår',
+  'event.ended': 'Avsluttet',
+  'event.incident': 'Hendelsen',
+  'event.mapLabel': 'Kart: {place} og hendelsen, {uncertainty}',
+  'event.mapLabelNoPlace': 'Kart: hendelsen, {uncertainty}',
+  'event.noMap': 'Politiet oppga ikke noe sted vi kan vise på kartet.',
+  'event.shareSource': 'Kilde: Politiloggen',
+  'event.fewerHint': 'Åpner stedet, der du kan slå av {category}',
+  'event.source':
+    'Teksten er fra Politiloggen, slik politiet publiserte den (NLOD 2.0). Kring er ikke tilknyttet politiet. Plasseringen er beregnet av Kring.',
+
+  'tier.gateLegend': 'Gate, adresse eller lite sted',
+  'tier.nabolagLegend': 'Stedsnavn, inntil ca. 1,5 km',
+  'tier.bydelLegend': 'Bare bydel eller større område',
+
+  'precision.adresse': 'Politiet oppga en adresse med husnummer. Punktet er den adressen.',
+  'precision.kryss': 'Politiet oppga et veikryss. Punktet er der gatene møtes.',
+  'precision.gate': 'Politiet oppga gatenavnet. Vi vet hvilken gate, men ikke hvilket hus.',
+  'precision.longStreet': 'Gaten er lang, så det kan ha skjedd hvor som helst langs den.',
+  'precision.gateOmrade':
+    'Politiet oppga en lang gate og et område. Vi har tatt med den delen av gaten som ligger i området.',
+  'precision.stedsnavn': 'Politiet oppga et stedsnavn, ikke en gate. Ringen viser omtrent hvor stort stedet er.',
+  'precision.stedsnavnWide':
+    'Politiet oppga bare et stort område, som en bydel eller et tettsted. Det kan ha skjedd hvor som helst i ringen.',
+  'precision.stedsnavnTekst':
+    'Stedet er hentet fra politiets tekst, ikke fra stedsfeltet deres. Ringen viser omtrent hvor stort stedet er.',
+  'precision.kommunenavn': 'Politiet oppga bare byen eller tettstedet. Det kan ha skjedd hvor som helst i ringen.',
+  'precision.kommune': 'Politiet oppga bare kommunen, så vi kan ikke vise hvor det skjedde.',
+  'precision.none': 'Vi har ikke klart å plassere hendelsen ennå. Vi prøver igjen når politiet oppdaterer den.',
+  'precision.other': 'Ringen viser hvor det kan ha skjedd, så godt vi kan si det ut fra politiets melding.',
+
+  'why.match': 'Hendelsen er innenfor {label} ({radius}), og du følger {category}.',
+  'why.pushed': 'Du fikk push fordi den regnes som alvorlig og var ny da Kring fant den.',
+  'why.notSevere': 'Du fikk ikke push, fordi push bare sendes for alvorlige hendelser.',
+  'why.pushOff': 'Push er slått av for dette stedet.',
+  'why.notPushed':
+    'Du fikk ikke push for denne. Push sendes bare når hendelsen er ny, innenfor tidsrommet du har valgt, og høyst 3 ganger om dagen per sted.',
+  'why.imprecise':
+    'Politiet oppga bare et større område, og det overlapper {label} ({radius}). Hendelser uten gate eller stedsnavn sendes aldri som push.',
+  'why.notFollowed': 'Du følger ikke {category} for {label}, så den teller ikke for stedet.',
+  'why.noPoint': 'Politiet oppga bare kommunen, så den teller ikke for {label}.',
+  'why.tooImprecise':
+    'Hendelsen er ikke presis nok for {label} ({radius}). I et område under 1 km teller bare hendelser på gatenivå.',
+  'why.outside': 'Hendelsen er utenfor {label} ({radius}).',
+  'why.notice':
+    'Politiet meldte dette for hele {district}, ikke for et bestemt sted. Slike meldinger vises i 24 timer for stedene dine i distriktet.',
+  'why.noticePushed': 'Du fikk push fordi du følger {category} for {label}.',
 
   'new.editTitle': 'Endre sted',
   'new.question': 'Hva vil du følge med på?',
@@ -84,6 +132,7 @@ const strings = {
   'new.deleteBody': 'Stedet slettes med en gang, og du får ingen flere varsler herfra.',
   'new.deleteConfirm': 'Slett',
   'new.loadFailed': 'Fikk ikke hentet stedet.',
+  'new.fewerNote': 'Slå av {category} her for å få færre slike varsler.',
 
   'error.placeLimit': 'Du kan ha opptil 10 steder. Slett et sted for å legge til et nytt.',
   'error.kartverket': 'Kartverket svarer ikke akkurat nå. Prøv igjen om litt.',

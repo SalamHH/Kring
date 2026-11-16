@@ -35,7 +35,7 @@ name: Hjem – statusrader, «N ny» og varsel fra distriktet
     direction: DOWN
 - tapOn: "Fra politidistriktet: Savnet · Oslo politidistrikt, .*"
 - extendedWaitUntil:
-    visible: "E2E-test: Politiet ber om tips om en savnet person\\."
+    visible: "\\d\\d:\\d\\d\\. E2E-test: Politiet ber om tips om en savnet person\\."
     timeout: 10000
 - tapOn:
     id: "event-back"
@@ -45,8 +45,11 @@ name: Hjem – statusrader, «N ny» og varsel fra distriktet
     element: "Innbrudd · Kikutstua, Gatenivå, .*"
     direction: UP
 - tapOn: "Innbrudd · Kikutstua, Gatenivå, .*"
+# (Hendelse itself is checked by hendelse.yaml; the updates are below the map here.)
 - extendedWaitUntil:
-    visible: "E2E-test: Innbrudd i en hytte\\. Politiet er på stedet\\."
+    visible:
+      id: "event-title"
+      text: "Innbrudd · Kikutstua"
     timeout: 10000
 - tapOn:
     id: "event-back"

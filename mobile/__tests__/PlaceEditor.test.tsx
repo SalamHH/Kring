@@ -271,4 +271,26 @@ describe('Endre sted', () => {
     expect(mockApi.deletePlace).toHaveBeenCalledWith('p1');
     expect(mockBack).toHaveBeenCalled();
   });
+
+  it('points out the category from «Færre slike varsler» (D12)', async () => {
+    await show(<PlaceEditor place={SAVED} highlight="Brann" />);
+    const chip = screen.getByTestId('category-Brann');
+    expect(chip).toHaveStyle({ borderColor: '#A4501A', borderWidth: 2.5 });
+    expect(screen.getByTestId('category-Vold')).not.toHaveStyle({ borderWidth: 2.5 });
+    expect(screen.getByTestId('fewer-note')).toHaveTextContent('Slå av Brann her for å få færre slike varsler.');
+
+    // Turning it off removes the note and sends only the categories.
+    await fireEvent.press(chip);
+    expect(chip).not.toBeSelected();
+    expect(screen.queryByTestId('fewer-note')).toBeNull();
+    await fireEvent.press(screen.getByTestId('save'));
+    await settle();
+    expect(mockApi.updatePlace).toHaveBeenCalledWith('p1', { categories: ['Vold', 'Savnet', 'Ro og orden'] });
+  });
+
+  it('points out nothing when opened from Hjem', async () => {
+    await show(<PlaceEditor place={SAVED} />);
+    expect(screen.queryByTestId('fewer-note')).toBeNull();
+    expect(screen.getByTestId('category-Brann')).not.toHaveStyle({ borderWidth: 2.5 });
+  });
 });

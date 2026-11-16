@@ -63,24 +63,27 @@ npm run test:e2e
 
 - **Component tests** (`__tests__/*.test.tsx`, React Native Testing Library) render a screen in Node with the map, router, API session and push prompt replaced. They check what the screen shows and what it sends, so most of a screen's behaviour is covered without a simulator.
 - **Maestro flows** (`.maestro/`) tap through the real app on the simulator and report each step as text. Flows tagged `helper` are steps the others run (open the dev build, create or delete the test places). On a failure, Maestro saves its logs, the screen hierarchy and a screenshot under `~/.maestro/tests/`.
-- **Test data** (`.maestro/fixtures/`): incidents and a district notice at Kikut in Nordmarka, where real incidents are rare, so `hjem.yaml` can check exact rows. The flows create places named «E2E …» and delete them; other places on the device are never touched.
+- **Test data** (`.maestro/fixtures/`): incidents and a district notice at Kikut in Nordmarka, where real incidents are rare, so `hjem.yaml` and `hendelse.yaml` can check exact rows and texts. The flows create places named «E2E …» and delete them; other places on the device are never touched.
 - Maestro can't type «æøå» reliably, so flows search with plain-ASCII queries such as «Grensen 10».
 - The script turns Maestro's usage analytics off (`MAESTRO_CLI_NO_ANALYTICS`).
 
 - `__tests__/tokens.test.ts` and `strings.test.ts` read the spec itself (§7.1 and Appendix B), so a change on one side only fails here.
 - `__tests__/api.test.ts` runs the API client, device registration and the place, search and preview calls against a mock HTTP server.
 - `__tests__/Home.test.tsx` and `home.test.ts` cover Hjem: every status row, «N ny», the district row, the poll status, navigation and the opened store.
-- `__tests__/PlaceEditor.test.tsx` covers Nytt sted: the defaults, the debounced search, templates, the small-radius note, the coverage note, saving, push only after a save with push on, errors, editing (only changed fields) and deleting.
+- `__tests__/PlaceEditor.test.tsx` covers Nytt sted: the defaults, the debounced search, templates, the small-radius note, the coverage note, saving, push only after a save with push on, errors, editing (only changed fields), deleting, and the category pointed out from «Færre slike varsler».
+- `__tests__/Event.test.tsx` and `event.test.ts` cover Hendelse: every section, a district notice (no map or precision card), an incident without a point, the explanation for each `geocode_method`, each «Hvorfor» case, the share text, «Færre slike varsler», a deleted place, and the push deep link (payload parsing, each notification opened once).
 - `__tests__/places.test.ts` checks the templates against spec §6.1 and the categories against Appendix B, and covers the radius label, the small-radius note, time-window labels, the preview text and the edit diff.
 
 ## Layout
 
 | Path | What |
 |---|---|
-| `app/` | Screens (expo-router). `_layout.tsx` loads the fonts. `index.tsx` is Hjem; `place/new.tsx` and `place/[id].tsx` are Nytt sted and its edit mode, as full-screen modals; `event/[id].tsx` is Hendelse (a placeholder until step 11). |
+| `app/` | Screens (expo-router). `_layout.tsx` loads the fonts. `index.tsx` is Hjem; `place/new.tsx` and `place/[id].tsx` are Nytt sted and its edit mode, as full-screen modals; `event/[id].tsx` is Hendelse. |
 | `components/HomeParts.tsx` | Hjem's PlaceCard, IncidentRow, PrecisionBadge and the district notice row (§7.2). |
 | `lib/home.ts`, `lib/useHome.ts` | Hjem's rules (status row, «N ny», texts) and its data loading. |
 | `lib/opened.ts`, `lib/openedFile.ts` | Which incidents were opened on this device, for «N ny»; a JSON file, never sent. |
+| `lib/event.ts` | Hendelse's rules: the precision explanation per `geocode_method`, «Hvorfor fikk jeg dette?», the share text, dates. |
+| `lib/pushLinks.ts` | Tapping a push opens Hendelse, from a cold start and from the background. |
 | `lib/textScale.ts` | Dynamic Type: the 2× cap (1.5× for headings) and when rows stack. |
 | `components/PlaceMap.tsx` | The shared map: place circle (solid or dashed), incident point and uncertainty ring, «© Kartverket». |
 | `components/PlaceEditor.tsx` | Nytt sted (F1–F3): search, type and category chips, name, map, radius, preview, «Når», push, save and delete. |
@@ -103,6 +106,13 @@ The EAS project is `@salamhh/kring`; its ID is in `app.json` under `extra.eas.pr
 - **iOS Simulator:** gets an Expo push token, which ends up on the device row.
 - **Android:** needs Firebase. Until `google-services.json` is in the app config, the app logs `Default FirebaseApp is not initialized` and registers without a token.
 - **Sending:** an actual push needs APNs and FCM credentials on the EAS project (M1 step 12).
+- **Tapping a push** opens Hendelse (`lib/pushLinks.ts`). To try it on the simulator without APNs, send a local payload; the app reads the data from the `body` key:
+
+```bash
+xcrun simctl push booted no.kring.app push.apns
+```
+
+  with `push.apns` as `{"aps": {"alert": {"title": "…", "body": "…"}}, "body": {"event_id": "<id>", "place_id": "<place uuid>"}}`. Tap the banner within a few seconds; taps on the lock-screen list don't open the app in the simulator.
 
 ## EAS build profiles (`eas.json`)
 

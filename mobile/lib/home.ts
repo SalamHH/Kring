@@ -56,18 +56,6 @@ export interface PlaceEvents {
   district_notices: Notice[];
 }
 
-/** GET /v1/events/{id} (§8.6). Only what the screens use so far; step 11 uses the rest. */
-export interface EventDetail {
-  id: string;
-  title: string;
-  category: string;
-  police_category: string;
-  first_message_at: string;
-  last_message_at: string;
-  is_active: boolean | null;
-  messages: { seq: number; created_at: string; text: string }[];
-}
-
 export interface Health {
   status: 'ok' | 'stale' | 'db_unavailable';
   last_success_at: string | null;

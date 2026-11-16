@@ -368,6 +368,13 @@ The chosen direction is **A: soft cards**, with deep teal as the accent. The int
   - «N ny» counts the matched incidents of the last 7 days that haven't been opened on this device. The opened ids stay on the device (a file, kept 30 days) and are never sent.
   - The card's top opens the place's edit screen; the incident row opens Hendelse. District notices from the last 24 h are listed once each, below the cards.
 - (decided 2026-11-13) «Del med familien» opens the OS share sheet with the title, time, police text and «Kilde: Politiloggen». There is no app link yet. «Færre slike varsler» opens the place's edit screen with this category highlighted.
+- (decided 2026-11-16, M1 step 11) **Hendelse as built:**
+  - The category chip uses the police category for Andre (D5), on severeTint when the incident is severe. The status chip comes from `is_active` and is left out when Politiloggen doesn't say.
+  - The map is shown only for an incident with a point, always with its ring. Without a point (municipality only, or a failed lookup) the precision card says why. District notices have neither map nor precision card.
+  - «Hvor presist er dette?» explains the `geocode_method` in one or two sentences, and says when a long street or a large place makes the ring wide (over 1 500 m).
+  - «Hvorfor fikk jeg dette?» uses `for_place`. A matched incident says whether it was pushed. If not, it names the reason the app can see (push off for the place, or not severe); otherwise it lists the rules that may have held it back (new, time window, 3 a day), since the API doesn't say which. Imprecise nearby says such incidents are never pushed. A district notice says it covers the whole district. An incident opened without a place has no «Hvorfor».
+  - «Færre slike varsler» is shown only when there is a place. The edit screen scrolls to the categories, outlines that chip, and says «Slå av … her for å få færre slike varsler».
+  - If the place in a push has been deleted since, the incident is shown on its own.
 
 ## 7.4 Notification copy rules
 
@@ -675,6 +682,7 @@ Decided 2026-11-15 (M1 step 9):
 - (decided 2026-11-13) Matching and push run in the worker, after each cycle's ingest transaction commits, for the events first stored in that cycle. Events that are placed or improved later (by a thread update, or by re-geocoding, §9.6) are never pushed.
 - Send via Expo Push in batches of ≤ 100; poll receipts after 15 min; null the token on DeviceNotRegistered.
 - Payload data: {event_id, place_id}. Deep link opens the incident detail.
+  - (decided 2026-11-16, M1 step 11) Tapping a push opens Hendelse for that event and place, from a cold start and from the background. Each notification opens once; a payload without a valid `event_id` is ignored (`mobile/lib/pushLinks.ts`).
 - (decided 2026-11-15, M1 step 9) **Push permission** is asked right after the device's first place is saved in Nytt sted, not at first launch, so the iOS prompt (shown only once) comes with a reason. First launch only registers the device. On every launch the app reads the permission without asking: if granted, it sends the current token; if refused, it clears the token on the server.
 - (decided 2026-11-14, M1 step 7) As built (`app/notify/`):
   - **Which events are handled.** The notifier handles every event with `notified_at IS NULL`, not just the events from the cycle that just ran. So if the worker dies between ingest and notify, the next cycle catches up. An event the notifier first sees more than 10 minutes after it was stored is marked handled without a push.
