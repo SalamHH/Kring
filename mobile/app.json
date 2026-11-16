@@ -12,7 +12,8 @@
       "bundleIdentifier": "no.kring.app",
       "supportsTablet": false,
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSLocationWhenInUseUsageDescription": "Kring ber aldri om posisjonen din. Kartet viser bare stedene du selv har lagt inn."
       }
     },
     "android": {
