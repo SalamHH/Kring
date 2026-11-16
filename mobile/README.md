@@ -21,6 +21,18 @@ npm install
 
 ## Run
 
+The usual setup is the iPhone 17 simulator with the dev build already installed: start the local API, then Metro, then open the app on Metro's bundle.
+
+```bash
+npx expo start --dev-client --localhost
+```
+
+```bash
+xcrun simctl openurl booted "exp+kring://expo-development-client/?url=http%3A%2F%2Flocalhost%3A8081"
+```
+
+Rebuild (`npm run ios`) only when `app.json` or a native package changes. On this Mac it builds and installs, then fails at the end on an AppleScript permission; open the app with the command above instead.
+
 Start the local API first (see [`../backend/README.md`](../backend/README.md)). In development the app talks to it at `http://localhost:8000`, or `http://10.0.2.2:8000` from the Android emulator. Set `EXPO_PUBLIC_API_URL` in `.env.local` to use another API, such as `https://kring-api.onrender.com`, and restart Metro with `--clear`. The app then registers a new device on that API, and again when you switch back.
 
 ```bash
