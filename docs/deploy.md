@@ -100,6 +100,14 @@ To see what was pushed and its status, run this in the worker shell:
 uv run --no-sync python -m scripts.db_counts
 ```
 
+To check a phone end to end (M1 step 12), send one test push for a real incident near the newest place that has a push token (`--place-id` for another). Without `--send` it only shows what it would send. It reads the receipt, writes nothing, and never prints the token. Tapping the push should open Hendelse.
+
+```bash
+uv run --no-sync python -m scripts.test_push --send
+```
+
+APNs credentials (the push key, certificate and profile) are stored on the EAS project `@salamhh/kring`, not here. `eas credentials` shows them.
+
 ## Known limits (M1)
 
 - **One web instance.** The rate limits are per process and in memory. A shared limit is M4 (§14).
