@@ -11,6 +11,9 @@ Decided 2026-11-12:
   the next start redoes it.
 - One worker per database: a session-level Postgres advisory lock is taken at startup and held
   for the worker's lifetime. A second worker logs an ERROR and exits with status 1.
+- (decided 2026-11-14, for Render's zero-downtime deploys, where the new worker starts ~60 s
+  before the old one gets SIGTERM) With `worker_wait_for_lock` set, a second worker instead
+  waits for the lock, retrying every `lock_retry_s`, and starts its first cycle once it has it.
 
 A cycle that crashes (for example, the database is unreachable) is logged and the loop goes on.
 Politiloggen failures are not crashes: the ingestor records them in ingest_state itself.
@@ -34,11 +37,13 @@ from sqlalchemy.ext.asyncio import AsyncConnection, AsyncEngine, create_async_en
 from app.geocode.kartverket import KartverketClient
 from app.ingest.client import PolitiloggenClient
 from app.ingest.ingestor import CycleResult, Ingestor
+from app.notify.expo import ExpoClient
+from app.notify.notifier import Notifier
 from app.settings import Settings, get_settings
 
 log = logging.getLogger("app.worker")  # not __main__ under `python -m`
 
-# pg advisory lock key for "the stedSafe ingestion worker" (arbitrary, fixed).
+# pg advisory lock key for "the Kring ingestion worker" (arbitrary, fixed).
 LOCK_KEY = 0x57ED5AFE
 
 
@@ -64,25 +69,55 @@ class Worker:
         *,
         monotonic: Callable[[], float] = time.monotonic,
         wait: Callable[[asyncio.Event, float], Awaitable[None]] = _wait_or_stop,
+        wait_for_lock: bool = False,
+        lock_retry_s: float = 5.0,
+        notifier: Notifier | None = None,
     ) -> None:
         self.engine = engine
         self.ingestor = ingestor
         self.interval_s = interval_s
         self._monotonic = monotonic
         self._wait = wait
+        self.wait_for_lock = wait_for_lock
+        self.notifier = notifier
+        self.lock_retry_s = lock_retry_s
         self.cycles = 0
 
     async def run_once(self) -> CycleResult:
         async with self.engine.begin() as conn:
-            return await self.ingestor.run_cycle(conn)
+            res = await self.ingestor.run_cycle(conn)
+        # After the ingest transaction has committed (D7, §8.7). A notifier failure is logged and
+        # doesn't fail the cycle: the events stay unhandled and the next cycle tries again.
+        if self.notifier is not None:
+            try:
+                await self.notifier.run(self.engine)
+            except Exception:
+                log.exception("worker: notifier failed")
+        return res
 
     async def run(self, stop: asyncio.Event) -> None:
-        """Loop until `stop` is set. Raises AlreadyRunning if another worker holds the lock."""
+        """Loop until `stop` is set. If another worker holds the lock: raises AlreadyRunning, or
+        with `wait_for_lock`, waits for it (and returns without a cycle if stopped meanwhile)."""
         async with self.engine.connect() as lock_conn:
-            got = (await lock_conn.execute(text("SELECT pg_try_advisory_lock(:k)"), {"k": LOCK_KEY})).scalar()
-            await lock_conn.commit()  # the lock is session-level; don't sit idle in a transaction
-            if not got:
-                raise AlreadyRunning("another worker holds the ingestion lock on this database")
+            waiting = False
+            while True:
+                got = (
+                    await lock_conn.execute(text("SELECT pg_try_advisory_lock(:k)"), {"k": LOCK_KEY})
+                ).scalar()
+                await lock_conn.commit()  # the lock is session-level; don't sit idle in a transaction
+                if got:
+                    break
+                if not self.wait_for_lock:
+                    raise AlreadyRunning("another worker holds the ingestion lock on this database")
+                if not waiting:
+                    log.warning("worker: another worker holds the ingestion lock; waiting for it")
+                    waiting = True
+                await _wait_or_stop(stop, self.lock_retry_s)
+                if stop.is_set():
+                    log.info("worker: stopped while waiting for the lock")
+                    return
+            if waiting:
+                log.info("worker: got the ingestion lock")
             try:
                 await self._loop(stop)
             finally:
@@ -141,7 +176,18 @@ async def main(settings: Settings | None = None) -> int:
                 KartverketClient(http, settings.adresse_url, settings.stedsnavn_urls),
                 http,
             )
-            await Worker(engine, ingestor, settings.poll_interval_s).run(stop)
+            expo = ExpoClient(
+                http, settings.expo_push_url, settings.expo_receipts_url, settings.expo_access_token
+            )
+            if settings.push_dry_run:
+                log.info("worker: push dry run: pushes are logged, not sent")
+            await Worker(
+                engine,
+                ingestor,
+                settings.poll_interval_s,
+                wait_for_lock=settings.worker_wait_for_lock,
+                notifier=Notifier(settings, expo),
+            ).run(stop)
     except AlreadyRunning as e:
         log.error("worker: %s; exiting", e)
         return 1

@@ -22,7 +22,7 @@ import httpx
 from app.geocode.geometry import Point  # [lat, lon], rounded to 6 decimals as in the script
 from app.geocode.places import velg_stedsnavn
 
-USER_AGENT = "stedsafe-backend/0.0.1"
+USER_AGENT = "kring-backend/0.0.1"
 MIN_SPACING_S = 0.15
 RETRY_DELAYS_S: tuple[float, ...] = (1.0, 2.0)
 TIMEOUT_S = 30.0
@@ -47,6 +47,8 @@ class KartverketClient:
         clock: Callable[[], float] = time.monotonic,
         min_spacing_s: float = MIN_SPACING_S,
         retry_delays_s: Sequence[float] = RETRY_DELAYS_S,
+        timeout_s: float = TIMEOUT_S,
+        kommune_punkt_url: str = "https://ws.geonorge.no/kommuneinfo/v1/punkt",
     ) -> None:
         self.http = http
         self.adresse_url = adresse_url
@@ -55,6 +57,8 @@ class KartverketClient:
         self._clock = clock
         self._min_spacing_s = min_spacing_s
         self._retry_delays_s = tuple(retry_delays_s)
+        self._timeout_s = timeout_s
+        self.kommune_punkt_url = kommune_punkt_url
         self._lock = asyncio.Lock()
         self._last_call: float | None = None
         self.requests = 0  # HTTP requests sent, for logging and tests
@@ -77,7 +81,7 @@ class KartverketClient:
                 resp = await self.http.get(
                     url,
                     params=params,
-                    timeout=TIMEOUT_S,
+                    timeout=self._timeout_s,
                     headers={"Accept": "application/json", "User-Agent": USER_AGENT},
                 )
             except (httpx.TimeoutException, httpx.TransportError) as e:
@@ -156,3 +160,38 @@ class KartverketClient:
                 continue
             return velg_stedsnavn(data, navn)
         raise LookupFailed("; ".join(errors) or "no stedsnavn URLs configured")
+
+    # --- Used by the API (M1 step 5), not by the geocoder ----------------------------------
+
+    async def sok_adresser(self, sok: str, treff: int) -> dict[str, Any]:
+        """Free-text address search. Raw response; app.geocode.search parses it."""
+        try:
+            return await self.get_json(
+                self.adresse_url, {"sok": sok, "treffPerSide": treff, "utkoordsys": 4258}
+            )
+        except NotFound:
+            return {}
+
+    async def sok_stedsnavn(self, sok: str, treff: int) -> dict[str, Any]:
+        """Free-text place-name search, nationwide. URLs are tried in order, as in stedsnavn()."""
+        params = {"sok": sok, "treffPerSide": treff, "utkoordsys": 4258, "fuzzy": "false"}
+        errors: list[str] = []
+        for url in self.stedsnavn_urls:
+            try:
+                return await self.get_json(url, params)
+            except NotFound:
+                return {}
+            except LookupFailed as e:
+                errors.append(str(e))
+        raise LookupFailed("; ".join(errors) or "no stedsnavn URLs configured")
+
+    async def kommune_for_punkt(self, lat: float, lon: float) -> dict[str, Any] | None:
+        """The municipality a point lies in ({kommunenummer, kommunenavn, ...}), or None when
+        it lies in none (Kartverket answers 404, e.g. at sea or abroad)."""
+        try:
+            data = await self.get_json(self.kommune_punkt_url, {"nord": lat, "ost": lon, "koordsys": 4258})
+        except NotFound:
+            return None
+        if not isinstance(data, dict) or not data.get("kommunenummer"):
+            return None
+        return data

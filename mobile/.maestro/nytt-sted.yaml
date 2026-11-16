@@ -1,0 +1,96 @@
+# M1 step 9 (F1–F3): create a place in Nytt sted, check it on Hjem, change it, delete it.
+# Needs the iOS Simulator with the dev build, Metro and the local API (mobile/README.md).
+# The place is named «E2E Grensen» and deleted at the end, so the flow leaves no data behind.
+appId: no.kring.app
+name: Nytt sted – lage, endre og slette et sted
+---
+- runFlow: open-dev-build.yaml
+
+# Create
+- tapOn:
+    id: "add-place"
+- assertVisible: "Nytt sted"
+- tapOn:
+    id: "search-input"
+- inputText: "Grensen 10"
+- extendedWaitUntil:
+    visible:
+      id: "search-result-0"
+    timeout: 10000
+- assertVisible: ".*0159 Oslo.*"
+- tapOn:
+    id: "search-result-0"
+- assertVisible:
+    id: "selected-place"
+- assertVisible: ".*Grensen 10 · 0159 Oslo.*"
+- assertNotVisible:
+    id: "search-results"
+
+# Template Jobb sets the name and the window (F2)
+- tapOn:
+    id: "template-jobb"
+- tapOn:
+    id: "label-input"
+- eraseText: 20
+- inputText: "E2E Grensen"
+- hideKeyboard
+- assertVisible: "1,0 km"
+- extendedWaitUntil:
+    visible: ".*hendelse.*"
+    timeout: 10000
+- scrollUntilVisible:
+    element: "Når: Hverdager 07–17"
+    direction: DOWN
+- tapOn:
+    id: "save"
+# A device that hasn't answered the push prompt gets it now (spec §8.7).
+- runFlow:
+    when:
+      visible: "Allow"
+    commands:
+      - tapOn: "Allow"
+
+# Hjem lists it with the place name, radius and window (other places may come first)
+- scrollUntilVisible:
+    element: ".*E2E Grensen.*"
+    direction: DOWN
+    timeout: 15000
+    centerElement: true
+- assertVisible: ".*Grensen 10 · 1 km · hverdager 07–17.*"
+
+# Drag the radius slider to the left: below 1 km the small-radius note shows (F3)
+- tapOn: ".*E2E Grensen.*"
+- assertVisible: "Endre sted"
+- assertVisible: ".*Grensen 10.*Valgt.*"
+- scrollUntilVisible:
+    element:
+      id: "radius-slider"
+    direction: DOWN
+    centerElement: true
+- swipe:
+    from:
+      id: "radius-slider"
+    direction: LEFT
+- assertVisible:
+    id: "small-radius-note"
+- tapOn:
+    id: "save"
+- scrollUntilVisible:
+    element: ".*Grensen 10 · [3-9]00 m · hverdager 07–17.*"
+    direction: DOWN
+    timeout: 15000
+    centerElement: true
+
+# Delete, with confirmation
+- tapOn: ".*E2E Grensen.*"
+- scrollUntilVisible:
+    element:
+      id: "delete"
+    direction: DOWN
+- tapOn:
+    id: "delete"
+- assertVisible: "Slette «E2E Grensen»?"
+- tapOn: "Slett"
+- extendedWaitUntil:
+    notVisible: ".*E2E Grensen.*"
+    timeout: 10000

@@ -1,6 +1,6 @@
-# stedSafe backend
+# Kring backend
 
-FastAPI + PostgreSQL/PostGIS. Spec: [`../docs/stedSafe-spec.md`](../docs/stedSafe-spec.md) §8–9. Current plan: [`../docs/plans/m1.md`](../docs/plans/m1.md).
+FastAPI + PostgreSQL/PostGIS. Spec: [`../docs/kring-spec.md`](../docs/kring-spec.md) §8–9. Current plan: [`../docs/plans/m1.md`](../docs/plans/m1.md).
 
 ## Local setup (macOS, no Docker)
 
@@ -25,16 +25,16 @@ LC_ALL=en_US.UTF-8 /opt/homebrew/opt/postgresql@17/bin/pg_ctl -D /opt/homebrew/v
 Create the dev and test databases (once):
 
 ```bash
-/opt/homebrew/opt/postgresql@17/bin/createdb stedsafe && /opt/homebrew/opt/postgresql@17/bin/createdb stedsafe_test
+/opt/homebrew/opt/postgresql@17/bin/createdb kring && /opt/homebrew/opt/postgresql@17/bin/createdb kring_test
 ```
 
-Apply migrations to the dev database (the tests rebuild `stedsafe_test` themselves):
+Apply migrations to the dev database (the tests rebuild `kring_test` themselves):
 
 ```bash
 uv run alembic upgrade head
 ```
 
-Migrations are hand-written SQL in `alembic/versions/`, taken from spec §8.4; there is no autogenerate. The test database URL can be changed with `STEDSAFE_TEST_DATABASE_URL`.
+Migrations are hand-written SQL in `alembic/versions/`, taken from spec §8.4; there is no autogenerate. The test database URL can be changed with `KRING_TEST_DATABASE_URL`.
 
 ## Everyday commands
 
@@ -54,13 +54,33 @@ uv run ruff format .
 
 ## Running the worker
 
-The ingestion worker polls Politiloggen every 60 s, geocodes new and changed threads, and writes to the dev database. Stop it with Ctrl-C; a cycle in progress is rolled back. Only one worker can run per database (Postgres advisory lock).
+The ingestion worker polls Politiloggen every 60 s, geocodes new and changed threads, and writes to the dev database. Stop it with Ctrl-C; a cycle in progress is rolled back. Only one worker can run per database (Postgres advisory lock). A second one exits at once, unless `KRING_WORKER_WAIT_FOR_LOCK=true`, which makes it wait for the lock (used on Render; see [`../docs/deploy.md`](../docs/deploy.md)).
 
 ```bash
 uv run python -m app.worker
 ```
 
 On an empty database the first cycle reads the last quarter (about 100 pages) and geocodes every Oslo and Akershus thread, which takes a few minutes. Later cycles read `LastDay` and take a second or two.
+
+## Running the API
+
+The REST API (spec §8.6) on http://127.0.0.1:8000, using the same dev database:
+
+```bash
+uv run uvicorn app.api.main:app --reload
+```
+
+Interactive docs are at `/docs`. `GET /v1/health` returns 503 until the worker has polled successfully in the last 10 minutes. Rate limits are kept in memory, so they reset when the server restarts.
+
+## Push
+
+After each ingest cycle, the worker's notifier pushes new severe events to matching places (spec §6.2, §8.7). Locally it runs in dry run: each push is logged (`push (dry run): …`) and stored in `notifications` with status `dry_run`, and nothing is sent. To send for real, set `KRING_PUSH_DRY_RUN=false`. Expo needs no access token unless «enhanced security» is on for the project.
+
+To see how many pushes sample places would get per week from the stored events (spec §13 target: 0.5–2):
+
+```bash
+uv run python -m scripts.push_replay
+```
 
 ## Re-geocoding stored events
 
@@ -86,11 +106,11 @@ uv run python -m scripts.m0_report
 
 ## Settings
 
-Read from environment variables prefixed `STEDSAFE_` or from `backend/.env` (git-ignored). See `app/settings.py`. For example:
+Read from environment variables prefixed `KRING_` or from `backend/.env` (git-ignored). See `app/settings.py`. For example:
 
 ```bash
-STEDSAFE_DATABASE_URL=postgresql+asyncpg://localhost/stedsafe
-STEDSAFE_ALLOWED_FYLKER='["03","32"]'
+KRING_DATABASE_URL=postgresql+asyncpg://localhost/kring
+KRING_ALLOWED_FYLKER='["03","32"]'
 ```
 
 ## Layout
@@ -121,6 +141,12 @@ To record responses for the recorded Oslo and Akershus Politiloggen threads (ste
 
 ```bash
 uv run python -m scripts.record_kartverket --threads
+```
+
+The API tests (places and geocode search, M1 step 5) replay `tests/fixtures/kartverket/api/search.json`. Re-record it with:
+
+```bash
+uv run python -m scripts.record_search
 ```
 
 ## Recorded Politiloggen responses

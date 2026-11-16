@@ -1,0 +1,21 @@
+# Helper: deletes the place named ${LABEL} at Kikut through Endre sted.
+appId: no.kring.app
+tags:
+  - helper
+---
+- scrollUntilVisible:
+    element: "${LABEL}, Kikut · .*"
+    direction: DOWN
+    centerElement: true
+- tapOn: "${LABEL}, Kikut · .*"
+- assertVisible: "Endre sted"
+- scrollUntilVisible:
+    element:
+      id: "delete"
+    direction: DOWN
+- tapOn:
+    id: "delete"
+- tapOn: "Slett"
+- extendedWaitUntil:
+    notVisible: "${LABEL}, Kikut · .*"
+    timeout: 10000

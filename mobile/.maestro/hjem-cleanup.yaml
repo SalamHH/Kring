@@ -1,0 +1,18 @@
+# Helper for hjem.yaml: deletes the three «E2E …» places through Endre sted. (fixtures/down.sql
+# also removes them from the database if a flow stops halfway.)
+appId: no.kring.app
+tags:
+  - helper
+---
+- runFlow:
+    file: hjem-delete.yaml
+    env:
+      LABEL: "E2E 1 km"
+- runFlow:
+    file: hjem-delete.yaml
+    env:
+      LABEL: "E2E liten"
+- runFlow:
+    file: hjem-delete.yaml
+    env:
+      LABEL: "E2E rolig"

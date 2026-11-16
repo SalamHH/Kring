@@ -168,3 +168,87 @@ async def test_only_one_worker_per_database(engine: AsyncEngine) -> None:
             return CycleResult(ok=True)
 
     await asyncio.wait_for(Worker(engine, Once(), 60).run(stop2), timeout=5)
+
+
+async def test_with_wait_for_lock_a_second_worker_takes_over(engine: AsyncEngine) -> None:
+    """Render's deploy overlap: the new worker waits, and runs once the old one stops."""
+    stop_old = asyncio.Event()
+    entered = asyncio.Event()
+
+    class Waits:
+        async def run_cycle(self, conn: AsyncConnection) -> CycleResult:
+            entered.set()
+            await stop_old.wait()
+            return CycleResult(ok=True)
+
+    old = asyncio.create_task(Worker(engine, Waits(), 60).run(stop_old))
+    await asyncio.wait_for(entered.wait(), timeout=5)
+
+    stop_new = asyncio.Event()
+    ran = asyncio.Event()
+
+    class Once:
+        async def run_cycle(self, conn: AsyncConnection) -> CycleResult:
+            ran.set()
+            stop_new.set()
+            return CycleResult(ok=True)
+
+    new = asyncio.create_task(Worker(engine, Once(), 60, wait_for_lock=True, lock_retry_s=0.05).run(stop_new))
+    await asyncio.sleep(0.3)
+    assert not ran.is_set() and not new.done()  # still waiting while the old one holds the lock
+    stop_old.set()  # SIGTERM to the old worker
+    await asyncio.wait_for(old, timeout=5)
+    await asyncio.wait_for(new, timeout=5)
+    assert ran.is_set()
+
+
+async def test_a_waiting_worker_stops_without_a_cycle(engine: AsyncEngine) -> None:
+    stop_old = asyncio.Event()
+    entered = asyncio.Event()
+
+    class Waits:
+        async def run_cycle(self, conn: AsyncConnection) -> CycleResult:
+            entered.set()
+            await stop_old.wait()
+            return CycleResult(ok=True)
+
+    class Never:
+        async def run_cycle(self, conn: AsyncConnection) -> CycleResult:
+            raise AssertionError("must not run")
+
+    old = asyncio.create_task(Worker(engine, Waits(), 60).run(stop_old))
+    await asyncio.wait_for(entered.wait(), timeout=5)
+    stop_new = asyncio.Event()
+    new = asyncio.create_task(
+        Worker(engine, Never(), 60, wait_for_lock=True, lock_retry_s=0.05).run(stop_new)
+    )
+    await asyncio.sleep(0.2)
+    stop_new.set()
+    await asyncio.wait_for(new, timeout=5)
+    stop_old.set()
+    await asyncio.wait_for(old, timeout=5)
+
+
+async def test_the_notifier_runs_after_the_ingest_commit_and_its_failure_is_logged(
+    engine: AsyncEngine, caplog: pytest.LogCaptureFixture
+) -> None:
+    seen: list[str | None] = []
+
+    class SpyNotifier:
+        def __init__(self, fail: bool) -> None:
+            self.fail = fail
+
+        async def run(self, eng: AsyncEngine) -> None:
+            # A new connection sees the cycle's write only if the ingest transaction has committed.
+            seen.append(await stored_marker(eng))
+            if self.fail:
+                raise RuntimeError("Expo is down")
+
+    stop = asyncio.Event()
+    clock = FakeTime(stop, stop_after=2)
+    ing = FakeIngestor(clock, [1, 1])
+    w = Worker(engine, ing, 60, monotonic=clock.monotonic, wait=clock.wait, notifier=SpyNotifier(fail=True))  # type: ignore[arg-type]
+    await w.run(stop)
+    assert seen == ["cycle 0", "cycle 1"]
+    assert w.cycles == 2  # the failure didn't stop the loop
+    assert "notifier failed" in caplog.text and "Expo is down" in caplog.text

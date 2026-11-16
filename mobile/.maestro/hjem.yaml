@@ -1,0 +1,66 @@
+# M1 step 10 (F4): Hjem with the test data from fixtures/up.sql (run through `npm run test:e2e`).
+# Checks every status row, «N ny» going away after the incident is opened and staying away after
+# a restart, and the district notice opening. It only touches places named «E2E …», so other
+# places on the device stay as they are.
+appId: no.kring.app
+name: Hjem – statusrader, «N ny» og varsel fra distriktet
+---
+- runFlow: open-dev-build.yaml
+- assertVisible: "Dine steder"
+- assertVisible:
+    id: "updated"
+- runFlow: hjem-places.yaml
+
+# Each status row, top to bottom
+- scrollUntilVisible:
+    element: "E2E 1 km, Kikut · 1 km · hele døgnet, 1 ny"
+    direction: UP
+- assertVisible: "Innbrudd · Kikutstua, Gatenivå, ca\\. 700 m unna · \\d\\d:\\d\\d"
+- scrollUntilVisible:
+    element: ".*1 hendelse er bare oppgitt med bydel eller kommune og vises ikke i et så lite område\\."
+    direction: DOWN
+- scrollUntilVisible:
+    element: "E2E rolig, Kikut · 1 km · hverdager 07–17"
+    direction: DOWN
+# (Other places on the device may be calm too, so look below the E2E card only.)
+- scrollUntilVisible:
+    element:
+      text: ".*Rolig siste 7 dager"
+      below: "E2E rolig, Kikut · .*"
+    direction: DOWN
+
+# The district notice (D2) is listed once and opens
+- scrollUntilVisible:
+    element: "Fra politidistriktet: Savnet · Oslo politidistrikt, \\d\\d:\\d\\d"
+    direction: DOWN
+- tapOn: "Fra politidistriktet: Savnet · Oslo politidistrikt, .*"
+- extendedWaitUntil:
+    visible: "\\d\\d:\\d\\d\\. E2E-test: Politiet ber om tips om en savnet person\\."
+    timeout: 10000
+- tapOn:
+    id: "event-back"
+
+# Opening the incident removes «1 ny» …
+- scrollUntilVisible:
+    element: "Innbrudd · Kikutstua, Gatenivå, .*"
+    direction: UP
+- tapOn: "Innbrudd · Kikutstua, Gatenivå, .*"
+# (Hendelse itself is checked by hendelse.yaml; the updates are below the map here.)
+- extendedWaitUntil:
+    visible:
+      id: "event-title"
+      text: "Innbrudd · Kikutstua"
+    timeout: 10000
+- tapOn:
+    id: "event-back"
+- assertVisible: "E2E 1 km, Kikut · 1 km · hele døgnet"
+- assertNotVisible: "E2E 1 km, Kikut · 1 km · hele døgnet, 1 ny"
+
+# … also after the app restarts (the opened list is a file on the device)
+- runFlow: open-dev-build.yaml
+- extendedWaitUntil:
+    visible: "E2E 1 km, Kikut · 1 km · hele døgnet"
+    timeout: 15000
+- assertNotVisible: "E2E 1 km, Kikut · 1 km · hele døgnet, 1 ny"
+
+- runFlow: hjem-cleanup.yaml

@@ -1,0 +1,26 @@
+# Helper for hjem.yaml: three places at Kikut, where fixtures/up.sql puts the test incidents.
+#   «E2E 1 km»   Annet, 1 km: matches e2e-gate (incident row, «1 ny»).
+#   «E2E liten»  Annet, under 1 km: only e2e-bydel nearby (the small-radius note).
+#   «E2E rolig»  Jobb (Vold, Brann), 1 km: no matching category («Rolig siste 7 dager»).
+appId: no.kring.app
+tags:
+  - helper
+---
+- runFlow:
+    file: hjem-place.yaml
+    env:
+      LABEL: "E2E 1 km"
+      TEMPLATE: "annet"
+      SMALL: "no"
+- runFlow:
+    file: hjem-place.yaml
+    env:
+      LABEL: "E2E liten"
+      TEMPLATE: "annet"
+      SMALL: "yes"
+- runFlow:
+    file: hjem-place.yaml
+    env:
+      LABEL: "E2E rolig"
+      TEMPLATE: "jobb"
+      SMALL: "no"

@@ -1,0 +1,120 @@
+# M1 step 11 (F5, D12): Hendelse with the test data from fixtures/up.sql (run through
+# `npm run test:e2e`). Opens the incident from Hjem and checks each section from top to bottom,
+# opens the share sheet, follows «Færre slike varsler» to the place with the category pointed out,
+# and opens the district notice (no map, no precision card). Only touches places named «E2E …».
+appId: no.kring.app
+name: Hendelse – seksjoner, del, færre slike varsler og varsel fra distriktet
+---
+- runFlow: open-dev-build.yaml
+- runFlow:
+    file: hjem-place.yaml
+    env:
+      LABEL: "E2E 1 km"
+      TEMPLATE: "annet"
+      SMALL: "no"
+
+- scrollUntilVisible:
+    element: "Innbrudd · Kikutstua, Gatenivå, .*"
+    direction: UP
+- tapOn: "Innbrudd · Kikutstua, Gatenivå, .*"
+- extendedWaitUntil:
+    visible:
+      id: "event-title"
+    timeout: 10000
+
+# Top: chips, title, «gate, område · dato tid», map and legend
+- assertVisible: "Innbrudd"
+- assertVisible: "Pågår"
+- assertVisible: "Innbrudd · Kikutstua"
+- assertVisible: "Kikutstua · \\w+\\. \\d+\\. \\w+\\.? \\d\\d:\\d\\d"
+- assertVisible: "Kart: E2E 1 km og hendelsen, ±200 m"
+- assertVisible: "E2E 1 km · 1 km"
+- assertVisible: "Hendelsen · ±200 m"
+
+# «Hvor presist er dette?»
+- scrollUntilVisible:
+    element: "Hvor presist er dette\\?"
+    direction: DOWN
+- assertVisible: "Gatenivå · ±200 m"
+- assertVisible: "Politiet oppga et stedsnavn, ikke en gate\\. Ringen viser omtrent hvor stort stedet er\\."
+- scrollUntilVisible:
+    element: "Bare bydel eller større område"
+    direction: DOWN
+
+# «Hvorfor fikk jeg dette?»: matched, but Innbrudd is not severe, so no push
+- scrollUntilVisible:
+    element: "Hvorfor fikk jeg dette\\? Hendelsen er innenfor E2E 1 km \\(1 km\\), og du følger innbrudd\\. Du fikk ikke push, fordi push bare sendes for alvorlige hendelser\\."
+    direction: DOWN
+
+# Police updates, in order, with times
+- scrollUntilVisible:
+    element: "\\d\\d:\\d\\d\\. E2E-test: Innbrudd i en hytte\\. Politiet er på stedet\\."
+    direction: DOWN
+- scrollUntilVisible:
+    element: "\\d\\d:\\d\\d\\. E2E-test: Ingen er pågrepet\\."
+    direction: DOWN
+- assertVisible:
+    text: "\\d\\d:\\d\\d\\. E2E-test: Ingen er pågrepet\\."
+    below: "\\d\\d:\\d\\d\\. E2E-test: Innbrudd i en hytte\\. .*"
+
+# «Del med familien» opens the OS share sheet (D12)
+- scrollUntilVisible:
+    element:
+      id: "event-share"
+    direction: DOWN
+- assertVisible: "^Teksten er fra Politiloggen.*"
+- tapOn:
+    id: "event-share"
+# The sheet previews the text: title, place and time, every update, the source, and no link.
+- extendedWaitUntil:
+    visible: "(?s)Innbrudd · Kikutstua\\s+Kikutstua · .*E2E-test: Innbrudd i en hytte\\..*E2E-test: Ingen er pågrepet\\.\\s+Kilde: Politiloggen"
+    timeout: 10000
+- assertNotVisible: "(?s).*(https?:|kring:).*Kilde: Politiloggen"
+- tapOn: "dismiss popup"
+- extendedWaitUntil:
+    visible:
+      id: "event-fewer"
+    timeout: 5000
+
+# «Færre slike varsler» opens the place with Innbrudd pointed out (D12)
+- tapOn:
+    id: "event-fewer"
+- assertVisible: "Endre sted"
+- extendedWaitUntil:
+    visible:
+      id: "fewer-note"
+    timeout: 5000
+- assertVisible: "Slå av Innbrudd her for å få færre slike varsler\\."
+- assertVisible:
+    id: "category-Innbrudd"
+    selected: true
+- tapOn: "Avbryt"
+- extendedWaitUntil:
+    visible:
+      id: "event-fewer"
+    timeout: 5000
+
+# Back to Hjem, then the district notice: the same screen without the map and precision card
+- tapOn:
+    id: "event-back"
+- scrollUntilVisible:
+    element: "Fra politidistriktet: Savnet · Oslo politidistrikt, .*"
+    direction: DOWN
+- tapOn: "Fra politidistriktet: Savnet · Oslo politidistrikt, .*"
+- extendedWaitUntil:
+    visible: "Savnet · Oslo politidistrikt"
+    timeout: 10000
+- assertVisible: "Oslo politidistrikt · .*"
+- assertVisible: "Hvorfor fikk jeg dette\\? Politiet meldte dette for hele Oslo politidistrikt, .*"
+- assertVisible: "\\d\\d:\\d\\d\\. E2E-test: Politiet ber om tips om en savnet person\\."
+- assertNotVisible: "Hvor presist er dette\\?"
+- assertNotVisible: "Kart: .*"
+- assertNotVisible:
+    id: "event-fewer"
+- tapOn:
+    id: "event-back"
+
+- runFlow:
+    file: hjem-delete.yaml
+    env:
+      LABEL: "E2E 1 km"

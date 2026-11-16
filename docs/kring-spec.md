@@ -1,13 +1,13 @@
-# stedSafe — Product brief, analysis & build specification
+# Kring — Product brief, analysis & build specification
 
 **Calm, place-based alerts from the Norwegian police log (Politiloggen)**
-v0.1 · 11 November 2026 · working name «stedSafe» (not yet checked for trademark)
+v0.1 · 11 November 2026 · name «Kring» (decided 2026-11-14; the v0.1 working name was «stedSafe»; not yet checked for trademark)
 
 Bundle contents: this file · `screens/` (prototype screenshots + static HTML) · `research/presisjonstest.py` (v4 reference geocoder)
 
 ### What this document is
 
-A complete rundown of the stedSafe idea written from the perspective of a product manager and startup advisor, and a build specification precise enough to hand to a coding agent. It consolidates the research, the precision test of the police-log data, the competitive scan and the chosen prototype design (direction A).
+A complete rundown of the Kring idea written from the perspective of a product manager and startup advisor, and a build specification precise enough to hand to a coding agent. It consolidates the research, the precision test of the police-log data, the competitive scan and the chosen prototype design (direction A).
 
 > **How to read it**
 >
@@ -35,7 +35,7 @@ A complete rundown of the stedSafe idea written from the perspective of a produc
   - [2.2 Target users](#22-target-users)
   - [2.3 What «good» looks like for the user](#23-what-good-looks-like-for-the-user)
 - [3. Market & competition](#3-market--competition)
-  - [3.1 Where stedSafe wins](#31-where-stedsafe-wins)
+  - [3.1 Where Kring wins](#31-where-kring-wins)
   - [3.2 Honest assessment](#32-honest-assessment)
 - [4. Data foundation & precision analysis](#4-data-foundation--precision-analysis)
   - [4.1 Sources](#41-sources)
@@ -91,7 +91,7 @@ A complete rundown of the stedSafe idea written from the perspective of a produc
 
 # 1. Executive summary
 
-**stedSafe** turns the Norwegian police operations log (*Politiloggen*) into calm, precise alerts for the specific places a person cares about: a child's school, home, the cabin, the office. The official Politiloggen app only lets users follow a whole police district or municipality, which in Oslo means a steady stream of irrelevant traffic messages. Users have asked for map views and alerts near a location; the nearest independent competitor offers radius alerts but has a weak experience and is iOS-only.
+**Kring** turns the Norwegian police operations log (*Politiloggen*) into calm, precise alerts for the specific places a person cares about: a child's school, home, the cabin, the office. The official Politiloggen app only lets users follow a whole police district or municipality, which in Oslo means a steady stream of irrelevant traffic messages. Users have asked for map views and alerts near a location; the nearest independent competitor offers radius alerts but has a weak experience and is iOS-only.
 
 | **63 %** | **28 %** | **~2 / day** | **0 kr** |
 |---|---|---|---|
@@ -163,9 +163,9 @@ Interview 3–5 parents with the prototype while building the ingestion + geocod
 | **Nabohjælp** (Denmark) | Up to two addresses (e.g. home + summer house) | Neighbour warnings | ~290k users; piloting police burglary data in the app. |
 | **Citizen / Ring Neighbors** (US) | GPS radius | Real-time push | Large, but widely criticised for creating a «culture of fear». |
 
-## 3.1 Where stedSafe wins
+## 3.1 Where Kring wins
 
-| Dimension | Politiloggen | Politipuls | stedSafe (target) |
+| Dimension | Politiloggen | Politipuls | Kring (target) |
 |---|---|---|---|
 | Unit of interest | District / municipality | Municipality / radius | **Named places** with templates |
 | Precision shown | No | Partly (location field) | **Always**, as Gatenivå / Nabolag / Bydel |
@@ -248,7 +248,7 @@ All 127 street-from-text matches from v3 were read by hand. The street name was 
 
 ## 5.1 Positioning
 
-*For parents and residents who want to know when something serious happens near the places they care about, stedSafe is a calm alert app that turns the police log into precise, place-based notifications. Unlike the official Politiloggen app, it follows named places instead of whole municipalities, says honestly how precise each incident is, and only interrupts you when it matters.*
+*For parents and residents who want to know when something serious happens near the places they care about, Kring is a calm alert app that turns the police log into precise, place-based notifications. Unlike the official Politiloggen app, it follows named places instead of whole municipalities, says honestly how precise each incident is, and only interrupts you when it matters.*
 
 ## 5.2 Product principles
 
@@ -270,7 +270,7 @@ All 127 street-from-text matches from v3 were read by hand. The street name was 
 
 # 6. MVP scope (product requirements)
 
-Platforms: iOS and Android via Expo. UI language: Norwegian Bokmål. Launch market: Oslo (the pipeline MUST handle any municipality; marketing starts in Oslo).
+Platforms: iOS and Android via Expo (decided 2026-11-15: iOS only for the M1 internal build and the M2 beta; Android is decided at the end of M3, see §14). UI language: Norwegian Bokmål. Launch market: Oslo (the pipeline MUST handle any municipality; marketing starts in Oslo).
 
 | ID | Feature | Pri. | Acceptance criteria |
 |---|---|---|---|
@@ -363,7 +363,18 @@ The chosen direction is **A: soft cards**, with deep teal as the accent. The int
 | Push (OS-rendered) | The OS draws notifications. Only title/body text is ours. See 7.4. The prototype's custom-styled lock screen is illustrative only. |
 
 - (decided 2026-11-13) Politiloggen threads have no title field. The incident title on Hjem and Hendelse is built from our own fields: category + place, such as «Brann · Hølandsgata». The place is the matched street or place name, otherwise the area field, otherwise the municipality; for a district-wide notice (§8.3) it is the district. Police text is never shortened into a title. The police text is shown in full under «Oppdateringer fra politiet».
+- (decided 2026-11-15, M1 step 10) **Hjem as built:**
+  - The status row is the newest matched incident of the last 7 days. Without one, a place under 1 km shows the small-radius note, counting the bydel-tier incidents nearby plus the municipality-only ones (D1): «Ingen gatepresise hendelser denne uken. N hendelser er bare oppgitt med bydel eller kommune og vises ikke i et så lite område.» Otherwise «Rolig siste 7 dager». From 1 km up, the bydel-only incidents are left to the digest, so the card can be calm.
+  - «N ny» counts the matched incidents of the last 7 days that haven't been opened on this device. The opened ids stay on the device (a file, kept 30 days) and are never sent.
+  - The card's top opens the place's edit screen; the incident row opens Hendelse. District notices from the last 24 h are listed once each, below the cards.
 - (decided 2026-11-13) «Del med familien» opens the OS share sheet with the title, time, police text and «Kilde: Politiloggen». There is no app link yet. «Færre slike varsler» opens the place's edit screen with this category highlighted.
+- (decided 2026-11-16, M1 step 11) **Hendelse as built:**
+  - The category chip uses the police category for Andre (D5), on severeTint when the incident is severe. The status chip comes from `is_active` and is left out when Politiloggen doesn't say.
+  - The map is shown only for an incident with a point, always with its ring. Without a point (municipality only, or a failed lookup) the precision card says why. District notices have neither map nor precision card.
+  - «Hvor presist er dette?» explains the `geocode_method` in one or two sentences, and says when a long street or a large place makes the ring wide (over 1 500 m).
+  - «Hvorfor fikk jeg dette?» uses `for_place`. A matched incident says whether it was pushed. If not, it names the reason the app can see (push off for the place, or not severe); otherwise it lists the rules that may have held it back (new, time window, 3 a day), since the API doesn't say which. Imprecise nearby says such incidents are never pushed. A district notice says it covers the whole district. An incident opened without a place has no «Hvorfor».
+  - «Færre slike varsler» is shown only when there is a place. The edit screen scrolls to the categories, outlines that chip, and says «Slå av … her for å få færre slike varsler».
+  - If the place in a push has been deleted since, the incident is shown on its own.
 
 ## 7.4 Notification copy rules
 
@@ -379,6 +390,7 @@ The chosen direction is **A: soft cards**, with deep teal as the accent. The int
 - Touch targets ≥ 44 px. Every icon-only button has an accessibilityLabel.
 - Precision and severity are never conveyed by colour alone (badge shape + text label).
 - Support Dynamic Type / font scaling; cards grow, nothing truncates critical text.
+- (decided 2026-11-15, M1 step 10) Text follows the system size up to 2× (headings 1.5×), so the largest accessibility sizes (about 3×) don't split words on a phone. From 1.4×, rows that sit side by side stack: the card's icon and «N ny» move above the label.
 
 ## 7.6 Prototype screens (guidance only)
 
@@ -411,10 +423,11 @@ Images below are full-length (scrolled content included). Versions cropped to on
 | Layer | Choice | Why |
 |---|---|---|
 | Mobile | Expo (React Native, TypeScript), expo-router, MapLibre (`@maplibre/maplibre-react-native`) with Kartverket map tiles, expo-notifications (decided 2026-11-13: MapLibre instead of react-native-maps, so there is no Google Maps SDK or key and the same Norwegian map on both platforms; the map shows «© Kartverket») | One codebase for iOS + Android; Expo Push is free |
+| Map tiles | Kartverket's raster WMTS, layer `topograatone` (greyscale) in `webmercator`: `https://cache.kartverket.no/v1/wmts/1.0.0/topograatone/default/webmercator/{z}/{y}/{x}.png` (note the `{y}/{x}` order), 256 px tiles, zoom 0–18. (Decided 2026-11-14.) **Terms:** CC BY 4.0, commercial use allowed. The map MUST show «© Kartverket» and SHOULD link to kartverket.no. At zoom 12–20 the tiles contain Geovekst data, which may be shown through the service as it is, but copying it needs separate permission (post@kartverket.no). So the app MUST NOT bulk-download, offline-pack, prefetch or re-host tiles. MapLibre's normal on-device cache is fine, and the server sends `Cache-Control: public, max-age=345600` (4 days). **Rate limits:** none published; no key and no registration. The URL lives in one constant in the app, so the layer (`topo` for colour) or the provider can be swapped in one place if Kartverket ever throttles us. Vector tiles are not an option: the test host `vectortiles.kartverket.no` from 2024 no longer resolves. | Free, no key, the official Norwegian map; greyscale keeps the place circle and incident point the strongest colours on screen |
 | API | FastAPI (Python 3.12), Pydantic v2, SQLAlchemy 2 / asyncpg | Matches founder's stack; geocoder is already Python |
 | Database | PostgreSQL 17 + PostGIS (decided 2026-11-12: 17 instead of 16, because Homebrew's PostGIS is not built for 16) | Geography types, ST_DWithin, GiST indexes |
 | Worker | Separate process (same codebase) with an asyncio loop / APScheduler | Polling, geocoding, matching, push, digest |
-| Hosting | Render (web service + background worker + managed Postgres). Decided 2026-11-13: paid starter tiers for all three, in the Frankfurt region (EU). | Founder already uses it; low ops. Render has no free background worker, its free Postgres expires and its free web service sleeps. |
+| Hosting | Render (web service + background worker + managed Postgres). Decided 2026-11-13: paid starter tiers for all three, in the Frankfurt region (EU). Render has since renamed them: `0.5c-512mb` for web and worker, `0.1c-256mb` for Postgres (2026-11-14, `render.yaml`). | Founder already uses it; low ops. Render has no free background worker, its free Postgres expires and its free web service sleeps. |
 | Push | Expo Push API (+ receipts) | Handles APNs/FCM |
 
 ## 8.2 Components & data flow
@@ -455,7 +468,7 @@ Accept: application/json
   - (decided 2026-11-12) If a Kartverket lookup fails while placing an event, the event is stored without a point and with `geocode_method` NULL. Every cycle re-geocodes NULL-method events in the fetched window, whether or not they changed.
 - An event's first message time (`first_message_at`) is the earliest message timestamp in the thread; fall back to the thread-level created field only if messages have no timestamps (decided 2026-11-12).
 - Handle 429/5xx with exponential backoff (1, 2, 4, 8, 16 s). Alert (log at ERROR) if no successful poll for 10 min.
-- Worker loop (decided 2026-11-12): `python -m app.worker` runs one cycle per transaction, starting a cycle every 60 s from the previous start. A cycle that runs over is followed at once by the next, with no catch-up. SIGINT or SIGTERM aborts the cycle in progress and rolls it back. A session-level Postgres advisory lock allows only one worker per database; a second one exits with status 1.
+- Worker loop (decided 2026-11-12): `python -m app.worker` runs one cycle per transaction, starting a cycle every 60 s from the previous start. A cycle that runs over is followed at once by the next, with no catch-up. SIGINT or SIGTERM aborts the cycle in progress and rolls it back. A session-level Postgres advisory lock allows only one worker per database; a second one exits with status 1. (decided 2026-11-14) On Render, where a deploy starts the new worker ~60 s before the old one is stopped, the second worker waits for the lock instead (`KRING_WORKER_WAIT_FOR_LOCK`).
 - Map the event's municipality name to a kommunenummer (kommuneinfo API, cached) and geocode within that municipality.
   - (decided 2026-11-12) Both the Norwegian and the Sámi names are matched, ignoring case. Names that don't resolve are skipped with one WARN per name: police districts in the municipality field («Oslo politidistrikt»), qualified names («Våler (Øst)», «Herøy (Nordland)») and «Kvam Herad». Only threads in the allowed fylker are stored.
   - (decided 2026-11-12, corrected after the M0 live run) A police district in the municipality field marks a district-wide notice with no area: missing persons, weather warnings, airspace restrictions and the like. «Oslo politidistrikt» and «Øst politidistrikt» (which covers part of Akershus) had 4 and 3 such threads in a month. They are skipped in M0; how to show them is open question 8 in §15.
@@ -496,6 +509,13 @@ CREATE TABLE events (
 CREATE INDEX events_geom_gix  ON events USING GIST (geom);
 CREATE INDEX events_first_idx ON events (first_message_at DESC);
 CREATE INDEX events_distrikt_idx ON events (district, first_message_at DESC) WHERE scope = 'distrikt';
+-- (decided 2026-11-14, M1 step 7; migration 0005) Detection (D7) and the notifier's progress.
+-- ingested_at: set by the database when the event is first stored (default clock_timestamp());
+-- NULL for events stored before migration 0005. notified_at: when the notifier handled the event
+-- (NULL = still to do); every event stored before migration 0005 is marked handled.
+ALTER TABLE events ADD COLUMN ingested_at TIMESTAMPTZ DEFAULT clock_timestamp();
+ALTER TABLE events ADD COLUMN notified_at TIMESTAMPTZ;
+CREATE INDEX events_notify_pending_idx ON events (ingested_at) WHERE notified_at IS NULL;
 
 CREATE TABLE event_messages (
   event_id   TEXT REFERENCES events(id) ON DELETE CASCADE,
@@ -516,6 +536,8 @@ CREATE TABLE devices (
   created_at   TIMESTAMPTZ NOT NULL DEFAULT now(),
   last_seen_at TIMESTAMPTZ
 );
+-- Every request looks the device up by its secret's hash (decided 2026-11-14)
+CREATE UNIQUE INDEX devices_secret_hash_key ON devices (secret_hash);
 
 CREATE TABLE places (
   id          UUID PRIMARY KEY,
@@ -530,6 +552,15 @@ CREATE TABLE places (
   created_at  TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 CREATE INDEX places_center_gix ON places USING GIST (center);
+-- (decided 2026-11-14, M1 step 5) The municipality of the centre, from Kartverket's reverse
+-- point lookup; NULL when the point is in no municipality. Places outside the ingested
+-- fylker are allowed and flagged as not covered (§6).
+ALTER TABLE places ADD COLUMN kommunenummer TEXT;
+CREATE INDEX places_device_idx ON places (device_id, created_at);
+-- (decided 2026-11-15, M1 step 9; migration 0006) The name of the search result the place was
+-- made from («Tøyen skole»), for the Hjem card meta and the edit screen. The label («Skolen») stays
+-- the user's own name for the place. NULL for places made before migration 0006.
+ALTER TABLE places ADD COLUMN place_name TEXT CHECK (char_length(place_name) BETWEEN 1 AND 100);
 
 CREATE TABLE notifications (
   id         BIGSERIAL PRIMARY KEY,
@@ -570,6 +601,13 @@ WHERE :e_category = ANY (p.categories)
   AND (:e_tier = 'gate' OR (:e_tier = 'nabolag' AND p.radius_m >= 1000));
 ```
 
+(decided 2026-11-14, M1 step 6) As built in `app/match/rules.py`:
+- **Index use:** the query above can't use the GiST index on `places.center`, because the radius varies per place. The index condition uses `ST_DWithin(p.center, e.geom, 2001)`, which is the largest radius allowed plus a margin, and the place's own radius is checked after that.
+- **Distance:** distances are compared with `ST_Distance(...) <= radius`, the same distance the API reports. PostGIS's `ST_DWithin` is false when the distance equals the radius exactly; the difference is under a micrometre. §6.2 says «≤».
+- **The other direction:** a place's list and the preview find events for a circle. They use the GiST index on `events.geom`, widening the radius by the largest stored uncertainty to find imprecise-nearby candidates.
+- **Scope:** only events with `scope = 'kommune'` are considered.
+- **Category «Andre»:** it also covers police categories that Appendix B doesn't list, so a new category in Politiloggen is shown, not lost.
+
 `places.categories` holds app categories (Appendix B), so the matcher expands them to police categories before the `:e_category` comparison above, using one backend module that holds the Appendix B mapping (decided 2026-11-12).
 
 ## 8.6 REST API (v1)
@@ -587,12 +625,79 @@ WHERE :e_category = ANY (p.categories)
 | `POST /v1/events/{id}/feedback` | «Feil plassering?» (body: place_id). |
 | `GET /v1/health` | Liveness + last successful poll time. |
 
+Decided 2026-11-14 (M1 step 3):
+- The secret is 32 random bytes (base64url), stored as SHA-256. A random high-entropy secret doesn't need a slow hash.
+- Errors are JSON: `{"error": <code>, "message": <text>}`, plus `details` for 422 validation errors. 401 carries `WWW-Authenticate: Bearer`; 429 carries `Retry-After`.
+- Rate limits, kept in memory (one web instance until M4): 120 requests a minute per device, and 20 registrations an hour per client IP.
+- `PUT /v1/devices/me` changes only the fields sent; `push_token` and `platform` may be sent as null to clear them.
+- `DELETE /v1/devices/me` also deletes the device's `placement_feedback` rows, which have no foreign key.
+- `last_seen_at` is updated at most once an hour.
+- `GET /v1/health` returns `{status, last_success_at, age_s}`: 200 when the last successful poll is at most 10 minutes old, else 503 (`stale`, or `db_unavailable`).
+- `GET /v1/health/live` returns 200 whenever the process is up. Render's health check uses it, because a stale poll is not fixed by restarting the API (M1 step 4).
+
+Decided 2026-11-14 (M1 step 5):
+- **Places.**
+  - A place is `{label, template, lat, lon, radius_m, categories, time_window, push}`. The response adds `id`, `kommunenummer`, `covered` and `created_at`.
+  - Categories and time window are optional on create; the template fills them in (§6.1). Categories come back in Appendix B order.
+  - «Annet» means all categories except Trafikk, as §6.1 says, so it includes Andre.
+  - A time window has `from` before `to`. Windows across midnight are not supported in M1.
+  - `PATCH` changes only the fields sent. Changing the template doesn't change the categories or the window. `lat` and `lon` are changed together, and the municipality is looked up again.
+  - A Kartverket failure during that lookup returns 502 and saves nothing.
+  - Errors: the 11th place returns 409 `place_limit`, and another device's place returns 404.
+- **`GET /v1/geocode/search?q=`.**
+  - Needs a device and is limited to 30 searches a minute per device. `q` is 2–100 characters.
+  - It searches addresses and place names, with a trailing `*`, because Kartverket matches whole words only without it. It returns up to 10 results `{kind: adresse|sted, label, secondary, lat, lon, kommunenummer, covered}`.
+  - Results are ranked as follows:
+    - exact name first;
+    - then results in the ingested fylker;
+    - then area types (the §9.2 priority);
+    - for addresses, the query's house number first.
+  - A query with a digit lists addresses first; otherwise place names come first.
+  - Kartverket's search APIs return no bydel, so `secondary` is the postcode and municipality for an address, and the place type and municipality for a place name.
+  - Results are cached for 30 days per query and source. A Kartverket failure returns 502 and caches nothing.
+  - The API calls Kartverket without retries and with a 5 s timeout, since someone is waiting.
+
+Decided 2026-11-14 (M1 step 6):
+- **`GET /v1/preview?lat&lon&radius_m&categories`.**
+  - `categories` is repeated or comma-separated, and uses app categories. The radius is validated as for places.
+  - It returns `{days: 30, matched, severe, hidden_traffic, imprecise_nearby}`.
+  - `severe` counts the matched events that are severe.
+  - `hidden_traffic` counts the Trafikk events that would match if Trafikk were followed, and is 0 when it is.
+- **`GET /v1/places/{id}/events?days=30`** (1–90 days) returns `{events, municipality_only, district_notices}`.
+  - `events` are matched and imprecise-nearby events, newest first. Each has `title`, the app and police category, tier, `distance_m`, `relation` and `pushed`.
+  - `municipality_only` counts the events in the place's municipality that have no point (D1).
+  - `district_notices` are the last 24 h of notices for every police district that covers the place's municipality, read from the stored events (D2).
+- **`GET /v1/events/{id}`** returns every message in order, plus the point, uncertainty, tier, method and title.
+  - With `?place_id=`, the response adds `for_place: {distance_m, relation, category_followed, pushed}` for «Hvorfor fikk jeg dette?» and the push deep link.
+  - Events are public data, so any device may read any event. A place belongs to its own device.
+- **`POST /v1/events/{id}/feedback`** with `{place_id}` returns 204. There is one row per (event, place), so a second tap changes nothing.
+- **Titles (D5):** the category in a title is the app category, except for Andre, which uses the police category («Ulykke · Lysaker»), since «Andre» says nothing. A district is written «Oslo politidistrikt», not Politiloggen's «Oslo Politidistrikt».
+
+Decided 2026-11-15 (M1 step 9):
+- **`place_name`** on places: optional, 1–100 characters after trimming. The app sends the label of the chosen search result («Tøyen skole»). `PATCH` may send it as null to clear it; it is not changed when it is left out, also not when `lat` and `lon` change.
+
 ## 8.7 Notifications
 
 - Insert into `notifications` BEFORE sending; the unique constraint prevents duplicates across worker restarts.
 - (decided 2026-11-13) Matching and push run in the worker, after each cycle's ingest transaction commits, for the events first stored in that cycle. Events that are placed or improved later (by a thread update, or by re-geocoding, §9.6) are never pushed.
 - Send via Expo Push in batches of ≤ 100; poll receipts after 15 min; null the token on DeviceNotRegistered.
 - Payload data: {event_id, place_id}. Deep link opens the incident detail.
+  - (decided 2026-11-16, M1 step 11) Tapping a push opens Hendelse for that event and place, from a cold start and from the background. Each notification opens once; a payload without a valid `event_id` is ignored (`mobile/lib/pushLinks.ts`).
+- (decided 2026-11-15, M1 step 9) **Push permission** is asked right after the device's first place is saved in Nytt sted, not at first launch, so the iOS prompt (shown only once) comes with a reason. First launch only registers the device. On every launch the app reads the permission without asking: if granted, it sends the current token; if refused, it clears the token on the server.
+- (decided 2026-11-14, M1 step 7) As built (`app/notify/`):
+  - **Which events are handled.** The notifier handles every event with `notified_at IS NULL`, not just the events from the cycle that just ran. So if the worker dies between ingest and notify, the next cycle catches up. An event the notifier first sees more than 10 minutes after it was stored is marked handled without a push.
+  - **`notifications.status`:**
+    - `pending`: inserted before sending;
+    - `sent`: Expo accepted it, and `ticket_id` is set;
+    - `ok` or `error:<code>`: from the receipt;
+    - `error:send_failed`: Expo was unreachable after 2 retries. The push is never sent again.
+    - `receipt_missing`: no receipt after a day;
+    - `dry_run`: logged, not sent.
+  - **`sent_at`** is when Expo accepted the push. Step 13 measures latency to it.
+  - **Time windows** are half-open: 08:00–16:00 includes 08:00 and excludes 16:00.
+  - **One push per place:** a device with two matching places gets one push per place, as §6.2 says. Only district notices are once per device (D2).
+  - **Distances in the title** are rounded to 50 m under 1 km, and to 100 m above, written «1,2 km».
+  - **Dry run** (`KRING_PUSH_DRY_RUN`, on by default) logs pushes instead of sending them. Render turns it off. Push tokens are never logged.
 - Digest job: Sundays 18:00 in the device's tz. Per place: matched (7 days), severe, imprecise_nearby. Always send, even if zero («Rolig uke»).
 
 ## 8.8 Privacy & security
@@ -601,14 +706,15 @@ WHERE :e_category = ANY (p.categories)
 - Store the minimum: place center, radius, categories, user-chosen label. Advise in the UI: do not use children's names in labels.
 - Device secret stored hashed; HTTPS only; rate limit per device.
 - One-tap delete (DELETE /v1/devices/me). Retain events (public data) for 13 months; delete inactive devices after 12 months.
+- Map tiles are fetched straight from Kartverket (§8.1), so Kartverket sees the device's IP address and the map area around each place shown. No identifier or label is sent. The privacy policy MUST say so. (Decided 2026-11-14.)
 - Privacy policy MUST explain that place locations are processed to send alerts (legal basis: consent). v2: evaluate on-device matching so the server never sees places.
 
 ## 8.9 Repository layout
 
-The repository root (currently named `Kring`) is the `stedsafe/` level below (decided 2026-11-12).
+The repository root (`Kring`) is the `kring/` level below (decided 2026-11-12).
 
 ```text
-stedsafe/
+kring/
   backend/
     app/  api/  ingest/  geocode/  classify/  match/  notify/  digest/  db/  settings.py
     tests/  fixtures/politiloggen/  fixtures/kartverket/  test_geocode_golden.py
@@ -616,8 +722,11 @@ stedsafe/
   mobile/   (Expo, TypeScript, expo-router)
     app/(tabs)/index.tsx  app/place/new.tsx  app/event/[id].tsx  components/  theme/tokens.ts
   research/presisjonstest.py      # v4 reference implementation
-  docs/stedSafe-spec.pdf
+  docs/kring-spec.md               # this spec (decided 2026-11-14: renamed from kring-spec.md)
+  docs/stedSafe-spec.pdf           # the v0.1 original, under its old name
 ```
+
+(Decided 2026-11-15, M1 step 8.) The app has no tab bar, so Hjem is `mobile/app/index.tsx`, not `app/(tabs)/index.tsx`. Code that is not a screen is in `mobile/lib/`: the API client, the device and push setup, the map tiles, and the UI strings (`lib/strings.ts`, Appendix B first).
 
 # 9. Geocoding & classification specification
 
@@ -735,8 +844,8 @@ Where this section and `presisjonstest.py` disagree (for example the type and un
 | Milestone | Scope | Definition of done |
 |---|---|---|
 | M0 · week 0–1 | Parent interviews (3–5) with the prototype · backend spike: ingest + geocode + DB | Live Oslo ingestion running; Appendix C fixtures green; interview notes summarised. Ingestion covers Oslo + Akershus and runs locally; the Render deploy moves to M1 (decided 2026-11-12). |
-| M1 · week 2–4 | API, matching, push, Expo screens Hjem / Nytt sted / Hendelse | Internal build (TestFlight + Play internal); push ≤ 2 min end-to-end. |
-| M2 · week 5–6 | Digest, settings, delete, privacy policy, store listings | Closed beta with 20–30 Oslo users. |
+| M1 · week 2–4 | API, matching, push, Expo screens Hjem / Nytt sted / Hendelse | Internal build (TestFlight); push ≤ 2 min end-to-end. Decided 2026-11-15: iOS only for M1 and the M2 beta. The code stays cross-platform, but Android (Firebase/FCM, Google Play) waits. Whether M4 includes Google Play is decided at the end of M3. |
+| M2 · week 5–6 | Digest, settings, delete, privacy policy, store listings | Closed beta with 20–30 Oslo users, on iPhone (decided 2026-11-15). |
 | M3 · week 7–10 | Iterate on metrics; aliases; Akershus municipalities; feedback loop; road-only messages such as «E6 Inng. Trosterud» (decided 2026-11-13: deferred from M1, since they are nearly all Trafikk, which is off by default); a Statens vegvesen DATEX II spike: record a week of road situations next to the police log, check access terms, update rate and Oslo/Akershus coverage, and count how many road-only police threads it could place (decided 2026-11-14) | Metrics in section 13 met or explained. |
 | M4 · after M3 (decided 2026-11-14) | Public launch in the App Store and Google Play, Norway. The goal is thousands of daily users. Scope: the name cleared (§15 question 6); App Review and Play production access; scaling for that load: more than one web instance, a rate limit shared across instances, map tiles and geocode search within Kartverket's terms at that volume, receipt and error alarms, and the app's status banner (§12). | Live in both stores. A load test at 10× the expected daily users passes, with push p95 still ≤ 2 min. The §13 targets are met in the beta. |
 | Later | Family sharing, commuter routes (Vegvesen DATEX II, Entur), MET weather warnings, SEO pages, B2B | Prioritise from beta learnings. |
@@ -748,7 +857,7 @@ Where this section and `presisjonstest.py` disagree (for example the type and un
 3. Severity heuristics: validate with real beta data and user feedback.
 4. ~~Should «bydel»-precision incidents be shown at all outside the digest?~~ Answered in §6.2 (decided 2026-11-13): only as «imprecise nearby» in a place's incident list, and never pushed.
 5. Legal review of storing place locations (consent wording, DPIA-light).
-6. Name: is «stedSafe» available (trademark, App Store, domain)?
+6. Name: is «Kring» available (trademark, App Store, domain)? (decided 2026-11-14: the name is Kring, replacing the working name «stedSafe»; availability is still to be checked before M4.)
 7. Parent interviews: do users understand Gatenivå / Nabolag / Bydel without explanation?
 8. ~~District-wide notices («Oslo politidistrikt» and similar in the municipality field, no area): should they reach everyone with a place in that district, go only in the digest, or be left out?~~ Answered in §8.3 (decided 2026-11-13): shown on Hjem for 24 h to devices with a place in the district; Savnet notices also push, under the place's push rules.
 
@@ -823,7 +932,7 @@ Where this section and `presisjonstest.py` disagree (for example the type and un
 | `event.updates` | Oppdateringer fra politiet |
 | `event.share / fewer` | Del med familien / Færre slike varsler |
 | `tier.gate / nabolag / bydel` | Gatenivå / Nabolag / Bydel |
-| `source` | Kilde: Politiloggen (NLOD 2.0). stedSafe er ikke tilknyttet politiet. |
+| `source` | Kilde: Politiloggen (NLOD 2.0). Kring er ikke tilknyttet politiet. |
 
 # Appendix C · Geocoder test fixtures
 

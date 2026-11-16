@@ -111,6 +111,17 @@ async def test_place_label_over_40_chars_rejected(db: AsyncConnection) -> None:
     await assert_rejected(db, PLACE_SQL, **place_params(device_id, label="x" * 41))
 
 
+async def test_place_name_length_checked(db: AsyncConnection) -> None:
+    device_id = await insert_device(db)
+    sql = "UPDATE places SET place_name = :n WHERE id = :id"
+    params = place_params(device_id)
+    await db.execute(text(PLACE_SQL), params)
+    await db.execute(text(sql), {"n": "x" * 100, "id": params["id"]})
+    await db.execute(text(sql), {"n": None, "id": params["id"]})
+    await assert_rejected(db, sql, n="x" * 101, id=params["id"])
+    await assert_rejected(db, sql, n="", id=params["id"])
+
+
 async def test_place_unknown_template_rejected(db: AsyncConnection) -> None:
     device_id = await insert_device(db)
     await assert_rejected(db, PLACE_SQL, **place_params(device_id, template="kontor"))

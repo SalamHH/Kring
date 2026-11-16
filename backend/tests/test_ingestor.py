@@ -221,6 +221,7 @@ async def test_imprecise_tier_triggers_regeocode_on_update(env: Env, tier: str) 
     res = await env.cycle()
     assert (res.updated, res.geocoded) == (1, 1)
     assert env.kartverket_requests() == requests  # same lookups: answered from the cache
+    assert res.kartverket_requests == 0  # per cycle, not the client's running total
 
 
 async def test_unplaced_event_is_regeocoded_on_update(env: Env) -> None:

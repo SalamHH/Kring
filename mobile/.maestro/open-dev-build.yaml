@@ -1,0 +1,23 @@
+# Opens the development build on the JavaScript bundle from Metro (localhost:8081).
+# Used by the other flows; not run on its own.
+appId: no.kring.app
+tags:
+  - helper
+---
+- launchApp
+- openLink: "exp+kring://expo-development-client/?url=http%3A%2F%2Flocalhost%3A8081"
+# iOS may ask before following the link, and the dev client shows its menu once after an install.
+- runFlow:
+    when:
+      visible: "Open"
+    commands:
+      - tapOn: "Open"
+- runFlow:
+    when:
+      visible: "Continue"
+    commands:
+      - tapOn: "Continue"
+- extendedWaitUntil:
+    visible:
+      id: "add-place"
+    timeout: 30000

@@ -1,0 +1,59 @@
+import {
+  Inter_400Regular,
+  Inter_500Medium,
+  Inter_600SemiBold,
+  Inter_700Bold,
+} from '@expo-google-fonts/inter';
+import { SpaceGrotesk_600SemiBold, SpaceGrotesk_700Bold } from '@expo-google-fonts/space-grotesk';
+import Feather from '@expo/vector-icons/Feather';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { useFonts } from 'expo-font';
+import { Stack } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
+import { configureForegroundNotifications } from '@/lib/push';
+import { usePushLinks } from '@/lib/pushLinks';
+import { color } from '@/theme/tokens';
+
+SplashScreen.preventAutoHideAsync();
+configureForegroundNotifications();
+
+export default function RootLayout() {
+  // The keys are the font family names used in theme/tokens.ts.
+  const [loaded, error] = useFonts({
+    Inter_400Regular,
+    Inter_500Medium,
+    Inter_600SemiBold,
+    Inter_700Bold,
+    SpaceGrotesk_600SemiBold,
+    SpaceGrotesk_700Bold,
+    ...Feather.font,
+    ...Ionicons.font,
+  });
+
+  useEffect(() => {
+    if (error) console.warn('fonts failed to load; using system fonts', error);
+    if (loaded || error) SplashScreen.hideAsync();
+  }, [loaded, error]);
+
+  // A tapped push opens Hendelse, once the stack below is rendered.
+  usePushLinks(loaded || !!error);
+
+  if (!loaded && !error) return null;
+
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <StatusBar style="dark" />
+      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: color.bg } }}>
+        <Stack.Screen name="index" />
+        {/* Nytt sted is a full-screen modal: «Avbryt» closes it, and a swipe can't lose the input. */}
+        <Stack.Screen name="place/new" options={{ presentation: 'fullScreenModal' }} />
+        <Stack.Screen name="place/[id]" options={{ presentation: 'fullScreenModal' }} />
+        <Stack.Screen name="event/[id]" />
+      </Stack>
+    </GestureHandlerRootView>
+  );
+}
