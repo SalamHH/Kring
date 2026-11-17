@@ -91,7 +91,7 @@ A complete rundown of the Kring idea written from the perspective of a product m
 
 # 1. Executive summary
 
-**Kring** turns the Norwegian police operations log (*Politiloggen*) into calm, precise alerts for the specific places a person cares about: a child's school, home, the cabin, the office. The official Politiloggen app only lets users follow a whole police district or municipality, which in Oslo means a steady stream of irrelevant traffic messages. Users have asked for map views and alerts near a location; the nearest independent competitor offers radius alerts but has a weak experience and is iOS-only.
+**Kring** turns the Norwegian police operations log (*Politiloggen*) into calm, precise alerts for the specific places a person cares about: a child's school, home, the cabin, the office. The official Politiloggen app only lets users follow a whole police district or municipality, which in Oslo means a steady stream of irrelevant traffic messages. Users have asked for map views and alerts near a location; independent competitors already offer radius alerts (Politipuls on iOS, Sivil on iOS and Android), but none lets a user save several named places or shows how precise a placement is (updated 2026-11-17, §3).
 
 | **63 %** | **28 %** | **~2 / day** | **0 kr** |
 |---|---|---|---|
@@ -150,12 +150,15 @@ Interview 3–5 parents with the prototype while building the ingestion + geocod
 
 # 3. Market & competition
 
-*Snapshot from web research on 11 November 2026. Ratings and features change; re-check before launch.*
+*Snapshot from web research on 11 November 2026, updated 17 November 2026 (Sivil, Hendelseslogg and TryggeVeier added; Politiloggen and Politipuls re-checked). Ratings and features change; re-check before launch.*
 
 | Product | Area model | Alerts | Notes |
 |---|---|---|---|
-| **Politiloggen** (Politiet, official) | Police district or municipality + category | Push per district/municipality | Free, no login. App Store NO shows ~11k ratings, 4.7. Reviews ask for a map, «alerts only near my GPS position» and English. |
-| **Politipuls** (independent, solo developer) | Map, municipality pages, radius per App Store listing; up to 20 municipalities | Push by district / municipality / radius | Web + iOS, launched May 2026, 5 ratings. Adds road data from Statens vegvesen. Founder test: no visible way to set own radius, weak UI/UX. No Android app found. |
+| **Politiloggen** (Politiet, official) | Police district or municipality + category | Push per district/municipality | Free, no login, iOS + Android. App Store NO shows ~11k ratings, 4.7, No. 3 in News. Reviews ask for a map, «alerts only near my GPS position» and English. Latest version 1.8.1 (3 Nov 2026): no map, radius or location feature in any recent release note. |
+| **Politipuls** (independent, solo developer) | Map, municipality pages, radius around a chosen centre; up to 20 municipalities | Push by district / municipality / radius | Web + iOS, launched May 2026, 5 ratings. Adds road data from Statens vegvesen; open read-only API. Founder test (11 Nov): no visible way to set own radius, weak UI/UX. By 17 Nov the App Store listing says radius alerts store a chosen centre and radius, and it shipped four versions in three weeks (1.0.13–1.0.16: Alerts tab, rebuilt notifications). No Android app found. |
+| **Sivil** (Sivil AS) | Live map + radius around the user's position; the user sets the distance | «Proximity notifications» near the user | iOS + Android, BankID login, free. Shows events from authorities (sources not named); user posts with comments added in 1.0.1. 1.0.0 on 31 Mar 2026, 1.0.1 on 21 Oct 2026; too few ratings to show. Not confirmed: whether places other than the current position can be saved. Closest direct competitor. |
+| **Hendelseslogg** (hendelseslogg.no) | Map, filter by municipality | Unknown | Web map of Politiloggen in near real time. Maker and features unknown (client-rendered page). |
+| **TryggeVeier** | Route and driving direction | Push on or near the route | iOS + Android traffic app with a Politiloggen tab, CarPlay/Android Auto. Paused in Nov 2026, aims to return before New Year. Adjacent. |
 | **Allemannsdata** | Place-name search incl. sub-areas | None (developer tool) | MCP server wrapping Politiloggen for AI agents. |
 | **Politikontroller** | Location-based | Push near location | Crowdsourced police checks, 500k+ Norwegian drivers. Adjacent; proves demand for location-based police info. |
 | **Poliskollen** (Sweden) | Region + incident type | Push | Map, AI assistant and gamification; Pro subscription. |
@@ -165,17 +168,18 @@ Interview 3–5 parents with the prototype while building the ingestion + geocod
 
 ## 3.1 Where Kring wins
 
-| Dimension | Politiloggen | Politipuls | Kring (target) |
-|---|---|---|---|
-| Unit of interest | District / municipality | Municipality / radius | **Named places** with templates |
-| Precision shown | No | Partly (location field) | **Always**, as Gatenivå / Nabolag / Bydel |
-| Noise control | Category filter | Category filter | **Severity-gated push**, time windows, weekly digest, control filter |
-| Platforms | iOS + Android | iOS (+ web) | **iOS + Android** |
-| Tone | Neutral feed | Data/map | **Calm by design** |
+| Dimension | Politiloggen | Politipuls | Sivil | Kring (target) |
+|---|---|---|---|---|
+| Unit of interest | District / municipality | Municipality / radius around a chosen centre | Radius around current position | **Several named places** with templates |
+| Precision shown | No | Partly (location field) | No | **Always**, as Gatenivå / Nabolag / Bydel |
+| Noise control | Category filter | Category filter | Distance only (as far as shown) | **Severity-gated push**, time windows, weekly digest, control filter |
+| Platforms | iOS + Android | iOS (+ web) | iOS + Android | iOS + Android (iOS only through M2, §6) |
+| Tone | Neutral feed | Data/map | Local events + user posts | **Calm by design** |
 
 ## 3.2 Honest assessment
 
 - «Radius alerts from Politiloggen» alone is no longer novel. Differentiation is **experience and trust**: templates, honest precision, calm notifications.
+- Platform is no longer a differentiator (updated 2026-11-17): Sivil is on iOS and Android, and Politipuls now lets users set the centre of a radius. What no competitor shows today is several saved, named places, the precision of each placement, and push limited to serious incidents. If Sivil adds saved places, the overlap with Kring becomes large.
 - No data moat. Defensibility comes from habit (places set up, digest read weekly), brand trust, and later from improved geocoding and multi-source coverage.
 - The police adding a radius option is the main existential risk. Mitigation: be meaningfully better (multi-place, templates, digest, precision UX) and add sources the police app will not (roads, weather warnings).
 
@@ -824,7 +828,7 @@ Where this section and `presisjonstest.py` disagree (for example the type and un
 | App increases anxiety | Medium / High | Push only severe, quiet-week messaging, no fear marketing, user-controlled categories. |
 | Privacy breach of place data | Low / High | Minimal data, hashed secrets, deletion, no third-party trackers; v2 on-device matching. |
 | Legal/brand: impersonating police, NLOD attribution | Low / Medium | No police logos or «politi» in name; clear «not affiliated» text; attribution on every screen. |
-| Competitor (Politipuls) improves fast | Medium / Medium | Ship Android + better UX first; build habit via digest. |
+| Competitors (Politipuls, Sivil) improve fast | Medium / Medium | Differentiate on named places, precision tiers and severity-gated push rather than platform; build habit via digest. Test both apps hands-on before M4 (updated 2026-11-17: Politipuls shipped four versions in three weeks; Sivil is already on Android). |
 | Solo-founder capacity | High / Medium | Strict MVP scope; reuse existing stack; automate tests. |
 
 # 13. Success metrics
@@ -978,6 +982,9 @@ Where this section and `presisjonstest.py` disagree (for example the type and un
 - Politiloggen app, App Store (Norway): apps.apple.com/no/app/politiloggen/id6504481490
 - Politipuls, API guide: politipuls.no/politiloggen/ · about: politipuls.no/om · support: politipuls.no/support
 - Politipuls, App Store: apps.apple.com/no/app/politipuls-police-norway/id6760539115
+- Sivil: sivil.no · App Store: apps.apple.com/no/app/sivil/id6745766928 · Google Play: no.sivil.sivil
+- Hendelseslogg: hendelseslogg.no
+- TryggeVeier: tryggeveier.no
 - Kartverket place-name API user guide: kartverket.no/en/api-and-data/stedsnavndata/brukarrettleiing-stadnamn-api
 - Kartverket place-name API listing: data.norge.no (Åpent stedsnavn API fra Kartverket) · ws.geonorge.no/stedsnavn/v1/openapi.json
 - Kartverket address API: ws.geonorge.no/adresser/v1
