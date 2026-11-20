@@ -1,0 +1,1139 @@
+<!doctype html>
+<!-- Kring architecture overview, a snapshot as of 15 November 2026. Built from docs/kring-spec.md,
+     docs/plans/m1.md, docs/deploy.md, render.yaml and the code; where they disagree, they win.
+     Also published (private) at https://claude.ai/artifact/Jx9AMKEkd2ofxe74wtQxVu -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body { margin: 0; } [hidden] { display: none !important; }</style>
+<title>Kring Architecture</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* Layout: one 1080px column with a sticky section bar; prose capped near 68ch, diagrams full width
+   in their own scroll boxes. Colours and type are Kring's own tokens (spec §7.1); dark set derived. */
+:root {
+  --bg: #F5F6F3;
+  --surface: #FFFFFF;
+  --border: #E2E5E0;
+  --border-strong: #C9CFC8;
+  --ink: #16201C;
+  --ink2: #33433B;
+  --muted: #5B6660;
+  --accent: #007F82;
+  --accent-strong: #00676A;
+  --accent-tint: #E3F2F2;
+  --on-accent: #FFFFFF;
+  --severe: #A4501A;
+  --severe-tint: #FBEDE3;
+  --calm-tint: #F2F4F1;
+  --code-bg: #ECEFEB;
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1412; --surface: #151D1A; --border: #25302B; --border-strong: #3A4842;
+    --ink: #E6EDEA; --ink2: #C3CEC8; --muted: #8F9C96;
+    --accent: #2AAEB0; --accent-strong: #66CACB; --accent-tint: #12302F; --on-accent: #04201F;
+    --severe: #E3925E; --severe-tint: #3A251A; --calm-tint: #19221F; --code-bg: #1C2622;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E1412; --surface: #151D1A; --border: #25302B; --border-strong: #3A4842;
+  --ink: #E6EDEA; --ink2: #C3CEC8; --muted: #8F9C96;
+  --accent: #2AAEB0; --accent-strong: #66CACB; --accent-tint: #12302F; --on-accent: #04201F;
+  --severe: #E3925E; --severe-tint: #3A251A; --calm-tint: #19221F; --code-bg: #1C2622;
+  color-scheme: dark;
+}
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 10; background: var(--bg);
+}
+.wrap {
+  max-width: 1080px; margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: var(--accent-strong); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+code {
+  font-family: var(--font-mono); font-size: .86em; background: var(--code-bg);
+  border-radius: 5px; padding: .08em .35em; overflow-wrap: break-word;
+}
+
+/* Masthead */
+.masthead { padding-block: 40px 28px; }
+.brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--ink); }
+.brand-mark { width: 32px; height: 32px; border-radius: 9px; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; }
+.brand-mark svg { width: 18px; height: 18px; }
+.brand small { font-family: var(--font-body); font-weight: 500; font-size: 13px; color: var(--muted); margin-left: 4px; }
+h1 {
+  font-family: var(--font-display); font-weight: 700; font-size: clamp(34px, 6vw, 52px);
+  line-height: 1.05; letter-spacing: -0.02em; margin: 28px 0 16px; text-wrap: balance;
+}
+.lead { font-size: clamp(17px, 2.2vw, 19px); line-height: 1.55; color: var(--ink2); max-width: 66ch; margin: 0; }
+.status {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 20px;
+  font-size: 13.5px; color: var(--ink2); background: var(--surface);
+  border: 1px solid var(--border-strong); border-radius: 999px; padding: 5px 14px 5px 10px;
+}
+.status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); margin: 32px 0 0; border-top: 1px solid var(--border); }
+.facts div { padding: 14px 16px 14px 0; border-bottom: 1px solid var(--border); min-width: 0; }
+.facts dt { font-size: 11.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 4px 0 0; font-size: 15px; font-weight: 500; line-height: 1.4; }
+
+/* Section bar */
+.toc { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--border); }
+.toc .wrap { position: relative; display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; padding-block: 8px; }
+.toc .wrap::-webkit-scrollbar { display: none; }
+.toc a { flex: none; font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; padding: 6px 12px; border-radius: 999px; }
+.toc a:hover { color: var(--ink); background: var(--calm-tint); }
+.toc a[aria-current] { color: var(--accent-strong); background: var(--accent-tint); }
+
+/* Sections */
+main section { padding-block: 56px 20px; scroll-margin-top: 52px; }
+main section + section { border-top: 1px solid var(--border); }
+.kicker { font-size: 12px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--accent-strong); margin: 0 0 8px; }
+h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(26px, 3.6vw, 34px); line-height: 1.15; letter-spacing: -0.015em; margin: 0 0 12px; text-wrap: balance; }
+h3 { font-family: var(--font-display); font-weight: 600; font-size: 20px; line-height: 1.3; margin: 44px 0 10px; text-wrap: balance; }
+p { margin: 0 0 14px; max-width: 68ch; }
+.intro { font-size: 17px; color: var(--ink2); }
+ul.plain { margin: 10px 0 14px; padding-left: 20px; max-width: 72ch; }
+ul.plain li { margin: 6px 0; color: var(--ink2); }
+ul.plain li b { color: var(--ink); font-weight: 600; }
+
+/* Figures */
+figure { margin: 24px 0 10px; }
+.fig { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 18px; }
+.fig-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.dg { display: block; width: 100%; height: auto; min-width: 760px; }
+figcaption { font-size: 14px; color: var(--muted); margin: 12px 4px 0; max-width: 80ch; line-height: 1.55; }
+
+/* Diagram marks (inline SVG, themed through the tokens) */
+.dg text { font-family: var(--font-body); font-size: 12px; fill: var(--ink2); }
+.dg .t { font-family: var(--font-display); font-size: 15px; font-weight: 600; fill: var(--ink); }
+.dg .t-sm { font-family: var(--font-display); font-size: 14px; font-weight: 600; fill: var(--ink); }
+.dg .t-xs { font-family: var(--font-display); font-size: 13px; font-weight: 600; fill: var(--ink); }
+.dg .s { font-size: 12px; fill: var(--muted); }
+.dg .xs { font-size: 11px; fill: var(--muted); }
+.dg .m { font-family: var(--font-mono); font-size: 11px; fill: var(--muted); }
+.dg .m-ink { font-family: var(--font-mono); font-size: 11px; fill: var(--ink2); }
+.dg .tbl { font-family: var(--font-mono); font-size: 13px; font-weight: 600; fill: var(--ink); }
+.dg .cap { font-size: 10.5px; font-weight: 600; letter-spacing: .09em; fill: var(--muted); }
+.dg .lbl { font-size: 11.5px; fill: var(--ink2); }
+.dg .lbl-acc { font-size: 11.5px; font-weight: 600; fill: var(--accent-strong); }
+.dg .acc { fill: var(--accent-strong); }
+.dg .c { text-anchor: middle; }
+.dg .bx { fill: var(--surface); stroke: var(--border-strong); stroke-width: 1.25; }
+.dg .bx-acc { fill: var(--accent-tint); stroke: var(--accent); stroke-width: 1.5; }
+.dg .bar-wait { fill: var(--surface); stroke: var(--border-strong); stroke-width: 1.25; stroke-dasharray: 4 4; }
+.dg .zone { fill: var(--calm-tint); stroke: var(--border-strong); stroke-width: 1.25; stroke-dasharray: 6 5; }
+.dg .zone-p { fill: var(--accent-tint); fill-opacity: .45; stroke: var(--accent); stroke-opacity: .6; stroke-width: 1.25; stroke-dasharray: 6 5; }
+.dg .bin { fill: var(--calm-tint); stroke: var(--border-strong); stroke-width: 1.25; stroke-dasharray: 4 4; }
+.dg .chip { fill: var(--calm-tint); stroke: var(--border); stroke-width: 1; }
+.dg .chip-next { fill: var(--surface); stroke: var(--accent); stroke-width: 1.25; }
+.dg .pill { fill: var(--surface); stroke: var(--border-strong); stroke-width: 1; }
+.dg .note { fill: var(--calm-tint); stroke: var(--border-strong); stroke-width: 1; }
+.dg .ln { fill: none; stroke: var(--muted); stroke-width: 1.5; }
+.dg .ln-acc { fill: none; stroke: var(--accent); stroke-width: 2.25; }
+.dg .ln-ret { fill: none; stroke: var(--muted); stroke-width: 1.25; stroke-dasharray: 5 4; }
+.dg .ln-ink { fill: none; stroke: var(--ink); stroke-width: 2; }
+.dg .life { stroke: var(--border-strong); stroke-width: 1; stroke-dasharray: 2 5; }
+.dg .sep { stroke: var(--border); stroke-width: 1; }
+.ah { fill: var(--muted); }
+.ah-acc { fill: var(--accent); }
+
+/* Roles under the system diagram */
+.roles { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0 28px; margin: 22px 0 0; }
+.roles div { padding: 14px 0; border-top: 1px solid var(--border); min-width: 0; }
+.roles dt { font-family: var(--font-display); font-weight: 600; font-size: 16px; }
+.roles dd { margin: 4px 0 0; font-size: 14.5px; color: var(--ink2); line-height: 1.5; }
+
+/* Tables */
+.table-wrap { overflow-x: auto; margin: 16px 0; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); }
+table { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 600px; }
+th { text-align: left; font-size: 11.5px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); padding: 12px 16px; border-bottom: 1px solid var(--border); background: var(--calm-tint); }
+td { padding: 11px 16px; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--ink2); }
+td:first-child { color: var(--ink); }
+tbody tr:last-child td { border-bottom: 0; }
+tfoot td { border-top: 1px solid var(--border-strong); border-bottom: 0; font-weight: 600; color: var(--ink); }
+.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+td.who { white-space: nowrap; color: var(--muted); }
+
+/* Outside Render */
+.outside { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 14px 0; }
+.outside div { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; min-width: 0; }
+.outside h4 { margin: 0 0 4px; font-family: var(--font-display); font-size: 15.5px; font-weight: 600; }
+.outside p { margin: 0; font-size: 14px; color: var(--ink2); line-height: 1.5; }
+
+/* Deploy steps */
+.deploy { list-style: none; margin: 16px 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; counter-reset: d; }
+.deploy li { counter-increment: d; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; font-size: 13.5px; line-height: 1.45; color: var(--ink2); min-width: 0; }
+.deploy li::before { content: counter(d); display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--accent-tint); color: var(--accent-strong); font-size: 11.5px; font-weight: 600; margin-bottom: 6px; }
+.deploy li b { display: block; color: var(--ink); font-weight: 600; font-size: 14.5px; margin-bottom: 2px; }
+
+/* Code map */
+.modules { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin: 16px 0; }
+.mod { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; min-width: 0; }
+.mod.shared { border-color: var(--accent); }
+.mod h4 { margin: 0; font-family: var(--font-display); font-size: 16.5px; font-weight: 600; }
+.mod .who { font-size: 13px; color: var(--muted); margin: 2px 0 14px; }
+.mod ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
+.mod li { display: grid; gap: 2px; font-size: 13.5px; color: var(--ink2); line-height: 1.45; }
+.mod li code { justify-self: start; font-size: 12.5px; }
+
+/* Worker cycle */
+.cycle { display: grid; grid-template-columns: minmax(0, 1.4fr) 44px minmax(0, 1fr) 44px minmax(0, .9fr); gap: 8px; margin: 20px 0 8px; }
+.phase { background: var(--surface); border: 1.5px dashed var(--border-strong); border-radius: 16px; padding: 16px; min-width: 0; }
+.phase.tx { border-color: var(--accent); }
+.phase h4 { margin: 0; font-family: var(--font-display); font-size: 15.5px; font-weight: 600; }
+.phase .tag { font-size: 12.5px; color: var(--muted); margin: 2px 0 14px; }
+.phase ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
+.phase li { counter-increment: s; display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 8px; font-size: 13.5px; line-height: 1.45; color: var(--ink2); }
+.phase li::before { content: counter(s); width: 22px; height: 22px; border-radius: 50%; background: var(--accent-tint); color: var(--accent-strong); font-size: 11.5px; font-weight: 600; display: grid; place-items: center; font-variant-numeric: tabular-nums; }
+.phase li b { color: var(--ink); font-weight: 600; }
+.join { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: var(--accent-strong); font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.join svg { width: 22px; height: 22px; }
+.join span { writing-mode: vertical-rl; transform: rotate(180deg); }
+@media (max-width: 900px) {
+  .cycle { grid-template-columns: minmax(0, 1fr); }
+  .join { flex-direction: row; padding-block: 2px; }
+  .join svg { transform: rotate(90deg); }
+  .join span { writing-mode: horizontal-tb; transform: none; }
+}
+
+/* Geocoding ladder */
+.track { display: flex; align-items: center; gap: 10px; min-width: 170px; }
+.track b { flex: 1; display: block; }
+.track i { display: block; height: 10px; border-radius: 3px; background: var(--accent); }
+.track i.off { background: var(--border-strong); }
+.track span { flex: none; width: 3.2em; white-space: nowrap; font-variant-numeric: tabular-nums; font-size: 13.5px; color: var(--ink2); }
+.small-note { font-size: 13.5px; color: var(--muted); max-width: 80ch; }
+
+.tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 16px 0; }
+.tier { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px; min-width: 0; }
+.badge { display: inline-block; font-size: 13px; font-weight: 600; padding: 2px 9px; border-radius: 6px; line-height: 1.4; }
+.badge.gate { background: var(--accent); color: var(--on-accent); border: 1.5px solid var(--accent); }
+.badge.nabolag { background: var(--surface); color: var(--accent-strong); border: 1.5px solid var(--accent); }
+.badge.bydel { background: var(--surface); color: var(--muted); border: 1.5px dashed var(--border-strong); }
+.tier .range { font-family: var(--font-display); font-size: 21px; font-weight: 600; margin: 10px 0 4px; font-variant-numeric: tabular-nums; }
+.tier p { font-size: 14px; color: var(--ink2); margin: 0; line-height: 1.5; }
+
+.callout { background: var(--accent-tint); border-radius: 14px; padding: 16px 18px; margin: 20px 0; max-width: 80ch; }
+.callout .kicker { margin-bottom: 4px; }
+.callout p { margin: 0; color: var(--ink); font-size: 15px; }
+
+/* User flow */
+.flow-head, .flow li { display: grid; grid-template-columns: 36px minmax(0, 1fr) minmax(0, 1fr); gap: 6px 28px; }
+.flow-head { margin-top: 20px; padding-bottom: 8px; font-size: 11.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.flow { list-style: none; margin: 0 0 16px; padding: 0; counter-reset: f; border-top: 1px solid var(--border); }
+.flow li { counter-increment: f; padding: 18px 0; border-bottom: 1px solid var(--border); }
+.flow li::before { content: counter(f); width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-weight: 600; font-size: 13px; display: grid; place-items: center; }
+.flow .see { font-size: 15.5px; color: var(--ink); line-height: 1.5; min-width: 0; }
+.flow .see q { quotes: "«" "»"; }
+.flow .does { font-size: 14px; color: var(--ink2); line-height: 1.5; border-left: 2px solid var(--border-strong); padding-left: 14px; min-width: 0; }
+@media (max-width: 680px) {
+  .flow-head { display: none; }
+  .flow li { grid-template-columns: 36px minmax(0, 1fr); }
+  .flow .does { grid-column: 2; }
+}
+
+/* Principles */
+.principles { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 0 36px; margin: 20px 0; }
+.principles div { padding: 18px 0; border-top: 1px solid var(--border); min-width: 0; }
+.principles h4 { margin: 0 0 4px; font-family: var(--font-display); font-size: 17px; font-weight: 600; }
+.principles code { font-size: 12px; color: var(--accent-strong); background: var(--accent-tint); }
+.principles p { margin: 8px 0 0; font-size: 14.5px; color: var(--ink2); line-height: 1.55; }
+
+/* Status */
+.steps { list-style: none; margin: 18px 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 8px; }
+.steps li { border-radius: 12px; padding: 10px 12px; font-size: 13.5px; line-height: 1.35; border: 1.5px solid var(--border); background: var(--surface); color: var(--ink2); min-width: 0; }
+.steps li b { display: block; font-family: var(--font-mono); font-size: 11.5px; font-weight: 500; color: var(--muted); margin-bottom: 3px; }
+.steps li.done { background: var(--accent-tint); border-color: transparent; color: var(--ink); }
+.steps li.done b { color: var(--accent-strong); }
+.steps li.next { border-color: var(--accent); color: var(--ink); }
+.steps li.next b { color: var(--accent-strong); font-weight: 600; }
+.steps li.later { border-style: dashed; border-color: var(--border-strong); }
+
+footer { border-top: 1px solid var(--border); margin-top: 40px; padding-block: 24px 48px; font-size: 13.5px; color: var(--muted); }
+footer p { max-width: 80ch; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="ah" d="M0,1 L10,5 L0,9 Z"/></marker>
+    <marker id="ah-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="ah-acc" d="M0,1 L10,5 L0,9 Z"/></marker>
+  </defs>
+</svg>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+      </span>
+      Kring <small>architecture overview · 15 November 2026</small>
+    </div>
+    <h1>How Kring works, from police log to phone</h1>
+    <p class="lead">Kring turns the Norwegian police log into calm alerts for the places a person cares about. A worker reads Politiloggen every minute, places each incident on the map with an honest margin of error, and pushes only serious incidents inside a saved place. An API serves the Expo app on iOS and Android. Everything on the server is one Python codebase and one Postgres database on Render.</p>
+    <div class="status">Milestone M1 · steps 0–8 of 13 done · API and worker live on Render</div>
+    <dl class="facts">
+      <div><dt>Hosting</dt><dd>Render, Frankfurt<br>≈ $20 a month</dd></div>
+      <div><dt>Backend</dt><dd>Python 3.12, FastAPI<br>Postgres 17 + PostGIS</dd></div>
+      <div><dt>App</dt><dd>Expo SDK 58, React Native<br>MapLibre + Kartverket</dd></div>
+      <div><dt>Coverage</dt><dd>Incidents in Oslo<br>and Akershus</dd></div>
+      <div><dt>Push</dt><dd>≤ 2 min target<br>≤ 3 per place a day</dd></div>
+      <div><dt>Accounts</dt><dd>None<br>anonymous device</dd></div>
+    </dl>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sections">
+  <div class="wrap">
+    <a href="#system">System</a>
+    <a href="#infra">Infrastructure</a>
+    <a href="#backend">Backend</a>
+    <a href="#data">Data</a>
+    <a href="#app">App</a>
+    <a href="#flow">User flow</a>
+    <a href="#e2e">End to end</a>
+    <a href="#simple">Kept simple</a>
+    <a href="#status">Status</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ============ SYSTEM ============ -->
+<section id="system">
+  <p class="kicker">The big picture</p>
+  <h2>The whole system on one page</h2>
+  <p class="intro">Three things run on Render: a worker, an API and a database. Everything else is someone else's service, and all of it is free to use without a key.</p>
+
+  <figure>
+    <div class="fig"><div class="fig-scroll">
+      <svg class="dg" viewBox="0 0 1000 556" role="img" aria-label="System diagram. Politiloggen and Kartverket feed the worker on Render. The worker writes to Postgres and sends pushes through Expo Push to the phone. The phone talks to the REST API, which reads and writes Postgres, and loads map tiles from Kartverket.">
+        <!-- Render zone -->
+        <rect class="zone" x="320" y="36" width="340" height="440" rx="18"/>
+        <text class="cap" x="342" y="62">RENDER · FRANKFURT (EU)</text>
+
+        <!-- Open data sources -->
+        <rect class="bx" x="20" y="92" width="220" height="72" rx="12"/>
+        <text class="t" x="38" y="122">Politiloggen API</text>
+        <text class="s" x="38" y="144">police log · open data, no key</text>
+
+        <rect class="bx" x="20" y="236" width="220" height="84" rx="12"/>
+        <text class="t" x="38" y="266">Kartverket APIs</text>
+        <text class="s" x="38" y="288">addresses · place names</text>
+        <text class="s" x="38" y="306">municipalities · no key</text>
+
+        <!-- Render services -->
+        <rect class="bx" x="360" y="86" width="260" height="84" rx="12"/>
+        <text class="t" x="378" y="114">Worker</text>
+        <text class="m" x="378" y="134">kring-worker</text>
+        <text class="s" x="378" y="154">ingest → geocode → match → push</text>
+
+        <rect class="bx" x="360" y="236" width="260" height="84" rx="12"/>
+        <text class="t" x="378" y="264">Postgres 17 + PostGIS</text>
+        <text class="m" x="378" y="284">kring-db · 1 GB</text>
+        <text class="s" x="378" y="304">closed to the internet</text>
+
+        <rect class="bx" x="360" y="370" width="260" height="84" rx="12"/>
+        <text class="t" x="378" y="398">REST API</text>
+        <text class="m" x="378" y="418">kring-api · FastAPI</text>
+        <text class="s" x="378" y="438">the only public endpoint</text>
+
+        <!-- Right side -->
+        <rect class="bx" x="760" y="86" width="220" height="84" rx="12"/>
+        <text class="t" x="778" y="114">Expo Push</text>
+        <text class="s" x="778" y="136">relays to APNs (iOS)</text>
+        <text class="s" x="778" y="154">and FCM (Android)</text>
+
+        <rect class="bx" x="760" y="226" width="220" height="212" rx="26"/>
+        <text class="t" x="780" y="256">Kring app</text>
+        <text class="m" x="780" y="276">Expo · React Native</text>
+        <text class="s" x="780" y="296">iOS + Android · no login</text>
+        <rect class="chip" x="780" y="312" width="180" height="26" rx="13"/>
+        <text class="lbl c" x="870" y="329">Hjem</text>
+        <rect class="chip" x="780" y="346" width="180" height="26" rx="13"/>
+        <text class="lbl c" x="870" y="363">Nytt sted</text>
+        <rect class="chip" x="780" y="380" width="180" height="26" rx="13"/>
+        <text class="lbl c" x="870" y="397">Hendelse</text>
+
+        <rect class="bx" x="760" y="482" width="220" height="62" rx="12"/>
+        <text class="t" x="778" y="508">Kartverket map tiles</text>
+        <text class="s" x="778" y="528">greyscale raster · © Kartverket</text>
+
+        <!-- Edges: the push path (accent) -->
+        <path class="ln-acc" d="M240,128 H356" marker-end="url(#ah-acc)"/>
+        <text class="lbl-acc c" x="280" y="119">every 60 s</text>
+
+        <path class="ln-acc" d="M620,128 H756" marker-end="url(#ah-acc)"/>
+        <text class="lbl-acc c" x="710" y="118">push requests</text>
+        <text class="lbl c" x="710" y="146">≤ 100 per batch</text>
+
+        <path class="ln-acc" d="M870,170 V222" marker-end="url(#ah-acc)"/>
+        <text class="lbl-acc" x="882" y="200">notification</text>
+
+        <!-- Kartverket lookups -->
+        <path class="ln" d="M240,258 L356,156" marker-end="url(#ah)"/>
+        <rect class="pill" x="250" y="212" width="62" height="20" rx="10"/>
+        <text class="lbl c" x="281" y="226">geocode</text>
+
+        <path class="ln" d="M240,298 L356,388" marker-end="url(#ah)"/>
+        <rect class="pill" x="252" y="320" width="58" height="20" rx="10"/>
+        <text class="lbl c" x="281" y="334">search</text>
+
+        <!-- Database edges -->
+        <path class="ln" d="M430,174 V232" marker-start="url(#ah)" marker-end="url(#ah)"/>
+        <text class="lbl" x="444" y="207">writes events, push rows</text>
+        <path class="ln" d="M430,324 V366" marker-start="url(#ah)" marker-end="url(#ah)"/>
+        <text class="lbl" x="444" y="349">writes places, reads events</text>
+
+        <!-- App edges -->
+        <path class="ln" d="M620,412 H756" marker-start="url(#ah)" marker-end="url(#ah)"/>
+        <text class="lbl c" x="710" y="402">HTTPS · JSON</text>
+        <text class="lbl c" x="710" y="430">bearer secret</text>
+
+        <path class="ln" d="M870,482 V442" marker-end="url(#ah)"/>
+        <text class="lbl" x="882" y="466">map tiles</text>
+      </svg>
+    </div></div>
+    <figcaption>Arrows show which way data moves. The teal path has a time budget: from the police publishing a message to the push on a phone should take at most 2 minutes. The phone talks to only three things: the API, Expo's push service and Kartverket's map tiles. The database takes no connections from outside Render.</figcaption>
+  </figure>
+
+  <dl class="roles">
+    <div><dt>Worker</dt><dd>The only part that talks to Politiloggen and sends pushes. One cycle every 60 seconds, and only one worker at a time.</dd></div>
+    <div><dt>API</dt><dd>The only part the app talks to, apart from map tiles. It keeps no state of its own; everything lives in Postgres.</dd></div>
+    <div><dt>Database</dt><dd>Public incidents on one side, devices and places on the other. PostGIS does the distance maths in metres.</dd></div>
+    <div><dt>App</dt><dd>Registers itself anonymously, shows places and incidents, and opens the right incident when a push is tapped.</dd></div>
+  </dl>
+</section>
+
+<!-- ============ INFRA ============ -->
+<section id="infra">
+  <p class="kicker">Infrastructure</p>
+  <h2>Three Render services, one Blueprint</h2>
+  <p class="intro"><code>render.yaml</code> at the repo root defines everything. Both services build from <code>backend/</code> and deploy from a GitHub branch: <code>m1</code> now, <code>main</code> once M1 is merged.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Resource</th><th>Kind</th><th>Size</th><th>Runs</th><th class="num">A month</th></tr></thead>
+      <tbody>
+        <tr><td><code>kring-api</code></td><td>Web service</td><td>0.5 CPU · 512 MB</td><td><code>uvicorn app.api.main:app</code></td><td class="num">$7.00</td></tr>
+        <tr><td><code>kring-worker</code></td><td>Background worker</td><td>0.5 CPU · 512 MB</td><td><code>python -m app.worker</code></td><td class="num">$7.00</td></tr>
+        <tr><td><code>kring-db</code></td><td>Postgres 17 + PostGIS</td><td>0.1 CPU · 256 MB · 1 GB disk</td><td>managed by Render</td><td class="num">$6.30</td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="4">Total, Frankfurt region, data stays in the EU</td><td class="num">≈ $20.30</td></tr></tfoot>
+    </table>
+  </div>
+
+  <h3>Outside Render</h3>
+  <div class="outside">
+    <div><h4>GitHub</h4><p>The source. A push to the deploy branch redeploys whatever changed under <code>backend/</code>.</p></div>
+    <div><h4>Expo (EAS)</h4><p>Builds the iOS and Android apps, and relays every push to Apple (APNs) and Google (FCM). Free.</p></div>
+    <div><h4>Apple and Google</h4><p>TestFlight and Play internal testing from step 12. Real pushes need an APNs key and a Firebase project.</p></div>
+    <div><h4>Politiloggen and Kartverket</h4><p>Open government data with no keys or accounts. Attribution is shown wherever their data appears.</p></div>
+  </div>
+
+  <h3>What a deploy does</h3>
+  <ol class="deploy">
+    <li><b>Push</b>Render sees a new commit on the deploy branch.</li>
+    <li><b>Build</b><code>uv sync --locked --no-dev</code> in <code>backend/</code>.</li>
+    <li><b>Migrate</b><code>alembic upgrade head</code>. Both services run it; a lock lets only one migrate.</li>
+    <li><b>Start</b>A new API instance and a new worker start next to the old ones.</li>
+    <li><b>Check</b>Once <code>/v1/health/live</code> answers, traffic moves to the new API.</li>
+    <li><b>Hand over</b>The new worker takes the lock when the old one stops.</li>
+  </ol>
+
+  <figure>
+    <div class="fig"><div class="fig-scroll">
+      <svg class="dg" viewBox="0 0 1000 146" role="img" aria-label="Worker handover during a deploy. The new worker starts about 60 seconds before the old one is stopped and waits for the Postgres advisory lock. When the old worker gets SIGTERM its running cycle rolls back, the lock is released and the new worker takes over.">
+        <text class="t-xs" x="16" y="58">Old worker</text>
+        <text class="t-xs" x="16" y="118">New worker</text>
+
+        <path class="ln" d="M390,26 H570"/>
+        <path class="ln" d="M390,20 V32 M570,20 V32"/>
+        <text class="xs c" x="480" y="15">≈ 60 s overlap</text>
+
+        <rect class="bx-acc" x="130" y="40" width="440" height="26" rx="6"/>
+        <text class="lbl" x="144" y="58">cycles every 60 s, holds the lock</text>
+
+        <path class="ln-ink" d="M570,34 V72"/>
+        <text class="t-xs" x="582" y="52">SIGTERM</text>
+        <text class="xs" x="582" y="67">the running cycle rolls back</text>
+
+        <rect class="bar-wait" x="390" y="100" width="180" height="26" rx="6"/>
+        <text class="lbl" x="402" y="118">waits for the lock</text>
+
+        <rect class="bx-acc" x="574" y="100" width="406" height="26" rx="6"/>
+        <text class="lbl" x="588" y="118">takes the lock · redoes that cycle · every 60 s</text>
+
+        <path class="ln-acc" d="M566,72 L572,96" marker-end="url(#ah-acc)"/>
+        <text class="lbl-acc" x="584" y="91">lock passes</text>
+      </svg>
+    </div></div>
+    <figcaption>The worker holds a Postgres advisory lock for its whole life, so two workers never poll at once. During a deploy the new one simply waits. A cycle cut short by the stop is rolled back and redone by the new worker, so nothing runs twice.</figcaption>
+  </figure>
+
+  <h3>Running it</h3>
+  <ul class="plain">
+    <li><b>Freshness.</b> <code>GET /v1/health</code> returns 200 while the last successful poll is under 10 minutes old, and 503 after that. Render's own check uses <code>/v1/health/live</code>, so a Politiloggen outage doesn't restart the API.</li>
+    <li><b>Database access.</b> Closed to the internet (<code>ipAllowList: []</code>), because places are personal data. To connect from a laptop, add your IP in the dashboard for a while, then remove it.</li>
+    <li><b>Secrets.</b> None in the repo. The database URL comes from the Blueprint; an Expo access token, if it is ever needed, goes in the dashboard.</li>
+    <li><b>Rollback.</b> Per service in the dashboard. Migrations so far only add things, so older code still runs on the newer schema.</li>
+    <li><b>Logs.</b> One <code>ingest LastDay</code> line per cycle. An ERROR when no poll has worked for 10 minutes.</li>
+  </ul>
+</section>
+
+<!-- ============ BACKEND ============ -->
+<section id="backend">
+  <p class="kicker">Backend</p>
+  <h2>One codebase, two processes</h2>
+  <p class="intro">The worker does everything that happens on a clock. The API does everything a person asks for. They never call each other; they share the database.</p>
+
+  <h3>Where the code lives</h3>
+  <div class="modules">
+    <div class="mod">
+      <h4>Worker only</h4>
+      <p class="who">runs on a clock, every 60 s</p>
+      <ul>
+        <li><code>worker.py</code>The loop, the advisory lock, clean shutdown.</li>
+        <li><code>ingest/</code>Politiloggen client with backoff, defensive parsing, the municipality register, one cycle.</li>
+        <li><code>classify/</code>Planned controls, severity, precision tier.</li>
+        <li><code>notify/</code>Who gets a push, the push text, the Expo client, receipts.</li>
+      </ul>
+    </div>
+    <div class="mod shared">
+      <h4>Shared</h4>
+      <p class="who">imported by both processes</p>
+      <ul>
+        <li><code>geocode/</code>The placement ladder, the Kartverket client and its cache. The API uses its search and municipality lookup.</li>
+        <li><code>match/</code>The push and listing rules in both directions, app categories, incident titles.</li>
+        <li><code>settings.py</code>All configuration, from <code>KRING_</code> environment variables.</li>
+        <li><code>alembic/</code>Five migrations, run by both services on deploy.</li>
+      </ul>
+    </div>
+    <div class="mod">
+      <h4>API only</h4>
+      <p class="who">answers the app</p>
+      <ul>
+        <li><code>api/main.py</code>App setup, routers, one shared HTTP client.</li>
+        <li><code>api/deps.py</code>A database session per request, bearer auth.</li>
+        <li><code>devices · places · events</code>The endpoints, plus <code>geocode</code> and <code>health</code>.</li>
+        <li><code>ratelimit · errors</code>In-memory limits, one JSON error shape.</li>
+      </ul>
+    </div>
+    <div class="mod">
+      <h4>Run by hand</h4>
+      <p class="who">tools and later work</p>
+      <ul>
+        <li><code>regeocode.py</code>Re-places stored events after a geocoder change. Dry run by default; never pushes.</li>
+        <li><code>scripts/</code>Production counts, a push replay, recorders for test fixtures.</li>
+        <li><code>digest/</code>Empty until M2, when the weekly summary arrives.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>One worker cycle</h3>
+  <p>A cycle starts every 60 seconds, counted from the start of the previous one. A slow cycle is followed at once by the next, never by two.</p>
+  <div class="cycle">
+    <div class="phase tx">
+      <h4>Ingest</h4>
+      <p class="tag">transaction 1</p>
+      <ol style="counter-reset: s 0">
+        <li><span><b>Fetch.</b> The last day's threads, at least 3 pages of 100. After an outage of 23 hours or more, the last quarter.</span></li>
+        <li><span><b>Filter.</b> Keep Oslo and Akershus, plus police-district notices that cover them.</span></li>
+        <li><span><b>Store.</b> Upsert events and messages by thread id. Each thread in its own savepoint, so one bad thread can't sink the cycle.</span></li>
+        <li><span><b>Geocode.</b> New threads, changed areas, and anything still imprecise. Kartverket answers are cached.</span></li>
+        <li><span><b>Classify.</b> Planned control or not, severity, precision tier.</span></li>
+      </ol>
+    </div>
+    <div class="join" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span>commit</span></div>
+    <div class="phase tx">
+      <h4>Plan pushes</h4>
+      <p class="tag">transaction 2</p>
+      <ol style="counter-reset: s 5">
+        <li><span><b>Pick up.</b> Every event with <code>notified_at</code> still empty, oldest first.</span></li>
+        <li><span><b>Match.</b> PostGIS finds places within reach; the push rules decide.</span></li>
+        <li><span><b>Record.</b> Insert one <code>notifications</code> row per push, then mark the event handled.</span></li>
+      </ol>
+    </div>
+    <div class="join" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span>commit</span></div>
+    <div class="phase">
+      <h4>Deliver</h4>
+      <p class="tag">after both commits</p>
+      <ol style="counter-reset: s 8">
+        <li><span><b>Send.</b> To Expo in batches of up to 100; keep each ticket.</span></li>
+        <li><span><b>Receipts.</b> 15 minutes later, mark each push ok or failed. Drop tokens Expo reports as dead.</span></li>
+      </ol>
+    </div>
+  </div>
+  <p class="small-note">If the worker dies between steps 5 and 6, the next cycle picks the events up. Events it first sees more than 10 minutes after they were stored are marked handled without a push, so nothing stale goes out after an outage.</p>
+
+  <h3>Placing an incident on the map</h3>
+  <p>Police messages carry no coordinates, only a free-text area («Grünerløkka», «E6 Furuset») and the message itself. The geocoder tries each method in order, and the first one that works wins. Every result carries an uncertainty in metres. The logic is a port of <code>research/presisjonstest.py</code>.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Method, in order</th><th>Example from the log</th><th>Uncertainty</th><th>Share of Oslo incidents</th></tr></thead>
+      <tbody>
+        <tr><td>Exact address</td><td>«Trondheimsveien 33»</td><td>25 m</td><td><div class="track"><b><i style="width:2%"></i></b><span>1 %</span></div></td></tr>
+        <tr><td>Crossing of two streets</td><td>«krysset Louises gate/Ullevålsveien»</td><td>75–150 m</td><td><div class="track"><b><i style="width:6%"></i></b><span>3 %</span></div></td></tr>
+        <tr><td>Street in the area field</td><td>«Nedre Kalbakkvei»</td><td>measured per street</td><td><div class="track"><b><i style="width:12%"></i></b><span>6 %</span></div></td></tr>
+        <tr><td>Street in the message</td><td>«…brann i Hølandsgata»</td><td>measured per street</td><td><div class="track"><b><i style="width:38%"></i></b><span>19 %</span></div></td></tr>
+        <tr><td>Long street, cut to the area</td><td>«Mosseveien V/ Ulvøya»</td><td>≈ 500–900 m</td><td><div class="track"><b><i style="width:8%"></i></b><span>4 %</span></div></td></tr>
+        <tr><td>Place name</td><td>«Furuset», «Sentrum»</td><td>by type, often 1 km</td><td><div class="track"><b><i style="width:98%"></i></b><span>49 %</span></div></td></tr>
+        <tr><td>Municipality only</td><td>«E6», or no area at all</td><td>no point</td><td><div class="track"><b><i class="off" style="width:36%"></i></b><span>18 %</span></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small-note">Shares are from the research run on one Oslo quarter, 396 incidents (spec §4.3). Extra fallbacks added in M0 later cut Oslo's municipality-only share from 18 % to 12 %. If a street result is still vaguer than the area's place name, the place name wins.</p>
+
+  <h3>Three precision tiers</h3>
+  <div class="tiers">
+    <div class="tier"><span class="badge gate">Gatenivå</span><p class="range">≤ 500 m</p><p>Street level. Counts for a place of any radius.</p></div>
+    <div class="tier"><span class="badge nabolag">Nabolag</span><p class="range">501–1 500 m</p><p>Neighbourhood. Counts only when the place's radius is 1 km or more.</p></div>
+    <div class="tier"><span class="badge bydel">Bydel</span><p class="range">&gt; 1 500 m, or no point</p><p>Never matches and never pushes. Listed as «imprecise nearby» when its circle overlaps the place.</p></div>
+  </div>
+
+  <h3>Who gets a push</h3>
+  <figure>
+    <div class="fig"><div class="fig-scroll">
+      <svg class="dg" viewBox="0 0 1000 226" role="img" aria-label="Push decision. A new event must match the place, be severe, be at most 30 minutes old when first stored, fall inside the place's time window, and the place must have push on and fewer than 3 pushes today. Failing the match means it is not listed; failing any later check means it is listed in the app without a push.">
+        <!-- gates -->
+        <rect class="bx" x="13" y="30" width="122" height="72" rx="12"/>
+        <text class="t-sm" x="25" y="55">New event</text>
+        <text class="xs" x="25" y="75">first stored</text>
+        <text class="xs" x="25" y="91">this cycle</text>
+
+        <rect class="bx" x="155" y="30" width="122" height="72" rx="12"/>
+        <text class="t-sm" x="167" y="55">Matches?</text>
+        <text class="xs" x="167" y="75">category, distance</text>
+        <text class="xs" x="167" y="91">and precision tier</text>
+
+        <rect class="bx" x="297" y="30" width="122" height="72" rx="12"/>
+        <text class="t-sm" x="309" y="55">Severe?</text>
+        <text class="xs" x="309" y="75">Brann, Vold,</text>
+        <text class="xs" x="309" y="91">Savnet or keyword</text>
+
+        <rect class="bx" x="439" y="30" width="122" height="72" rx="12"/>
+        <text class="t-sm" x="451" y="55">Fresh?</text>
+        <text class="xs" x="451" y="75">≤ 30 min old when</text>
+        <text class="xs" x="451" y="91">first stored</text>
+
+        <rect class="bx" x="581" y="30" width="122" height="72" rx="12"/>
+        <text class="t-sm" x="593" y="55">In window?</text>
+        <text class="xs" x="593" y="75">e.g. Skole 08–16</text>
+        <text class="xs" x="593" y="91">in the phone's tz</text>
+
+        <rect class="bx" x="723" y="30" width="122" height="72" rx="12"/>
+        <text class="t-sm" x="735" y="55">Allowed?</text>
+        <text class="xs" x="735" y="75">push on, fewer than</text>
+        <text class="xs" x="735" y="91">3 pushes today</text>
+
+        <rect class="bx-acc" x="865" y="30" width="122" height="72" rx="12"/>
+        <text class="t-sm acc" x="877" y="55">Push</text>
+        <text class="xs" x="877" y="75">one per place,</text>
+        <text class="xs" x="877" y="91">never repeated</text>
+
+        <!-- yes path -->
+        <path class="ln-acc" d="M136,66 H152" marker-end="url(#ah-acc)"/>
+        <path class="ln-acc" d="M278,66 H294" marker-end="url(#ah-acc)"/>
+        <path class="ln-acc" d="M420,66 H436" marker-end="url(#ah-acc)"/>
+        <path class="ln-acc" d="M562,66 H578" marker-end="url(#ah-acc)"/>
+        <path class="ln-acc" d="M704,66 H720" marker-end="url(#ah-acc)"/>
+        <path class="ln-acc" d="M846,66 H862" marker-end="url(#ah-acc)"/>
+
+        <!-- no exits -->
+        <path class="ln" d="M216,104 V146" marker-end="url(#ah)"/><text class="xs" x="224" y="130">no</text>
+        <path class="ln" d="M358,104 V146" marker-end="url(#ah)"/><text class="xs" x="366" y="130">no</text>
+        <path class="ln" d="M500,104 V146" marker-end="url(#ah)"/><text class="xs" x="508" y="130">no</text>
+        <path class="ln" d="M642,104 V146" marker-end="url(#ah)"/><text class="xs" x="650" y="130">no</text>
+        <path class="ln" d="M784,104 V146" marker-end="url(#ah)"/><text class="xs" x="792" y="130">no</text>
+
+        <rect class="bin" x="13" y="150" width="264" height="62" rx="12"/>
+        <text class="t-xs" x="29" y="176">Not listed for this place</text>
+        <text class="xs" x="29" y="197">unless it is «imprecise nearby»</text>
+
+        <rect class="bin" x="297" y="150" width="548" height="62" rx="12"/>
+        <text class="t-xs" x="313" y="176">Listed in the app, no push</text>
+        <text class="xs" x="313" y="197">and counted in the weekly summary (M2)</text>
+      </svg>
+    </div></div>
+    <figcaption>Each new event runs this chain once for every saved place, and the first «no» stops it. Updates to a thread never push again, and an event that gets better placed later never pushes. Police-district notices skip the distance check: they show on Hjem for 24 hours, and a Savnet notice can push once per device.</figcaption>
+  </figure>
+
+  <div class="callout">
+    <p class="kicker">How calm is it?</p>
+    <p>A replay of 13 weeks of real Oslo and Akershus data: a 1 km Hjem place at Grünerløkka would have had 9 pushes, about 0.7 a week. A Skole place at Tøyen skole had 15 severe matches but only 3 pushes, because most fell outside weekdays 08–16. The beta target is 0.5–2 a week.</p>
+  </div>
+
+  <h3>The API</h3>
+  <p>JSON over HTTPS. There are no accounts: on first launch the app registers and gets a random secret, which it sends as a bearer token. The server keeps only its SHA-256 hash.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Endpoint</th><th>What it does</th><th>Used by</th></tr></thead>
+      <tbody>
+        <tr><td><code>POST /v1/devices</code></td><td>Registers an anonymous device and returns its secret</td><td class="who">First launch</td></tr>
+        <tr><td><code>PUT /v1/devices/me</code></td><td>Push token, platform, time zone</td><td class="who">Every launch</td></tr>
+        <tr><td><code>DELETE /v1/devices/me</code></td><td>Erases the device, its places and its push history</td><td class="who">Settings (M2)</td></tr>
+        <tr><td><code>GET /v1/geocode/search?q=</code></td><td>Address and place search through Kartverket, cached 30 days</td><td class="who">Nytt sted</td></tr>
+        <tr><td><code>GET /v1/preview</code></td><td>What a circle would have caught in the last 30 days</td><td class="who">Nytt sted</td></tr>
+        <tr><td><code>GET · POST /v1/places</code><br><code>PATCH · DELETE /v1/places/{id}</code></td><td>Saved places. The server fills in template defaults and looks up the municipality</td><td class="who">Hjem, Nytt sted</td></tr>
+        <tr><td><code>GET /v1/places/{id}/events</code></td><td>A place's incidents, its bydel-only count, district notices from the last 24 h</td><td class="who">Hjem</td></tr>
+        <tr><td><code>GET /v1/events/{id}?place_id=</code></td><td>The whole police thread, its placement, and why it reached this place</td><td class="who">Hendelse</td></tr>
+        <tr><td><code>POST /v1/events/{id}/feedback</code></td><td>«Feil plassering?»: one row per incident and place</td><td class="who">Hendelse</td></tr>
+        <tr><td><code>GET /v1/health</code></td><td>Age of the last successful poll; 503 after 10 minutes</td><td class="who">Hjem, monitoring</td></tr>
+        <tr><td><code>GET /v1/health/live</code></td><td>The process is up</td><td class="who">Render</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small-note">Limits, kept in memory: 120 requests a minute per device, 30 searches a minute, 20 registrations an hour per IP, 10 places per device. Every error has the same shape: <code>{"error": code, "message": text}</code>.</p>
+</section>
+
+<!-- ============ DATA ============ -->
+<section id="data">
+  <p class="kicker">Data</p>
+  <h2>Eight tables, split in two</h2>
+  <p class="intro">Personal data comes from phones. Public data comes from the police log. The two halves meet in one table, <code>notifications</code>, which records who was pushed about what.</p>
+
+  <figure>
+    <div class="fig"><div class="fig-scroll">
+      <svg class="dg" viewBox="0 0 1000 430" role="img" aria-label="Data model. Personal side: devices have places, places have notifications, and placement feedback. Public side: events have event messages, plus the geocode cache and the single-row ingest state. Notifications link places to events.">
+        <rect class="zone-p" x="10" y="10" width="480" height="410" rx="16"/>
+        <rect class="zone" x="510" y="10" width="480" height="410" rx="16"/>
+        <text class="cap acc" x="28" y="38">PERSONAL · ERASED WITH THE DEVICE</text>
+        <text class="cap" x="528" y="38">PUBLIC · POLICE LOG, KEPT 13 MONTHS</text>
+
+        <!-- devices -->
+        <rect class="bx" x="28" y="56" width="200" height="124" rx="10"/>
+        <text class="tbl" x="42" y="77">devices</text>
+        <line class="sep" x1="28" y1="87" x2="228" y2="87"/>
+        <text class="m-ink" x="42" y="107">id</text>
+        <text class="m-ink" x="42" y="127">secret_hash (SHA-256)</text>
+        <text class="m-ink" x="42" y="147">push_token</text>
+        <text class="m-ink" x="42" y="167">tz · last_seen_at</text>
+
+        <!-- places -->
+        <rect class="bx" x="262" y="56" width="212" height="124" rx="10"/>
+        <text class="tbl" x="276" y="77">places</text>
+        <line class="sep" x1="262" y1="87" x2="474" y2="87"/>
+        <text class="m-ink" x="276" y="107">device_id → devices</text>
+        <text class="m-ink" x="276" y="127">center · radius_m</text>
+        <text class="m-ink" x="276" y="147">categories · template</text>
+        <text class="m-ink" x="276" y="167">time_window · push</text>
+
+        <!-- notifications -->
+        <rect class="bx-acc" x="262" y="232" width="212" height="124" rx="10"/>
+        <text class="tbl" x="276" y="253">notifications</text>
+        <line class="sep" x1="262" y1="263" x2="474" y2="263"/>
+        <text class="m-ink" x="276" y="283">place_id → places</text>
+        <text class="m-ink" x="276" y="303">event_id → events</text>
+        <text class="m-ink" x="276" y="323">kind · status · ticket</text>
+        <text class="m-ink acc" x="276" y="343">unique (place, event, kind)</text>
+
+        <!-- feedback -->
+        <rect class="bx" x="28" y="232" width="200" height="104" rx="10"/>
+        <text class="tbl" x="42" y="253">placement_feedback</text>
+        <line class="sep" x1="28" y1="263" x2="228" y2="263"/>
+        <text class="m-ink" x="42" y="283">event_id · place_id</text>
+        <text class="m-ink" x="42" y="303">created_at</text>
+        <text class="m-ink" x="42" y="323">«Feil plassering?»</text>
+
+        <!-- events -->
+        <rect class="bx" x="530" y="56" width="250" height="144" rx="10"/>
+        <text class="tbl" x="544" y="77">events</text>
+        <line class="sep" x1="530" y1="87" x2="780" y2="87"/>
+        <text class="m-ink" x="544" y="107">id = Politiloggen thread id</text>
+        <text class="m-ink" x="544" y="127">category · severity · is_control</text>
+        <text class="m-ink" x="544" y="147">geom · uncertainty_m · tier</text>
+        <text class="m-ink" x="544" y="167">geocode_method · scope</text>
+        <text class="m-ink" x="544" y="187">ingested_at · notified_at</text>
+
+        <!-- event_messages -->
+        <rect class="bx" x="810" y="56" width="170" height="104" rx="10"/>
+        <text class="tbl" x="824" y="77">event_messages</text>
+        <line class="sep" x1="810" y1="87" x2="980" y2="87"/>
+        <text class="m-ink" x="824" y="107">event_id → events</text>
+        <text class="m-ink" x="824" y="127">seq · created_at</text>
+        <text class="m-ink" x="824" y="147">text, as published</text>
+
+        <!-- ingest_state -->
+        <rect class="bx" x="530" y="240" width="250" height="104" rx="10"/>
+        <text class="tbl" x="544" y="261">ingest_state</text>
+        <line class="sep" x1="530" y1="271" x2="780" y2="271"/>
+        <text class="m-ink" x="544" y="291">a single row</text>
+        <text class="m-ink" x="544" y="311">last_success_at</text>
+        <text class="m-ink" x="544" y="331">last_error_at · last_error</text>
+
+        <!-- geocode_cache -->
+        <rect class="bx" x="810" y="240" width="170" height="104" rx="10"/>
+        <text class="tbl" x="824" y="261">geocode_cache</text>
+        <line class="sep" x1="810" y1="271" x2="980" y2="271"/>
+        <text class="m-ink" x="824" y="291">key → value (JSON)</text>
+        <text class="m-ink" x="824" y="311">fetched_at</text>
+        <text class="m-ink" x="824" y="331">successes only</text>
+
+        <!-- relations -->
+        <path class="ln" d="M228,118 H258" marker-end="url(#ah)"/>
+        <text class="xs c" x="244" y="110">1 : n</text>
+        <path class="ln" d="M368,180 V228" marker-end="url(#ah)"/>
+        <text class="xs" x="378" y="208">1 : n</text>
+        <path class="ln" d="M530,184 H500 V300 H478" marker-end="url(#ah)"/>
+        <text class="xs" x="494" y="212" text-anchor="end">1 : n</text>
+        <path class="ln" d="M780,108 H806" marker-end="url(#ah)"/>
+        <text class="xs c" x="795" y="100">1 : n</text>
+
+        <!-- notes -->
+        <text class="xs" x="28" y="388">Deleting a device takes its places and notifications with it.</text>
+        <text class="xs" x="28" y="406">Feedback has no foreign key; the same request deletes it.</text>
+        <text class="xs" x="528" y="388">Incidents are public, so any device may read any event.</text>
+        <text class="xs" x="528" y="406">A failed Kartverket lookup is never cached.</text>
+      </svg>
+    </div></div>
+    <figcaption>The API writes devices, places and feedback. The worker writes everything else. <code>events.notified_at</code> is the notifier's to-do list, and the unique key on <code>notifications</code> is what makes a second push for the same place and incident impossible.</figcaption>
+  </figure>
+</section>
+
+<!-- ============ APP ============ -->
+<section id="app">
+  <p class="kicker">The app</p>
+  <h2>Three screens and no tab bar</h2>
+  <p class="intro">Expo with React Native, TypeScript and expo-router, one codebase for iOS and Android. It runs as a development build, not in Expo Go, because MapLibre and push need native code.</p>
+
+  <figure>
+    <div class="fig"><div class="fig-scroll">
+      <svg class="dg" viewBox="0 0 1000 300" role="img" aria-label="Screen map. First launch opens Hjem. From Hjem, Legg til sted opens Nytt sted and tapping an incident opens Hendelse. A tapped push notification opens Hendelse directly. From Hendelse, Færre slike varsler opens Nytt sted for editing, and share opens the OS share sheet.">
+        <rect class="bx" x="16" y="120" width="112" height="50" rx="25"/>
+        <text class="t-xs c" x="72" y="141">First launch</text>
+        <text class="xs c" x="72" y="158">registers device</text>
+        <path class="ln" d="M128,145 H166" marker-end="url(#ah)"/>
+
+        <rect class="bx" x="170" y="70" width="180" height="150" rx="18"/>
+        <text class="t" x="188" y="98">Hjem</text>
+        <text class="s" x="188" y="118">«Dine steder»</text>
+        <text class="s" x="188" y="136">one card per place</text>
+        <text class="m" x="188" y="156">app/index.tsx</text>
+        <rect class="chip" x="188" y="172" width="144" height="26" rx="13"/>
+        <text class="xs c" x="260" y="189">skeleton now · step 10</text>
+
+        <rect class="bx" x="520" y="10" width="200" height="120" rx="18"/>
+        <text class="t" x="538" y="38">Nytt sted</text>
+        <text class="s" x="538" y="58">search, type, radius,</text>
+        <text class="s" x="538" y="76">30-day preview, save</text>
+        <rect class="chip-next" x="538" y="92" width="104" height="26" rx="13"/>
+        <text class="xs c acc" x="590" y="109">step 9 · next</text>
+
+        <rect class="bx" x="520" y="170" width="200" height="120" rx="18"/>
+        <text class="t" x="538" y="198">Hendelse</text>
+        <text class="s" x="538" y="218">map, precision, why,</text>
+        <text class="s" x="538" y="236">every police update</text>
+        <rect class="chip" x="538" y="252" width="70" height="26" rx="13"/>
+        <text class="xs c" x="573" y="269">step 11</text>
+
+        <rect class="bx-acc" x="800" y="180" width="184" height="44" rx="22"/>
+        <text class="t-xs c" x="892" y="199">Push notification</text>
+        <text class="m c" x="892" y="215">{event_id, place_id}</text>
+
+        <rect class="bx" x="800" y="240" width="184" height="44" rx="22"/>
+        <text class="t-xs c" x="892" y="259">OS share sheet</text>
+        <text class="xs c" x="892" y="275">text + «Kilde: Politiloggen»</text>
+
+        <path class="ln" d="M350,110 H420 V70 H516" marker-end="url(#ah)"/>
+        <text class="lbl c" x="468" y="62">Legg til sted</text>
+        <path class="ln" d="M350,180 H420 V230 H516" marker-end="url(#ah)"/>
+        <text class="lbl c" x="468" y="222">tap an incident</text>
+        <path class="ln" d="M620,168 V134" marker-end="url(#ah)"/>
+        <text class="lbl" x="632" y="156">«Færre slike varsler»</text>
+        <path class="ln-acc" d="M798,202 H724" marker-end="url(#ah-acc)"/>
+        <text class="lbl-acc c" x="761" y="194">tap</text>
+        <path class="ln" d="M720,262 H796" marker-end="url(#ah)"/>
+        <text class="lbl c" x="758" y="254">share</text>
+      </svg>
+    </div></div>
+    <figcaption>A push opens Hendelse directly, whether the app was closed or in the background. Editing and deleting a place reuse the Nytt sted screen. Settings and the weekly summary arrive in M2.</figcaption>
+  </figure>
+
+  <h3>Inside the app</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Layer</th><th>Files</th><th>What it holds</th></tr></thead>
+      <tbody>
+        <tr><td>Screens</td><td><code>app/_layout.tsx</code> <code>app/index.tsx</code></td><td>Fonts, splash and the navigation stack; Hjem. Nytt sted and Hendelse are added in steps 9 and 11.</td></tr>
+        <tr><td>Components</td><td><code>components/PlaceMap.tsx</code></td><td>The shared map: place circle (dashed on Hendelse), incident point with its uncertainty ring, «© Kartverket».</td></tr>
+        <tr><td>Device</td><td><code>lib/device.ts</code> <code>lib/session.ts</code> <code>lib/bootstrap.ts</code></td><td>Register once, keep the secret in the Keychain or Keystore, re-check on every return to the foreground.</td></tr>
+        <tr><td>Network</td><td><code>lib/api.ts</code> <code>lib/config.ts</code> <code>lib/push.ts</code></td><td>Typed API client with timeouts and the error shape; which server to call; push permission and token.</td></tr>
+        <tr><td>Map and text</td><td><code>lib/tiles.ts</code> <code>lib/geo.ts</code> <code>lib/strings.ts</code></td><td>The tile URL in one constant; circle maths; every Norwegian UI string in one file.</td></tr>
+        <tr><td>Theme</td><td><code>theme/tokens.ts</code></td><td>Colours, radii, spacing and fonts from spec §7.1. A test reads the spec and checks they still agree.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>What the app does on its own</h3>
+  <ul class="plain">
+    <li><b>First launch.</b> Calls <code>POST /v1/devices</code> and stores the secret. It stays readable after the first unlock, so a push can be handled on a locked phone.</li>
+    <li><b>Every launch and every return to the foreground.</b> Makes sure the device exists and sends the current push token. If the server has forgotten the device (a 401), it registers again, once.</li>
+    <li><b>No location.</b> Places are points the person picks, never GPS. The location permissions MapLibre would add on Android are blocked in <code>app.json</code>.</li>
+    <li><b>Which server.</b> <code>EXPO_PUBLIC_API_URL</code> if set, the local API in development, otherwise <code>kring-api.onrender.com</code>.</li>
+  </ul>
+</section>
+
+<!-- ============ USER FLOW ============ -->
+<section id="flow">
+  <p class="kicker">User flow</p>
+  <h2>What a person does, and what happens underneath</h2>
+  <p class="intro">A parent sets up their child's school and then mostly forgets about the app. That is the intended experience.</p>
+
+  <div class="flow-head" aria-hidden="true"><span></span><span>The person</span><span>The system</span></div>
+  <ol class="flow">
+    <li>
+      <div class="see">Installs and opens Kring. There is nothing to sign up for. Allows notifications.</div>
+      <div class="does"><code>POST /v1/devices</code> returns a secret, stored on the phone. <code>PUT /v1/devices/me</code> sends the push token, platform and time zone.</div>
+    </li>
+    <li>
+      <div class="see">Taps «Legg til sted», searches «Tøyen sk», picks Tøyen skole and the Skole template, keeps 1 km.</div>
+      <div class="does"><code>GET /v1/geocode/search</code> asks Kartverket and ranks Oslo and Akershus first. The template sets Vold, Brann, Savnet and Ro og orden, weekdays 08–16.</div>
+    </li>
+    <li>
+      <div class="see">Sees what the place would have caught, for example 5 incidents in the last 30 days, and saves.</div>
+      <div class="does"><code>GET /v1/preview</code> counts real incidents. <code>POST /v1/places</code> stores the place and its municipality, and flags it if it is outside Oslo and Akershus.</div>
+    </li>
+    <li>
+      <div class="see">Gets on with life. Hjem says «Rolig siste 7 dager».</div>
+      <div class="does"><code>GET /v1/places/{id}/events</code> for each card. <code>GET /v1/health</code> for «Oppdatert for N minutter siden».</div>
+    </li>
+    <li>
+      <div class="see">A weekday morning, a push: «Brann ca. 150 m fra Skolen».</div>
+      <div class="does">The worker stored the incident, matched it to this place, ran the push rules and sent one push. The text uses only Kring's own fields.</div>
+    </li>
+    <li>
+      <div class="see">Taps it. Hendelse shows the map with its margin of error, how precise it is, «Hvorfor fikk jeg dette?» and every police update.</div>
+      <div class="does"><code>GET /v1/events/{id}?place_id=…</code> returns the whole thread and why it reached this place.</div>
+    </li>
+    <li>
+      <div class="see">Adjusts or leaves. «Færre slike varsler» opens the place's settings. Deleting everything is one tap (M2).</div>
+      <div class="does"><code>PATCH /v1/places/{id}</code>. <code>DELETE /v1/devices/me</code> removes the device, its places and its push history.</div>
+    </li>
+  </ol>
+
+  <h3>Templates</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Template</th><th>Follows by default</th><th>Push window</th></tr></thead>
+      <tbody>
+        <tr><td>Skole</td><td>Vold, Brann, Savnet, Ro og orden</td><td>Weekdays 08:00–16:00</td></tr>
+        <tr><td>Hjem</td><td>Innbrudd, Brann, Vold, Ro og orden</td><td>All day</td></tr>
+        <tr><td>Hytte</td><td>Innbrudd, Brann</td><td>All day</td></tr>
+        <tr><td>Jobb</td><td>Vold, Brann</td><td>Weekdays 07:00–17:00</td></tr>
+        <tr><td>Annet</td><td>Everything except Trafikk</td><td>All day</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small-note">The server fills in these defaults, so the app and the server can't disagree. The person can change any of them. Planned traffic controls are never shown.</p>
+</section>
+
+<!-- ============ END TO END ============ -->
+<section id="e2e">
+  <p class="kicker">End to end</p>
+  <h2>One incident, from police log to phone</h2>
+  <p class="intro">Follow one fire in Hølandsgata through the system. The target is a push on the phone at most 2 minutes after the police publish.</p>
+
+  <figure>
+    <div class="fig"><div class="fig-scroll">
+      <svg class="dg" viewBox="0 0 1000 600" role="img" aria-label="Sequence diagram. The police post a message. Within 60 seconds the worker fetches it, geocodes and classifies it, stores it, matches places and records a push row, then sends the push through Expo to the phone, all within the 2 minute target. Later the person taps it, the app fetches the incident from the API, and 15 minutes after sending the worker collects the receipt.">
+        <!-- lane headers -->
+        <rect class="bx" x="138" y="12" width="124" height="36" rx="10"/><text class="t-xs c" x="200" y="35">Politiloggen</text>
+        <rect class="bx" x="283" y="12" width="124" height="36" rx="10"/><text class="t-xs c" x="345" y="35">Worker</text>
+        <rect class="bx" x="428" y="12" width="124" height="36" rx="10"/><text class="t-xs c" x="490" y="35">Postgres</text>
+        <rect class="bx" x="573" y="12" width="124" height="36" rx="10"/><text class="t-xs c" x="635" y="35">Expo Push</text>
+        <rect class="bx" x="718" y="12" width="124" height="36" rx="10"/><text class="t-xs c" x="780" y="35">Phone</text>
+        <rect class="bx" x="863" y="12" width="124" height="36" rx="10"/><text class="t-xs c" x="925" y="35">API</text>
+
+        <line class="life" x1="200" y1="48" x2="200" y2="590"/>
+        <line class="life" x1="345" y1="48" x2="345" y2="590"/>
+        <line class="life" x1="490" y1="48" x2="490" y2="590"/>
+        <line class="life" x1="635" y1="48" x2="635" y2="590"/>
+        <line class="life" x1="780" y1="48" x2="780" y2="590"/>
+        <line class="life" x1="925" y1="48" x2="925" y2="590"/>
+
+        <!-- time column -->
+        <text class="xs" x="12" y="88">T + 0</text>
+        <text class="xs" x="12" y="132">≤ 60 s</text>
+        <text class="xs" x="12" y="202">≈ 1 s</text>
+        <text class="xs" x="12" y="336">same cycle</text>
+        <text class="xs" x="12" y="406">seconds</text>
+        <text class="xs" x="12" y="448">any time</text>
+        <text class="xs" x="12" y="576">+ 15 min</text>
+
+        <!-- budget bracket -->
+        <path class="ln-acc" d="M94,74 H100 V408 H94"/>
+        <text class="lbl-acc c" x="120" y="241" transform="rotate(-90 120 241)">target ≤ 2 min (p95)</text>
+
+        <!-- 1 police post -->
+        <rect class="note" x="140" y="70" width="120" height="28" rx="8"/>
+        <text class="xs c" x="200" y="88">posts a message</text>
+
+        <!-- 2 poll -->
+        <path class="ln" d="M343,128 H206" marker-end="url(#ah)"/>
+        <text class="m c" x="272" y="120">GET /messagethreads</text>
+        <path class="ln-ret" d="M202,158 H339" marker-end="url(#ah)"/>
+        <text class="xs c" x="272" y="151">new thread</text>
+
+        <!-- 3 geocode + classify -->
+        <rect class="note" x="273" y="178" width="144" height="42" rx="8"/>
+        <text class="t-xs c" x="345" y="195">geocode + classify</text>
+        <text class="xs c" x="345" y="211">Gatenivå · severe</text>
+
+        <!-- 4 store, match -->
+        <path class="ln" d="M347,250 H484" marker-end="url(#ah)"/>
+        <text class="xs c" x="418" y="242">store event · commit</text>
+        <path class="ln" d="M347,288 H484" marker-end="url(#ah)"/>
+        <text class="xs c" x="418" y="280">match · add push row</text>
+
+        <!-- 5 send -->
+        <path class="ln-acc" d="M347,332 H629" marker-end="url(#ah-acc)"/>
+        <text class="lbl-acc c" x="418" y="324">send push</text>
+        <path class="ln-ret" d="M633,360 H351" marker-end="url(#ah)"/>
+        <text class="xs c" x="562" y="354">ticket</text>
+
+        <!-- 6 deliver -->
+        <path class="ln-acc" d="M637,402 H774" marker-end="url(#ah-acc)"/>
+        <text class="lbl-acc c" x="708" y="394">notification</text>
+
+        <!-- 7 tap -->
+        <rect class="note" x="722" y="430" width="116" height="28" rx="8"/>
+        <text class="xs c" x="780" y="448">person taps it</text>
+        <path class="ln" d="M782,492 H919" marker-end="url(#ah)"/>
+        <text class="m c" x="852" y="484">GET /v1/events/{id}</text>
+        <path class="ln-ret" d="M923,524 H786" marker-end="url(#ah)"/>
+        <text class="xs c" x="852" y="517">incident + «why»</text>
+        <text class="xs c" x="925" y="546">reads Postgres</text>
+
+        <!-- 8 receipt -->
+        <path class="ln" d="M347,572 H629" marker-end="url(#ah)"/>
+        <text class="xs c" x="418" y="564">fetch receipt → ok</text>
+      </svg>
+    </div></div>
+    <figcaption>The push carries only <code>{event_id, place_id}</code>. Its text is built from Kring's own fields; the full police thread is fetched from the API when the person taps. Geocoding calls Kartverket only when the answer isn't cached.</figcaption>
+  </figure>
+
+  <h3>Where the 2 minutes go</h3>
+  <ul class="plain">
+    <li><b>Waiting for the next poll:</b> up to 60 seconds. The largest share, and fixed by the poll interval.</li>
+    <li><b>Processing:</b> about a second per cycle once the geocode cache is warm.</li>
+    <li><b>Expo, Apple or Google, then the phone:</b> usually seconds, and outside Kring's control.</li>
+    <li><b>Measured in step 13:</b> on production for at least 2 days, split into police → stored (<code>ingested_at</code>) and stored → sent (<code>sent_at</code>).</li>
+  </ul>
+  <p>Later police messages in the same thread update the stored event. Its placement may improve and Hendelse shows the new text, but the thread never pushes a second time.</p>
+</section>
+
+<!-- ============ KEPT SIMPLE ============ -->
+<section id="simple">
+  <p class="kicker">Design choices</p>
+  <h2>Kept simple on purpose</h2>
+  <p class="intro">There is no job queue, no cache server, no scheduler and no user database. Postgres covers those jobs, which keeps the system to three moving parts that one person can run.</p>
+  <div class="principles">
+    <div><h4>Postgres is the to-do list</h4><code>notified_at IS NULL</code><p>The notifier works through events it hasn't handled yet. If the worker dies between storing and pushing, the next cycle carries on where it stopped.</p></div>
+    <div><h4>One lock, one worker</h4><code>pg_try_advisory_lock</code><p>A Postgres advisory lock lets only one worker poll. During a deploy the new worker waits for it. Nothing else coordinates them.</p></div>
+    <div><h4>A row before every push</h4><code>UNIQUE (place_id, event_id, kind)</code><p>The notifier writes the notification row first and sends second. A crash or a restart can't produce a second push for the same place and incident.</p></div>
+    <div><h4>The cache is a table</h4><code>geocode_cache</code><p>Kartverket answers are kept in Postgres, including a genuine «not found». Failures are never kept, so they are retried on the next cycle.</p></div>
+    <div><h4>Geometry stays in SQL</h4><code>ST_DWithin + GiST index</code><p>Matching is one indexed PostGIS query in metres. The same rule runs both ways: event to places for pushes, place to events for lists and the preview.</p></div>
+    <div><h4>No accounts</h4><code>POST /v1/devices</code><p>A device is a random 32-byte secret. Nothing to sign up for or reset, and one call erases everything about it.</p></div>
+    <div><h4>Push text from Kring's own fields</h4><code>notify/copy.py</code><p>A notification says what, how far, where and how precise. It never quotes the police, so names and descriptions of people can't reach a lock screen.</p></div>
+    <div><h4>Poll at a steady pace</h4><code>poll_interval_s = 60</code><p>Politiloggen offers no webhooks. One poll a minute uses at most half of the 2-minute budget, and the window widens by itself after an outage.</p></div>
+  </div>
+</section>
+
+<!-- ============ STATUS ============ -->
+<section id="status">
+  <p class="kicker">Status</p>
+  <h2>Where M1 stands</h2>
+  <p class="intro">The backend is built, tested and running on Render. The app has its skeleton: registration, push token and the map. The three screens are next.</p>
+
+  <ol class="steps">
+    <li class="done"><b>0 · done</b>Decisions into the spec</li>
+    <li class="done"><b>1 · done</b>Re-geocode command</li>
+    <li class="done"><b>2 · done</b>District notices stored</li>
+    <li class="done"><b>3 · done</b>API, devices, health</li>
+    <li class="done"><b>4 · done</b>Render deploy</li>
+    <li class="done"><b>5 · done</b>Places and search</li>
+    <li class="done"><b>6 · done</b>Matcher and event API</li>
+    <li class="done"><b>7 · done</b>Notifier and push</li>
+    <li class="done"><b>8 · done</b>Mobile skeleton</li>
+    <li class="next"><b>9 · next</b>Nytt sted</li>
+    <li class="later"><b>10</b>Hjem</li>
+    <li class="later"><b>11</b>Hendelse and deep link</li>
+    <li class="later"><b>12</b>TestFlight and Play builds</li>
+    <li class="later"><b>13</b>Latency and M1 report</li>
+  </ol>
+
+  <h3>Known gaps</h3>
+  <ul class="plain">
+    <li><b>Push isn't live end to end yet.</b> iOS needs an APNs key, which needs the paid Apple Developer membership. Android needs a Firebase project for FCM. Both are part of step 12.</li>
+    <li><b>One API instance.</b> Rate limits live in memory and reset on each deploy, and the per-IP registration limit trusts <code>X-Forwarded-For</code>. Shared limits come in M4.</li>
+    <li><b>No weekly summary, settings or delete button yet.</b> They are M2; <code>digest/</code> is still empty.</li>
+    <li><b>Akershus is placed less precisely than Oslo.</b> More incidents land at town level, and 14 % have no area at all. M3 works on this.</li>
+  </ul>
+
+  <h3>After M1</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Milestone</th><th>Scope</th><th>Done when</th></tr></thead>
+      <tbody>
+        <tr><td>M2</td><td>Weekly summary, settings, delete, privacy policy, store listings</td><td>Closed beta with 20–30 Oslo users</td></tr>
+        <tr><td>M3</td><td>Tuning from beta data, place-name aliases, better Akershus placement, road-only messages</td><td>The §13 metrics are met or explained</td></tr>
+        <tr><td>M4</td><td>Public launch, more than one API instance, shared rate limits, alarms</td><td>Live in both stores; a 10× load test keeps push p95 ≤ 2 min</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Written from <code>docs/kring-spec.md</code>, <code>docs/plans/m1.md</code>, <code>docs/deploy.md</code>, <code>render.yaml</code> and the code in <code>backend/</code> and <code>mobile/</code>, as of 15 November 2026. Incident data: Politiloggen (NLOD 2.0). Map data © Kartverket. Kring is not affiliated with the police.</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  try {
+    const nav = document.querySelector('.toc .wrap');
+    const links = [...nav.querySelectorAll('a')];
+    const byId = new Map(links.map((a) => [a.getAttribute('href').slice(1), a]));
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        const a = byId.get(e.target.id);
+        if (!a) continue;
+        links.forEach((l) => l.removeAttribute('aria-current'));
+        a.setAttribute('aria-current', 'location');
+        const r = a.getBoundingClientRect();
+        const n = nav.getBoundingClientRect();
+        if (r.left < n.left || r.right > n.right) nav.scrollTo({ left: a.offsetLeft - 16 });
+      }
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    document.querySelectorAll('main section[id]').forEach((s) => io.observe(s));
+  } catch (e) { /* the page works without the highlight */ }
+})();
+</script>
+</body>
+</html>
