@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390">
+<title>Kring – Dine steder, sveip</title>
+<!--
+  M2 prototype (2026-11-20): the incident row on a place card becomes a swipeable row.
+  - The incidents are the place's matched incidents of the last 7 days (the same ones «N ny» counts), newest first.
+  - The next slide peeks in from the right, and dots under the row show the position.
+  - Unopened incidents carry a small «Ny».
+  - The last slide is «Se alle hendelser», which opens 06-sted-hendelser.html (the last 30 days).
+  - A calm place, and the small-radius note, look as before (02-hjem.html).
+  - Query: ?slide=N scrolls the first card to slide N (0-based), ?full=1 shows the whole screen without the phone frame height.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F5F6F3}
+a{color:#00676A}a:hover{color:#004F51}
+.frame{width:390px;height:844px;box-sizing:border-box;background:#F5F6F3;font-family:Inter,system-ui,sans-serif;color:#16201C;display:flex;flex-direction:column}
+.full .frame{height:auto}
+.scroll{flex-grow:1;overflow-y:auto;padding:28px 20px 16px;display:flex;flex-direction:column;gap:16px}
+.full .scroll{overflow:visible}
+
+.card{background:#FFFFFF;border:1px solid #E2E5E0;border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.head{display:flex;align-items:center;gap:12px;text-decoration:none;color:#16201C}
+.tile{width:40px;height:40px;border-radius:12px;background:#E3F2F2;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.htext{display:flex;flex-direction:column;gap:2px;flex-grow:1;min-width:0}
+.label{font-weight:600;font-size:16px}
+.meta{font-size:13px;color:#5B6660}
+.newbadge{font-size:12px;font-weight:600;color:#A4501A;background:#FBEDE3;padding:3px 8px;border-radius:6px}
+
+/* The swipe row. Slides are 28 px narrower than the row, so the next one peeks in. */
+.sweep{display:flex;flex-direction:column;gap:8px}
+.track{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;cursor:grab;-webkit-overflow-scrolling:touch}
+.track::-webkit-scrollbar{display:none}
+.track.dragging{cursor:grabbing;scroll-snap-type:none}
+.slide{flex:0 0 calc(100% - 28px);box-sizing:border-box;scroll-snap-align:start;display:flex;gap:10px;align-items:flex-start;padding:12px;border-radius:12px;background:#F2F4F1;text-decoration:none;color:#16201C;min-height:44px;user-select:none;-webkit-user-drag:none}
+.slide.severe{background:#FBEDE3}
+.slide .body{display:flex;flex-direction:column;gap:4px;min-width:0;flex-grow:1}
+.slide .title{font-size:14px;line-height:20px;font-weight:600}
+.slide .mrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.slide .mtext{font-size:13px;color:#5B6660}
+.slide svg{flex-shrink:0;margin-top:1px}
+.trow{display:flex;gap:8px;align-items:flex-start;justify-content:space-between}
+.trow .ny{margin-top:2px;flex-shrink:0}
+.ny{font-size:11px;font-weight:700;color:#A4501A;background:#FBEDE3;padding:1px 6px;border-radius:6px}
+.slide.severe .ny{background:#FFFFFF}
+
+.badge{font-size:12px;font-weight:600;border:1.5px solid;border-radius:6px;padding:1px 6px}
+.b-gate{background:#007F82;border-color:#007F82;color:#FFFFFF}
+.b-nabolag{background:#FFFFFF;border-color:#007F82;color:#00676A}
+.b-bydel{background:#FFFFFF;border-color:#C9CFC8;border-style:dashed;color:#5B6660}
+
+.slide.all{background:#FFFFFF;border:1px solid #E2E5E0;align-items:center}
+.slide.all .title{color:#00676A}
+
+.dots{display:flex;justify-content:center;gap:6px;height:8px;align-items:center}
+.dot{width:6px;height:6px;border-radius:3px;background:#C9CFC8;border:0;padding:0;cursor:pointer;transition:width .15s,background .15s}
+.dot.on{width:16px;background:#007F82}
+
+.status{display:flex;align-items:center;gap:8px;padding:10px 12px;background:#F2F4F1;border-radius:12px}
+.status span{font-size:14px;color:#33433B}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="scroll">
+
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div style="display:flex;align-items:center;gap:8px">
+        <div style="width:28px;height:28px;border-radius:8px;background:#007F82;display:flex;align-items:center;justify-content:center">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="2" fill="#FFFFFF" stroke="none"></circle></svg>
+        </div>
+        <span style="font-family:'Space Grotesk',Inter,sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.2px">Kring</span>
+      </div>
+      <button aria-label="Innstillinger" style="width:44px;height:44px;border-radius:22px;border:1px solid #E2E5E0;background:#FFFFFF;display:flex;align-items:center;justify-content:center;cursor:pointer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16201C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"></path></svg>
+      </button>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:4px;padding-top:4px">
+      <h1 style="margin:0;font-family:'Space Grotesk',Inter,sans-serif;font-size:30px;font-weight:700;letter-spacing:-0.6px">Dine steder</h1>
+      <p style="margin:0;font-size:14px;color:#5B6660">Oppdatert for 2 minutter siden</p>
+    </div>
+
+    <!-- Hjemme: three incidents in the last 7 days, two not opened. -->
+    <div class="card">
+      <a class="head" href="01-nytt-sted.html" aria-label="Hjemme, Kampen · 1 km · hele døgnet, 2 ny. Endre stedet.">
+        <div class="tile">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#007F82" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5 9.5V21h14V9.5"></path><path d="M10 21v-6h4v6"></path></svg>
+        </div>
+        <div class="htext">
+          <span class="label">Hjemme</span>
+          <span class="meta">Kampen · 1 km · hele døgnet</span>
+        </div>
+        <span class="newbadge">2 ny</span>
+      </a>
+
+      <div class="sweep" data-sweep>
+        <div class="track" role="list" aria-label="Hendelser siste 7 dager, sveip for flere">
+          <a class="slide severe" role="listitem" href="04-hendelse.html" aria-label="1 av 3. Brann · Hølandsgata, Gatenivå, ca. 150 m unna, 08:23, ny">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A4501A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22c4 0 7-2.8 7-6.8 0-3.2-2-5.6-3.8-7.6-.4 1.8-1.4 3-2.7 3.4.4-3.2-.8-6.2-3.5-8-.2 3-1.6 4.8-3 6.6C4.8 11.2 5 12.7 5 15.2 5 19.2 8 22 12 22z"></path></svg>
+            <div class="body">
+              <div class="trow"><span class="title">Brann · Hølandsgata</span><span class="ny">Ny</span></div>
+              <div class="mrow">
+                <span class="badge b-gate">Gatenivå</span>
+                <span class="mtext">ca. 150 m unna · 08:23</span>
+              </div>
+            </div>
+          </a>
+          <a class="slide" role="listitem" href="04-hendelse.html" aria-label="2 av 3. Innbrudd · Normannsgata, Nabolag, ca. 400 m unna, i går 22:10, ny">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#33433B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+            <div class="body">
+              <div class="trow"><span class="title">Innbrudd · Normannsgata</span><span class="ny">Ny</span></div>
+              <div class="mrow">
+                <span class="badge b-nabolag">Nabolag</span>
+                <span class="mtext">ca. 400 m unna · i går 22:10</span>
+              </div>
+            </div>
+          </a>
+          <a class="slide" role="listitem" href="04-hendelse.html" aria-label="3 av 3. Ro og orden · Tøyengata, Gatenivå, ca. 700 m unna, 18. nov.">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#33433B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h3l6 4V6L7 10H4a1 1 0 0 0-1 1z"></path><path d="M16.5 9a3.5 3.5 0 0 1 0 6"></path></svg>
+            <div class="body">
+              <span class="title">Ro og orden · Tøyengata</span>
+              <div class="mrow">
+                <span class="badge b-gate">Gatenivå</span>
+                <span class="mtext">ca. 700 m unna · 18. nov.</span>
+              </div>
+            </div>
+          </a>
+          <a class="slide all" role="listitem" href="06-sted-hendelser.html" aria-label="Se alle hendelser for Hjemme, siste 30 dager">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00676A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-top:0"><path d="M8 6h13"></path><path d="M8 12h13"></path><path d="M8 18h13"></path><path d="M3 6h.01"></path><path d="M3 12h.01"></path><path d="M3 18h.01"></path></svg>
+            <div class="body">
+              <span class="title">Se alle hendelser</span>
+              <span class="mtext">Siste 30 dager</span>
+            </div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00676A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-top:0"><path d="m9 6 6 6-6 6"></path></svg>
+          </a>
+        </div>
+        <div class="dots" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <!-- Skolen: calm, as before. -->
+    <div class="card">
+      <a class="head" href="01-nytt-sted.html">
+        <div class="tile">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#007F82" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"></path><path d="M5 21V10l7-5 7 5v11"></path><path d="M12 5V2l3 1.2L12 4.4"></path><path d="M10 21v-5h4v5"></path></svg>
+        </div>
+        <div class="htext">
+          <span class="label">Skolen</span>
+          <span class="meta">Tøyen skole · 1 km · hverdager 08–16</span>
+        </div>
+      </a>
+      <div class="status">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3E5A4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+        <span>Rolig siste 7 dager</span>
+      </div>
+    </div>
+
+    <!-- Jobben: the small-radius note, as before. -->
+    <div class="card">
+      <a class="head" href="01-nytt-sted.html">
+        <div class="tile">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#007F82" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"></path><path d="M3 13h18"></path></svg>
+        </div>
+        <div class="htext">
+          <span class="label">Jobben</span>
+          <span class="meta">Grensen · 500 m · bare alvorlige</span>
+        </div>
+      </a>
+      <div class="status" style="align-items:flex-start">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B6660" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-top:2px;flex-shrink:0"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5"></path><path d="M12 8h.01"></path></svg>
+        <span style="font-size:13px;line-height:1.45">Ingen gatepresise hendelser denne uken. 3 hendelser er bare oppgitt med bydel eller kommune og vises ikke i et så lite område.</span>
+      </div>
+    </div>
+
+    <div style="background:#E3F2F2;border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:6px">
+      <span style="font-size:12px;font-weight:600;letter-spacing:0.6px;text-transform:uppercase;color:#00676A">Ukesammendrag · uke 47</span>
+      <span style="font-size:15px;line-height:1.45">3 hendelser rundt stedene dine, 1 alvorlig. Trafikk og planlagte kontroller er skjult.</span>
+      <a href="#" style="font-size:14px;font-weight:600;margin-top:4px">Se hele uken</a>
+    </div>
+
+    <p style="margin:4px 0 0;font-size:12px;line-height:1.5;color:#5B6660">Kilde: Politiloggen (NLOD 2.0). Kring er ikke tilknyttet politiet.</p>
+  </div>
+
+  <div style="padding:12px 20px 28px;background:#F5F6F3;border-top:1px solid #E2E5E0">
+    <a href="01-nytt-sted.html" style="height:52px;border-radius:14px;background:#007F82;color:#FFFFFF;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:16px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>
+      Legg til sted
+    </a>
+  </div>
+</div>
+
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  if (q.get('full') === '1') document.body.classList.add('full');
+
+  document.querySelectorAll('[data-sweep]').forEach(function (sweep) {
+    var track = sweep.querySelector('.track');
+    var slides = Array.prototype.slice.call(track.children);
+    var dots = sweep.querySelector('.dots');
+    slides.forEach(function (_, i) {
+      var b = document.createElement('button');
+      b.className = 'dot';
+      b.tabIndex = -1;
+      b.addEventListener('click', function () { go(i, true); });
+      dots.appendChild(b);
+    });
+    function step() { return slides[1].offsetLeft - slides[0].offsetLeft; }
+    function current() {
+      // The last slide can't reach the left edge, so count "scrolled to the end" as the last one.
+      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 2) return slides.length - 1;
+      return Math.round(track.scrollLeft / step());
+    }
+    function mark() {
+      var n = current();
+      Array.prototype.forEach.call(dots.children, function (d, i) { d.classList.toggle('on', i === n); });
+    }
+    function go(i, smooth) { track.scrollTo({ left: i * step(), behavior: smooth ? 'smooth' : 'auto' }); }
+    track.addEventListener('scroll', mark, { passive: true });
+
+    // Mouse drag, so the prototype can be swiped on a desktop too.
+    var down = null, moved = false;
+    track.addEventListener('mousedown', function (e) { down = { x: e.pageX, left: track.scrollLeft }; moved = false; track.classList.add('dragging'); e.preventDefault(); });
+    window.addEventListener('mousemove', function (e) {
+      if (!down) return;
+      var dx = e.pageX - down.x;
+      if (Math.abs(dx) > 4) moved = true;
+      track.scrollLeft = down.left - dx;
+    });
+    window.addEventListener('mouseup', function () {
+      if (!down) return;
+      track.classList.remove('dragging');
+      var start = Math.round(down.left / step());
+      var dx = track.scrollLeft - down.left;
+      var n = Math.abs(dx) > 30 ? start + (dx > 0 ? 1 : -1) : start;
+      go(Math.max(0, Math.min(slides.length - 1, n)), true);
+      down = null;
+    });
+    track.addEventListener('click', function (e) { if (moved) { e.preventDefault(); moved = false; } }, true);
+
+    var s = parseInt(q.get('slide') || '0', 10);
+    if (s > 0) go(s, false);
+    mark();
+  });
+})();
+</script>
+</body>
+</html>

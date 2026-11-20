@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390">
+<title>Kring – Hendelser for Hjemme</title>
+<!--
+  M2 prototype (2026-11-20): every incident for one place over the last 30 days.
+  - Opened from the «Se alle hendelser» slide at the end of the place card's swipe row (05-hjem-sveip.html).
+  - Data: GET /v1/places/{id}/events?days=30. Matched incidents newest first, in two groups:
+    the last 7 days (the ones the swipe row shows) and 8–30 days ago.
+  - Below: incidents nearby that the police gave only a bydel for (relation imprecise_nearby), and the municipality-only count (D1).
+  - Each row opens Hendelse. «Endre» opens the place's edit screen.
+  - Query: ?full=1 shows the whole screen without the phone frame height.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F5F6F3}
+a{color:#00676A}a:hover{color:#004F51}
+.frame{width:390px;height:844px;box-sizing:border-box;background:#F5F6F3;font-family:Inter,system-ui,sans-serif;color:#16201C;display:flex;flex-direction:column}
+.full .frame{height:auto}
+.scroll{flex-grow:1;overflow-y:auto;padding:20px 20px 28px;display:flex;flex-direction:column;gap:16px}
+.full .scroll{overflow:visible}
+
+.topbar{display:flex;justify-content:space-between;align-items:center;min-height:44px}
+.back{display:flex;align-items:center;gap:4px;text-decoration:none;font-size:16px;font-weight:500;color:#00676A;min-height:44px}
+.edit{font-size:15px;font-weight:600;color:#00676A;text-decoration:none;padding:10px 14px;border:1px solid #E2E5E0;border-radius:999px;background:#FFFFFF}
+
+.head{display:flex;align-items:center;gap:12px}
+.tile{width:44px;height:44px;border-radius:12px;background:#E3F2F2;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+h1{margin:0;font-family:'Space Grotesk',Inter,sans-serif;font-size:30px;font-weight:700;letter-spacing:-0.6px;line-height:1.1}
+.meta{font-size:13px;color:#5B6660}
+
+.summary{background:#FFFFFF;border:1px solid #E2E5E0;border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:4px}
+.over{font-size:12px;font-weight:600;letter-spacing:0.6px;text-transform:uppercase;color:#00676A}
+.summary p{margin:0;font-size:15px;line-height:1.45}
+
+.group{display:flex;flex-direction:column;gap:8px}
+.group h2{margin:4px 0 0;font-size:13px;font-weight:600;color:#5B6660;letter-spacing:0.2px}
+.row{display:flex;gap:10px;align-items:flex-start;padding:12px;border-radius:12px;background:#FFFFFF;border:1px solid #E2E5E0;text-decoration:none;color:#16201C;min-height:44px}
+.row.severe{background:#FBEDE3;border-color:#FBEDE3}
+.row .body{display:flex;flex-direction:column;gap:4px;min-width:0;flex-grow:1}
+.row .title{font-size:14px;line-height:20px;font-weight:600}
+.row .mrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.row .mtext{font-size:13px;color:#5B6660}
+.row svg{flex-shrink:0;margin-top:1px}
+.row .chev{align-self:center;margin-top:0}
+.row.quiet{background:#F2F4F1;border-color:#F2F4F1}
+.row.quiet .title{color:#33433B;font-weight:500}
+.trow{display:flex;gap:8px;align-items:flex-start;justify-content:space-between}
+.trow .ny{margin-top:2px;flex-shrink:0}
+.ny{font-size:11px;font-weight:700;color:#A4501A;background:#FBEDE3;padding:1px 6px;border-radius:6px}
+.row.severe .ny{background:#FFFFFF}
+
+.badge{font-size:12px;font-weight:600;border:1.5px solid;border-radius:6px;padding:1px 6px}
+.b-gate{background:#007F82;border-color:#007F82;color:#FFFFFF}
+.b-nabolag{background:#FFFFFF;border-color:#007F82;color:#00676A}
+.b-bydel{background:#FFFFFF;border-color:#C9CFC8;border-style:dashed;color:#5B6660}
+
+.explain{margin:0;font-size:13px;line-height:1.45;color:#33433B}
+.infonote{display:flex;gap:8px;align-items:flex-start;padding:10px 12px;border:1px dashed #C9CFC8;border-radius:12px}
+.infonote span{font-size:13px;line-height:1.45;color:#33433B}
+.source{margin:4px 0 0;font-size:12px;line-height:1.5;color:#5B6660}
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="scroll">
+
+    <div class="topbar">
+      <a class="back" href="05-hjem-sveip.html">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00676A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"></path></svg>
+        Dine steder
+      </a>
+      <a class="edit" href="01-nytt-sted.html">Endre</a>
+    </div>
+
+    <div class="head">
+      <div class="tile">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#007F82" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5 9.5V21h14V9.5"></path><path d="M10 21v-6h4v6"></path></svg>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+        <h1>Hjemme</h1>
+        <span class="meta">Kampen · 1 km · hele døgnet</span>
+      </div>
+    </div>
+
+    <div class="summary">
+      <span class="over">Siste 30 dager</span>
+      <p>7 hendelser innenfor 1 km, 3 alvorlige. Trafikk og planlagte kontroller er skjult.</p>
+    </div>
+
+    <div class="group">
+      <h2>Siste 7 dager</h2>
+      <a class="row severe" href="04-hendelse.html">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A4501A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22c4 0 7-2.8 7-6.8 0-3.2-2-5.6-3.8-7.6-.4 1.8-1.4 3-2.7 3.4.4-3.2-.8-6.2-3.5-8-.2 3-1.6 4.8-3 6.6C4.8 11.2 5 12.7 5 15.2 5 19.2 8 22 12 22z"></path></svg>
+        <div class="body">
+          <div class="trow"><span class="title">Brann · Hølandsgata</span><span class="ny">Ny</span></div>
+          <div class="mrow"><span class="badge b-gate">Gatenivå</span><span class="mtext">ca. 150 m unna · i dag 08:23</span></div>
+        </div>
+        <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B6660" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>
+      </a>
+      <a class="row" href="04-hendelse.html">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#33433B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+        <div class="body">
+          <div class="trow"><span class="title">Innbrudd · Normannsgata</span><span class="ny">Ny</span></div>
+          <div class="mrow"><span class="badge b-nabolag">Nabolag</span><span class="mtext">ca. 400 m unna · i går 22:10</span></div>
+        </div>
+        <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B6660" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>
+      </a>
+      <a class="row" href="04-hendelse.html">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#33433B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h3l6 4V6L7 10H4a1 1 0 0 0-1 1z"></path><path d="M16.5 9a3.5 3.5 0 0 1 0 6"></path></svg>
+        <div class="body">
+          <span class="title">Ro og orden · Tøyengata</span>
+          <div class="mrow"><span class="badge b-gate">Gatenivå</span><span class="mtext">ca. 700 m unna · 18. nov. 01:40</span></div>
+        </div>
+        <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B6660" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>
+      </a>
+    </div>
+
+    <div class="group">
+      <h2>8–30 dager siden</h2>
+      <a class="row severe" href="04-hendelse.html">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A4501A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20L12 3z"></path><path d="M12 10v4"></path><path d="M12 17h.01"></path></svg>
+        <div class="body">
+          <span class="title">Vold · Jens Bjelkes gate</span>
+          <div class="mrow"><span class="badge b-nabolag">Nabolag</span><span class="mtext">ca. 850 m unna · 12. nov. 21:40</span></div>
+        </div>
+        <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B6660" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>
+      </a>
+      <a class="row severe" href="04-hendelse.html">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A4501A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22c4 0 7-2.8 7-6.8 0-3.2-2-5.6-3.8-7.6-.4 1.8-1.4 3-2.7 3.4.4-3.2-.8-6.2-3.5-8-.2 3-1.6 4.8-3 6.6C4.8 11.2 5 12.7 5 15.2 5 19.2 8 22 12 22z"></path></svg>
+        <div class="body">
+          <span class="title">Brann · Fagerheimgata</span>
+          <div class="mrow"><span class="badge b-gate">Gatenivå</span><span class="mtext">ca. 650 m unna · 11. nov. 14:05</span></div>
+        </div>
+        <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B6660" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>
+      </a>
+      <a class="row" href="04-hendelse.html">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#33433B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+        <div class="body">
+          <span class="title">Innbrudd · Hagegata</span>
+          <div class="mrow"><span class="badge b-gate">Gatenivå</span><span class="mtext">ca. 900 m unna · 3. nov. 07:15</span></div>
+        </div>
+        <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B6660" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>
+      </a>
+      <a class="row" href="04-hendelse.html">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#33433B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h3l6 4V6L7 10H4a1 1 0 0 0-1 1z"></path><path d="M16.5 9a3.5 3.5 0 0 1 0 6"></path></svg>
+        <div class="body">
+          <span class="title">Ro og orden · Kampen park</span>
+          <div class="mrow"><span class="badge b-gate">Gatenivå</span><span class="mtext">ca. 300 m unna · 24. okt. 23:50</span></div>
+        </div>
+        <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B6660" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>
+      </a>
+    </div>
+
+    <div class="group">
+      <h2>I nærheten, bare oppgitt med bydel</h2>
+      <p class="explain">Politiet oppga bare bydelen. Disse kan ha skjedd innenfor området ditt, men også et stykke unna. De gir aldri push.</p>
+      <a class="row quiet" href="04-hendelse.html">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5B6660" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20L12 3z"></path><path d="M12 10v4"></path><path d="M12 17h.01"></path></svg>
+        <div class="body">
+          <span class="title">Vold · Gamle Oslo</span>
+          <div class="mrow"><span class="badge b-bydel">Bydel</span><span class="mtext">15. nov. 02:30</span></div>
+        </div>
+        <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B6660" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>
+      </a>
+      <a class="row quiet" href="04-hendelse.html">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5B6660" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+        <div class="body">
+          <span class="title">Innbrudd · Gamle Oslo</span>
+          <div class="mrow"><span class="badge b-bydel">Bydel</span><span class="mtext">6. nov. 10:20</span></div>
+        </div>
+        <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B6660" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>
+      </a>
+    </div>
+
+    <div class="infonote">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B6660" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-top:2px;flex-shrink:0"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5"></path><path d="M12 8h.01"></path></svg>
+      <span>4 hendelser i Oslo er bare oppgitt med kommune og vises ikke her.</span>
+    </div>
+
+    <p class="source">Kilde: Politiloggen (NLOD 2.0). Kring er ikke tilknyttet politiet.</p>
+  </div>
+</div>
+<script>
+if (new URLSearchParams(location.search).get('full') === '1') document.body.classList.add('full');
+</script>
+</body>
+</html>
